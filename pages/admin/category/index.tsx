@@ -5,8 +5,16 @@ import Head from 'next/head'
 import Layout from '../../../components/Layout'
 import TopDiv from '../../../components/Admin/TopDiv'
 import CategoryCard from '../../../components/Admin/CategoryCard'
+import { useModal } from '../../../shared/hooks/useModal'
+import AdminModal from '../../../components/UI/AdminModal'
+import FormAddCategory from '../../../components/UI/FormAddCategory'
 
 const Category = () => {
+
+
+
+  const {isOpen,open,close}=useModal()
+
   return (
     <div>
         <Head>
@@ -16,11 +24,13 @@ const Category = () => {
       </Head>
 
       <Layout>
+        <AdminModal formm={<FormAddCategory/>} modalTitle='Add Category'  isOpen={isOpen} onClose={close}/>
       <AdminHeader/>
       <div className='flex'>
       <SideBar/>
       <div className='flex flex-col w-full me-4'>
-      <TopDiv addButton  title="Category" btnText="ADD CATEGORY" selectText="Category type"/>
+      <TopDiv addButton={{ onClick: open, }}  title="Category" btnText="ADD CATEGORY" selectText="Category type"/>
+
       <div className='flex gap-5 flex-wrap'>
       <CategoryCard/>
       </div>

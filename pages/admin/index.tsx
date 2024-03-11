@@ -8,6 +8,7 @@ import ChartSalary from "../../components/Admin/Charts/ChartSalary";
 import AdminHeader from "../../components/Admin/Header";
 import AdminModal from "../../components/UI/AdminModal";
 import Layout from "../../components/Layout";
+import FormAddRestuarant from "../../components/UI/FormAddProducts";
 
 const AdminDashboard: NextPage = () => {
   return (
@@ -33,7 +34,8 @@ const AdminDashboard: NextPage = () => {
       <DoughnutChart  />
       </div>
       <div className=" overflow-y-auto">
-      {/* <AdminModal/> */}
+      <AdminModal Restform/>
+       
       </div>
 
       </div>

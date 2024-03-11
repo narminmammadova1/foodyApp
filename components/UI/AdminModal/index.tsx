@@ -1,18 +1,72 @@
 import React from 'react'
 import AddButton from '../../Admin/AddButton'
- import styled from 'styled-components'
 import { LabelModal} from '../../Styled/Typography'
+import FormAddRestuarant from '../FormAddProducts';
+import { useRouter } from 'next/router';
+import { log } from 'console';
+import { ROUTER } from '../../../Constant/Router';
+import FormAddCategory from '../FormAddCategory';
 
 
-const AdminModal = ({isOpen, onClose}) => {
+
+
+const AdminModal = ({isOpen,formm ,onClose,modalTitle="Add Product"}) => {
+
+    const router=useRouter()
+console.log("router",router);
+const {pathname}=router
+
+    console.log("path",pathname);
+
+    
+    // let modalHeader = "";
+    // let modalDescription = "";
+   //  let formToRender = null;
+
+//     if (pathname === ROUTER.CATEGORY) {
+//      modalHeader = "Add Category";
+//      modalDescription = "Add Your information";
+//      // formToRender = <FormAddCategory/>; // You can uncomment this if you want to render the form
+//    }
+//    if(pathname===ROUTER.RESTUARANTS){
+//      modalHeader = "Add Restaurants";
+//      modalDescription = "Add Your Restaurants information";
+     
+//    }
+
+// switch (pathname) {
+//     case ROUTER.CATEGORY:
+//       modalHeader = "Add Category";
+//       modalDescription = "Add Your information";
+//       break;
+//     case ROUTER.RESTUARANTS:
+//       modalHeader = "Add Restaurants";
+//       modalDescription = "Add Your Restaurants information";
+//       break;
+//     default:
+//       // Varsayılan durum
+//       break;
+//   }
+
+
+
+
+    // let formToRender=null
+    // if(pathname===ROUTER.CATEGORY){
+    //     formToRender=<FormAddCategory/>
+    // }
   return (
-  <div className={`z-50 ${isOpen ? "fixed" :"hidden"}`}>
+  <div className={`z-50   ${isOpen ? "fixed" :"hidden"} `  } 
+//   style={{right:isOpen ? 0 :"-100"
+// //  transform: isOpen ?"translateX(0)" :"translateX(100%)"
+// }}
+ >
     <div className=' translate-x-40  left-64 fixed top-6 ' onClick={onClose}>   <img src="/icons/x.svg" alt=""  />
    </div>  
     <div className='fixed bg-login-gray top-0 right-0 h-full  overflow-y-auto'>
   
     <header className=' p-6  font-roboto font-medium   text-par-text'>
-            <p className='text-2xl'>Add product</p>
+            <p className='text-2xl'>{modalTitle}</p>
         <p className='  text-lg'>Upload your product Image
 </p>
         </header>
@@ -31,11 +85,26 @@ const AdminModal = ({isOpen, onClose}) => {
                 <p className=' font-roboto font-medium   text-par-text  text-2xl'>upload</p></div>
             </div>
 <div className=' bg-modal-div mt-20 flex flex-col p-5  rounded-xl'>
-    <form action="" className='flex flex-col'>
-    {/* <LabelModal> */}
+ {formm ? <FormAddCategory/> :(   <form action="" className='flex flex-col'>
+
+<label className=' modal-label'  htmlFor="">Name</label>
+
+<input className=' bg-input-gray  rounded-lg h-10' type="text " />
+<label  className=' modal-label'  htmlFor="">Description</label>
+<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg bg-input-gray'></textarea>
+
+<label  className=' modal-label'  htmlFor="">Price</label>
+<input type="text" className=' bg-input-gray  rounded-lg h-10'/>
+
+<label  className=' modal-label'  htmlFor="">Restuarants</label>
+
+<input type="text" className=' bg-input-gray  rounded-lg h-10' />
+
+
+</form>  )} 
+     {/* <form action="" className='flex flex-col'>
 
         <label className=' modal-label'  htmlFor="">Name</label>
-        {/* </LabelModal> */}
        
 <input className=' bg-input-gray  rounded-lg h-10' type="text " />
 <label  className=' modal-label'  htmlFor="">Description</label>
@@ -49,10 +118,13 @@ const AdminModal = ({isOpen, onClose}) => {
 <input type="text" className=' bg-input-gray  rounded-lg h-10' />
 
 
-    </form>
-   
- 
+    </form>   */}
+{/* {formToRender} */}
 </div>
+
+
+
+
 
 </div>
 
