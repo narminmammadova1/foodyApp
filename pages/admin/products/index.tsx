@@ -39,7 +39,7 @@ const AdminProducts = () => {
       <SideBar/>
       <div className='flex flex-col w-full me-4'>
       <TopDiv select selectText="Restuarant type" title="Products" />
-      <div className='flex gap-4 flex-wrap'>
+      <div className='flex gap-9 flex-wrap'>
         <ProductCards/>
         <ProductCards/>
 

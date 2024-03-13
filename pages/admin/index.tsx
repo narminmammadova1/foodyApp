@@ -26,25 +26,29 @@ const AdminDashboard: NextPage = () => {
     
     
   </div>
-<div className=" bg-dark-div w-[472px] h-[472px] flex flex-col mt-5 rounded-[14px] ">
-<div className="flex flex-col m-auto">
-  <div>
-    <p className=" text-par-text">Orders</p>
+<div className=" bg-dark-div w-[472px] h-[472px] flex flex-col rounded-[14px] ">
+<div>
+    <p className="text20 ">Orders</p>
   </div>
+
+<div className="flex flex-col m-auto">
+
+  
       <DoughnutChart  />
       </div>
       <div className=" overflow-y-auto">
-      <AdminModal Restform/>
+      <AdminModal/>
        
       </div>
 
       </div>
 
-      <div className=" bg-dark-div w-[634px] h-[472px] flex flex-col  rounded-[14px] m-5 ">
-<div className="flex flex-col m-auto">
-  <div>
-    <p className=" text-par-text">Total Salary</p>
+      <div className=" bg-dark-div w-[634px] h-[472px] flex flex-col  rounded-[14px]  mx-4 ">
+      <div>
+    <p className="text20">Total Salary</p>
   </div>
+<div className="flex flex-col m-auto">
+  
       </div>
      
 

@@ -36,7 +36,9 @@ a {
     @apply font-medium font-roboto size-4  text-par-text my-4 px-2
   }
 
-
+.text20{
+  @apply font-roboto text-xl font-medium  text-par-text px-6 py-4
+}
   
 }
 

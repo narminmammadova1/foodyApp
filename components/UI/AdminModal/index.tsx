@@ -10,7 +10,7 @@ import FormAddCategory from '../FormAddCategory';
 
 
 
-const AdminModal = ({isOpen,formm ,onClose,modalTitle="Add Product"}) => {
+const AdminModal = ({isOpen,formm,btnText ,onClose,modalTitle="Add Product",modalDescription}) => {
 
     const router=useRouter()
 console.log("router",router);
@@ -75,7 +75,7 @@ const {pathname}=router
             <div className='pe-12'>
             <div className=' min-h-36'></div>
 <div>
-                <p className=' relative  top-20 font-roboto font-medium   text-par-text text-lg'>Add your Product description and necessary information</p>
+                <p className=' relative  top-20 font-roboto font-medium   text-par-text text-lg'>{modalDescription}</p>
             </div> 
             </div>
             <div className='w-full '>
@@ -133,7 +133,7 @@ const {pathname}=router
             <div className=' w-1/2 btn-text  '>
 <AddButton shadow center btnSize="flex-1"  btnIcon='' btnText="Cancel" btncolor="modal-div" /></div>
 <div className=' w-1/2  me-5 btn-text'>
-            <AddButton shadow center btnSize="flex-1"  btnIcon='' btnText="Create Product" btncolor="btn-pink"/>
+            <AddButton shadow center btnSize="flex-1"  btnIcon='' btnText={btnText} btncolor="btn-pink"/>
       
             </div>
               </div>
