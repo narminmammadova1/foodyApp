@@ -6,7 +6,7 @@ import { ROUTER } from '../../../Constant/Router'
 import { useRouter } from 'next/router'
 import FormAddCategory from '../../UI/FormAddCategory'
 
-const TopDiv = ({addButton,select,title,btnText,selectText}) => {
+const TopDiv = ({addButton,select,title,btnText,selectText,onClick}) => {
   // const [buttonText,setButtonText]=useState("")
  
  const{isOpen,open,close}=useModal()
@@ -57,7 +57,10 @@ const {pathname}=router
 </div>
 </div>}
 
-{addButton && <AddButton onClick={addButton.onClick}  btnText={btnText} btncolor="btn-pink" selectText={selectText}/>}
+{addButton && <AddButton 
+  // onClick={addButton.onClick} 
+  onClick={onClick}
+   btnText={btnText} btncolor="btn-pink" />}
 
 </div>
   </div>

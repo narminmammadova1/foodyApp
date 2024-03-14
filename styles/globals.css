@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 
-/* html,
+ html,
 body {
   padding: 0;
   margin: 0;
@@ -20,11 +20,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
+} 
+{
   box-sizing: border-box;
-} */
+} 
+
 @layer utilities {
   .btn-text {
     @apply text-white font-roboto text-lg font-bold;
@@ -33,12 +33,52 @@ a {
     box-shadow: 0 4px 4px rgba(39, 174, 96, 0.2);
   }
   .modal-label{
-    @apply font-medium font-roboto size-4  text-par-text my-4 px-2
+    @apply font-medium font-roboto   text-par-text mb-4 mt-5 px-2
   }
-
+.modal-input{
+  @apply font-medium font-roboto  text-text-placeholder ps-3
+}
 .text20{
   @apply font-roboto text-xl font-medium  text-par-text px-6 py-4
 }
   
 }
 
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Kaydırma çubuğu arka plan rengi */
+::-webkit-scrollbar-track {
+  background: #38394E;
+}
+
+/* Kaydırma çubuğu çubuğu rengi */
+::-webkit-scrollbar-thumb {
+  background: #EF5DA8;
+}
+
+/* Kaydırma çubuğu üzerine gelindiğinde çubuk rengi */
+::-webkit-scrollbar-thumb:hover {
+  background: #C33D78;
+}
+
+select {
+  /* Genişlik için istediğiniz değeri ayarlayın */
+  width: 100%;
+ 
+  background: url('/foodyApp/public/icons/select.svg') no-repeat right 0px;
+
+ 
+  /* Padding değerlerini ayarlayarak içerikten uzaklaştırma yapabilirsiniz */
+}
+
+/* Select içerisindeki okun stilini ayarla */
+select::-ms-expand {
+  display: none;
+  padding-right: 6
+  
+  0px; /* Windows için varsayılan oku gizle */
+}

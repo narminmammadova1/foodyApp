@@ -1,8 +1,17 @@
 import Image from 'next/image'
 import React from 'react'
+import AdminModal from '../../UI/AdminModal'
+import { useModal } from '../../../shared/hooks/useModal'
 
 const CategoryCard= () => {
+
+  const  {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal}=useModal()
+
   return (
+
+    <>
+     <AdminModal modalDescription="
+Edit your category information" modalTitle='Edit Category' btnText="Update Category" img isOpen={isOpen} onClose={close} />
     <div className=' bg-white w-full'>
         <table className="table-fixed min-w-full divide-y divide-gray-200">
   <thead>
@@ -50,6 +59,7 @@ const CategoryCard= () => {
 </table>
       
     </div>
+    </>
   )
 }
 

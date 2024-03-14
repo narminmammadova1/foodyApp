@@ -7,12 +7,15 @@ import AddButton from '../../../components/Admin/AddButton'
 import RestuarantCards from '../../../components/Admin/RestuarantCards'
 import Layout from '../../../components/Layout'
 import SideBar from '../../../components/Admin/SideBar'
-import AdminRight from '../../../components/Admin/AdminRight'
+import AdminModal from '../../../components/UI/AdminModal'
+import { useModal } from '../../../shared/hooks/useModal'
 
 
 const Restuarants = () => {
+  const {isOpen,open,close}=useModal()
 
   return (
+
     <div>
         <Head>
         <title>Restuarants</title>
@@ -21,20 +24,18 @@ const Restuarants = () => {
       </Head>
 
       <Layout>
+     <AdminModal  formm modalTitle='Add Restuarant' modalDescription="
+Add your Restuarants information"btnText="Create Restuarant" isOpen={isOpen} onClose={close} />
       <AdminHeader/>
       <div className='flex'>
       <SideBar/>
       <div className='flex flex-col w-full me-4'>
-      <TopDiv addButton select title="Restuarants" btnText="Add RESTUARANT" selectText="Category type"/>
+      <TopDiv addButton onClick={open} select title="Restuarants" btnText="ADD RESTUARANT" selectText="Category type"/>
       <div className='flex gap-5 flex-wrap'>
       <RestuarantCards/>
       <RestuarantCards/>
       <RestuarantCards/>
-      <RestuarantCards/>
-      <RestuarantCards/>
-      <RestuarantCards/>
-      <RestuarantCards/>
-      <RestuarantCards/>
+    
       <RestuarantCards/>
       <RestuarantCards/>
 

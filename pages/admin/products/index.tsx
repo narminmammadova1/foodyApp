@@ -5,7 +5,8 @@ import AdminHeader from '../../../components/Admin/Header';
 import ProductCards from '../../../components/Admin/ProductCards';
 import TopDiv from '../../../components/Admin/TopDiv';
 import Layout from '../../../components/Layout';
-import AdminModal from '../../../components/UI/AdminModal';
+import DeleteModal from '../../../components/Modals/DeleteModal';
+import { useModal } from '../../../shared/hooks/useModal';
 
 
 
@@ -25,6 +26,8 @@ import AdminModal from '../../../components/UI/AdminModal';
 
 
 const AdminProducts = () => {
+  // const {isOpen,open,close}=useModal()
+
   return (
     <div>
         <Head>
@@ -35,16 +38,21 @@ const AdminProducts = () => {
 
       <Layout>
       <AdminHeader/>
+{/* <DeleteModal isOpen={isOpen} onClose={close} /> */}
       <div className='flex'>
+
       <SideBar/>
       <div className='flex flex-col w-full me-4'>
+
       <TopDiv select selectText="Restuarant type" title="Products" />
+
       <div className='flex gap-9 flex-wrap'>
         <ProductCards/>
         <ProductCards/>
 
         <ProductCards/>
 
+       
         <ProductCards/>
 
         <ProductCards/>
@@ -52,6 +60,7 @@ const AdminProducts = () => {
         <ProductCards/>
 
         <ProductCards/>
+
 
       
 

@@ -24,12 +24,12 @@ const Category = () => {
       </Head>
 
       <Layout>
-        <AdminModal formm={<FormAddCategory/>} modalDescription="Add your Category information" modalTitle='Add Category' btnText="Add Category"   isOpen={isOpen} onClose={close}/>
+        <AdminModal  formm modalDescription="Add your Category information" modalTitle='Add Category' btnText="Create Category"   isOpen={isOpen} onClose={close}/>
       <AdminHeader/>
       <div className='flex'>
       <SideBar/>
       <div className='flex flex-col w-full me-4'>
-      <TopDiv addButton={{ onClick: open}}  title="Category" btnText="ADD CATEGORY" selectText="Category type"/>
+      <TopDiv addButton onClick={open} title="Category" btnText="ADD CATEGORY" selectText="Category type"/>
 
       <div className='flex gap-5 flex-wrap'>
       <CategoryCard/>

@@ -1,146 +1,181 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AddButton from '../../Admin/AddButton'
-import { LabelModal} from '../../Styled/Typography'
-import FormAddRestuarant from '../FormAddProducts';
 import { useRouter } from 'next/router';
-import { log } from 'console';
 import { ROUTER } from '../../../Constant/Router';
 import FormAddCategory from '../FormAddCategory';
+import Image from 'next/image';
+import FormAddRestuarant from '../FormAddRestuarant';
 
 
 
 
-const AdminModal = ({isOpen,formm,btnText ,onClose,modalTitle="Add Product",modalDescription}) => {
+const AdminModal = ({isOpen,img,formRest,formm,btnText ,onClose,modalTitle="Add Product",modalDescription}) => {
 
     const router=useRouter()
 console.log("router",router);
 const {pathname}=router
 
     console.log("path",pathname);
+ const [formComponent,setFormComponent]=useState()
+   const  changeModalForm=()=>{
+
+    console.log("ppppp",pathname);
+
+if(pathname==="/admin/restuarants"){
+setFormComponent(<FormAddRestuarant/>)
+}
+else if(pathname==="/admin/category"){
+
+  setFormComponent( <FormAddCategory/>)
+}
+ 
+    }
+    useEffect(() => {
+        changeModalForm();
+    }, [isOpen, pathname]);
+
+
+
+  return (
+    <>
+  <div className={`
+  w-full top-0 right-0 fixed h-full z-50   flex overflow-y-auto    ${isOpen ? "fixed" :"hidden"} `  } >
+   <div className=' w-1/3 bg-login-gray flex  justify-end   bg-opacity-40'>
+   <div className='p-6  ' onClick={onClose}>   <img src="/icons/x.svg" alt=""  />
+   </div>  
+   </div>
+
+
+
+{/* //////////////////////////////// */}
+   <div className='right   w-2/3 bg-login-gray pt-6 ps-6 pe-6 overflow-y-auto  '>
 
     
-    // let modalHeader = "";
-    // let modalDescription = "";
-   //  let formToRender = null;
-
-//     if (pathname === ROUTER.CATEGORY) {
-//      modalHeader = "Add Category";
-//      modalDescription = "Add Your information";
-//      // formToRender = <FormAddCategory/>; // You can uncomment this if you want to render the form
-//    }
-//    if(pathname===ROUTER.RESTUARANTS){
-//      modalHeader = "Add Restaurants";
-//      modalDescription = "Add Your Restaurants information";
-     
-//    }
-
-// switch (pathname) {
-//     case ROUTER.CATEGORY:
-//       modalHeader = "Add Category";
-//       modalDescription = "Add Your information";
-//       break;
-//     case ROUTER.RESTUARANTS:
-//       modalHeader = "Add Restaurants";
-//       modalDescription = "Add Your Restaurants information";
-//       break;
-//     default:
-//       // Varsayılan durum
-//       break;
-//   }
-
-
-
-
-    // let formToRender=null
-    // if(pathname===ROUTER.CATEGORY){
-    //     formToRender=<FormAddCategory/>
-    // }
-  return (
-  <div className={`z-50   ${isOpen ? "fixed" :"hidden"} `  } 
-//   style={{right:isOpen ? 0 :"-100"
-// //  transform: isOpen ?"translateX(0)" :"translateX(100%)"
-// }}
- >
-    <div className=' translate-x-40  left-64 fixed top-6 ' onClick={onClose}>   <img src="/icons/x.svg" alt=""  />
-   </div>  
-    <div className='fixed bg-login-gray top-0 right-0 h-full  overflow-y-auto'>
-  
-    <header className=' p-6  font-roboto font-medium   text-par-text'>
+   <header className=' font-roboto font-medium   text-par-text'>
             <p className='text-2xl'>{modalTitle}</p>
         <p className='  text-lg'>Upload your product Image
 </p>
         </header>
-        
-        <div className='  flex  ps-6 pe-14'>
-            <div className='pe-12'>
-            <div className=' min-h-36'></div>
-<div>
-                <p className=' relative  top-20 font-roboto font-medium   text-par-text text-lg'>{modalDescription}</p>
-            </div> 
+<div className='flex h-full '>
+
+
+<div className='rleft w-1/3 me-10'>
+
+<div className=' min-h-36 mt-1 mb-4 bg-red-600'>
+                {img ? <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover  ' src="/pngs/productImg.png" alt='product'/> : ""}
             </div>
-            <div className='w-full '>
-            <div className='  flex flex-col p-5 items-center bg-modal-div  rounded-xl'>
+
+            <div className='py-2'>
+                <p className=' mt-4 font-roboto font-medium  text-par-text  text-[16px]'>{modalDescription}</p>
+            </div> 
+
+</div>
+<div className='rright w-2/3 ms-8 flex flex-col 
+'>
+
+<div className='  flex flex-col items-center bg-modal-div h-[122px]  rounded-xl '>
                 <div className=' flex flex-col'>
                     <img  src="/icons/upload.svg" alt="upload" />
                 <p className=' font-roboto font-medium   text-par-text  text-2xl'>upload</p></div>
             </div>
-<div className=' bg-modal-div mt-20 flex flex-col p-5  rounded-xl'>
- {formm ? <FormAddCategory/> :(   <form action="" className='flex flex-col'>
+
+
+            <div className=' bg-modal-div  mt-16 flex flex-col p-5 rounded-xl'>
+ {/* {formm ? <FormAddCategory/>  :(   <form action="" className='flex flex-col'>
+ 
+
+ 
+
 
 <label className=' modal-label'  htmlFor="">Name</label>
 
-<input className=' bg-input-gray  rounded-lg h-10' type="text " />
+<input className=' bg-input-gray  rounded-lg h-10 modal-input ' type="text " />
 <label  className=' modal-label'  htmlFor="">Description</label>
-<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg bg-input-gray'></textarea>
+<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg pt-2 bg-input-gray modal-input'></textarea>
 
 <label  className=' modal-label'  htmlFor="">Price</label>
-<input type="text" className=' bg-input-gray  rounded-lg h-10'/>
+<input type="text" className=' bg-input-gray  rounded-lg h-10 '/>
 
 <label  className=' modal-label'  htmlFor="">Restuarants</label>
 
-<input type="text" className=' bg-input-gray  rounded-lg h-10' />
+<input type="text" className=' bg-input-gray  rounded-lg h-10  modal-input' />
 
 
 </form>  )} 
-     {/* <form action="" className='flex flex-col'>
+    */}
 
-        <label className=' modal-label'  htmlFor="">Name</label>
-       
-<input className=' bg-input-gray  rounded-lg h-10' type="text " />
+{/* {formm ? (
+    <FormAddCategory />
+) : formRest ? (
+    <FormAddRestuarant />
+) : (
+    <form action="" className="flex flex-col">
+    <label className=' modal-label'  htmlFor="">Name</label>
+
+<input className=' bg-input-gray  rounded-lg h-10 modal-input ' type="text " />
 <label  className=' modal-label'  htmlFor="">Description</label>
-<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg bg-input-gray'></textarea>
+<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg pt-2 bg-input-gray modal-input'></textarea>
 
 <label  className=' modal-label'  htmlFor="">Price</label>
-<input type="text" className=' bg-input-gray  rounded-lg h-10'/>
+<input type="text" className=' bg-input-gray  rounded-lg h-10 '/>
 
 <label  className=' modal-label'  htmlFor="">Restuarants</label>
 
-<input type="text" className=' bg-input-gray  rounded-lg h-10' />
+<input type="text" className=' bg-input-gray  rounded-lg h-10  modal-input' />
 
+    </form>
+)} */}
 
-    </form>   */}
-{/* {formToRender} */}
+ {formm ?  formComponent :(<form action="" className="flex flex-col">
+    <label className=' modal-label'  htmlFor="">Name</label>
+
+<input className=' bg-input-gray  rounded-lg h-10 modal-input ' type="text " />
+<label  className=' modal-label'  htmlFor="">Description</label>
+<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg pt-2 bg-input-gray modal-input'></textarea>
+
+<label  className=' modal-label'  htmlFor="">Price</label>
+<input type="text" className=' bg-input-gray  rounded-lg h-10 '/>
+
+<label  className=' modal-label'  htmlFor="">Restuarants</label>
+
+<input type="text" className=' bg-input-gray  rounded-lg h-10  modal-input' />
+
+    </form>)}
 </div>
 
 
 
-
+</div>
 
 </div>
 
-        </div>
-        <div className=' border-t-2  border-modal-div flex  py-5 px-8 gap-5 mx-6 mt-32'>
-            <div className=' w-1/2 btn-text  '>
-<AddButton shadow center btnSize="flex-1"  btnIcon='' btnText="Cancel" btncolor="modal-div" /></div>
-<div className=' w-1/2  me-5 btn-text'>
-            <AddButton shadow center btnSize="flex-1"  btnIcon='' btnText={btnText} btncolor="btn-pink"/>
+  
+  
+  
+<div className=' border-t-2  border-modal-div flex  mt-48 py-5 mb-0 gap-11  '>
+            <div className='btn-text  '>
+<AddButton shadow center btnSize="w-[400px]"  btnIcon='' btnText="Cancel" btncolor="modal-div" /></div>
+<div className='  btn-text'>
+            <AddButton shadow center btnSize="w-[400px]"  btnIcon='' btnText={btnText} btncolor="btn-pink"/>
       
             </div>
               </div>
-      
-    </div>
+   </div>
+   
+   
+   
+   
+   
+   
+
 </div>
+</>
   )
 }
 
 export default AdminModal
+
+
+
+
+

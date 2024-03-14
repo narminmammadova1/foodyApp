@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormAddRestuarant = () => {
+const FormAddProducts = () => {
   return (
     <div>
       <form action="" className='flex flex-col'>
@@ -24,4 +24,4 @@ const FormAddRestuarant = () => {
   )
 }
 
-export default FormAddRestuarant
+export default FormAddProducts

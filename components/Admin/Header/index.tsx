@@ -8,7 +8,7 @@ const AdminHeader = () => {
   const {isOpen,open,close}=useModal()
   return (
 <div>
-<AdminModal onClose={close} isOpen={isOpen} modalDescription="Add your Product description and necessary information"/>
+<AdminModal onClose={close} isOpen={isOpen} btnText="Add Product" modalDescription="Add your Product description and necessary information"/>
 
     <div  className=' bg-dark-div flex items-center  px-[21px] py-[10px] rounded-b-[14px] mx-5 mb-4 justify-between items-center'>
 
