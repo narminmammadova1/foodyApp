@@ -28,7 +28,11 @@ colors:{
 "btn-cncl":"#BDBDBD",
 "btn-del":"#D63626",
 "modal_p":"#4F4F4F",
-"text-placeholder":" #F2F2F2"
+"text-placeholder":" #F2F2F2",
+"headerbg": "#F3F4F6",
+"headerUl":" #828282",
+"inputPlaceholder":"#000000",
+"btnRed":"#D63626",
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],
