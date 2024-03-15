@@ -7,6 +7,7 @@ import TopDiv from '../../../components/Admin/TopDiv';
 import Layout from '../../../components/Layout';
 import DeleteModal from '../../../components/Modals/DeleteModal';
 import { useModal } from '../../../shared/hooks/useModal';
+import { NextPage } from 'next';
 
 
 
@@ -25,7 +26,7 @@ import { useModal } from '../../../shared/hooks/useModal';
 
 
 
-const AdminProducts = () => {
+const AdminProducts:NextPage = () => {
   // const {isOpen,open,close}=useModal()
 
   return (
@@ -38,7 +39,6 @@ const AdminProducts = () => {
 
       <Layout>
       <AdminHeader/>
-{/* <DeleteModal isOpen={isOpen} onClose={close} /> */}
       <div className='flex'>
 
       <SideBar/>

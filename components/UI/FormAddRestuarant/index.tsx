@@ -22,7 +22,7 @@ const  FormAddRestuarant
 
 
 <label className=' modal-label '  htmlFor="">Category</label>
-<select className='modal-input max-h-10    overflow-y-auto   bg-input-gray  rounded-lg h-10 mt-2 'size="1" type="text " >
+<select className='modal-input max-h-10    overflow-y-auto   bg-input-gray  rounded-lg h-10 mt-2 '  >
   <option value="">Fast food</option>
   <option value="">milli</option>
  

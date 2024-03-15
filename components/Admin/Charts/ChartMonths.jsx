@@ -4,7 +4,10 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
+// interface DoughnutChartProps {
+//   data: any;
+//   options: any;
+// }
 
 
 const data = {
@@ -44,7 +47,7 @@ const data = {
   const options = {
     plugins: {
       legend: {
-        position: 'bottom', // Etiketleri alt kısımda göster
+        position: 'bottom' // Etiketleri alt kısımda göster
       },
     },
     // scales: {

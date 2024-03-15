@@ -6,8 +6,9 @@ import Head from 'next/head'
 import Layout from '../../../components/Layout'
 import AdminHeader from '../../../components/Admin/Header'
 import OrderCards from '../../../components/Admin/OrderCards'
+import { NextPage } from 'next'
 
-const AdminOrders = () => {
+const AdminOrders:NextPage = () => {
   return (
     <div>
         <Head>

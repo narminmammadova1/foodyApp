@@ -7,8 +7,14 @@ import Layout from '../../../components/Layout'
 import AdminHeader from '../../../components/Admin/Header'
 import OrderCards from '../../../components/Admin/OrderCards'
 import OfferCards from '../../../components/Admin/OfferCards'
+import { useModal } from '../../../shared/hooks/useModal'
+import AdminModal from '../../../components/UI/AdminModal'
+import { NextPage } from 'next'
 
-const AdminOffers = () => {
+const AdminOffers:NextPage = () => {
+
+  const {isOpen,open,close}=useModal()
+
   return (
     <div>
         <Head>
@@ -19,12 +25,13 @@ const AdminOffers = () => {
 
       <Layout
       >
+        <AdminModal formm modalTitle='Add Offer' modalDescription="Add your offer infarmation" btnText="Create Offer" onClose={close} isOpen={isOpen}  />
       <AdminHeader
       />
       <div className='flex'>
       <SideBar/>
       <div className='flex flex-col w-full me-4'>
-      <TopDiv addButton  title="Offers" btnText="ADD OFFER"/>
+      <TopDiv addButton onClick={open} title="Offers" btnText="ADD OFFER"/>
       <div className='flex gap-5 flex-wrap'>
       <OfferCards
       />

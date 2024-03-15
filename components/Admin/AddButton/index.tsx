@@ -1,9 +1,21 @@
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
-import FormAddRestuarant from '../../UI/FormAddRestuarant'
-import FormAddCategory from '../../UI/FormAddCategory'
+import React from 'react'
 
-const AddButton = ({btnText,btnIcon="/icons/plus.svg",btncolor,btnSize,center,shadow,onClick}) => {
+
+interface AddButtonProps{
+  btnText:string | undefined
+  btnIcon?:string;
+  btncolor?:string;
+  btnSize?:string;
+  center?:boolean;
+  shadow?:boolean;
+  onClick?:()=>void | undefined
+  
+
+}
+
+
+const AddButton:React.FC<AddButtonProps>= ({btnText,btnIcon="/icons/plus.svg",btncolor,btnSize,center,shadow,onClick}) => {
   // const [title,setTitle]=useState("")
  
 
@@ -11,21 +23,35 @@ const AddButton = ({btnText,btnIcon="/icons/plus.svg",btncolor,btnSize,center,sh
   const {pathname}=router
   // const [formComponent,setFormComponent]=useState(null)
 
- 
-    
   const openModal=()=>{
-    if(pathname==="/admin/restuarants"){
-      onClick()
 
-      
+    
+      if(pathname==="/admin/restuarants"){
+        if(onClick){
+          onClick()
+
+
+        }
+      }
+      if(pathname==="/admin/offer"){
+        if(onClick){
+          onClick()
+
+
+        }
+      }
+      else if (pathname === '/admin/category') {
+
+        if(onClick){
+          onClick()
+
+
+        }
+      }
+  
     }
-    else if (pathname === '/admin/category') {
-      onClick()
-
-    }
-
-// onButtonClick()
-  }
+    
+  
   return (
     <>
    

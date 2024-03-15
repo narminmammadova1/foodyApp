@@ -2,11 +2,21 @@ import React, { useState } from 'react'
 import AddButton from '../AddButton'
 import AdminModal from '../../UI/AdminModal'
 import { useModal } from '../../../shared/hooks/useModal'
-import { ROUTER } from '../../../Constant/Router'
+// import { ROUTER } from '../../../Constant/Router'
 import { useRouter } from 'next/router'
 import FormAddCategory from '../../UI/FormAddCategory'
 
-const TopDiv = ({addButton,select,title,btnText,selectText,onClick}) => {
+interface TopDivProps{
+  addButton?:boolean;
+  select?:boolean;
+  title:string;
+  btnText?:string;
+  selectText?:string;
+  onClick?:()=>void
+}
+
+
+const TopDiv:React.FC<TopDivProps> = ({addButton,select,title,btnText,selectText,onClick}) => {
   // const [buttonText,setButtonText]=useState("")
  
  const{isOpen,open,close}=useModal()
@@ -15,23 +25,7 @@ const router=useRouter()
 const {pathname}=router
 
 
-    //  let modalHeader = "";
-    //  let modalDescription = "";
-    // //  let formToRender = null;
-
-    //  if (pathname === ROUTER.CATEGORY) {
-    //   modalHeader = "Add Category";
-    //   modalDescription = "Add Your information";
-    //   // formToRender = <FormAddCategory/>; // You can uncomment this if you want to render the form
-    // }
-    // if(pathname===ROUTER.RESTUARANTS){
-    //   modalHeader = "Add Restaurants";
-    //   modalDescription = "Add Your Restaurants information";
-    // }
-
-
-    // formToRender=<FormAddCategory/>
-     
+  
 
   return (
     <div>
@@ -58,7 +52,6 @@ const {pathname}=router
 </div>}
 
 {addButton && <AddButton 
-  // onClick={addButton.onClick} 
   onClick={onClick}
    btnText={btnText} btncolor="btn-pink" />}
 

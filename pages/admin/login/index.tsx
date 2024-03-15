@@ -3,8 +3,9 @@ import AdminHeader from '../../../components/Admin/Header'
 import Image from 'next/image'
 import Head from 'next/head'
 import Layout from '../../../components/Layout'
+import { NextPage } from 'next'
 
-const AdminLogin = () => {
+const AdminLogin:NextPage = () => {
   return (
     <>  
 

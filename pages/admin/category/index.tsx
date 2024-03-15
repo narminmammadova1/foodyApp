@@ -8,12 +8,15 @@ import CategoryCard from '../../../components/Admin/CategoryCard'
 import { useModal } from '../../../shared/hooks/useModal'
 import AdminModal from '../../../components/UI/AdminModal'
 import FormAddCategory from '../../../components/UI/FormAddCategory'
+import { NextPage } from 'next'
 
-const Category = () => {
+const Category :NextPage = () => {
 
 
 
   const {isOpen,open,close}=useModal()
+
+
 
   return (
     <div>

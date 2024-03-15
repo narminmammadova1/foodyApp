@@ -9,9 +9,10 @@ import Layout from '../../../components/Layout'
 import SideBar from '../../../components/Admin/SideBar'
 import AdminModal from '../../../components/UI/AdminModal'
 import { useModal } from '../../../shared/hooks/useModal'
+import { NextPage } from 'next'
 
 
-const Restuarants = () => {
+const Restuarants:NextPage = () => {
   const {isOpen,open,close}=useModal()
 
   return (

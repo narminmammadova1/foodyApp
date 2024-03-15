@@ -1,28 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import AddButton from '../../Admin/AddButton'
 import { useRouter } from 'next/router';
-import { ROUTER } from '../../../Constant/Router';
+// import { ROUTER } from '../../../Constant/Router';
 import FormAddCategory from '../FormAddCategory';
 import Image from 'next/image';
 import FormAddRestuarant from '../FormAddRestuarant';
+import FormAddOffer from '../FormAddOffer';
+
+ interface AdminModalProps{
+    modalDescription?:string;
+    modalTitle?:string;
+    btnText?:string;
+    isOpen?:boolean;
+    onClose?:()=>void
+    img?:boolean | undefined
+    formm?:any
+
+ }
 
 
-
-
-const AdminModal = ({isOpen,img,formRest,formm,btnText ,onClose,modalTitle="Add Product",modalDescription}) => {
+const AdminModal:React.FC<AdminModalProps> = ({isOpen,img,formm,btnText ,onClose,modalTitle="Add Product",modalDescription}) => {
 
     const router=useRouter()
 console.log("router",router);
 const {pathname}=router
 
     console.log("path",pathname);
- const [formComponent,setFormComponent]=useState()
-   const  changeModalForm=()=>{
+//  const [formComponent,setFormComponent]=useState()
+
+const [formComponent, setFormComponent] = useState<undefined | JSX.Element>(undefined);
+   const  changeModalItem=()=>{
 
     console.log("ppppp",pathname);
 
 if(pathname==="/admin/restuarants"){
 setFormComponent(<FormAddRestuarant/>)
+}
+else if(pathname==="/admin/offer"){
+    setFormComponent(<FormAddOffer/>)
 }
 else if(pathname==="/admin/category"){
 
@@ -31,7 +46,7 @@ else if(pathname==="/admin/category"){
  
     }
     useEffect(() => {
-        changeModalForm();
+        changeModalItem();
     }, [isOpen, pathname]);
 
 
@@ -53,7 +68,7 @@ else if(pathname==="/admin/category"){
     
    <header className=' font-roboto font-medium   text-par-text'>
             <p className='text-2xl'>{modalTitle}</p>
-        <p className='  text-lg'>Upload your product Image
+        <p className='  text-lg'>Upload Image
 </p>
         </header>
 <div className='flex h-full '>
@@ -131,7 +146,7 @@ else if(pathname==="/admin/category"){
 
 <input className=' bg-input-gray  rounded-lg h-10 modal-input ' type="text " />
 <label  className=' modal-label'  htmlFor="">Description</label>
-<textarea name="description" id="description" cols="30" rows="5" className=' rounded-lg pt-2 bg-input-gray modal-input'></textarea>
+<textarea name="description" id="description" cols={30} rows={5} className=' rounded-lg pt-2 bg-input-gray modal-input'></textarea>
 
 <label  className=' modal-label'  htmlFor="">Price</label>
 <input type="text" className=' bg-input-gray  rounded-lg h-10 '/>

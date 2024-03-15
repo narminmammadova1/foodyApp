@@ -4,7 +4,7 @@ import Head from "next/head";
 import Chart from 'chart.js/auto';
 import DoughnutChart from "../../components/Admin/Charts/ChartMonths";
 import SideBar from "../../components/Admin/SideBar";
-import ChartSalary from "../../components/Admin/Charts/ChartSalary";
+// import ChartSalary from "../../components/Admin/Charts/ChartSalary";
 import AdminHeader from "../../components/Admin/Header";
 import AdminModal from "../../components/UI/AdminModal";
 import Layout from "../../components/Layout";
