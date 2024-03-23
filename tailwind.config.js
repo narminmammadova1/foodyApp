@@ -33,6 +33,9 @@ colors:{
 "headerUl":" #828282",
 "inputPlaceholder":"#000000",
 "btnRed":"#D63626",
+"textblack":" #181617",
+"blackdiv2":"#272727",
+"mainOrange":"#FB9300"
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],
@@ -41,6 +44,18 @@ fontFamily:{
   'poppins': ['Poppins', 'sans-serif'],
 
 },
+width:{
+  "220":"220px"
+},
+height:{
+  "70":"70px"
+},
+fontSize:{
+
+  "25":"25px"
+,
+"16":"16px"
+}
 
 
     },

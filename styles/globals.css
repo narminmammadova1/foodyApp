@@ -44,7 +44,29 @@ a {
   .headertext{
     @apply font-roboto font-medium text-lg text-headerUl
   }
+  .footerUl{
+    @apply font-montserrat text-[13px] font-[400] text-btn-cncl 
+  }
+  .boxShadow {
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.4);
+  }
+  /* .bottomShadow{
+  box-shadow:   0px 4px 4px 0px rgba(0, 0, 0, 0.4);
+  } */
+
+  .letter3{
+    letter-spacing:0.1px
+  }
+  .line{
+    line-height: 70px;
+  }
+  .line2{line-height: 30px;}
+  .line3{line-height:25px ;}
+  .mainorange{color:#FB9300;
+
+  }
 }
+
 
 
 
