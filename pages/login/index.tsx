@@ -6,7 +6,6 @@ import Image from 'next/image'
 
 const LoginPage = () => {
   return (
-    <div>
    <>
    <Head>
         <title>Login|Desktop</title>
@@ -39,7 +38,6 @@ const LoginPage = () => {
 </div>
    </MainClient>
    </>
-    </div>
   )
 }
 

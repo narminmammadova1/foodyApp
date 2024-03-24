@@ -37,7 +37,8 @@ colors:{
 "textblack":" #181617",
 "blackdiv2":"#272727",
 "mainOrange":"#FB9300",
-"lightPink":"#FFE7E7"
+"lightPink":"#FFE7E7",
+"blackli":"#333333",
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],
