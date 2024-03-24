@@ -33,9 +33,11 @@ colors:{
 "headerUl":" #828282",
 "inputPlaceholder":"#000000",
 "btnRed":"#D63626",
+"mainRed":"#EB5757",
 "textblack":" #181617",
 "blackdiv2":"#272727",
-"mainOrange":"#FB9300"
+"mainOrange":"#FB9300",
+"lightPink":"#FFE7E7"
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],
