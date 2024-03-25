@@ -4,6 +4,7 @@ import HeaderClient from '../../../components/Client/HeaderClient'
 import Image from 'next/image'
 import ProductsTable from '../../../components/Client/ProductsTable'
 import BasketCard from '../../../components/Client/BasketCard'
+import FooterClient from '../../../components/Client/FooterClient'
 
 const ChoiseUser = () => {
   return (
@@ -33,12 +34,13 @@ const ChoiseUser = () => {
             </div>
         </div>
 
-        <div className='flex justify-between gap-[50px] mt-[48px] bg-orange-600 pe-5'> 
+        <div className='flex gap-[50px] mt-[48px]pe-5'> 
        <ProductsTable/>
 
        <BasketCard/>
         </div>
       </MainClient>
+      <FooterClient/>
     </div>
   )
 }
