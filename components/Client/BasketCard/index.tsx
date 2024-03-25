@@ -1,6 +1,8 @@
 import React from 'react'
 
-const BasketCard = () => {
+interface BasketCardProps{}
+
+const BasketCard:React.FC<BasketCardProps> = () => {
   return (
     <div className=' bg-headerbg w-[397px] h-[547px] rounded boxShadow3'>
       

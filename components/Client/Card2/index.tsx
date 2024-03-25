@@ -1,7 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Card2 = ({Title1,Title2,img}) => {
+interface Card2Props{
+  Title1: string |undefined;
+  Title2: string | undefined;
+  img: string
+}
+
+const Card2:React.FC <Card2Props> = ({Title1,Title2,img}) => {
   return (
    
        <div className="w-[327px] border-b-2   boxShadow h-[386px] flex flex-col items-center">
