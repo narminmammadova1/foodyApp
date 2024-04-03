@@ -244,7 +244,6 @@ select {
   background: url('/foodyApp/public/icons/select.svg') no-repeat right 0px;
 
  
-  /* Padding değerlerini ayarlayarak içerikten uzaklaştırma yapabilirsiniz */
 }
 
 /* Select içerisindeki okun stilini ayarla */
@@ -252,36 +251,29 @@ select::-ms-expand {
   display: none;
   padding-right: 6
   
-  0px; /* Windows için varsayılan oku gizle */
+  0px; 
 }
 
-/* 
-input[type="radio"]{
-  transform: scale(1.2)  !important
-}
-input[type="radio"]:checked{
- background-color: green !important
-} */
 
 
 
 
 
-/* Dış çerçeve rengi yeşil, iç kısım boş (transparent) */
+
 input[type="radio"] {
-  appearance: none; /* Tarayıcı tarafından sağlanan varsayılan radio input görünümü */
+  appearance: none; 
   width: 25px;
   height: 25px;
-  border-radius: 50%; /* Dairesel bir şekil oluşturur */
-  border: 2px solid #828282 ; /* Yeşil rengi #4CAF50 */
-  background-color: transparent; /* İç boşluğun arka plan rengi */
-  padding: 0; /* İçeriği sıfırlar */
-  margin: 0; /* Dış boşluğu sıfırlar */
+  border-radius: 50%; 
+  border: 2px solid #828282 ; 
+  background-color: transparent; 
+  padding: 0;
+  margin: 0; 
 }
 
-/* Seçili durumda iç kısımı kırmızı yap */
+
 input[type="radio"]:checked {
-  background-color:white; /* Kırmızı rengi */
+  background-color:white; 
   border: 2px solid #6FCF97 ;
   
 }
