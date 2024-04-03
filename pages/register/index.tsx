@@ -3,8 +3,9 @@ import React from 'react'
 import MainClient from '../../components/Client/MainClient'
 import RedHeader from '../../components/Client/RedHeader'
 import Image from 'next/image'
+import { NextPage } from 'next'
 
-const RegisterPage = () => {
+const RegisterPage:NextPage = () => {
   return (
    <>
    <Head>

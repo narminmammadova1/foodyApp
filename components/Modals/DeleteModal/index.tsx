@@ -1,13 +1,16 @@
 import React from 'react'
  interface DeleteModalProps{
   isOpenDelModal:boolean;
-  onCloseDelModal:()=>void |undefined
+  onCloseDelModal:()=>void |undefined,
+  colorModal:string
  }
 
 
-const DeleteModal:React.FC<DeleteModalProps> = ({isOpenDelModal,onCloseDelModal}) => {
+const DeleteModal:React.FC<DeleteModalProps> = ({isOpenDelModal,onCloseDelModal,colorModal}) => {
   return (
-    <div className={`w-full ${isOpenDelModal ? "fixed " :"hidden"} top-0 left-0  h-screen  bg-red-950 flex  bg-opacity-40`}> 
+    <div className={`w-full ${isOpenDelModal ? "fixed " :"hidden"} z-40 top-0 left-0  h-screen
+      bg-${colorModal}
+      flex  bg-opacity-40`}> 
     <div className=' w-[498px] m-auto  h-[226px] bg-white flex flex-col rounded-md  justify-center  shadow-2xl'>
   <div className='flex flex-col items-center gap-2 font-sans '>
     <h1 className=' text-[28px]  font-[700]'>Are you sure it's deleted?</h1>

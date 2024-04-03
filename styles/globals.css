@@ -58,7 +58,9 @@ a {
   .boxShadow3{
     box-shadow: 0px 3px 8px -2px #00000033;
   }
-
+.boxShadow4{
+  box-shadow: '0px 3px 8px -2px rgba(0, 0, 0, 0.2)',;
+}
   .letter3{
     letter-spacing:0.1px
   }
@@ -70,7 +72,133 @@ a {
   .mainorange{color:#FB9300;
 
   }
+
+  .basket_small{
+    @apply w-[397px] max-h-[547px] ps-[9px]  pe-4 pb-6
+  }
+
+
+  .basket_large{
+    @apply  w-full max-h-[735px] ps-9 pe-[62px] pb-[33px]
+  }
+  .p16_small{
+    @apply text-base  
+  }
+
+  .p14_small{
+    font-size: 14px;
+  }
+
+
+.p22_large{
+ @apply text-[22px]  me-80  ms-10 mt-2
 }
+.p18_large{
+  @apply text-[18px]  ms-14 
+}
+
+.padding8{
+ @apply py-8
+}
+.padding4{
+  padding-top: 32px;
+  padding-bottom: 16px;
+}
+  .whitebtn_small{
+    @apply pt-3  w-[29px] relative top-0  h-[70px]  text-base 
+  }
+.whitebtn_large{
+  @apply w-[41px] h-[90px] gap-3 justify-center ms-10
+}
+  .img_small{
+  width: 45px;
+  height: 45px;
+  }
+
+  .img_large{
+    width: 96px;
+    height: 94px;
+  }
+
+
+  .btn_small{
+     height: 47px;
+  }
+
+  .btn_large{
+    height: 58px;
+    font-size: 22px;
+ 
+  }
+  .btn2_small{
+    width: 135px;
+  }
+  .btn2_large{
+    width:189px ;
+  
+  }
+
+  .custom-accordion {
+ border-radius: 0px !important;
+ padding-left: 30px !important;
+ box-shadow: 0px 3px 8px -2px rgba(0, 0, 0, 0.2) !important;
+ margin-bottom: 23px;
+  }
+}
+
+
+.next-accordion-item-indicator {
+  transition: none !important
+}
+
+
+
+
+/* .custom-accordion .nui-accordion-button > .nui-accordion-icon {
+  
+display: none;
+}
+
+.custom-accordion .nui-accordion-button[aria-expanded="true"]::after {
+  
+content: "+";
+  
+margin-left: 8px;
+} */
+
+
+/* 
+.custom-accordion .nui-accordion-button[aria-expanded="false"]::after {
+  
+  
+content: "-";
+  
+  
+margin-left: 8px;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,3 +239,51 @@ select::-ms-expand {
   
   0px; /* Windows için varsayılan oku gizle */
 }
+
+/* 
+input[type="radio"]{
+  transform: scale(1.2)  !important
+}
+input[type="radio"]:checked{
+ background-color: green !important
+} */
+
+
+
+
+
+/* Dış çerçeve rengi yeşil, iç kısım boş (transparent) */
+input[type="radio"] {
+  appearance: none; /* Tarayıcı tarafından sağlanan varsayılan radio input görünümü */
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; /* Dairesel bir şekil oluşturur */
+  border: 2px solid #828282 ; /* Yeşil rengi #4CAF50 */
+  background-color: transparent; /* İç boşluğun arka plan rengi */
+  padding: 0; /* İçeriği sıfırlar */
+  margin: 0; /* Dış boşluğu sıfırlar */
+}
+
+/* Seçili durumda iç kısımı kırmızı yap */
+input[type="radio"]:checked {
+  background-color:white; /* Kırmızı rengi */
+  border: 2px solid #6FCF97 ;
+  
+}
+input[type="radio"]:checked+ label{
+
+  color:#6FCF97 ;
+}
+
+
+/* Seçili durumda iç kısmın ve dış çerçevenin arasında 2px boşluk bırak */
+input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 3px; /* İç kısım ve dış çerçeve arasındaki boşluk */
+  border-radius: 50%;
+  background-color:#6FCF97; /* Yeşil rengi */
+}
+

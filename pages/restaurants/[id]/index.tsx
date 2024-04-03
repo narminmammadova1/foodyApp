@@ -5,8 +5,9 @@ import Image from 'next/image'
 import ProductsTable from '../../../components/Client/ProductsTable'
 import BasketCard from '../../../components/Client/BasketCard'
 import FooterClient from '../../../components/Client/FooterClient'
+import { NextPage } from 'next'
 
-const ChoiseUser = () => {
+const ChoiseUser:NextPage = () => {
   return (
     <div>
       <MainClient>
@@ -37,7 +38,7 @@ const ChoiseUser = () => {
         <div className='flex gap-[50px] mt-[48px]pe-5'> 
        <ProductsTable/>
 
-       <BasketCard/>
+       <BasketCard size="small"/>
         </div>
       </MainClient>
       <FooterClient/>

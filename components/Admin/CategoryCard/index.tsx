@@ -11,7 +11,7 @@ const CategoryCard= () => {
   return (
 
     <>
-    <DeleteModal  isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal}/>
+    <DeleteModal  isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
      <AdminModal formm modalDescription="
   
 Edit your category information" modalTitle='Edit Category' btnText="Update Category" img isOpen={isOpen} onClose={close} />

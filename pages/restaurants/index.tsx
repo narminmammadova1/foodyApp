@@ -5,8 +5,9 @@ import Head from 'next/head'
 import SidebarClient from '../../components/Client/SidebarClient'
 import RestaurantCards from '../../components/Client/RestaurantCards'
 import FooterClient from '../../components/Client/FooterClient'
+import { NextPage } from 'next'
 
-const RestaurantsPage = () => {
+const RestaurantsPage:NextPage = () => {
   return (
     <div>
    <Head>

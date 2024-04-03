@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+const {nextui} = require("@nextui-org/react");
+
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -39,6 +43,11 @@ colors:{
 "mainOrange":"#FB9300",
 "lightPink":"#FFE7E7",
 "blackli":"#333333",
+"text92":" #929292",
+"btnGreen":"#6FCF97",
+"blackhead":"#00072B",
+"select":" #00072B",
+"accordionIcon":"#323232"
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],
@@ -63,6 +72,7 @@ fontSize:{
 
     },
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [nextui()],
 }
 

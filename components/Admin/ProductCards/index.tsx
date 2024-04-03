@@ -17,7 +17,7 @@ Edit your Product description and necessary information" modalTitle='Edit Produc
         <div className=' w-[163px] h-[163px]'>
         <Image className=' w-full  object-cover' width={100} height={100} src="/pngs/productImg.png" alt='product'/>
         </div>
-        <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal}/>
+        <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
     
         <div className='flex justify-between items-end  '>
             <div className=' flex flex-col justify-between  font-medium  '>

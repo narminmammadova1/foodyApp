@@ -1,6 +1,7 @@
+import { NextPage } from 'next'
 import React from 'react'
 
-const OrderHistory = () => {
+const OrderHistory:NextPage = () => {
   return (
     <div>
       OrderHistory
