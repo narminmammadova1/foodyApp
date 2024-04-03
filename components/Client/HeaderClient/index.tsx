@@ -4,26 +4,35 @@ import { useRouter } from 'next/router'
 import { useDropdownn } from '../../../shared/hooks/useDropdown'
 import { useTranslation } from 'react-i18next'
 import { handlechange } from '../../Admin/SideBar'
+import { ROUTER } from '../../../Constant/Router'
+
+export const isActiveLink=(path:string)=>{
+  const router=useRouter()
+  return path===router.pathname
+}
 
 const HeaderClient = () => {
-       const {t,i18n}=useTranslation()
+ 
 
+       const {t,i18n}=useTranslation()
 
   const {isOpenLang,openLang}=useDropdownn()
   const router=useRouter()
 const {push}=router
+
+
   return (
     <div>
       <header className='  bg-headerbg '>
 <div className='flex ms-10 h-[103px] items-center '>
 <div  className=' cursor-pointer ' onClick={()=>push("/")}><img src="/svgs/logoblack.svg" alt="logo" /></div>
 <div className='ms-20 me-10'>
-    <ul className='  headertext flex gap-7  '> 
-        <li className='cursor-pointer ' onClick={()=>push("/")}>{t("Home")}</li>
-        <li  className='cursor-pointer ' onClick={()=>push("/restaurants")}>{t("Restaurants")} </li>
-        <li  className='cursor-pointer ' onClick={()=>push("/about-us")}>{t("About us")}</li>
-        <li  className='cursor-pointer ' onClick={()=>push("/how-it-works")}>{t("How it works")} </li>
-        <li  className='cursor-pointer ' onClick={()=>push("/faqs")}>{t("FAQs")} </li>
+    <ul className='  headertext flex gap-6  '> 
+        <li className={`${isActiveLink(ROUTER.HOME) ? "activeLink" : ""} cursor-pointer `} onClick={()=>push("/")}>{t("Home")}</li>
+        <li  className={`${isActiveLink(ROUTER.RESTAURANTS) ? "activeLink" : ""} cursor-pointer `} onClick={()=>push("/restaurants")}>{t("Restaurants")} </li>
+        <li  className={`${isActiveLink(ROUTER.ABOUTus) ? "activeLink" : ""} cursor-pointer `} onClick={()=>push("/about-us")}>{t("About us")}</li>
+        <li  className={`${isActiveLink(ROUTER.HOWITWORKS) ? "activeLink" : ""} cursor-pointer `} onClick={()=>push("/how-it-works")}>{t("How it works")} </li>
+        <li  className={`${isActiveLink(ROUTER.FAQS) ? "activeLink" : ""} cursor-pointer `} onClick={()=>push("/faqs")}>{t("FAQs")} </li>
     </ul>
 </div>
 
@@ -40,7 +49,7 @@ const {push}=router
         <img className=' cursor-pointer'  src={`/icons/lang${i18n.language === 'en' ? 'en': i18n.language==="fr"  ? 'fr': 'az'}.svg`}  alt="flag"   />
         </div>
         {isOpenLang && <div className=''>
-        <div  onClick={openLang} className=' text-14px roboto-medium z-30 flex flex-col w-[59px]  bg-dark-div relative  items-center py-1 font-medium'>
+        <div  onClick={openLang} className=' text-14px roboto-medium z-30 flex flex-col w-[59px]  relative  items-center py-1 font-medium'>
         <div  onClick={openLang}  className=' border-b-1 border-white py-4'  ><img src="/icons/langaz.svg" alt=""  onClick={()=>handlechange("az",i18n)}/></div>
         <div  className=' border-b-1 border-white py-4'  ><img src="/icons/langfr.svg" alt=""  onClick={()=>handlechange("fr",i18n)}/></div>
         <div  className=' border-b-1 border-white py-4'  ><img src="/icons/langen.svg" alt=""  onClick={()=>handlechange("en",i18n)}/></div>

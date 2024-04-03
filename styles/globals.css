@@ -144,6 +144,23 @@ a {
  box-shadow: 0px 3px 8px -2px rgba(0, 0, 0, 0.2) !important;
  margin-bottom: 23px;
   }
+
+  .activeLink{
+  
+    /* background-color: #C74FEB; */
+ padding-top: 8px;
+ padding-bottom: 8px;
+background-color:rgba(242, 242, 242, 0.40);
+margin-right: 25px;
+border-radius: 4px;
+display: flex;
+justify-content: start;
+  }
+}
+
+.activelink2{
+  font-weight: 900;
+  color: #D63626;
 }
 
 
