@@ -147,14 +147,12 @@ a {
 
   .activeLink{
   
-    /* background-color: #C74FEB; */
  padding-top: 8px;
  padding-bottom: 8px;
 background-color:rgba(242, 242, 242, 0.40);
 margin-right: 25px;
 border-radius: 4px;
 display: flex;
-justify-content: start;
   }
 }
 
