@@ -10,7 +10,6 @@ import { isActiveLink } from '../../Client/HeaderClient';
 import { ROUTER } from '../../../Constant/Router';
 
   
-  
 export const handlechange =(language:string,i18n:any)=>{
   i18n.changeLanguage(language)
      }
