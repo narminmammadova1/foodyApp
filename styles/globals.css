@@ -169,29 +169,7 @@ display: flex;
 
 
 
-/* .custom-accordion .nui-accordion-button > .nui-accordion-icon {
-  
-display: none;
-}
 
-.custom-accordion .nui-accordion-button[aria-expanded="true"]::after {
-  
-content: "+";
-  
-margin-left: 8px;
-} */
-
-
-/* 
-.custom-accordion .nui-accordion-button[aria-expanded="false"]::after {
-  
-  
-content: "-";
-  
-  
-margin-left: 8px;
-}
- */
 
 
 
