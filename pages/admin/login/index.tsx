@@ -1,5 +1,4 @@
 
-  
 
 import React from 'react';
 import AdminHeader from '../../../components/Admin/Header';
@@ -14,6 +13,26 @@ import { useMutation } from 'react-query';
 import axios from 'axios';
 
 
+let validate = (values:any) => {
+  let errors = {
+   
+  };
+
+  if (!values.email) {
+    errors.email = 'Email is required';
+  } else if (!isValidEmail(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = "Password is required"
+  }
+
+
+return errors
+
+  }
+
 
 
 
@@ -21,29 +40,6 @@ import axios from 'axios';
 const AdminLogin: NextPage = () => {
  
 
-  let validate = (values:any) => {
-    let errors = {
-      email:"",
-      password:""
-    };
-  
-    if (!values.email) {
-      errors.email = 'Email is required';
-    } else if (!isValidEmail(values.email)) {
-      errors.email = 'Invalid email address';
-    }
-  
-    if (!values.password) {
-      errors.password = "Password is required"
-    }
-
-
- return errors
-
-    }
-
-  
- 
   const { mutate: signUpAdmin } = useMutation({
     mutationFn: signInUser,
     onSuccess: (data) => {
@@ -63,13 +59,13 @@ const AdminLogin: NextPage = () => {
     onSubmit: (values) => {
       signUpAdmin(values);
       console.log(values);
-      console.log("welcomeee");
+      console.log("welcomeeeeee");
     },
   });
 
 
-
-
+  
+  
 
 
 

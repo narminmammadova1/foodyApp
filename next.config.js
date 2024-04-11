@@ -29,6 +29,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  env:{
+    FIREBASE_AUTH:process.env.FIREBASE_AUTH
+    
+      }
+
 };
 
 module.exports = {

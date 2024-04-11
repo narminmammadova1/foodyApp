@@ -39,7 +39,7 @@ export const signUpUser=(values:object):AxiosPromise<any>=>{
 
 // SignIn
 
-export const signInUser=(values:object)=>{
+export const signInUser=(values:any)=>{
 
     return instanceAxios({
         method:"POST",
