@@ -36,12 +36,7 @@ const AdminLogin: NextPage = () => {
     if (!values.password) {
       errors.password = "Password is required"
     }
- if (values.email!="admin11@gmail.com"){
-  errors.email="this is not admin gmail"
- }
- if (values.password !="admin11"){
-  errors.password="this is not admin password"
- }
+
 
  return errors
 
