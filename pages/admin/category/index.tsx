@@ -9,14 +9,27 @@ import { useModal } from '../../../shared/hooks/useModal'
 import AdminModal from '../../../components/UI/AdminModal'
 import FormAddCategory from '../../../components/UI/FormAddCategory'
 import { NextPage } from 'next'
+import { useMutation } from 'react-query'
+import { addCategory } from '../../../services'
+import { useFormik } from 'formik'
 
 const Category :NextPage = () => {
 
+// const {mutate:addInformations}=useMutation({
+//   mutationFn:addCategory,
+//   onSuccess:(obj)=>{
+//     console.log("categobj",obj);
+//   },
+//   onError: (error) => {
+//     console.error("An error occurred:", error);
+//   }
+
+// })
 
 
   const {isOpen,open,close}=useModal()
 
-
+  
 
   return (
     <div>
@@ -27,7 +40,10 @@ const Category :NextPage = () => {
       </Head>
 
       <Layout>
-        <AdminModal  formm modalDescription="Add your Category information" modalTitle='Add Category' btnText="Create Category"   isOpen={isOpen} onClose={close}/>
+        {/* <FormAddCategory btnText="Create Category" addCategory={addCategory}  isOpen={isOpen} onClose={close}/> */}
+        <AdminModal formm={true} btnText="Create Category"  isOpen={isOpen} onClose={close}/>
+
+     
       <AdminHeader/>
       <div className='flex'>
       <SideBar/>

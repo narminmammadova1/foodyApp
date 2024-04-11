@@ -8,7 +8,7 @@ import { withTranslation } from 'react-i18next';
 import { useTranslation } from 'react-i18next';
 import { isActiveLink } from '../../Client/HeaderClient';
 import { ROUTER } from '../../../Constant/Router';
-
+import i18n from "../../../next.config"
   
 export const handlechange =(language:string,i18n:any)=>{
   i18n.changeLanguage(language)

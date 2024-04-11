@@ -5,6 +5,9 @@ import AdminModal from '../../UI/AdminModal'
 import { useDropdownn } from '../../../shared/hooks/useDropdown'
 import { useTranslation } from 'react-i18next'
  import { handlechange } from '../SideBar'
+
+ import i18n from "../../../next.config"
+
 const AdminHeader = () => {
 
 const {t,i18n}=useTranslation()
