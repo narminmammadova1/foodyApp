@@ -13,25 +13,25 @@ import { useMutation } from 'react-query';
 import axios from 'axios';
 
 
-let validate = (values:any) => {
-  let errors = {
+// let validate = (values:any) => {
+//   let errors = {
    
-  };
+//   };
 
-  if (!values.email) {
-    errors.email = 'Email is required';
-  } else if (!isValidEmail(values.email)) {
-    errors.email = 'Invalid email address';
-  }
+//   if (!values.email) {
+//     errors.email = 'Email is required';
+//   } else if (!isValidEmail(values.email)) {
+//     errors.email = 'Invalid email address';
+//   }
 
-  if (!values.password) {
-    errors.password = "Password is required"
-  }
+//   if (!values.password) {
+//     errors.password = "Password is required"
+//   }
 
 
-return errors
+// return errors
 
-  }
+//   }
 
 
 
@@ -55,7 +55,7 @@ const AdminLogin: NextPage = () => {
       email: "",
       password: ""
     },
-    validate,
+    // validate,
     onSubmit: (values) => {
       signUpAdmin(values);
       console.log(values);
