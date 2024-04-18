@@ -5,15 +5,16 @@ import CategoryCard from '../../../components/Admin/CategoryCard'
 import Head from 'next/head'
 import Layout from '../../../components/Layout'
 import AdminHeader from '../../../components/Admin/Header'
-import OrderCards from '../../../components/Admin/OrderCards'
 import OfferCards from '../../../components/Admin/OfferCards'
 import { useModal } from '../../../shared/hooks/useModal'
 import AdminModal from '../../../components/UI/AdminModal'
 import { NextPage } from 'next'
+import { useGlobalContext } from '../../../Context/GlobalContext'
 
 const AdminOffers:NextPage = () => {
 
   const {isOpen,open,close}=useModal()
+  const{formComponent,setFormComponent}=useGlobalContext() || {}
 
   return (
     <div>
@@ -25,7 +26,7 @@ const AdminOffers:NextPage = () => {
 
       <Layout
       >
-        <AdminModal formm modalTitle='Add Offer' modalDescription="Add your offer infarmation" btnText="Create Offer" onClose={close} isOpen={isOpen}  />
+        <AdminModal  formm={formComponent} modalTitle='Add Offer' modalDescription="Add your offer infarmation" btnText="Create Offer" onClose={close} isOpen={isOpen}  />
       <AdminHeader
       />
       <div className='flex'>

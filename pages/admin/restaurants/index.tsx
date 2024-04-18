@@ -10,10 +10,12 @@ import SideBar from '../../../components/Admin/SideBar'
 import AdminModal from '../../../components/UI/AdminModal'
 import { useModal } from '../../../shared/hooks/useModal'
 import { NextPage } from 'next'
+import { useGlobalContext } from '../../../Context/GlobalContext'
 
 
 const Restuarants:NextPage = () => {
   const {isOpen,open,close}=useModal()
+  const{formComponent,setFormComponent}=useGlobalContext() || {}
 
   return (
 
@@ -25,7 +27,7 @@ const Restuarants:NextPage = () => {
       </Head>
 
       <Layout>
-     <AdminModal  formm modalTitle='Add Restuarant' modalDescription="
+     <AdminModal  formm={formComponent} modalTitle='Add Restuarant' modalDescription="
 Add your Restuarants information"btnText="Create Restuarant" isOpen={isOpen} onClose={close} />
       <AdminHeader/>
       <div className='flex'>

@@ -57,18 +57,105 @@ export const signInUser=(values:any)=>{
 
 
 
+export const addCategory = async (newCategory: object) => {
+  try {
+    
+    
+const response = await instanceAxios({
+method: "POST",
+url: ENDPOINTS.CATEGORY,
+data: newCategory,
+    });
+  
+// console.log("categoryAddeddddddddddddd");
+    
+   
+return response.data; 
+  } 
+  
+catch (error) {
+    
+    
+console.error("Error adding category:", error);
+    
+    
+throw error; // Rethrow the error to handle it in the calling code
+  }
+};
+
+  export const getCategory=()=>instanceAxios({
+    method:"GET",
+    url:ENDPOINTS.CATEGORY})
+  
+    //delete category
+
+export const deleteCategory=(categoryId:string)=>instanceAxios({
+  method:"DELETE",
+  url:`${ENDPOINTS.CATEGORY}/${categoryId}`
+})
+   
+
+    // Product
+
+    export const addProduct=async (newProduct:object)=>{
+try{
+  const response=await instanceAxios({
+    method:"POST",
+    url:ENDPOINTS.PRODUCT,
+    data:newProduct
+  })
+
+  console.log("product Addedddddddddddddddddd");
+  
+return response.data
 
 
-//   export const addCategory=(newCategory) => {
-//     return instanceAxios({
-//       method: "POST",
-//       url: ENDPOINTS.CATEGORY,
-//       data: newCategory,
-//     });
-//   };
 
-export const addCategory = () => {
-    // Add category logic
-    console.log('Category addeddddddddddddddddddddddddd');
-    close(); // Modalı kapat
-  };
+}catch(err){
+  console.log(err,"Error productttttttttttttt");
+  
+}
+
+    }
+
+
+
+
+    // ADD OFFER
+    export const addOffer = async (newOffer: object) => {
+      try {
+        
+        
+    const response = await instanceAxios({
+    method: "POST",
+    url: ENDPOINTS.OFFER,
+    data: newOffer,
+        });
+      
+    console.log("offerAdddd");
+        
+       
+    return response.data; 
+      } 
+      
+    catch (error) {
+        
+        
+    console.error("Error adding offer:", error);
+        
+        
+    throw error; // Rethrow the error to handle it in the calling code
+      }
+    };
+
+
+    export const getOffer=()=>instanceAxios({
+      method:"GET",
+      url:ENDPOINTS.OFFER
+    })
+
+
+    export const deleteOffer=(itemId:string)=>instanceAxios({
+      method:"DELETE",
+      url:`${ENDPOINTS.OFFER}/${itemId}`
+    })

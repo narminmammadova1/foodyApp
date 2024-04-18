@@ -37,7 +37,7 @@ const AdminDashboard: NextPage = () => {
       <DoughnutChart  />
       </div>
       <div className=" overflow-y-auto">
-      <AdminModal/>
+      {/* <AdminModal /> */}
        
       </div>
 

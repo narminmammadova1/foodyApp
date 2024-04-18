@@ -25,7 +25,7 @@ const  {isOpenDropdown,openDropDown}= useDropdownn()
  
     <div className= ' bg-headerbg flex flex-col w-full max-h-[634px]overflow-y-auto  overflow-x-hidden px-[27px]'>
     <ShowModal isOpenShowwModal={isOpenShowwModal}/> 
-   <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='inputPlaceholder'/>
+   <DeleteModal delDescription='' isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='inputPlaceholder'/>
     
       <div >
         <h1 className=' font-mukta font-[600] text-[30px]  text-modal_p mt-[49px] mb-[51px]'>Your Orders</h1>

@@ -12,12 +12,12 @@ const ProductCards = () => {
   return (
     <>
         <AdminModal modalDescription="
-Edit your Product description and necessary information" modalTitle='Edit Product' btnText="Update Product" img isOpen={isOpen} onClose={close} />
+Edit your Product description and necessary information" modalTitle='Edit Product' btnText="Update Product" isOpen={isOpen} onClose={close} />
       <div className=' bg-white rounded-[5px] h-[273px]  w-[196px] flex flex-col justify-center  px-4'>
         <div className=' w-[163px] h-[163px]'>
         <Image className=' w-full  object-cover' width={100} height={100} src="/pngs/productImg.png" alt='product'/>
         </div>
-        <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
+        <DeleteModal delDescription='' isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
     
         <div className='flex justify-between items-end  '>
             <div className=' flex flex-col justify-between  font-medium  '>

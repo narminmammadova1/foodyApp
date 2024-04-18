@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SideBar from '../../../components/Admin/SideBar'
 import AdminHeader from '../../../components/Admin/Header'
 import Head from 'next/head'
@@ -7,31 +7,19 @@ import TopDiv from '../../../components/Admin/TopDiv'
 import CategoryCard from '../../../components/Admin/CategoryCard'
 import { useModal } from '../../../shared/hooks/useModal'
 import AdminModal from '../../../components/UI/AdminModal'
-import FormAddCategory from '../../../components/UI/FormAddCategory'
 import { NextPage } from 'next'
-import { useMutation } from 'react-query'
-import { addCategory } from '../../../services'
-import { useFormik } from 'formik'
+import { useGlobalContext } from '../../../Context/GlobalContext'
 
 const Category :NextPage = () => {
 
-// const {mutate:addInformations}=useMutation({
-//   mutationFn:addCategory,
-//   onSuccess:(obj)=>{
-//     console.log("categobj",obj);
-//   },
-//   onError: (error) => {
-//     console.error("An error occurred:", error);
-//   }
-
-// })
 
 
   const {isOpen,open,close}=useModal()
 
-  
+const{formComponent,setFormComponent}=useGlobalContext() || {}
 
   return (
+
     <div>
         <Head>
         <title>Category</title>
@@ -41,7 +29,7 @@ const Category :NextPage = () => {
 
       <Layout>
         {/* <FormAddCategory btnText="Create Category" addCategory={addCategory}  isOpen={isOpen} onClose={close}/> */}
-        <AdminModal formm={true} btnText="Create Category"  isOpen={isOpen} onClose={close}/>
+        <AdminModal formm={formComponent}  btnText="Create Category"  isOpen={isOpen} onClose={close}/>
 
      
       <AdminHeader/>
@@ -51,7 +39,9 @@ const Category :NextPage = () => {
       <TopDiv addButton onClick={open} title="Category" btnText="ADD CATEGORY" selectText="Category type"/>
 
       <div className='flex gap-5 flex-wrap'>
-      <CategoryCard/>
+      <CategoryCard  />
+
+    
       </div>
       </div>
       </div>

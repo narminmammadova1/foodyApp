@@ -11,6 +11,9 @@ import { isValidEmail } from '../../../Constant/Regex/Regex';
 import { signInUser, signUpUser } from '../../../services';
 import { useMutation } from 'react-query';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { ROUTER } from '../../../Constant/Router';
+import { toast } from 'react-toastify';
 
 
 // let validate = (values:any) => {
@@ -39,13 +42,26 @@ import axios from 'axios';
 
 const AdminLogin: NextPage = () => {
  
+  const {push}=useRouter()
 
-  const { mutate: signUpAdmin } = useMutation({
+  const { mutate: signInAdmin } = useMutation({
     mutationFn: signInUser,
     onSuccess: (data) => {
       console.log("mt data", data);
+      console.log("datauser",data.data.user);
+
+      if(data && data.data.user){
+        localStorage.setItem("acces_token",data?.data.user.access_token)
+        localStorage.setItem("refresh_token",data?.data.user.access_token)
+toast.success("ugurlu",{autoClose:1500})
+        setTimeout(() => {
+          push(ROUTER.DASHBOARD);
+        }, 2000);
+       
+      }
     },
     onError: (error) => {
+      toast.error("ugursuz",{autoClose:1500})
       console.error("An error occurred:", error);
     }
   });
@@ -57,9 +73,12 @@ const AdminLogin: NextPage = () => {
     },
     // validate,
     onSubmit: (values) => {
-      signUpAdmin(values);
+      signInAdmin(values);
       console.log(values);
       console.log("welcomeeeeee");
+
+      
+
     },
   });
 
