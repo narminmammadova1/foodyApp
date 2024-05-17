@@ -1,13 +1,100 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainClient from '../../components/Client/MainClient'
 import HeaderClient from '../../components/Client/HeaderClient'
 import Head from 'next/head'
 import SidebarClient from '../../components/Client/SidebarClient'
 import RestaurantCards from '../../components/Client/RestaurantCards'
 import FooterClient from '../../components/Client/FooterClient'
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
+import { getRestaurant } from '../../services'
+import { instanceAxios } from '../../helpers/instanceAxios'
+import { useGlobalContext } from '../../Context/GlobalContext'
+import { useRouter } from 'next/router'
+import { RestProps } from '../../shared/interface'
+
+// 
+
+
+
+// const {restaurants,restaurantData}=useGlobalContext()
+
 
 const RestaurantsPage:NextPage = () => {
+  // const router = useRouter();
+  // const { id } = router.query;
+  // const {restaurants}=props
+  // const [restaurants, setRestaurants] = useState([]);
+
+  
+
+  // console.log("rest pagede resttlerrrrrrrrrrrrr",restaurants);
+const {restaurantData,categoryData,selectedRestaurant,setSelectedRestaurant,selectedId,setSelectedId}=useGlobalContext() || {}
+
+console.log("restdaki restdata newwwwwwwww",restaurantData);
+
+
+const [restData,setRestData]=useState<RestProps[]>([])
+
+const [filteredRest,setFilteredRest]=useState<RestProps[]>([])
+// const selectRestaurant=(rest:any)=>{
+//   try{setSelectedRestaurant && setSelectedRestaurant(rest)
+
+//     console.log("restde selectedrest",selectedRestaurant);
+    
+//   }
+//   catch(error){console.log("selectrest error",error);
+//   }
+// }
+
+
+
+const selectRestaurant=(rest:RestProps)=>{
+  try{setSelectedRestaurant && setSelectedRestaurant(rest)
+
+    console.log("restde selectedrest",selectedRestaurant);
+    
+  }
+  catch(error){console.log("selectrest error",error);
+  }
+}
+useEffect(() => {
+  if (restaurantData) {
+      setRestData(restaurantData);
+  }
+}, [restaurantData]);
+
+// useEffect(()=>{
+//   setRestData(filteredRest)
+// },
+// [])
+
+
+// const handleFilter=()=>{
+// setRestData(filteredRest)
+
+// }
+
+useEffect(() => {
+  if (selectedId) {
+    const filtered = restaurantData?.filter((restaurant) => restaurant.category_id === selectedId) || []
+    setFilteredRest(filtered)
+  } else {
+    setFilteredRest([])
+  }
+}, [selectedId,restaurantData])
+
+
+
+
+
+// const filteredByCategory=(category)=>{
+
+
+// }
+//  const filteredRest=restaurantData?.filter((restaurant)=>restaurant.category_id===selectedId)
+//  console.log("filterlenmis categoooooooooooooooooooory",filteredRest);
+ 
+
   return (
     <div>
    <Head>
@@ -21,15 +108,25 @@ const RestaurantsPage:NextPage = () => {
     <HeaderClient/>
 
     <div className='flex mt-4'>
-<SidebarClient/>
+<SidebarClient categoryData={categoryData}/>
 
 <div className='w-full flex flex-wrap gap-9 pt-2 ps-10'>
-    <RestaurantCards/>
-    <RestaurantCards/>
-    <RestaurantCards/>
-    <RestaurantCards/>
-    <RestaurantCards/>
+  {/* {restData?.map((rest)=>(
+        <RestaurantCards key={rest.id} rest={rest} selectRestaurant={selectRestaurant}/>
 
+
+  ))} */}
+ {(selectedId ? filteredRest : restData)?.map((rest:RestProps) => (
+              <RestaurantCards key={rest.id} rest={rest} selectRestaurant={selectRestaurant} />
+            ))}
+
+
+  {/* {filteredRest?.map((rest)=>(
+        <RestaurantCards key={rest.id} rest={rest} selectRestaurant={selectRestaurant}/>
+
+
+  ))} */}
+    
 </div>
 
 </div>
@@ -38,5 +135,17 @@ const RestaurantsPage:NextPage = () => {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default RestaurantsPage

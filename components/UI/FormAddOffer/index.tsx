@@ -7,6 +7,8 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import {  addOffer,  } from '../../../services';
 import Image from 'next/image';
+import { useGlobalContext } from '../../../Context/GlobalContext';
+import { QUERIES } from '../../../Constant/Queries';
   
 
 interface FormAddProps{
@@ -16,7 +18,7 @@ interface FormAddProps{
 const FormAddOffer:React.FC <FormAddProps>= ({onClose}) => {
 
 
-
+const  {isEdit, setIsEdit}=useGlobalContext() ||{}
 
 const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile } = UseFileUpload() || {};
 const router = useRouter();
@@ -28,7 +30,7 @@ const { mutate: addOfferMutation } = useMutation(
    onSuccess: (data) => {
      console.log("Offer added:", data);
      toast.success("Offer added", { autoClose: 2000 });
-     queryClient.invalidateQueries()
+     queryClient.invalidateQueries(QUERIES.Offers)
 
      formik.resetForm();
      setFile(null);
@@ -38,7 +40,6 @@ const { mutate: addOfferMutation } = useMutation(
      }, 2000);
    },
    onError: (error) => {
-     // console.error("An error occurred:", error);
      toast.error("Error adding offer");
    }
  });
@@ -82,7 +83,7 @@ return (
   <>
     <div>
       <header className='font-roboto font-medium text-par-text'>
-        <p className='text-2xl'>Add Offer</p>
+        <p className='text-2xl'>{`${isEdit ? 'Edit Offer' : 'Add Offer'}`}</p>
         <p className='mt-[22px] text-lg'>Upload Image</p>
       </header>
       <div className='flex h-full'>
@@ -91,7 +92,7 @@ return (
             <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover' src={downloadURL} alt='' /> 
           </div>
           <div className='py-2'>
-            <p className='mt-4 font-roboto font-medium text-par-text text-[16px]'>Add your Offer Informations</p>
+            <p className='mt-4 font-roboto font-medium text-par-text text-[16px]'>{`${isEdit ?"Edit" : "Add"}`} your Offer Informations</p>
           </div>
         </div>
         <div className='rright w-2/3 ms-8 flex flex-col'>
@@ -125,17 +126,23 @@ return (
                   className='bg-input-gray rounded-lg h-10 modal-input'
                   type="text" />
 
+
 <label className='modal-label' htmlFor="">Description</label>
                     
 
+<textarea  name="description"
+id="description"
+   
 
-<input
-                  onChange={formik.handleChange}
-                  value={formik.values.description}
-                  name="description"
-                  id="description"
-                  className='bg-input-gray rounded-lg h-[108px] modal-input'
-                  type="text" />
+onChange={formik.handleChange}
+value={formik.values.description}
+className='bg-input-gray rounded-lg h-[99px] modal-input modal-input'></textarea>
+
+
+
+
+
+
               </div>
             </form>
           </div>
@@ -152,7 +159,7 @@ return (
           
 
           onClick={formik.handleSubmit}
-           disabled={isDisabled}  btnText="Add Offer" btncolor="btn-pink" />
+           disabled={isDisabled}  btnText={`${isEdit ? "Edit Offer" :"Add Offer"}`} btncolor="btn-pink" />
         </div>
       </div>
     </div>

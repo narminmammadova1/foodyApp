@@ -8,5 +8,12 @@ export const useDropdownn=()=>{
     const [isOpenLang,setIsOpenLang]=useState(false)
   const openDropDown=()=>  setIsOpenDropdown(!isOpenDropdown)
    const openLang=()=> setIsOpenLang(!isOpenLang)
-    return {isOpenDropdown,isOpenLang,openDropDown,openLang}
+
+
+   const [isOpenAvatar,setIsOpenAvatar]=useState(false)
+   const openAvatar=()=>setIsOpenAvatar(!isOpenAvatar)
+
+   const [isOpenSearchDiv,setIsOpenSearchDiv]=useState(false)
+ 
+    return {isOpenDropdown,isOpenLang,openDropDown,openLang,isOpenAvatar,setIsOpenAvatar,openAvatar,isOpenSearchDiv,setIsOpenSearchDiv}
 }

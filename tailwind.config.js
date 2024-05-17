@@ -47,7 +47,8 @@ colors:{
 "btnGreen":"#6FCF97",
 "blackhead":"#00072B",
 "select":" #00072B",
-"accordionIcon":"#323232"
+"accordionIcon":"#323232",
+"avatarColor":"#F178B6"
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],

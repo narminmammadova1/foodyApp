@@ -9,20 +9,20 @@ const FooterClient = () => {
 <div className='leftt w-1/2 '>
 
       <div className='flex flex-col items-start ms-24 '>
-        <img src="svgs/logo.svg" alt="" />
+        <img src="/svgs/logo.svg" alt="" />
         <div className='me-32 ps-2'>
         <p className='text-[22px] letter3 text-par3-text'>Lorem ipsum is placeholder text commonly used in the graphic, </p>
         </div>
       <div className='flex gap-4 mt-4'>
         <div className='flex p-1 w-[50px] h-[50px] rounded-full  border-[1px] border-white'>
-        <img src="icons/facebook.svg" alt="facebook" />
+        <img src="/icons/facebook.svg" alt="facebook" />
         </div>
         <div className='flex bg-mainOrange p-2 w-[50px] h-[50px] rounded-full '>
-        <img src="icons/instagram.svg" alt="instagram" />
+        <img src="/icons/instagram.svg" alt="instagram" />
         
         </div>
         <div className='flex p-2 w-[50px] h-[50px] rounded-full  border-[1px] border-white'>
-        <img src="icons/twitter.svg" alt="twitter" />
+        <img src="/icons/twitter.svg" alt="twitter" />
         </div>
       </div>
       </div>

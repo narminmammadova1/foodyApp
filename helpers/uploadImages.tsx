@@ -19,6 +19,7 @@ interface UploadProps{
      file:File | null;
     //  setFile:React.Dispatch<React.SetStateAction<string | null >>;
     setFile: React.Dispatch<React.SetStateAction<File | null>>;
+    productFile:File | null;
     }
 
 
@@ -26,9 +27,8 @@ const UseFileUpload = ():UploadProps => {
   const [file, setFile] = useState<File | null>(null);
   const [downloadURL, setDownloadURL] = useState("");
 
-
-  // const[productFile,setProductFile]=useState(null)
-  // const [downloadProductURL, setDownloadProductURL] = useState("");
+  const[productFile,setProductFile]=useState(null)
+  const [downloadProductURL, setDownloadProductURL] = useState("");
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile: File | null = e.target.files?.[0] || null;
@@ -57,6 +57,6 @@ const UseFileUpload = ():UploadProps => {
     }
   }
 
-  return { handleFileChange, handleUpload, downloadURL, setDownloadURL ,file,setFile};
+  return { handleFileChange, handleUpload, downloadURL, setDownloadURL ,file,setFile,productFile};
 }
 export default UseFileUpload;

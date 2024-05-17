@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { LabelModal } from '../../Styled/Typography'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 import { withTranslation } from 'react-i18next';
 
@@ -9,22 +9,28 @@ import { useTranslation } from 'react-i18next';
 import { isActiveLink } from '../../Client/HeaderClient';
 import { ROUTER } from '../../../Constant/Router';
 import i18n from "../../../next.config"
+import { useGlobalContext } from '../../../Context/GlobalContext';
+import { useQueryClient } from 'react-query';
+import { QUERIES } from '../../../Constant/Queries';
   
 export const handlechange =(language:string,i18n:any)=>{
   i18n.changeLanguage(language)
      }
 
 const SideBar:React.FC = () => {
- 
+   const {setIsAdmin,setSelectedId,setDefaultText,setIdForFilter}=useGlobalContext() || {}
   const {t,i18n}=useTranslation()
 
   const router=useRouter()
 const {push}=router
 
 console.log("langggg",router);
+console.log("isAdmin:", setIsAdmin); 
 
-
-
+const queryClient=useQueryClient()
+const restoreDefaulttext=()=>{
+  setDefaultText("Restauranttt Type")
+}
   return (
     <div>
         <div className={` w-[256px]  h-[474px] bg-main-purple rounded-[14px] py-10  ms-4 me-7
@@ -36,12 +42,19 @@ console.log("langggg",router);
         {t("Dashboard")}</li>
         </div>
         <div  className= {`${isActiveLink(ROUTER.ADMINPRODUCTS) ? "activeLink" : ""} ms-4 ps-6 `}>
-        <li className='flex gap-6 cursor-pointer' onClick={()=>push(ROUTER.ADMINPRODUCTS)}><img src="/icons/products.svg" alt="" />
+        <li className='flex gap-6 cursor-pointer' onClick={()=>{
+                  push(ROUTER.ADMINPRODUCTS)
+                  setIdForFilter && setIdForFilter("")
+// restoreDefaulttext()
+        }}><img src="/icons/products.svg" alt="" />
 {t("Products")}
          </li>
          </div>
          <div  className= {`${isActiveLink(ROUTER.ADMINRESTAURANTS) ? "activeLink" : ""} ms-4 ps-6 `}>
-        <li className='flex gap-6  cursor-pointer' onClick={()=>push(ROUTER.ADMINRESTAURANTS)}><img src="/icons/restaurants.svg" alt="" />
+        <li className='flex gap-6  cursor-pointer' onClick={()=>{
+          setIdForFilter && setIdForFilter("")
+
+          push(ROUTER.ADMINRESTAURANTS)}}><img src="/icons/restaurants.svg" alt="" />
 {t("Restaurants")}
         </li>
         </div >
@@ -58,7 +71,15 @@ console.log("langggg",router);
         {t("Offers")}  </li>
         </div>
         <div  className= {` ms-4 ps-6 `}>
-        <li className='flex gap-6 mt-6 cursor-pointer'><img src="/icons/logout.svg" alt="" />
+        <li className='flex gap-6 mt-6 cursor-pointer' onClick={()=>{
+          push(ROUTER.ADMIN_LOGIN)
+          localStorage.removeItem("access_token")
+          localStorage.removeItem("refresh_token")
+          localStorage.setItem('isAdmin',"false");
+          // setIsAdmin(false)
+
+
+          }}><img src="/icons/logout.svg" alt="" />
        {t("Logout")}  </li>
        </div>
 

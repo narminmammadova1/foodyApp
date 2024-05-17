@@ -1,6 +1,6 @@
 export const ENDPOINTS = {
     PRODUCT: "products",
-    RESTAURANT: "restuarants",
+    RESTUARANT: "restuarants",
     CATEGORY: "category",
     CATEGORYID:"CATEGORY/+ ID",
     OFFER: "offer",

@@ -1,8 +1,10 @@
 import React from 'react'
 import BtnCheckout from '../BtnCheckout'
 import ButtonGreen from '../ButtonGreen'
-
 const CheckoutCard = () => {
+
+  const isDisable=()=>{}
+
   return (
     <div className=' bg-headerbg w-[618px] px-9 pt-9'>
         <h1 className=' font-mukta font-[600] text-[30px] text-modal_p letter3 mb-6'>Checkout</h1>
@@ -27,7 +29,7 @@ const CheckoutCard = () => {
 </div>
 </div> 
 <div className='mt-12'>
-<ButtonGreen btnTitle="Checkout"/>
+<ButtonGreen disabled={isDisable} btnTitle="Checkout"/>
 </div> 
         </form>
         </div>

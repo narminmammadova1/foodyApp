@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSidePropsContext, InferGetServerSidePropsType, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -11,23 +11,31 @@ import ButtonWhite from "../components/Client/ButtonWhite";
 import Card2 from "../components/Client/Card2";
 import FooterClient from "../components/Client/FooterClient";
 import ButtonOrange from "../components/Client/ButtonOrange";
+import { getCategory, getOffer } from "../services";
+import { isError } from "react-query";
+import { useGlobalContext } from "../Context/GlobalContext";
+import { useRouter } from "next/router";
 
-const Home: NextPage = () => {
-  // const handleUpload = (e: any) => {
-  //   const file = e.target.files[0];
-  //   const formData = new FormData();
-  //   formData.append("file", file);
 
-  //   axios({
-  //     method: "POST",
-  //     url: "/api/uploads",
-  //     headers: {
-  //       "Content-Type": "multi-part",
-  //     },
-  //     data: formData,
-  //   });
-  // };
 
+//props:InferGetServerSidePropsType<typeof getServerSideProps>
+const Home = () => {
+   const router=useRouter()
+   const {push}=router
+
+
+const {offerData}=useGlobalContext() || {}
+console.log("homedeki offerData",offerData);
+
+const offerName=offerData?.map((offer)=>offer.name)
+const offerImage=offerData?.map((offer)=>offer.img_url)
+console.log("homedeki offerName",offerName);
+
+const offerDescription=offerData?.map((offer)=>offer.description)
+
+const handlePush=()=>{
+  push("/register")
+}
   return (
 
     <>
@@ -39,10 +47,10 @@ const Home: NextPage = () => {
       
     <MainClient>
 <div>
-  <HeaderClient/>
+  <HeaderClient 
+/>
 
-
-  <div className="flex  bg-headerbg pb-40 pt-16">
+  <div className="flex  bg-headerbg pb-40 pt-16" >
     <div className="flex">
 <div className="leftDiv py-10 ps-8  ">
   <h1 className="line pe-0 font-roboto font-[800] letter3  text-[60px]">Our Food site makes it easy to find local food</h1>
@@ -50,8 +58,8 @@ const Home: NextPage = () => {
 
 <div className="flex gap-10 mt-10">
 
-  <ButtonRed btnText="Register"    />
-  <ButtonWhite    btnText="Order now"            />
+  <ButtonRed btnText="Register"  onClick={handlePush}   />
+  <ButtonWhite  onClick={()=>push("/restaurants")}  btnText="Order now"            />
 </div>
 </div>
 <div className="rightDiv flex flex-col   relative">
@@ -120,11 +128,11 @@ const Home: NextPage = () => {
 <section className="mt-[281px]">
 <div className="flex  justify-center">
   <div className="leftdiv pt-8 w-1/2">
-    <p className=" font-roboto font-[900] text-[50px] line text-textblack">Menu That Always Make You Fall In Love</p>
+    <p className=" font-roboto font-[900] text-[50px] line text-textblack">{offerName?.[0]}</p>
     <p className="font-roboto font-[400] text-[22px] line2 text-par3-text mt-7  me-32 pe-16">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
   <div className="rightdiv  w-[619px] h-[653px]"> 
-    <Image className="  " width={1000} height={1000} src="/pngs/kfcmeny.svg" alt="kfc"/>
+    <Image className="  " width={1000} height={1000} src={offerImage ? offerImage[0] : "/pngs/kfcmeny.svg"} alt="kfc"/>
   </div>
 </div>
 
@@ -139,7 +147,7 @@ const Home: NextPage = () => {
   </div>
 
   <div className="leftdiv pt-8 w-1/2">
-    <p className=" font-roboto font-[900] line text-[50px] text-textblack">Yummy Always Papa John’s Pizza.Agree?</p>
+    <p className=" font-roboto font-[900] line text-[50px] text-textblack">{offerName ? offerName?.[1] :"Yummy Always Papa John’s Pizza.Agree?"}</p>
     <p className="font-roboto font-[400] line2 text-[22px] text-par3-text mt-7 me-32 pe-16">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
 </div>
@@ -225,3 +233,40 @@ Mmm...</p>
   
 
 export default Home;
+
+
+
+
+// export async function getServerSideProps(context:GetServerSidePropsContext){
+
+//   console.log("server side",context.query);
+//   // const id=context.query.post_id as string |number
+
+// try{
+
+//   const response= await getOffer()
+
+//   return {
+//     props:{
+//       offer:response.data
+//     }
+//   }
+// }catch(error:any){
+//   return{
+//     props:{isError:true,
+//       error_message:error.message
+//     }
+//   }
+
+
+
+// }
+
+// return{
+//   props:{
+
+
+//   }
+// }
+
+// }

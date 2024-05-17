@@ -5,6 +5,7 @@ import DeleteModal from '../../Modals/DeleteModal'
 import AdminModal from '../../UI/AdminModal'
 import { useQuery } from 'react-query'
 import { useGlobalContext } from '../../../Context/GlobalContext'
+import Category from '../../../pages/admin/category'
 
 
 interface OfferProps{
@@ -18,15 +19,18 @@ interface OfferProps{
 
 
 const OfferCards = () => {
-  // const [selectedOfferId, setSelectedOfferId] = useState(null);
 
 
-const {offerData,handleOfferDelete,selectedId, setSelectedId,formComponent,setFormComponent}=useGlobalContext() || {}
+const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFormComponent}=useGlobalContext() || {}
   const  {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal,}=useModal()
     return (
       <>
  <DeleteModal  isOpenDelModal={isOpenDelModal}   onCloseDelModal={closeDelModal} delDescription="offer, it will not come back!" colorModal='red-950'/>
-     <AdminModal formm ={formComponent} modalDescription=" Edit your offer information" modalTitle='Edit Offer' btnText="Update Offer"  isOpen={isOpen} onClose={close} />
+     <AdminModal isEdit
+      formm ={formComponent}
+     
+       isOpen={isOpen}
+        onClose={close} />
       
         <div className=' bg-white w-full'>
             <table className="table-fixed min-w-full divide-y divide-gray-200">
@@ -53,7 +57,16 @@ const {offerData,handleOfferDelete,selectedId, setSelectedId,formComponent,setFo
       <td className=' text-start '> {offer.description.length > 30 ? `${offer.description.slice(0, 30)}...` : offer.description}</td>
 
       <td className='pe-6'><div className=' flex justify-end  gap-1'>
-        <img onClick={open} className=' cursor-pointer' src="/icons/edit.svg" alt="edit" />
+        <img onClick={()=>{
+          open()
+          console.log("handle edit offer isleyir");
+          
+          setIsEdit(true)
+          if(setSelectedId){setSelectedId(offer.id)}
+
+
+
+        }} className=' cursor-pointer' src="/icons/edit.svg" alt="edit" />
         <img
         onClick={() => {
           openDelModal();

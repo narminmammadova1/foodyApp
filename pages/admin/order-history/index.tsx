@@ -1,10 +1,18 @@
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useGlobalContext } from '../../../Context/GlobalContext'
 
 const OrderHistory:NextPage = () => {
+
+  const{isAdmin,setIsAdmin}=useGlobalContext() ||{}
+  useEffect(() => {
+    const storedIsAdmin = localStorage.getItem('isAdmin');
+    setIsAdmin(storedIsAdmin === 'true');
+  }, []);
+
   return (
-    <div>
-      OrderHistory
+    <div>{isAdmin ? (<div>      OrderHistory
+      </div>) :(<></>)}
     </div>
   )
 }

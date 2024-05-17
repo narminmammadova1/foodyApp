@@ -7,21 +7,23 @@ import { useTranslation } from 'react-i18next'
  import { handlechange } from '../SideBar'
 
  import i18n from "../../../next.config"
+import ProductModal from '../../Modals/ProductModal'
 
 const AdminHeader = () => {
 
 const {t,i18n}=useTranslation()
  
 
+const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=useModal()
 
 
 
-  const {isOpen,open,close}=useModal()
 
   const {isOpenLang,openLang}=useDropdownn()
   return (
 <div>
-<AdminModal onClose={close} isOpen={isOpen} btnText="Add Product" modalDescription="Add your Product description and necessary information"/>
+<ProductModal   onClose={closeProductModal} isOpen={isOpenProductModal}
+  />
 
     <div  className=' bg-dark-div flex items-center  px-[21px] py-[10px] rounded-b-[14px] mx-5 mb-4 justify-between '>
 
@@ -29,7 +31,7 @@ const {t,i18n}=useTranslation()
       <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/>
     </div>
     <div className='flex gap-5 items-center'>
-      <button className='flex  justify-end  items-center bg-btn-pink rounded-[14px] px-3 h-[28px]  font-roboto text-white  font-[700] text-[10px]'  onClick={open}><img className='me-[3px]' src="/icons/plus.svg" alt=""  />ADD PRODUCT</button>
+      <button className='flex  justify-end  items-center bg-btn-pink rounded-[14px] px-3 h-[28px]  font-roboto text-white  font-[700] text-[10px]'  onClick={openProductModal}><img className='me-[3px]' src="/icons/plus.svg" alt=""  />ADD PRODUCT</button>
       <div className=' bg-dark-div relative w-[59px] flex flex-col items-center h-10' >
         <div  onClick={openLang}>
         <img className=' cursor-pointer'  src={`/icons/lang${i18n.language === 'en' ? 'en': i18n.language==="fr"  ? 'fr': 'az'}.svg`}  alt="flag"   />

@@ -6,6 +6,7 @@ export const useModal=()=>{
 const [isOpenDelModal,setIsOpenDelModal]=useState(false)
  const [isOpenShowwModal,setIsOpenShowwModal]=useState(false)
 
+ const [isOpenProductModal,setIsOpenProductModal]=useState(false)
 
     const open=()=>setIsopen(true)
     const close=()=>setIsopen(false)
@@ -15,9 +16,11 @@ const [isOpenDelModal,setIsOpenDelModal]=useState(false)
 
     const openShowwModal=()=>setIsOpenShowwModal(true)
     const closeShowwModal=()=>setIsOpenShowwModal(false)
-
     
+  const openProductModal=()=>setIsOpenProductModal(true)
+     const closeProductModal=()=>setIsOpenProductModal(false)
+
     return {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal,
-    openShowwModal,closeShowwModal,isOpenShowwModal
+    openShowwModal,closeShowwModal,isOpenShowwModal,isOpenProductModal,openProductModal,closeProductModal
     }
 }

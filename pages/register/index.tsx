@@ -1,12 +1,65 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect } from 'react'
 import MainClient from '../../components/Client/MainClient'
 import RedHeader from '../../components/Client/RedHeader'
 import Image from 'next/image'
 import { NextPage } from 'next'
+import { ROUTER } from '../../Constant/Router'
+import { useRouter } from 'next/router'
+import { useMutation } from 'react-query'
+import { signUpUser } from '../../services'
+import { log } from 'util'
+import { toast } from 'react-toastify'
+import { useFormik } from 'formik'
+import { useGlobalContext } from '../../Context/GlobalContext'
 
 const RegisterPage:NextPage = () => {
-  return (
+   const router=useRouter()
+   const {push}=router
+  
+const {showPassword,setLetters,setShowPassword,userData,togglePassword}=useGlobalContext() || {}
+
+const{mutate:signUpUserMutation}=useMutation({
+    mutationFn:signUpUser,
+    onSuccess:(values)=>{
+        toast.success("Welcome",{autoClose:2000})
+        
+    },
+    onError:(error)=>{
+        console.log(error,"signupuser error");
+        
+    }
+   
+        
+})
+// useEffect(() => {
+//   if (letters) {
+//     const userFullname = userData?.user.fullname;
+//     const lettersArr = userFullname?.toUpperCase().split(' ');
+//     const userLetters = lettersArr?.map((item) => item[0]).join("");
+//     setLetters(userLetters);
+//   }
+// }, []);
+
+
+
+
+  const formik=useFormik({initialValues:{
+email:"",
+password:"",
+username:"",
+fullname:""
+
+  },
+onSubmit:(values)=>{
+signUpUserMutation(values)
+    console.log("signupuser formik isleyir");
+    
+}})
+
+
+
+    return (
    <>
    <Head>
         <title>Register|Desktop</title>
@@ -23,21 +76,33 @@ const RegisterPage:NextPage = () => {
     <div className='rightt w-1/2 flex flex-col px-10 '>
         <div>
 <div className='flex mt-24 mb-[72px] gap-[65px] justify-center'>
-    <button  className='  text-par3-text font-roboto  font-[400] text-[30px] letter3' >Login</button>
-    <button  className=' text-mainRed font-roboto  font-[600] text-[30px] letter3'>Register</button>
+    <button onClick={()=>push(ROUTER.USER_LOGIN)}  className='  text-par3-text font-roboto  font-[400] text-[30px] letter3' >Login</button>
+    <button  onClick={()=>push(ROUTER.USER_REGISTER)} className=' text-mainRed font-roboto  font-[600] text-[30px] letter3'>Register</button>
 </div>
-<form action="submit">
+<form action="submit" onSubmit={formik.handleSubmit}>
     <label className=' text-modal_p text-[20px] font-[500] ' htmlFor="">Full Name</label>
     <input
+    name="fullname"
+    value={formik.values.fullname}
+    onChange={formik.handleChange}
      className=' font-roboto font-[400] text-modal_p h-[68px] w-full mb-7 bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  '
       type="text" placeholder='fullname' />
 
 
     <label className=' text-modal_p  text-[20px] font-[500] ' htmlFor="">Username</label>
-    <input className=' font-roboto font-[400] text-modal_p h-[68px] mb-7 w-full bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  ' type="text" placeholder='username' />
+    <input name="username"
+    value={formik.values.username}
+    onChange={formik.handleChange}
+
+    className=' font-roboto font-[400] text-modal_p h-[68px] mb-7 w-full bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  ' 
+    type="text" placeholder='username' />
 
     <label className=' text-modal_p  text-[20px] font-[500] ' htmlFor="">Email</label>
     <input
+    name="email"
+    value={formik.values.email}
+    onChange={formik.handleChange}
+
      className=' font-roboto font-[400] text-modal_p h-[68px] w-full mb-7 bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  '
      type="email" placeholder='email' />
 
@@ -45,10 +110,19 @@ const RegisterPage:NextPage = () => {
 
 
     <label className=' text-modal_p  text-[20px] font-[500] ' htmlFor="">Password</label>
-    <input
+    <div className='flex relative'>
+    <input name="password"
+    value={formik.values.password}
+    onChange={formik.handleChange}
+
      className=' font-roboto font-[400] text-modal_p h-[68px] w-full mb-7 bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  '
-     type="password" placeholder='password' />
-<button className='mt-[72px] mb-[105px] bg-mainRed h-[68px] w-full text-white rounded-[5px] text-[22px]' type="submit">Log in</button>
+     type={`${showPassword? "text" :"password"}`}   
+       placeholder='password' />
+     <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
+              <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eye.svg" alt="eye"/>
+             </div>
+             </div>
+<button type="submit" className='mt-[72px] mb-[105px] bg-mainRed h-[68px] w-full text-white rounded-[5px] text-[22px]' >Register</button>
 </form>
 </div>
     </div>

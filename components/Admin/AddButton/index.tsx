@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
+import { useGlobalContext } from '../../../Context/GlobalContext';
 
 
 interface AddButtonProps{
@@ -24,10 +25,13 @@ const AddButton:React.FC<AddButtonProps>= ({btnText,disabled,btnIcon="/icons/plu
   const {pathname}=router
   // const [formComponent,setFormComponent]=useState(null)
 
-  const openModal=()=>{
+// const {openModal}=useGlobalContext()
+
+
+const openModal=()=>{
 
     
-      if(pathname==="/admin/restuarants"){
+      if(pathname==="/admin/restaurants"){
         if(onClick){
           onClick()
 
@@ -48,6 +52,22 @@ const AddButton:React.FC<AddButtonProps>= ({btnText,disabled,btnIcon="/icons/plu
 
         }
       }
+      else if (pathname === '/admin/') {
+
+        if(onClick){
+          onClick()
+
+
+        }
+      }
+      else if (pathname === '/admin/orders') {
+
+        if(onClick){
+          onClick()
+
+
+        }
+      }
   
     }
     
@@ -56,7 +76,7 @@ const AddButton:React.FC<AddButtonProps>= ({btnText,disabled,btnIcon="/icons/plu
     <>
    
        <div className='flex gap-5'>
-      <button type='submit' onClick={openModal} disabled={disabled} className={`flex  justify-end ${btnSize} ${shadow ? "custom-shadow": ""}  items-center bg-${btncolor} ${center ?"justify-center": "justify-end"} rounded-lg px-4 py-2 
+      <button type='submit' onClick={openModal} disabled={disabled} className={`flex  ${btnSize} ${shadow ? "custom-shadow": ""}  items-center bg-${btncolor} ${center ?"justify-center": ""} h-[35px] rounded-2xl px-2  py-2 text-[14px] 
       font-roboto text-white ${disabled ? 'opacity-50 cursor-not-allowed' : ''}   `}  ><img src={btnIcon} alt=""   />{btnText}</button>
       
     </div>

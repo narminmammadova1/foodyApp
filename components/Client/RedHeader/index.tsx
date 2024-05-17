@@ -12,9 +12,8 @@ const RedHeader = () => {
 </div>
 
 <div className='flex gap-6'> 
-{/* <input className='w-[304px] h-[45px] rounded-[10px] bg-white ps-5 placeholder-inputPlaceholder' type="text" placeholder='Search'/> */}
 
-  <img src="/icons/lang.svg" alt="lang" />
+  <img src="/icons/langaz.svg" alt="lang" />
 
 </div>
 </div>
