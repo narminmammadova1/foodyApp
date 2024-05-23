@@ -4,7 +4,7 @@ import React from 'react'
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useRouter } from 'next/router';
 import { QueryClient, useMutation, useQueryClient } from 'react-query';
-import { deleteCategory, deleteOffer, deleteProduct, deleteRestaurant } from '../../../services';
+import { deleteCategory, deleteOffer, deleteProduct, deleteRestaurant, deleteUserOrder } from '../../../services';
 import { QUERIES } from '../../../Constant/Queries';
 import { toast } from 'react-toastify';
 
@@ -13,13 +13,22 @@ interface DeleteModalProps {
   onCloseDelModal: () => void;
   colorModal: string;
   delDescription:string,
-  isProduct?:boolean
+  isProduct?:boolean,
+  userOrder?:any[],
+  setUserOrder?:any
+
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({isProduct, isOpenDelModal,onCloseDelModal, colorModal,delDescription }) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({isProduct, isOpenDelModal,onCloseDelModal,  setUserOrder,
+  userOrder, colorModal,delDescription }) => {
    const {pathname}=useRouter()
 const queryClient=useQueryClient()
- 
+
+
+
+let { selectedId,myOrder,setMyOrder,orderId
+} = useGlobalContext() || {}
+
   const { mutate: deleteCategoryMutation
   } = useMutation(deleteCategory, {
       onSuccess: (data) => {
@@ -81,6 +90,23 @@ toast.error("error delete mutation")
 )
 
 
+const {mutate:deleteOrderMutation}=useMutation({
+  mutationFn:deleteUserOrder,
+  onSuccess:()=>{toast.success("order deleted",{autoClose:2000})
+
+  console.log("delete order mutation isleyirrrrrrrrrrrrrrr");
+  queryClient.invalidateQueries(QUERIES.Order)
+  setUserOrder(userOrder?.filter(order => order.id !== orderId));
+
+  },
+  onError:()=>{
+    toast.error("error deleted order")
+  }
+  
+  
+})
+
+
 
 
 
@@ -102,6 +128,12 @@ toast.error("error delete mutation")
         deleteProductMutation(String(selectedId));
       }
     }
+    else if(pathname === '/user/orders'  && deleteOrderMutation){
+
+      if(myOrder){
+        deleteOrderMutation(String(orderId))
+      }
+    }
     onCloseDelModal();
   };
    
@@ -111,14 +143,16 @@ toast.error("error delete mutation")
 
 
 
-  let { selectedId
-  } = useGlobalContext() || {}
-
 
   return (
     <div className={`w-full ${isOpenDelModal ? "fixed " :"hidden"} z-40 top-0 left-0  h-screen bg-${colorModal} flex  bg-opacity-40`}> 
+
       <div className=' w-[498px] m-auto  h-[226px] bg-white flex flex-col rounded-md  justify-center  shadow-2xl'>
+     
+     
+
         <div className='flex flex-col items-center gap-2 font-sans '>
+
           <h1 className=' text-[28px]  font-[700]'>Are you sure it's deleted?</h1>
           <div className='  text-wrap '>
             <p className='text-lg text-modal_p  font-[400]'>Attention!If you deleted this<br /> {delDescription}</p>
@@ -126,10 +160,14 @@ toast.error("error delete mutation")
         </div>
         <div>
           <div className='flex mt-4 justify-center gap-[30px]'>
-            <button onClick={onCloseDelModal} className=' bg-white px-[29px] h-[33px] text-btn-cncl border-2 rounded-[4px]'> cancel</button>
+            <button onClick={()=>{
+onCloseDelModal()
+// setMyOrder(null)
+
+            }} className=' bg-white px-[29px] h-[33px] text-btn-cncl border-2 rounded-[4px]'> cancel</button>
             <button onClick={()=>
             {handleDelete()
-            
+            queryClient.invalidateQueries(QUERIES.Order)
  onCloseDelModal()
 
             }}

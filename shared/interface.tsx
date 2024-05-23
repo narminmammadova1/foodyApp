@@ -20,8 +20,8 @@
     description?:string;
     price?:number;
     img_url?:string |undefined,
-    
-
+    created?:number
+   
 
  }
 
@@ -59,3 +59,44 @@ export interface CategoryDataProps {
    img_url:string,
    id: string | number 
  }
+
+ export interface BasketProps{
+   created:number,
+   id:string | number,
+   items:BasketPropsItem[],
+   total_amount:number,
+   total_item:number,
+   total_count:number
+ }
+
+
+ export interface BasketPropsItem {
+  id: string;
+  name: string;
+  price:number;
+  amount?:number;
+  count?:number;
+  created?:number;
+  description?:string;
+  img_url?:string;
+  rest_id?:string,
+  items:any[]
+
+
+
+ 
+}
+
+export interface UserOrderProps{
+  id:string ,
+  amount:number,
+  contact:number,
+  products:any[] | undefined,
+  created:number,
+  customer_id:string,
+  delivery_address:string,
+  payment_method:string
+
+
+
+}

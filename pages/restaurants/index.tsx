@@ -12,23 +12,10 @@ import { useGlobalContext } from '../../Context/GlobalContext'
 import { useRouter } from 'next/router'
 import { RestProps } from '../../shared/interface'
 
-// 
-
-
-
-// const {restaurants,restaurantData}=useGlobalContext()
-
 
 const RestaurantsPage:NextPage = () => {
-  // const router = useRouter();
-  // const { id } = router.query;
-  // const {restaurants}=props
-  // const [restaurants, setRestaurants] = useState([]);
-
-  
-
-  // console.log("rest pagede resttlerrrrrrrrrrrrr",restaurants);
-const {restaurantData,categoryData,selectedRestaurant,setSelectedRestaurant,selectedId,setSelectedId}=useGlobalContext() || {}
+ ;
+const {restaurantData,isLoading,categoryData,selectedId,}=useGlobalContext() || {}
 
 console.log("restdaki restdata newwwwwwwww",restaurantData);
 
@@ -36,64 +23,44 @@ console.log("restdaki restdata newwwwwwwww",restaurantData);
 const [restData,setRestData]=useState<RestProps[]>([])
 
 const [filteredRest,setFilteredRest]=useState<RestProps[]>([])
-// const selectRestaurant=(rest:any)=>{
-//   try{setSelectedRestaurant && setSelectedRestaurant(rest)
-
-//     console.log("restde selectedrest",selectedRestaurant);
-    
-//   }
-//   catch(error){console.log("selectrest error",error);
-//   }
+// if(isLoading){    return <div>Loading....................</div>
 // }
+// useEffect(() => {
+//   if (restaurantData) {
+//       setRestData(restaurantData);
+//   }
+// }, [restaurantData]);
+
+
+// useEffect(() => {
+//   if (selectedId) {
+//     const filtered = restaurantData?.filter((restaurant) => restaurant.category_id === selectedId) || []
+//     setFilteredRest(filtered)
+//   } else {
+//     setFilteredRest([])
+//   }
+// }, [selectedId,restaurantData])
 
 
 
-const selectRestaurant=(rest:RestProps)=>{
-  try{setSelectedRestaurant && setSelectedRestaurant(rest)
 
-    console.log("restde selectedrest",selectedRestaurant);
-    
-  }
-  catch(error){console.log("selectrest error",error);
-  }
-}
 useEffect(() => {
   if (restaurantData) {
-      setRestData(restaurantData);
+    setRestData(restaurantData);
+
+    if (selectedId) {
+      const filtered = restaurantData.filter((restaurant) => restaurant.category_id === selectedId);
+      setFilteredRest(filtered);
+    } else {
+      setFilteredRest([]);
+    }
   }
-}, [restaurantData]);
-
-// useEffect(()=>{
-//   setRestData(filteredRest)
-// },
-// [])
+}, [restaurantData, selectedId]);
 
 
-// const handleFilter=()=>{
-// setRestData(filteredRest)
+if(isLoading){    return <div>Loading....................</div>
+}
 
-// }
-
-useEffect(() => {
-  if (selectedId) {
-    const filtered = restaurantData?.filter((restaurant) => restaurant.category_id === selectedId) || []
-    setFilteredRest(filtered)
-  } else {
-    setFilteredRest([])
-  }
-}, [selectedId,restaurantData])
-
-
-
-
-
-// const filteredByCategory=(category)=>{
-
-
-// }
-//  const filteredRest=restaurantData?.filter((restaurant)=>restaurant.category_id===selectedId)
-//  console.log("filterlenmis categoooooooooooooooooooory",filteredRest);
- 
 
   return (
     <div>
@@ -111,21 +78,13 @@ useEffect(() => {
 <SidebarClient categoryData={categoryData}/>
 
 <div className='w-full flex flex-wrap gap-9 pt-2 ps-10'>
-  {/* {restData?.map((rest)=>(
-        <RestaurantCards key={rest.id} rest={rest} selectRestaurant={selectRestaurant}/>
-
-
-  ))} */}
+ 
  {(selectedId ? filteredRest : restData)?.map((rest:RestProps) => (
-              <RestaurantCards key={rest.id} rest={rest} selectRestaurant={selectRestaurant} />
+              <RestaurantCards key={rest.id} rest={rest} 
+              />
             ))}
 
 
-  {/* {filteredRest?.map((rest)=>(
-        <RestaurantCards key={rest.id} rest={rest} selectRestaurant={selectRestaurant}/>
-
-
-  ))} */}
     
 </div>
 

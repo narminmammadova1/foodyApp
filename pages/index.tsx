@@ -15,6 +15,7 @@ import { getCategory, getOffer } from "../services";
 import { isError } from "react-query";
 import { useGlobalContext } from "../Context/GlobalContext";
 import { useRouter } from "next/router";
+import { ROUTER } from "../Constant/Router";
 
 
 
@@ -59,7 +60,7 @@ const handlePush=()=>{
 <div className="flex gap-10 mt-10">
 
   <ButtonRed btnText="Register"  onClick={handlePush}   />
-  <ButtonWhite  onClick={()=>push("/restaurants")}  btnText="Order now"            />
+  <ButtonWhite  onClick={()=>push(ROUTER.CHECKOUT)}  btnText="Order now"            />
 </div>
 </div>
 <div className="rightDiv flex flex-col   relative">

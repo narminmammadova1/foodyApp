@@ -1,7 +1,7 @@
 export const QUERIES={
     Products: "products",
     Restaurants: "restuarants",
-    // SingleRestaurant: "singleRestaurant",
+    RestaurantById: "restaurantbyId",
     Categories: "categories",
     Offers: "offers",
     User: "user",

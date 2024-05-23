@@ -77,6 +77,12 @@ a {
     @apply w-[397px] max-h-[547px] ps-[9px]  pe-4 pb-6
   }
 
+  
+  .basket_small2{
+    @apply w-[397px] max-h-[761px] ps-[9px]  pe-4 pb-6
+  }
+
+
 
   .basket_large{
     @apply  w-full max-h-[735px] ps-9 pe-[62px] pb-[33px]
@@ -91,10 +97,10 @@ a {
 
 
 .p22_large{
- @apply text-[22px]  me-80  ms-10 mt-2
+ @apply text-[22px]  me-80  ms-2 mt-2
 }
 .p18_large{
-  @apply text-[18px]  ms-14 
+  @apply text-[18px]  ms-2
 }
 
 .padding8{
@@ -105,7 +111,7 @@ a {
   padding-bottom: 16px;
 }
   .whitebtn_small{
-    @apply pt-3  w-[29px] relative top-0  h-[70px]  text-base 
+    @apply py-2 px-1 gap-1  w-[29px] relative top-[-10px]    text-base 
   }
 .whitebtn_large{
   @apply w-[41px] h-[90px] gap-3 justify-center ms-10
@@ -117,7 +123,7 @@ a {
 
   .img_large{
     width: 96px;
-    height: 94px;
+    height: 96px;
   }
 
 

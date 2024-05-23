@@ -35,10 +35,7 @@ useEffect(() => {
     
   }
 }, [file])
-// useEffect(()=>{
-//   setUserInfo(userData)
-// },[userData])
-// const [username,setUsername]=useState()
+
 console.log("userData profildeki", userData);
 console.log("user imageeeeeeeeeee",userData?.img_url);
 // const oldName = userData?.user.username;

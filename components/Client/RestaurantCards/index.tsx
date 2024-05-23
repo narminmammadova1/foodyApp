@@ -9,11 +9,9 @@ import { RestProps } from '../../../shared/interface'
 
 interface RestaurantCardsProps{
   rest:RestProps
-  selectRestaurant:(rest:RestProps)=>void
 }
 
-
-const RestaurantCards:React.FC<RestaurantCardsProps> = ({rest,selectRestaurant}) => {
+const RestaurantCards:React.FC<RestaurantCardsProps> = ({rest}) => {
 const router=useRouter()
 const {push}=router
 const{selectedId,setSelectedId}=useGlobalContext() || {}
@@ -26,7 +24,8 @@ const{selectedId,setSelectedId}=useGlobalContext() || {}
     <div className=' w-[235px] h-[345px] px-4 flex flex-col  justify-start bg-white boxShadow2'>
       <div 
         onClick={
-          ()=>{selectRestaurant(rest)
+          ()=>{
+           
            push(`${ROUTER.RESTAURANTS}/${rest.id}`)
           }
 } className=' flex   justify-center mt-4 cursor-pointer'>

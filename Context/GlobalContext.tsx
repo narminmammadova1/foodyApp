@@ -1,10 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { addProduct, deleteCategory, deleteOffer, deleteProduct, deleteRestaurant,
-     getCategory, getOffer, getProduct, getRestaurant, getRestaurantById, getUser } from "../services";
+import { addBasket, addProduct, deleteCategory, deleteOffer, deleteProduct, deleteRestaurant,
+     getBasket,
+     getCategory, getOffer, getProduct, getRestaurant, getRestaurantById, getUser, 
+     getUserOrder} from "../services";
 import { QUERIES } from "../Constant/Queries";
 import { toast } from "react-toastify";
-import { RestProps, UserDataProps } from "../shared/interface";
+import { BasketProps, RestProps, UserDataProps } from "../shared/interface";
 
 
 interface ContextProps {
@@ -25,6 +27,8 @@ interface ContextProps {
     defaultText:string,
     setDefaultText:any,
     productsData:any[],
+    userOrdersData:any[],
+    basketData:BasketProps
     formComponent:any;
     setFormComponent:any;
     isEdit:boolean;
@@ -33,7 +37,11 @@ interface ContextProps {
     setIsBasket:any;
     isAvatar:boolean;
     setIsAvatar:any;
-    isName:boolean;
+   myOrder:any[] | undefined,
+   orderId:string | number |null | undefined;
+   setOrderId:React.Dispatch<React.SetStateAction<string | null |number | undefined>>,
+   setMyOrder: React.Dispatch<React.SetStateAction<any[] | undefined>>;
+   isName:boolean;
     setIsName:any;
     isLoginBtn:boolean;
     setIsLoginBtn:any;
@@ -50,7 +58,8 @@ interface ContextProps {
    setSelectedRestaurant:React.Dispatch<React.SetStateAction<object | null>> | undefined;
    isLoading:boolean;
    currentProduct:any[];
-   setCurrentProduct:any
+   setCurrentProduct:any,
+   addBasketmutation:any
    
   }
 
@@ -115,7 +124,19 @@ const {data:restaurants}=useQuery(QUERIES.Restaurants,getRestaurant)
 const{data:products}=useQuery(QUERIES.Products,getProduct)
 const productsData=products?.data?.result.data
 
+ const{data:basket}=useQuery(QUERIES.Basket,getBasket)
+ const  basketData=basket?.data.result.data
 
+
+ const {data:userOrders}=useQuery(QUERIES.UserOrder,getUserOrder)
+ const userOrdersData=userOrders?.data?.result.data || []
+ console.log("get Basketttttttttt",basketData);
+ console.log("userOrdersDataaaaaaaaaaaaaaaaaaaaaaaaa",userOrdersData);
+ 
+
+
+ const [myOrder,setMyOrder]=useState<any[] | undefined>([])
+const [orderId,setOrderId]=useState<string | null |number | undefined>(null)
 // const{mutate:editCategoryMutation}=useMutation(editCategory,
 //     {onSuccess:(data)=>{
 
@@ -133,6 +154,21 @@ const productsData=products?.data?.result.data
     
 // )
 
+
+
+
+const{mutate:addBasketmutation}=useMutation({
+    mutationFn:addBasket,
+    onSuccess:(values)=>{
+      console.log("baskete add edilen",values);
+      toast.success("added basket",{autoClose:1000})
+      queryClient.invalidateQueries(QUERIES.Basket)
+    },
+    onError: (error: any) => {
+      console.error("Error adding to basket:", error.message);
+      toast.error("Failed to add product to basket");
+    }
+  })
  const [showPassword,setShowPassword]=useState(false)
 
 const togglePassword=()=>{
@@ -168,6 +204,8 @@ const value:ContextProps={
     offerData,
     restaurantData,
     productsData,
+    basketData,
+    userOrdersData,
     selectedId, 
     formComponent,
     idForFilter,
@@ -198,7 +236,12 @@ isBasket,
     selectedRestaurant,
     setSelectedRestaurant,
     isLoading,currentProduct,
-    setCurrentProduct
+    setCurrentProduct,
+    addBasketmutation,
+  myOrder,
+   setMyOrder,
+   orderId,
+   setOrderId
 
     }
 

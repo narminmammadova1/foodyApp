@@ -64,8 +64,12 @@ const { mutate: signInAdmin } = useMutation({
     console.log("datauser adm mutat",data.data.user);
    
     if (data && data.data.user && data.data.user.email === "admin11@gmail.com") {
-      localStorage.setItem("acces_token", data?.data.user.access_token);
+      // localStorage.setItem("acces_token", data?.data.user.access_token);
       // localStorage.setItem("refresh_token", data?.data.user.access_token);
+
+      
+      localStorage.setItem("user_accesToken", data?.data.user.access_token);
+      localStorage.setItem("user_LoginDate", String(new Date().getTime()))
       localStorage.setItem("isAdmin", "true"); 
 
       setIsAdmin(true);

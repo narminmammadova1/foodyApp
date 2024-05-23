@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect } from 'react'
 import MainClient from '../../../components/Client/MainClient'
 import HeaderClient from '../../../components/Client/HeaderClient'
 import UserSidebar from '../../../components/Client/UserSidebar'
 import BasketCard from '../../../components/Client/BasketCard'
+import { useGlobalContext } from '../../../Context/GlobalContext'
 
 const UserBasket = () => {
+ 
   return (
     <div>
 

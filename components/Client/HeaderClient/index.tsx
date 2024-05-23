@@ -165,7 +165,7 @@ const selectRestaurant = async (rest: any) => {
 
             <button onClick={() => { push(ROUTER.USER_LOGIN) }} className={`${isUser ? " hidden" : "px-[22px] w-[115px] h-[41px]  rounded-full  text-white font-roboto font-medium  text-[16px] bg-btnRed"}`} >Sign up</button>
             <div className={`${isUser ? "flex gap-4" : "hidden"}`}>
-              <Image width={200} height={200} src="/icons/headerBasket.svg" className='w-10 h-10' alt='basket' />
+              <Image onClick={()=>push(ROUTER.BASKET)} width={200} height={200} src="/icons/headerBasket.svg" className=' cursor-pointer w-10 h-10' alt='basket' />
               <div onClick={openAvatar} className=' w-10 h-10 cursor-pointer rounded-full object-cover text-white flex justify-center items-center font-roboto roboto-medium bg-avatarColor '>
                 {profilImg ? <img className=' w-10 h-10 rounded-full' src={profilImg} /> : <span>{letters}</span>}
               </div>
@@ -186,7 +186,7 @@ const selectRestaurant = async (rest: any) => {
           push("/user/basket")
         }} className=' cursor-pointer border-b  text-black  pb-2 mb-2'>Your Basket</div>
 
-        <div className=' cursor-pointer border-b  text-black pb-2 mb-2'>Your Orders</div>
+        <div onClick={()=>push(ROUTER.ORDER)} className=' cursor-pointer border-b  text-black pb-2 mb-2'>Your Orders</div>
 
         <div className='cursor-pointer border-b  text-black  pb-2 mb-2'>Checkout</div>
 
