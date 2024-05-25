@@ -48,19 +48,24 @@ useEffect(() => {
   if (restaurantData) {
     setRestData(restaurantData);
 
-    if (selectedId) {
-      const filtered = restaurantData.filter((restaurant) => restaurant.category_id === selectedId);
-      setFilteredRest(filtered);
-    } else {
-      setFilteredRest([]);
-    }
+    
   }
-}, [restaurantData, selectedId]);
+}, [restaurantData]);
 
 
-if(isLoading){    return <div>Loading....................</div>
+useEffect(()=>{
+
+  if (selectedId) {
+    const filtered = restaurantData?.filter((restaurant) => restaurant.category_id === selectedId) ;
+    setFilteredRest(filtered || []);
+  } else {
+    setFilteredRest([]);
+  }
+},[selectedId])
+
+if (isLoading || !restaurantData) {
+  return <div>Loading....................</div>;
 }
-
 
   return (
     <div>

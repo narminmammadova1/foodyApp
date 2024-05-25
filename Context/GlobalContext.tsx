@@ -119,6 +119,14 @@ console.log("offersData", offerData);
 const {data:restaurants}=useQuery(QUERIES.Restaurants,getRestaurant)
 
  const restaurantData=restaurants?.data?.result.data || []
+
+
+// const { data: restaurants } = useQuery(QUERIES.Restaurants, getRestaurant, {
+//   staleTime: 5 * 60 * 1000,
+//   cacheTime: 30 * 60 * 1000,
+// });
+
+// const restaurantData = restaurants?.data?.result.data || [];
  console.log("restaurant data",restaurantData);
  
 const{data:products}=useQuery(QUERIES.Products,getProduct)

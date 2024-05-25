@@ -4,6 +4,7 @@ import React from 'react'
 import { ROUTER } from '../../../Constant/Router'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import { RestProps } from '../../../shared/interface'
+import AnimatedSection from '../../AnimatedSection/AnimatedSection'
 
 
 
@@ -21,6 +22,7 @@ const{selectedId,setSelectedId}=useGlobalContext() || {}
 
 
   return (
+    <AnimatedSection>
     <div className=' w-[235px] h-[345px] px-4 flex flex-col  justify-start bg-white boxShadow2'>
       <div 
         onClick={
@@ -43,6 +45,7 @@ const{selectedId,setSelectedId}=useGlobalContext() || {}
         <button className=' bg-btnRed w-[78px] h-[31px] rounded-full  px-3 py-1 text-white font-roboto font-medium  text-base'>{rest.delivery_min} Min</button>
      </div>
     </div>
+    </AnimatedSection>
   )
 }
 

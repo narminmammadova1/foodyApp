@@ -6,6 +6,8 @@ import HeaderClient from '../../components/Client/HeaderClient'
 import {Accordion, AccordionItem} from "@nextui-org/react";
 import FooterClient from '../../components/Client/FooterClient';
 import { NextPage } from 'next';
+import AnimatedSection2 from '../../components/AnimatedSection2';
+import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
 
 
 
@@ -26,8 +28,12 @@ const FaqsPage:NextPage = () => {
         <MainClient>
             <HeaderClient/>
             <div className='mt-4 mx-[205px]'>
-
+              <AnimatedSection>
+<div>
               <h1 className=' text-center roboto-medium font-medium text-[45px] mb-10 text-inputPlaceholder'>F.A.Q</h1>
+              </div>
+              </AnimatedSection>
+           
             <Accordion  variant="splitted">
 
       <AccordionItem key="1" 

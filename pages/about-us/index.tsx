@@ -5,8 +5,12 @@ import HeaderClient from '../../components/Client/HeaderClient'
 import Image from 'next/image'
 import FooterClient from '../../components/Client/FooterClient'
 import { NextPage } from 'next'
+import { useAnimatedStyles } from '../../shared/animated/animated'
+import { animated, useSpring } from '@react-spring/web'
 
 const AboutUs:NextPage = () => {
+
+  const{springStyles,springStyles2}=useAnimatedStyles()
   return (
     <div>
     <Head>
@@ -30,15 +34,24 @@ const AboutUs:NextPage = () => {
                       </p>
             </div>
 
-            <div className='w-1/2 relative  me-10'>
-                <Image className='mt-6' width={1000} height={1000} src="/svgs/about.svg" alt='aboutus'/>
-                <Image className='w-[274px] h-[228px]  absolute top-0 right-10' width={1000} height={1000} src="/svgs/abouthamb.svg" alt='aboutus'/>
+            <div className='w-1/2 relative   me-10'>
+              <div className='mt-6 '>
+                <Image width={1000} height={1000} src="/svgs/about.svg" alt='aboutus'/>
+                </div>
+                <animated.div style={springStyles2} className="absolute  top-10 right-10">
+                <Image className='w-[274px] h-[228px] ' width={1000} height={1000} src="/svgs/abouthamb.svg" alt='aboutus'/>
+                </animated.div>
+                <animated.div style={springStyles} className="absolute  top-[220px] left-[20px] ">
+                <Image className='w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutpizza.svg" alt='aboutus'/>
+                </animated.div>
 
-                <Image className='  absolute  top-[220px] left-[20px] w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutpizza.svg" alt='aboutus'/>
+                <animated.div style={springStyles2} className="absolute  top-[312px] right-[10px]">
+                <Image  className='   w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutsoup.svg" alt='aboutus'/>
+                </animated.div>
 
-                <Image  className='  absolute  top-[312px] right-[10px] w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutsoup.svg" alt='aboutus'/>
-
-                <Image  className='  absolute  top-[524px] left-[20px] w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutcoffee.svg" alt='aboutus'/>
+                <animated.div style={springStyles} className=" absolute  top-[524px] left-[20px]">
+                <Image  className='   w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutcoffee.svg" alt='aboutus'/>
+                </animated.div>
 
             </div>
             </div>

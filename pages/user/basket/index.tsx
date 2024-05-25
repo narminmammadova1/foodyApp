@@ -7,7 +7,8 @@ import BasketCard from '../../../components/Client/BasketCard'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 
 const UserBasket = () => {
- 
+  const {basketData}=useGlobalContext() || {}
+  
   return (
     <div>
 
@@ -21,7 +22,7 @@ const UserBasket = () => {
             <div className='mt-4 flex gap-4'>
 
 <UserSidebar/>
-<BasketCard size="large" headtitle="Your Basket"/>
+<BasketCard basketData={basketData} size="large" headtitle="Your Basket"/>
             </div>
         </MainClient>
     </div>
