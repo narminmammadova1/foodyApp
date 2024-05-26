@@ -33,7 +33,7 @@ const UseFileUpload = ():UploadProps => {
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile: File | null = e.target.files?.[0] || null;
     setFile(selectedFile);    // setNewFile(selectedFile);
-    setFile(selectedFile);
+    // setFile(selectedFile);
 
 
     if (selectedFile) {

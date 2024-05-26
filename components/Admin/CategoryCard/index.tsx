@@ -39,7 +39,7 @@ const CategoryCard = () => {
   return (
     <>
       <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950' delDescription="category, it will not come back!" />
-      <AdminModal isEdit
+      <AdminModal modalType="addCategory"
       isOpen={isOpen}
         formm={formComponent}
        
@@ -76,7 +76,9 @@ const CategoryCard = () => {
                 <td className='pe-6'>
                   <div className='flex justify-end gap-1'>
                     <img
-                      onClick={() => handleEditCategory(category)}
+                      onClick={() => {
+                        // setIsEdit(true)
+                        handleEditCategory(category)}}
                       className='cursor-pointer'
                       src="/icons/edit.svg"
                       alt="edit"

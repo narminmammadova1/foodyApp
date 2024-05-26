@@ -15,7 +15,7 @@ const  FormAddRestuarant
 
   const [selectedType,setSelectedType]=useState("")
 
-const {categoryData}=useGlobalContext() || {}
+const {categoryData,isEdit,setIsEdit}=useGlobalContext() || {}
 console.log("categid restdeki",categoryData);
 
 
@@ -84,7 +84,7 @@ return (
   <>
     <div>
       <header className='font-roboto font-medium text-par-text'>
-        <p className='text-2xl'>Add Restaurant</p>
+        <p className='text-2xl'>{`${isEdit ? 'Edit Restaurant' : 'Add Restaurant'}`}</p>
         <p className='mt-[22px] text-lg'>Upload Image</p>
       </header>
       <div className='flex h-full'>
@@ -93,7 +93,8 @@ return (
             <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover' src={downloadURL} alt='rest' /> 
           </div>
           <div className='py-2'>
-            <p className='mt-4 font-roboto font-medium text-par-text text-[16px]'>Add your Restaurant Informations</p>
+            <p className='mt-4 font-roboto font-medium text-par-text text-[16px]'>  {`${isEdit ? 'Edit Your Restaurant Informations' : '  Add your Restaurant Informations'}`}
+</p>
           </div>
         </div>
         <div className='rright w-2/3 ms-8 flex flex-col'>
@@ -220,7 +221,8 @@ className='bg-input-gray rounded-lg h-[99px] modal-input'></textarea>
 
           onClick={formik.handleSubmit}
           //  disabled={isDisabled} 
-            btnText="Add Restaurany" btncolor="btn-pink" />
+          btnText={`${isEdit ? 'Update Restaurant ' : 'Add Restaurant'}`}
+          btncolor="btn-pink" />
         </div>
       </div>
     </div>

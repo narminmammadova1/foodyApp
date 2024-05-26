@@ -25,7 +25,9 @@ const FormAddCategory: React.FC<FormAddCategoryProps>= ({ onClose }) => {
 
   const { pathname } = useRouter();
   const [newCategoryData, setNewCategoryData] = useState({});
-  const { isEdit, setIsEdit, selectedId, categoryData } = useGlobalContext() || {};
+  const { 
+    isEdit, setIsEdit, 
+    selectedId, categoryData } = useGlobalContext() || {};
   const queryClient = useQueryClient();
   const [modalImg, setModalImg] = useState(""); 
 
@@ -44,18 +46,19 @@ const FormAddCategory: React.FC<FormAddCategoryProps>= ({ onClose }) => {
     // img_url: oldCategoryData?.img_url ,
   }
 
-  useEffect(() => {
-    if (isEdit) {
-      setModalImg(oldCategoryData?.img_url || ""); // Düzenleme modunda, modalImg state'ini düzenlenecek kategorinin img_url'ine ayarlıyoruz
-    } else {
-      setModalImg(downloadURL || ""); // Ekleme modunda, modalImg state'ini indirme URL'sine ayarlıyoruz
-    }
-  }, [isEdit, downloadURL, oldCategoryData]);
+  // useEffect(() => {
+  //   if (isEdit) {
+  //     setModalImg(oldCategoryData?.img_url || ""); // Düzenleme modunda, modalImg state'ini düzenlenecek kategorinin img_url'ine ayarlıyoruz
+  //   } else {
+  //     setModalImg(downloadURL || ""); // Ekleme modunda, modalImg state'ini indirme URL'sine ayarlıyoruz
+  //   }
+  // }, [isEdit, downloadURL, oldCategoryData]);
 
   const initialValues = isEdit
     ? {
-      name: oldCategoryData.name,
+      // name: oldCategoryData.name,
       // img_url: oldCategoryData.img_url || downloadURL,
+      name:"cccc",
       img_url: '',
     }
     : {
@@ -225,6 +228,8 @@ const FormAddCategory: React.FC<FormAddCategoryProps>= ({ onClose }) => {
               btnIcon=''
               onClick={formik.handleSubmit}
               btnText={`${isEdit ? 'Update category ' : 'Add Category'}`}
+              // btnText="adddddddddddddddddd"
+
               disabled={isDisabled}
               btncolor='btn-pink'
             />

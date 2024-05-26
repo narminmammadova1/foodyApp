@@ -68,8 +68,8 @@ const { mutate: signInAdmin } = useMutation({
       // localStorage.setItem("refresh_token", data?.data.user.access_token);
 
       
-      localStorage.setItem("user_accesToken", data?.data.user.access_token);
-      localStorage.setItem("user_LoginDate", String(new Date().getTime()))
+      localStorage.setItem("admin_accesToken", data?.data.user.access_token);
+      localStorage.setItem("admin_LoginDate", String(new Date().getTime()))
       localStorage.setItem("isAdmin", "true"); 
 
       setIsAdmin(true);

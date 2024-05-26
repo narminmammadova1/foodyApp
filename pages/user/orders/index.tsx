@@ -1,12 +1,22 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainClient from '../../../components/Client/MainClient'
 import HeaderClient from '../../../components/Client/HeaderClient'
 import UserSidebar from '../../../components/Client/UserSidebar'
 import UserOrderCard from '../../../components/Client/UserOrderCard'
 import FooterClient from '../../../components/Client/FooterClient'
+import { useGlobalContext } from '../../../Context/GlobalContext'
 
 const UserOrders = () => {
+
+const{   userOrdersData,isLoading}=useGlobalContext() || {}
+
+if(isLoading){
+
+  return <div>yuklenir hele</div>
+}
+
+
   return (
     <div>
       <Head>
@@ -17,7 +27,7 @@ const UserOrders = () => {
         <HeaderClient/>
         <div className='mt-4 flex gap-4'>
             <UserSidebar/>
-            <UserOrderCard/>
+            <UserOrderCard  />
 
         </div>
       </MainClient>

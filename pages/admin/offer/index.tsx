@@ -31,7 +31,7 @@ const AdminOffers:NextPage = () => {
 
       <Layout
       >
-        <AdminModal  formm={formComponent} modalTitle='Add Offer' modalDescription="Add your offer infarmation" btnText="Create Offer" onClose={close} isOpen={isOpen}  />
+        <AdminModal modalType="addOffer" formm={formComponent} modalTitle='Add Offer' modalDescription="Add your offer infarmation" btnText="Create Offer" onClose={close} isOpen={isOpen}  />
       <AdminHeader
       />
       <div className='flex'>

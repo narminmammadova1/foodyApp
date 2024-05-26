@@ -14,6 +14,8 @@ import { createRoot } from 'react-dom/client';
 
 import {NextUIProvider} from "@nextui-org/react";
 import { GlobalProvider } from "../Context/GlobalContext";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../utils/i18n";
 
 const queryClient=new QueryClient()
 function MyApp({ Component, pageProps }: AppProps) {
@@ -21,7 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <NextUIProvider>
   <QueryClientProvider client={queryClient}>
     <GlobalProvider>
+      <I18nextProvider i18n={i18n}>
   <Component {...pageProps} />
+  </I18nextProvider>
   </GlobalProvider>
 
   <ToastContainer />

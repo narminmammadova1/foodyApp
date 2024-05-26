@@ -4,7 +4,7 @@ import { useGlobalContext } from '../../../Context/GlobalContext';
 
 
 interface AddButtonProps{
-  btnText:string | undefined
+  btnText:any;
   btnIcon?:string;
   btncolor?:string;
   btnSize?:string;

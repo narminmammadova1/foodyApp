@@ -87,7 +87,7 @@ return (
         </Head>
 
         <Layout>
-          <AdminModal formm={formComponent}  btnText="Create Category"  isOpen={isOpen} onClose={close}/>
+          <AdminModal modalType="addCategory" formm={formComponent}  btnText="Create Category"  isOpen={isOpen} onClose={close}/>
 
           <AdminHeader/>
           <div className='flex'>

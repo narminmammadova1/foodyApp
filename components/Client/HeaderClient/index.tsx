@@ -175,10 +175,9 @@ const selectRestaurant = async (rest: any) => {
 
           </div>
         </div>
-
-
-      </header>
-      {isOpenAvatar && <div className=' font-roboto fixed right-16 pt-6 font-[400] shadow px-3  text-base bg-white z-50 w-[178px] h-[234px] '>
+        {/* {isOpenAvatar &&
+        (
+         <div className=' font-roboto right-16 pt-6 font-[400] shadow px-3  text-base bg-white z-50 w-[178px] h-[234px] '>
         <div onClick={() => {
           push("/user/profile")
         }} className=' cursor-pointer border-b   text-black pb-2 mb-2'>Profile</div>
@@ -195,6 +194,37 @@ const selectRestaurant = async (rest: any) => {
           localStorage.removeItem("user_accesToken");
 
           setIsUser(false)
+          push("/")
+          setIsOpenAvatar(false)
+           queryClient.invalidateQueries(QUERIES.User)
+
+           setProfilImg && setProfilImg("");
+          setLetters("")
+          
+  
+        }} className='cursor-pointer   text-black  pb-2 mb-2'>Logout</div>
+      </div>)
+      } */}
+
+      </header>
+      {isOpenAvatar && <div className=' font-roboto absolute top-[110px] right-8 pt-6 font-[400] shadow px-3  text-base bg-white z-50 w-[178px] h-[234px] '>
+        <div onClick={() => {
+          push("/user/profile")
+        }} className=' cursor-pointer border-b   text-black pb-2 mb-2'>Profile</div>
+        <div onClick={() => {
+          push("/user/basket")
+        }} className=' cursor-pointer border-b  text-black  pb-2 mb-2'>Your Basket</div>
+
+        <div onClick={()=>push(ROUTER.ORDER)} className=' cursor-pointer border-b  text-black pb-2 mb-2'>Your Orders</div>
+
+        <div className='cursor-pointer border-b  text-black  pb-2 mb-2'>Checkout</div>
+
+
+        <div onClick={() => {
+          localStorage.removeItem("user_accesToken");
+
+          setIsUser(false)
+          localStorage.setItem("IsUser","false")
           push("/")
           setIsOpenAvatar(false)
            queryClient.invalidateQueries(QUERIES.User)

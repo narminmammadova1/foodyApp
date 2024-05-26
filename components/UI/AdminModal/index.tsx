@@ -22,13 +22,14 @@ interface AdminModalProps {
   onClose: () => void | undefined;
   formm?:React.FC | undefined;
   isOpenEDitModal?:boolean;
-  isEdit?:boolean
+  // isEdit?:boolean,
+  modalType:string
 }
 
-const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,isEdit, formm}) => {
+const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose, formm,modalType}) => {
 
   const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile } = UseFileUpload();
-  const{formComponent,setFormComponent}=useGlobalContext() || {}
+  const{formComponent,isEdit,setIsEdit,setFormComponent}=useGlobalContext() || {}
 
   const router = useRouter()
 
@@ -47,25 +48,39 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
   // })
 
 
-  const changeModalItem = () => {
-    if (pathname === "/admin/restaurants") {
-      setFormComponent(<FormAddRestuarant onClose={onClose} />)
-    } else if (pathname === "/admin/offer") {
-      setFormComponent(<FormAddOffer   onClose={onClose} />)
-    } else if (pathname === "/admin/category") {
-      setFormComponent(<FormAddCategory  onClose={onClose}  />)
-    }
-    // else if (pathname === "/admin/orders") {
-    //   setFormComponent(<FormProduct onClose={onClose} />)
-    // }
-    // else if (pathname === "/admin/") {
-    //   setFormComponent(<FormProduct onClose={onClose} />)
-    // }
+  // const changeModalItem = () => {
+  //   if (pathname === "/admin/restaurants") {
+  //     setFormComponent(<FormAddRestuarant onClose={onClose} />)
+  //   } else if (pathname === "/admin/offer") {
+  //     setFormComponent(<FormAddOffer   onClose={onClose} />)
+  //   } else if (pathname === "/admin/category") {
+  //     setFormComponent(<FormAddCategory  onClose={onClose}  />)
+  //   }
+ 
+  //   return formComponent
+  // }
 
-    
-    // else{setFormComponent(<FormProduct onClose={onClose} />)}
-    return formComponent
-  }
+
+  const changeModalItem = () => {
+        switch (modalType) {
+          case "addRestaurant":
+            setFormComponent(<FormAddRestuarant onClose={onClose} />);
+            break;
+          case "addOffer":
+           setFormComponent(<FormAddOffer onClose={onClose}  />);
+          break;
+          case "addCategory":
+          setFormComponent(<FormAddCategory onClose={onClose}/>);
+           break;
+    //       // Diğer case'ler buraya eklenebilir
+          default:
+         setFormComponent(null);
+      }
+       };
+
+
+
+
 
   useEffect(() => {
     changeModalItem();
@@ -87,7 +102,11 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
     <>
       <div className={`w-full top-0 right-0 fixed h-full z-50 flex overflow-y-auto   ${isOpen ? "fixed" : "hidden"}`}>
         <div className='w-1/3 bg-login-gray flex justify-end bg-opacity-40'>
-          <div className='p-6'       onClick={onClose}      >
+          <div className='p-6'       onClick={()=>{
+            setIsEdit(false)
+            onClose()
+
+          }   }   >
             <img src="/icons/x.svg" alt="" />
           </div>
         </div>
@@ -102,5 +121,90 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
 }
 
 export default AdminModal
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import AddButton from '../../Admin/AddButton';
+// import { useRouter } from 'next/router';
+// import FormAddCategory from '../FormAddCategory';
+// import Image from 'next/image';
+// import FormAddRestaurant from '../FormAddRestuarant';
+// import FormAddOffer from '../FormAddOffer';
+// import { addProduct } from '../../../services';
+// import { useFormik } from 'formik';
+// import UseFileUpload from '../../../helpers/uploadImages';
+// import { useMutation } from 'react-query';
+// import { toast } from 'react-toastify';
+// import { useGlobalContext } from '../../../Context/GlobalContext';
+
+// interface AdminModalProps {
+//   modalDescription?: string;
+//   modalTitle?: string;
+//   btnText?: string;
+//   isOpen?: boolean;
+//   onClose: () => void | undefined;
+//   formm?: React.FC | undefined;
+//   isOpenEditModal?: boolean;
+//   isEdit?: boolean;
+//   modalType?: string; // Yeni prop eklendi
+// }
+
+// const AdminModal: React.FC<AdminModalProps> = ({ isOpenEditModal, isOpen, onClose, isEdit, formm, modalType }) => {
+//   const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile } = UseFileUpload();
+//   const { formComponent, setFormComponent } = useGlobalContext() || {};
+
+//   const changeModalItem = () => {
+//     switch (modalType) {
+//       case "addRestaurant":
+//         setFormComponent(<FormAddRestaurant onClose={onClose} />);
+//         break;
+//       case "addOffer":
+//         setFormComponent(<FormAddOffer onClose={onClose} />);
+//         break;
+//       case "addCategory":
+//         setFormComponent(<FormAddCategory onClose={onClose} />);
+//         break;
+//       // Diğer case'ler buraya eklenebilir
+//       default:
+//         setFormComponent(null);
+//     }
+//   };
+
+//   useEffect(() => {
+//     changeModalItem();
+//   }, [isOpen, modalType]);
+
+//   useEffect(() => {
+//     if (file) {
+//       handleUpload(file);
+//     }
+//   }, [file]);
+
+//   return (
+//     <>
+//       <div className={`w-full top-0 right-0 fixed h-full z-50 flex overflow-y-auto ${isOpen ? "fixed" : "hidden"}`}>
+//         <div className='w-1/3 bg-login-gray flex justify-end bg-opacity-40'>
+//           <div className='p-6' onClick={onClose}>
+//             <img src="/icons/x.svg" alt="" />
+//           </div>
+//         </div>
+//         <div className='right w-2/3 bg-login-gray pt-6 ps-6 pe-6 overflow-y-auto'>
+//           {formComponent}
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
+
+// export default AdminModal;
 
 

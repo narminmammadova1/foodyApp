@@ -26,7 +26,7 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
     return (
       <>
  <DeleteModal  isOpenDelModal={isOpenDelModal}   onCloseDelModal={closeDelModal} delDescription="offer, it will not come back!" colorModal='red-950'/>
-     <AdminModal isEdit
+     <AdminModal modalType="addOffer" 
       formm ={formComponent}
      
        isOpen={isOpen}

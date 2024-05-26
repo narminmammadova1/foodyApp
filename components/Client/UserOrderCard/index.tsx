@@ -179,7 +179,7 @@ interface UserOrderCardProps {
 
 
 const UserOrderCard:React.FC<UserOrderCardProps> = () => {
-  const { userOrdersData, setMyOrder, setOrderId } = useGlobalContext() || {};
+  const { userOrdersData, setMyOrder, setOrderId,isLoading } = useGlobalContext() || {};
   const { openShowwModal, closeShowwModal, isOpenShowwModal, openDelModal, isOpenDelModal, closeDelModal } = useModal();
 
   const [openDropdownId, setOpenDropdownId] =useState<string | null |number | undefined>(null);
@@ -205,9 +205,14 @@ const queryClient=useQueryClient()
     }
     queryClient.invalidateQueries(QUERIES.Order);
   }, [userOrdersData, queryClient]);
+
+
+
+
   const monthNames = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
 
   if (!hydration) return null;
+
 
   return (
     <>

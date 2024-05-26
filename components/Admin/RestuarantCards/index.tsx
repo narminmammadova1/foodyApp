@@ -3,6 +3,7 @@ import React from 'react'
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useModal } from '../../../shared/hooks/useModal';
 import DeleteModal from '../../Modals/DeleteModal';
+import AdminModal from '../../UI/AdminModal';
 
 
 interface RestaurantCardProps{
@@ -24,16 +25,30 @@ interface RestaurantProps{
 const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
 
   const  {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal}=useModal()
-  const { categoryData, setSelectedId,formComponent} = useGlobalContext() || {};
+  const { categoryData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent} = useGlobalContext() || {};
 
+
+
+  const handleEditClick = () => {
+    open();
+    setIsEdit(true);
+    if (setSelectedId) {
+      setSelectedId(restaurant.id);
+    }
+    console.log("Selected restaurant ID for edit:", restaurant.id);
+  };
 
   return (
    
     <div>
     <DeleteModal  isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'   delDescription="restaurant, it will not come back!"  />
-
+    <AdminModal modalType="addRestaurant" 
+      formm ={formComponent}
+     
+       isOpen={isOpen}
+        onClose={close} />
       {restaurant ? ( <div className=' bg-white w-[247px] h-[83px]  flex gap-5 justify-between rounded-md'>
-        <div  className='  ps-3 py-2  flex items-center justify-center overflow-hidden  object-cover  rounded-md '>
+        <div  className='w-[90px] h-[80px] ps-3 py-2  flex items-center justify-center overflow-hidden  object-cover  rounded-md '>
             <Image className='object-cover w-full  h-full  ' width={247} height={83} src={restaurant.img_url} alt={restaurant.name}/>
         </div>
 
@@ -53,7 +68,9 @@ if(setSelectedId){
 
 
     }} src="/icons/delete.svg" alt="delete" />
-    <img src="/icons/edit.svg" alt="edit" />
+
+
+    <img className='cursor-pointer' onClick={handleEditClick}  src="/icons/edit.svg" alt="edit" />
 
 </div>
       

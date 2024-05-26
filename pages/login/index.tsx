@@ -17,7 +17,7 @@ import { QUERIES } from '../../Constant/Queries'
 const LoginPage: NextPage = () => {
   const router = useRouter()
   const { push } = router
-  const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar, userData, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
+  const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar, userData,setIsAdmin, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
 
   const queryClient = useQueryClient()
   useEffect(() => {
@@ -56,6 +56,7 @@ const LoginPage: NextPage = () => {
       setIsBasket(true)
       setIsLoginBtn(false)
       setIsUser(true)
+      setIsAdmin(false);
       queryClient.invalidateQueries(QUERIES.User)
       push("/")
 
@@ -74,6 +75,8 @@ const LoginPage: NextPage = () => {
       password: ""
     },
     onSubmit: (values) => {
+      localStorage.removeItem("admin_accessToken");  // Clear admin token if any
+
       signInUserMutation(values)
     }
   })

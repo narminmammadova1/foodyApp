@@ -14,7 +14,6 @@ const OrderCards= () => {
     <>
 
 <DeleteModal  delDescription='' isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
-     <AdminModal formm={formComponent} modalDescription=" Edit your offer information" modalTitle='Edit Offer' btnText="Update Offer" isOpen={isOpen} onClose={close} />
     <div className=' bg-white w-full'>
         <table className="table-fixed min-w-full divide-y divide-gray-200">
   <thead>

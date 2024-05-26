@@ -46,7 +46,7 @@ useEffect(()=>{
       </Head>
 
       <Layout>
-     <AdminModal  formm={formComponent} modalTitle='Add Restuarant' modalDescription="
+     <AdminModal modalType="addRestaurant"  formm={formComponent} modalTitle='Add Restuarant' modalDescription="
 Add your Restuarants information" btnText="Create Restuarant" isOpen={isOpen} onClose={close} />
       <AdminHeader/>
       <div className='flex'>

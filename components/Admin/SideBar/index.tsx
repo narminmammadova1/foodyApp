@@ -73,10 +73,9 @@ const restoreDefaulttext=()=>{
         <div  className= {` ms-4 ps-6 `}>
         <li className='flex gap-6 mt-6 cursor-pointer' onClick={()=>{
           push(ROUTER.ADMIN_LOGIN)
-          localStorage.removeItem("access_token")
+          localStorage.removeItem("admin_accesToken")
           localStorage.removeItem("refresh_token")
           localStorage.setItem('isAdmin',"false");
-          // setIsAdmin(false)
 
 
           }}><img src="/icons/logout.svg" alt="" />
