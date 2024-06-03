@@ -63,7 +63,7 @@ useEffect(()=>{
   }
 },[selectedId])
 
-if (isLoading || !restaurantData) {
+if (isLoading ) {
   return <div>Loading....................</div>;
 }
 

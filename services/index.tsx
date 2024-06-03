@@ -4,7 +4,7 @@ import { instanceAxios } from "../helpers/instanceAxios";
 import { AxiosPromise } from "axios";
 
 import { AxiosError } from "axios";
-import { CategoryDataProps } from "../shared/interface";
+import { CategoryDataProps, RestProps } from "../shared/interface";
 
 
 // Register
@@ -18,24 +18,6 @@ export const signUpUser=(values:object):AxiosPromise<any>=>{
     data:values
     })
 }  
-
-// export const signUpUser = async (formdata) => {
-//   try {
-//     const response = await axios.post("/api/auth/signup",formdata);
-//     // response.data içinde sunucudan dönen veri bulunur
-//     return response.data;
-//   } catch (error) {
-//     // Hata durumunda hata yakalanabilir
-//     console.error("An error occurred:", error);
-//     throw error; // Hatanın üst katmana taşınması için tekrar throw edilebilir
-//   }
-// };
-
-
-
-
-
-
 
 
 // SignIn
@@ -52,36 +34,11 @@ export const signInUser=(values:any)=>{
 
 // update user
 
-// export const editUser=(userData:object)=>{
-//   // const accessToken = localStorage.getItem("acces_token");
-//   return instanceAxios({
-//     method:"PUT",
-//     url:ENDPOINTS.USER,
-//     data:userData,
-//     // headers:{
-//     //   Authorization:`Bearer ${accessToken}`
-//     // }
-//   })
-
-// }
-
-
-// export const editUser = (userData: object) => {
-
-//   return axios.put(ENDPOINTS.USER, userData, {
-  
-//   });
-// }
-
 
 export const editUser = (userData: object) => {
   
-  return instanceAxios.put(ENDPOINTS.USER, userData); // instanceAxios kullanarak isteği yap
+  return instanceAxios.put(ENDPOINTS.USER, userData); 
 }
-
- 
-
-
 
 export const getUser = async () => {
   try {
@@ -92,81 +49,6 @@ export const getUser = async () => {
     throw error;
   }
 };
-
-
-// export const getUser = async () => {
-//   let userAccessToken;
-//   if (typeof window !== 'undefined') {
-//     userAccessToken = localStorage.getItem("user_accesToken");
-//   }
-
-//   if (!userAccessToken) {
-//     throw new Error('Access token not found');
-//   }
-
-//   try {
-//     const response = await instanceAxios({
-//       method: "GET",
-//       url: ENDPOINTS.USER,
-//       headers: {
-//         Authorization: `Bearer ${userAccessToken}`,
-//       },
-//     });
-
-//     return response.data;
-//   } catch (error) {
-//     console.error("getUser error:", error);
-//     throw error;
-//   }
-// };
-
-
-
-// export const signInUser = async (values: object) => {
-//     return axios.post('/api/auth/signin', values);
-//   };
-  
-// export const addOffer: (
-//   newOffer:object ) => AxiosPromise = (newOffer) => {
-//   return instanceAxios({
-//     method: "POST",
-//     url: ENDPOINTS.OFFER,
-//     data: newOffer,
-//   });
-// };
-
-
-
-
-
-
-// export const addCategory = async (newCategory: object) => {
-//   try {
-    
-    
-// const response = await instanceAxios({
-// method: "POST",
-// url: ENDPOINTS.CATEGORY,
-// data: newCategory,
-//     });
-  
-// // console.log("categoryAddeddddddddddddd");
-    
-   
-// return response.data; 
-//   } 
-  
-// catch (error) {
-    
-    
-// console.error("Error adding category:", error);
-    
-    
-// throw error; // Rethrow the error to handle it in the calling code
-//   }
-// };
-
-
 
 
 export const addCategory = async (newCategory: object) => {
@@ -183,14 +65,6 @@ export const addCategory = async (newCategory: object) => {
     );
    
 };
-
-
-
-
-
-
-
-
 
   export const getCategory=()=>instanceAxios({
     method:"GET",
@@ -216,55 +90,18 @@ export const deleteCategory=async (categoryId:string)=>{
 }
 
 
-// export const editCategory = (editedCategory:any)=> {
-//   return instanceAxios({
-//     method: "PUT",
-//     url: `${ENDPOINTS.CATEGORY}/${editedCategory.id}`,
-//     data: editedCategory,
-//   });
-// };
+export const editCategory = (editedCategory:any)=> {
+  const accesToken = localStorage.getItem("admin_accesToken");
+
+  return instanceAxios({
+    method: "PUT",
+    url: `${ENDPOINTS.CATEGORY}/${editedCategory.id}`,
+    data: editedCategory,
+    headers:{Authorization:`Bearer ${accesToken}`}
+
+  });
+};
    
-
-// export const editCategory = (editedCategory:CategoryDataProps) => {
-//   return instanceAxios({
-//     method: "PUT",
-//     url: `${ENDPOINTS.CATEGORY}/${editedCategory.id}`,
-//     data: editedCategory,
-//   });
-// };
-
-// export const editCategory=async(editCategoryId:string)=>{
-//   try{
-//     const accessToken = localStorage.getItem("acces_token");
-
-
-//     const response=await instanceAxios({
-//       method:"PUT",
-//       url: `${ENDPOINTS.CATEGORY}/${editCategoryId}`,
-//       data:editCategoryId,
-//       headers:{Authorization:`Bearer ${accessToken}`}
-//     })
-//  return response.data }
-//  catch(err){
-//   console.log("error service edit");
-  
-//  }
-// }
-
-
-
-// export const editCategory = async (editCategoryId: string) => {
-//     const accessToken = localStorage.getItem("access_token");
-
-// return instanceAxios({
-//       method: "PUT",
-//       url: `${ENDPOINTS.CATEGORY}/${editCategoryId}`,
-//       data: { categoryId: editCategoryId }, // Veriyi nesne olarak gönder
-//       headers: { Authorization: `Bearer ${accessToken}` }
-//     });
-
-  
-// };
 
 
     // Product
@@ -376,15 +213,7 @@ export const deleteProduct = async (productId: string) => {
       url:`${ENDPOINTS.RESTUARANT}/${restId}`
     })
 
-    // export const getRestaurantById = (
-    //   restaurantID: string | number
-    // ): AxiosPromise<RestaurantSingleApiResponse> =>
-    //   instanceAxios({
-    //     method: "GET",
-    //     url: `${ENDPOINTS.RESTAURANT}/${restaurantID}`,
-    //   });
-
-
+    
 
 
     export const deleteRestaurant=(restId:string|number)=>{
@@ -395,6 +224,24 @@ export const deleteProduct = async (productId: string) => {
         headers:{Authorization:`Bearer ${accesToken}`}
       })
     }
+
+
+
+export const editRestaurant=(restData:RestProps)=>{
+
+  const accesToken = localStorage.getItem("admin_accesToken");
+   return instanceAxios({
+    method:"PUT",
+    url:`${ENDPOINTS.RESTUARANT}/${restData.id}`,
+    data:restData,
+    headers:{Authorization:`Bearer ${accesToken}`}
+
+   })
+
+}
+
+
+
 
 
 
@@ -451,7 +298,10 @@ export const deleteBasketItem=async(productId:number|string)=>{
   const accesToken = localStorage.getItem("user_accesToken");
 return instanceAxios({
   method:"DELETE",
-  url: `${ENDPOINTS.BASKET}/${ENDPOINTS.DELETE_BASKET_ITEM}/${productId}`,
+ 
+
+  url: `${ENDPOINTS.BASKET}/${productId}`,
+
   data:{product_id:productId},
 
   headers:{Authorization:`Bearer ${accesToken}`}
@@ -482,6 +332,7 @@ export const getUserOrder=()=>{
   return instanceAxios({
     method:"GET",
     url:`${ENDPOINTS.ORDER}/user`,
+    
     headers:{Authorization:`Bearer ${accesToken}`}
   })
 
@@ -489,15 +340,14 @@ export const getUserOrder=()=>{
 
 export const deleteUserOrder=(orderId:string)=>{
 
-  // const accessToken = localStorage.getItem("access_token");
 
-  const accesToken = localStorage.getItem("user_accesToken");
+  // const accesToken = localStorage.getItem("user_accesToken");
 
   return instanceAxios({
     method:"DELETE",
     url:ENDPOINTS.ORDER,
     data:{order_id:orderId},
-    headers:{Authorization:`Bearer ${accesToken}`}
+    // headers:{Authorization:`Bearer ${accesToken}`}
   })
 
 }
@@ -519,3 +369,16 @@ return instanceAxios({
 
 
 }
+
+export const getOrderHistory=()=>{
+
+  const accesToken = localStorage.getItem("admin_accesToken");
+
+  return instanceAxios({
+
+    method:"GET",
+    url:ENDPOINTS.HISTORY
+  })
+}
+
+

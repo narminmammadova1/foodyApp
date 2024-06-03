@@ -11,6 +11,7 @@ import AdminModal from '../../../components/UI/AdminModal'
 import { useModal } from '../../../shared/hooks/useModal'
 import { NextPage } from 'next'
 import { useGlobalContext } from '../../../Context/GlobalContext'
+import { useTranslation } from 'react-i18next'
 
 
 const Restuarants:NextPage = () => {
@@ -35,6 +36,7 @@ useEffect(()=>{
   if(idForFilter){  setShowFilteredRestaurant(filteredRestaurant || [])
   }
  },[idForFilter,filteredRestaurant])
+ const {t}=useTranslation()
 
   return (
 
@@ -46,14 +48,16 @@ useEffect(()=>{
       </Head>
 
       <Layout>
-     <AdminModal modalType="addRestaurant"  formm={formComponent} modalTitle='Add Restuarant' modalDescription="
-Add your Restuarants information" btnText="Create Restuarant" isOpen={isOpen} onClose={close} />
+     <AdminModal modalType="addRestaurant"  formm={formComponent} modalTitle={t('Add Restuarant')} modalDescription=
+     {t("Add your Restuarants information")} btnText={t("Create Restuarant")} isOpen={isOpen} onClose={close} />
       <AdminHeader/>
       <div className='flex'>
+        <div  className='hidden lg:block' >
       <SideBar/>
+      </div>
       <div className='flex flex-col w-full me-4'>
-      <TopDiv addButton onClick={open} select title="Restuarants" btnText="ADD RESTUARANT" selectText="Category type"/>
-      <div className='flex gap-4 flex-wrap'>
+      <TopDiv addButton onClick={open} select title="Restuarants" btnText={t("ADD RESTUARANT" )}selectText={t("Category type")}/>
+      <div className=' m-auto lg:m-0 lg:flex gap-4 flex-wrap'>
         {(idForFilter ? showFilteredRestaurant :showRestaurant)?.map((restaurant)=>(
       <RestuarantCards key={restaurant.id} restaurant={restaurant}/>
 
@@ -66,7 +70,7 @@ Add your Restuarants information" btnText="Create Restuarant" isOpen={isOpen} on
       </div>
       </div>
       </div>
-      </Layout></>):(<></>)}
+      </Layout></>):(<>This page for only admin</>)}
   
 
     </div>

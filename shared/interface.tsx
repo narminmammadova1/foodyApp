@@ -5,9 +5,10 @@ import { ReactNode } from "react";
    name: string;
    id: number |string ;
    img_url: string | undefined;
-   delivery_price: number;
-   delivery_min: number;
-   cuisine: string;
+   address:string | undefined;
+   delivery_price: number | string| undefined;
+   delivery_min: number | string | undefined;
+   cuisine: string | undefined;
  }
  
  export interface ProductProps{
@@ -94,7 +95,7 @@ export interface UserOrderProps{
   created:number,
   customer_id:string,
   delivery_address:string,
-  payment_method:string
+  payment_method:string | number
 
 
 

@@ -211,25 +211,22 @@ border-radius: 4px;
 
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
-/* Kaydırma çubuğu arka plan rengi */
 ::-webkit-scrollbar-track {
   background: #38394E;
 }
 
-/* Kaydırma çubuğu çubuğu rengi */
 ::-webkit-scrollbar-thumb {
   background: #EF5DA8;
 }
 
-/* Kaydırma çubuğu üzerine gelindiğinde çubuk rengi */
 ::-webkit-scrollbar-thumb:hover {
   background: #C33D78;
 }
 
 select {
-  /* Genişlik için istediğiniz değeri ayarlayın */
   width: 100%;
  
   background: url('/foodyApp/public/icons/select.svg') no-repeat right 0px;
@@ -237,7 +234,6 @@ select {
  
 }
 
-/* Select içerisindeki okun stilini ayarla */
 select::-ms-expand {
   display: none;
   padding-right: 6
@@ -274,14 +270,13 @@ input[type="radio"]:checked+ label{
 }
 
 
-/* Seçili durumda iç kısmın ve dış çerçevenin arasında 2px boşluk bırak */
 input[type="radio"]:checked::before {
   content: '';
   display: block;
   width: 15px;
   height: 15px;
-  margin: 3px; /* İç kısım ve dış çerçeve arasındaki boşluk */
+  margin: 3px;
   border-radius: 50%;
-  background-color:#6FCF97; /* Yeşil rengi */
+  background-color:#6FCF97; 
 }
 

@@ -8,6 +8,7 @@ interface AddButtonProps{
   btnIcon?:string;
   btncolor?:string;
   btnSize?:string;
+  sizeMob?:string
   center?:boolean;
   shadow?:boolean;
   disabled?:any;
@@ -17,7 +18,7 @@ interface AddButtonProps{
 }
 
 
-const AddButton:React.FC<AddButtonProps>= ({btnText,disabled,btnIcon="/icons/plus.svg",btncolor,btnSize,center,shadow,onClick}) => {
+const AddButton:React.FC<AddButtonProps>= ({btnText,disabled,btnIcon="/icons/plus.svg",btncolor,btnSize,sizeMob,center,shadow,onClick}) => {
   // const [title,setTitle]=useState("")
  
 
@@ -76,7 +77,7 @@ const openModal=()=>{
     <>
    
        <div className='flex gap-5'>
-      <button type='submit' onClick={openModal} disabled={disabled} className={`flex  ${btnSize} ${shadow ? "custom-shadow": ""}  items-center bg-${btncolor} ${center ?"justify-center": ""} h-[35px] rounded-2xl px-2  py-2 text-[14px] 
+      <button type='submit' onClick={openModal} disabled={disabled} className={`${sizeMob} lg:${btnSize} flex ${shadow ? "custom-shadow": ""}  items-center bg-${btncolor} ${center ?"justify-center": ""} h-[35px] rounded lg:rounded-2xl lg:px-2  lg:py-2  text-[14px] lg:text-[18px]  
       font-roboto text-white ${disabled ? 'opacity-50 cursor-not-allowed' : ''}   `}  ><img src={btnIcon} alt=""   />{btnText}</button>
       
     </div>

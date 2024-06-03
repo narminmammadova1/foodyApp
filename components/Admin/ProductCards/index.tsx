@@ -22,19 +22,19 @@ const ProductCards:React.FC<ProductCardsProps> = ({product}) => {
     <>
     <ProductModal isEdit  onClose={closeProductModal} isOpen={isOpenProductModal} />
 
-      <div className=' bg-white rounded-[5px] h-[273px]  w-[190px] flex flex-col justify-center  px-4'>
-        <div className=' w-[153px] h-[153px]'>
+      <div className=' bg-white rounded-[5px] mb-[29px] lg:mb-0 w-[230px] h-[311px] lg:h-[273px]  lg:w-[190px] flex flex-col justify-center  lg:px-4'>
+        <div className=' mx-auto w-[163px] h-[163px] lg:mx-0 lg:w-[153px] lg:h-[153px]'>
         <Image className=' w-full h-full object-cover' width={100} height={100} src={product?.img_url || ""} alt='product'/>
         </div>
         <DeleteModal isProduct delDescription="product, it will not come back!"  isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
     
         <div className='flex-col justify-between items-end  w-[163px]'>
-            <div className=' flex flex-col justify-between h-14  font-medium  '>
+            <div className='ms-10 lg:ms-0 flex flex-col justify-between h-14  font-medium  '>
         <p className=' text-lg  text-text-darkk'>{product && product.name ? product.name.slice(0,13) :"name not availabla"}</p>
         <p className=' text-par2-text text-[14px]'>{ product && product.description ? product.description.slice(0,13):"product not available"}</p>
         {/* <p className=' text-par-blue-text text-[12px] mt-2'>{product.price}$</p> */}
         </div>
-        <div className='flex justify-between gap-[6px]'>
+        <div className='ms-10 lg:ms-0  w-full flex justify-between gap-[6px]'>
         <p className=' text-par-blue-text text-[12px] mt-2'>{product && product.price ? product.price :"price not available"}$</p>
 <div className='flex'>
             <img onClick={()=>{
@@ -43,7 +43,7 @@ const ProductCards:React.FC<ProductCardsProps> = ({product}) => {
                 product && setSelectedId &&        setSelectedId(product.id)
                 
               }
-            }}  className=' cursor-pointer' src="/icons/edit.svg" alt="" />
+            }}  className=' cursor-pointer ' src="/icons/edit.svg" alt="" />
             <img  onClick={()=>{
 
               openDelModal()

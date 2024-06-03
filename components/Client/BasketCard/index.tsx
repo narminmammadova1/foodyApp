@@ -9,6 +9,7 @@ import { QUERIES } from '../../../Constant/Queries';
 import { useRouter } from 'next/router';
 import { ROUTER } from '../../../Constant/Router';
 import { BasketProps, BasketPropsItem } from '../../../shared/interface';
+import { useTranslation } from 'react-i18next';
 
 interface BasketCardProps{
   size: string | undefined;
@@ -74,6 +75,7 @@ toast.success("product deleted",{autoClose:1500})
     
     }
   })
+  const {t}=useTranslation()
 
 
 
@@ -95,7 +97,7 @@ return (
           <div className='flex justify-between'>
             <div className='flex gap-[5px]'>
               <img src="/icons/basket2.svg" alt="basket" />
-              <p className='text-base roboto-medium font-medium pt-3 text-btnRed'>{basket?.length} items</p>
+              <p className='text-base roboto-medium font-medium pt-3 text-btnRed'>{basket?.length} {t("items")}</p>
             </div>
             <div className='relative top-[-20px] me-3 cursor-pointer'>
               <Image

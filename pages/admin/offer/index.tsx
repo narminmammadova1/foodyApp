@@ -35,10 +35,12 @@ const AdminOffers:NextPage = () => {
       <AdminHeader
       />
       <div className='flex'>
+        <div className='hidden lg:block'>
       <SideBar/>
-      <div className='flex flex-col w-full me-4'>
+      </div>
+      <div className='lg:flex-col w-full pe-4 lg:pe-0 me-4'>
       <TopDiv addButton onClick={open} title="Offers" btnText="ADD OFFER"/>
-      <div className='flex gap-5 flex-wrap'>
+      <div className='flex gap-5 ms-4 lg:ms-0'>
       <OfferCards
       />
       </div>

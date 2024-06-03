@@ -10,7 +10,7 @@ export const ROUTER = {
     PROFILE:"/user/profile",
     CHECKOUT:"/user/checkout",
     ORDER:"/user/orders",
-    ORDER_HISTORY: "/order-history",
+    // ORDER_HISTORY: "/order-history",
     UPLOADS: "/uploads",
     // RESTAURANTS_ID: (rest_id) => `/restaurants/${rest_id}`,
     CATEGORY: "/category",

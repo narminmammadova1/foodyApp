@@ -50,7 +50,6 @@ const oldData = {
   address: userData?.address || '',
   phone: userData?.phone || '',
   img_url: downloadURL || ""
-  // img_url:userData?.user.img_url || downloadURL
 };
 
 

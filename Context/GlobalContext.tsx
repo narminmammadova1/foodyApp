@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { addBasket, addProduct, deleteCategory, deleteOffer, deleteProduct, deleteRestaurant,
      getBasket,
-     getCategory, getOffer, getProduct, getRestaurant, getRestaurantById, getUser, 
+     getCategory, getOffer, getOrder, getOrderHistory, getProduct, getRestaurant, getRestaurantById, getUser, 
      getUserOrder} from "../services";
 import { QUERIES } from "../Constant/Queries";
 import { toast } from "react-toastify";
@@ -17,6 +17,8 @@ interface ContextProps {
     selectedId: string |number | null |undefined;
     idForFilter:string |number | null |undefined;
     setSelectedId: React.Dispatch<React.SetStateAction<string | null | number |undefined>> | undefined
+    // setSelectedId: Dispatch<SetStateAction<string | number | null | undefined>>;
+
     setIdForFilter:React.Dispatch<React.SetStateAction<string | null | number |undefined>> | undefined
     categoryData: any[]; 
    
@@ -28,8 +30,10 @@ interface ContextProps {
     setDefaultText:any,
     productsData:any[],
     userOrdersData:any[],
-    basketData:BasketProps
+    orderData:any[];
+    basketData:BasketProps;
     formComponent:any;
+    historyData:any[];
     setFormComponent:any;
     isEdit:boolean;
     setIsEdit:any;
@@ -77,15 +81,10 @@ export const useGlobalContext = () => {
 
 export const GlobalProvider:React.FC<ProviderProps> = ({ children }) => {
     const [isAdmin, setIsAdmin] = React.useState(false);
-
-    const [formComponent, setFormComponent] = useState<undefined | JSX.Element>(undefined);
-
+ const [formComponent, setFormComponent] = useState<undefined | JSX.Element>(undefined);
 const [defaultText,setDefaultText]=useState("")
-
-    const [selectedId, setSelectedId] = useState<string | null |number | undefined>(null);
-
-    const [idForFilter, setIdForFilter] = useState<string | null | number |undefined>(null);
-
+  const [selectedId, setSelectedId] = useState<string | null |number | undefined>(null);
+ const [idForFilter, setIdForFilter] = useState<string | null | number |undefined>(null);
  const [isEdit,setIsEdit]=useState(false)
 const [profilImg,setProfilImg]= useState<string | null >(null);
 const[isUser,setIsUser]=useState(false)
@@ -94,43 +93,38 @@ const[isUser,setIsUser]=useState(false)
  const[isName,setIsName]=useState(false)
  const[isLoginBtn,setIsLoginBtn]=useState(true)
  const [letters,setLetters]=useState("")
-
  const[currentProduct,setCurrentProduct]=useState([])
-
  const [selectedRestaurant,setSelectedRestaurant]=useState<string | null |object>(null)
+
+ const [myOrder,setMyOrder]=useState<any[] | undefined>([])
+const [orderId,setOrderId]=useState<string | null |number | undefined>(null)
+
+
 
     const queryClient=useQueryClient()
 
 
     const { data: User, isLoading, isError } = useQuery(QUERIES.User, getUser);
-
 const userData=User?.user
-const { data: category } = useQuery(QUERIES.Categories, getCategory);
 
+
+const { data: category } = useQuery(QUERIES.Categories, getCategory);
 const categoryData=category?.data?.result.data;
-console.log("contextdeki Categorydata", categoryData)
+// console.log("contextdeki Categorydata", categoryData)
 
 const { data: offers } = useQuery(QUERIES.Offers, getOffer);
 const offerData=offers?.data?.result.data;
-
 console.log("offersData", offerData);
 
 
 const {data:restaurants}=useQuery(QUERIES.Restaurants,getRestaurant)
-
  const restaurantData=restaurants?.data?.result.data || []
-
-
-// const { data: restaurants } = useQuery(QUERIES.Restaurants, getRestaurant, {
-//   staleTime: 5 * 60 * 1000,
-//   cacheTime: 30 * 60 * 1000,
-// });
-
-// const restaurantData = restaurants?.data?.result.data || [];
  console.log("restaurant data",restaurantData);
+
  
 const{data:products}=useQuery(QUERIES.Products,getProduct)
 const productsData=products?.data?.result.data
+
 
  const{data:basket}=useQuery(QUERIES.Basket,getBasket)
  const  basketData=basket?.data.result.data
@@ -138,13 +132,24 @@ const productsData=products?.data?.result.data
 
  const {data:userOrders}=useQuery(QUERIES.UserOrder,getUserOrder)
  const userOrdersData=userOrders?.data?.result.data || []
- console.log("get Basketttttttttt",basketData);
- console.log("userOrdersDataaaaaaaaaaaaaaaaaaaaaaaaa",userOrdersData);
+ console.log("get Basket",basketData);
+ console.log("userOrdersDataaaa",userOrdersData);
+ 
+
+ const {data:Orders}=useQuery(QUERIES.Order,getOrder)
+
+ const orderData=Orders?.data?.result?.data || []
+ console.log("ordersssdata",orderData);
  
 
 
- const [myOrder,setMyOrder]=useState<any[] | undefined>([])
-const [orderId,setOrderId]=useState<string | null |number | undefined>(null)
+ const{data:history}=useQuery(QUERIES.OrderHistory,getOrderHistory)
+
+ const historyData=history?.data?.result?.data
+
+ console.log("historyDataaa",historyData);
+
+
 // const{mutate:editCategoryMutation}=useMutation(editCategory,
 //     {onSuccess:(data)=>{
 
@@ -179,11 +184,14 @@ const{mutate:addBasketmutation}=useMutation({
   })
  const [showPassword,setShowPassword]=useState(false)
 
-const togglePassword=()=>{
+// const togglePassword=()=>{
 
-  setShowPassword(!showPassword)
-}
+//   setShowPassword(!showPassword)
+// }
 
+const togglePassword = useCallback(() => {
+  setShowPassword(!showPassword);
+}, []);
 
 
 
@@ -203,35 +211,102 @@ const togglePassword=()=>{
 //     }
 // })
 
+// const value:ContextProps={
+//     isAdmin, setIsAdmin,
+//     userData,
+//     categoryData,
+//     offerData,
+//     orderData,
+//     historyData,
+//     restaurantData,
+//     productsData,
+//     basketData,
+//     userOrdersData,
+//     selectedId, 
+//     formComponent,
+//     idForFilter,
+//     setIdForFilter,
+//      setFormComponent,
+//     setSelectedId,
+// isEdit,
+// setIsEdit,
+// isBasket,
+//     setIsBasket,
+//     isAvatar,
+//     setIsAvatar,
+//     isName,
+//     setIsName,
+//     isLoginBtn ,
+//     setIsLoginBtn ,
+//     isUser,
+//     setIsUser ,
+//     profilImg,
+//     setProfilImg,
+//     letters,
+//     defaultText,
+//     setDefaultText,
+//     setLetters,
+//     showPassword,
+//     setShowPassword,
+//     togglePassword,
+//     selectedRestaurant,
+//     setSelectedRestaurant,
+//     isLoading,currentProduct,
+//     setCurrentProduct,
+//     addBasketmutation,
+//   myOrder,
+//    setMyOrder,
+//    orderId,
+//    setOrderId
+
+//     }
 
 
-const value:ContextProps={
-    isAdmin, setIsAdmin,
+const setSelectedIdMemo = useCallback(
+  (id:any) => {
+    setSelectedId(id);
+  },
+  []
+);
+
+const setIdForFilterMemo = useCallback(
+  (id:any) => {
+    setIdForFilter(id);
+  },
+  []
+);
+
+const value = useMemo(
+  () => ({
+    isAdmin,
+    setIsAdmin,
     userData,
     categoryData,
     offerData,
+    orderData,
+    historyData,
     restaurantData,
     productsData,
     basketData,
     userOrdersData,
-    selectedId, 
+    selectedId,
     formComponent,
     idForFilter,
-    setIdForFilter,
-     setFormComponent,
-    setSelectedId,
-isEdit,
-setIsEdit,
-isBasket,
+    setIdForFilter: setIdForFilterMemo,
+    setFormComponent,
+    setSelectedId: setSelectedIdMemo,
+    isEdit,
+    setIsEdit,
+    isBasket,
     setIsBasket,
     isAvatar,
     setIsAvatar,
     isName,
     setIsName,
-    isLoginBtn ,
-    setIsLoginBtn ,
+    isLoginBtn,
+    setIsLoginBtn,
     isUser,
-    setIsUser ,
+    setIsUser,
     profilImg,
     setProfilImg,
     letters,
@@ -243,15 +318,66 @@ isBasket,
     togglePassword,
     selectedRestaurant,
     setSelectedRestaurant,
-    isLoading,currentProduct,
+    isLoading,
+    currentProduct,
     setCurrentProduct,
     addBasketmutation,
-  myOrder,
-   setMyOrder,
-   orderId,
-   setOrderId
-
-    }
+    myOrder,
+    setMyOrder,
+    orderId,
+    setOrderId,
+  }),
+  [
+    isAdmin,
+    setIsAdmin,
+    userData,
+    categoryData,
+    offerData,
+    orderData,
+    historyData,
+    restaurantData,
+    productsData,
+    basketData,
+    userOrdersData,
+    selectedId,
+    formComponent,
+    idForFilter,
+    setIdForFilterMemo,
+    setFormComponent,
+    setSelectedIdMemo,
+    isEdit,
+    setIsEdit,
+    isBasket,
+    setIsBasket,
+    isAvatar,
+    setIsAvatar,
+    isName,
+    setIsName,
+    isLoginBtn,
+    setIsLoginBtn,
+    isUser,
+    setIsUser,
+    profilImg,
+    setProfilImg,
+    letters,
+    defaultText,
+    setDefaultText,
+    setLetters,
+    showPassword,
+    setShowPassword,
+    togglePassword,
+    selectedRestaurant,
+    setSelectedRestaurant,
+    isLoading,
+    currentProduct,
+    setCurrentProduct,
+    addBasketmutation,
+    myOrder,
+    setMyOrder,
+    orderId,
+    setOrderId,
+  ]
+);
 
     return (
         <GlobalContext.Provider value={value}>

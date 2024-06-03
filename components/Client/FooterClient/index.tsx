@@ -1,6 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const FooterClient = () => {
+
+  const {t}=useTranslation()
   return (
     <div className='w-full h-[385px] bg-textblack flex flex-col  '>
 
@@ -31,36 +34,36 @@ const FooterClient = () => {
      <div className='right flex gap-[91px] me-10'>
       <div>
         <ul className='footerUl line3'>
-            <li className='font-[900]  text-[18px]'>Popular</li>
-            <li>programming</li>
-            <li>Books for children</li>
-            <li>Psychology</li>
-            <li>Business</li>
+            <li className='font-[900]  text-[18px]'>{t("Popular")}</li>
+            <li>{t("programming")}</li>
+            <li>{t("Books for children")}</li>
+            <li>{t("Psychology")}</li>
+            <li>{t("Business")}</li>
 
         </ul>
       </div>
 
       <div>
         <ul className='footerUl line3'>
-            <li className='font-[900]  text-[18px]'>Cash</li>
-            <li>Delivery</li>
-            <li>Payment</li>
-            <li>About the store</li>
+            <li className='font-[900]  text-[18px]'>{t("Cash")}</li>
+            <li>{t("Delivery")}</li>
+            <li>{t("Payment")}</li>
+            <li>{t("About the store")}</li>
         </ul>
       </div>
 
       <div>
         <ul className='footerUl line3'>
-        <li className='font-[900] text-[18px]'>Help</li>
-        <li>Contacts</li>
-        <li>Purchase returns</li>
-        <li>Buyer help</li>
+        <li className='font-[900] text-[18px]'>{t("Help")}</li>
+        <li>{t("Contacts")}</li>
+        <li>{t("Purchase returns")}</li>
+        <li>{t("Buyer help")}</li>
         </ul>
       </div>
       </div> 
       </div>
       <div className='footerbottom flex justify-center mt-8 '>
-        <p className='text-[14px] text-white font-roboto font-[400]'>All rights reserved © 2003-2023 Foody TERMS OF USE | Privacy Policy</p>
+        <p className='text-[14px] text-white font-roboto font-[400]'>{t("All rights reserved © 2003-2023 Foody TERMS OF USE | Privacy Policy")}</p>
       </div>
     </div>
   )

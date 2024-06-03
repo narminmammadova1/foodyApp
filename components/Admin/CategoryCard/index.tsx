@@ -6,6 +6,7 @@ import AdminModal from '../../UI/AdminModal'
 import { useModal } from '../../../shared/hooks/useModal'
 import DeleteModal from '../../Modals/DeleteModal'
 import { useGlobalContext } from '../../../Context/GlobalContext'
+import { useTranslation } from 'react-i18next'
 
 interface CategoryProps {
   img_url: string
@@ -17,7 +18,7 @@ const CategoryCard = () => {
   const { isOpen, open, close, isOpenDelModal, openDelModal, closeDelModal } = useModal()
   const { categoryData, setSelectedId, formComponent, isEdit,setIsEdit,setFormComponent } = useGlobalContext() || {}
   // const [isEditing, setIsEditing] = useState<boolean>(false)
-
+const {t,i18n}=useTranslation()
   const handleEditCategory = useCallback((category: CategoryProps)=>{setSelectedId &&  setSelectedId(category.id);
     console.log("handle category editttttttttttttttt");
     setIsEdit(true);
@@ -50,9 +51,9 @@ const CategoryCard = () => {
           <thead className='py-6'>
             <tr className='py-4 '>
               <th className='py-4 w-1/5'>ID</th>
-              <th className='w-1/5'>Image</th>
-              <th className='text-start'>Name</th>
-              <th className='text-start'>Slug</th>
+              <th className='w-1/5'>{t("Image")}</th>
+              <th className='text-start'>{t("Name")}</th>
+              <th className='text-start'>{t("Slug")}</th>
               <th className='w-1/5 pe-4'></th>
             </tr>
           </thead>
@@ -71,8 +72,8 @@ const CategoryCard = () => {
                     <Image className='object-cover w-[48px] h-[48px]' src={category.img_url} width={1000} height={1000} alt='pizza' />
                   </div>
                 </td>
-                <td className='text-start'>{category.name.slice(0, 10)}</td>
-                <td className='text-start'>{category?.name.slice(0, 10).toLowerCase()}</td>
+                <td className='text-start max-w-xs break-words whitespace-normal'>{category.name.slice(0, 10)}</td>
+                <td className='text-start  max-w-xs break-words whitespace-normal'>{category?.name.slice(0, 10).toLowerCase()}</td>
                 <td className='pe-6'>
                   <div className='flex justify-end gap-1'>
                     <img

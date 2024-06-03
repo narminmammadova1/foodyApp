@@ -101,8 +101,8 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
   return (
     <>
       <div className={`w-full top-0 right-0 fixed h-full z-50 flex overflow-y-auto   ${isOpen ? "fixed" : "hidden"}`}>
-        <div className='w-1/3 bg-login-gray flex justify-end bg-opacity-40'>
-          <div className='p-6'       onClick={()=>{
+        <div className='hidden  w-1/3 bg-login-gray lg:flex justify-end bg-opacity-40'>
+          <div className=' hidden  p-6 lg:block'       onClick={()=>{
             setIsEdit(false)
             onClose()
 
@@ -110,7 +110,7 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
             <img src="/icons/x.svg" alt="" />
           </div>
         </div>
-        <div className='right w-2/3 bg-login-gray pt-6 ps-6 pe-6 overflow-y-auto'>
+        <div className='right w-full lg:w-2/3 bg-login-gray pt-6 ps-6 pe-6 overflow-y-auto'>
           {formm ? (formComponent) : ""
             
           }

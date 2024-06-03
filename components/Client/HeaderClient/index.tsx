@@ -10,6 +10,7 @@ import useDebounce from '../../../helpers/useDebounce'
 import { useQueryClient } from 'react-query'
 import { QUERIES } from '../../../Constant/Queries'
 import { UserDataProps } from '../../../shared/interface'
+import { handlechange } from '../../Admin/SideBar'
 
 export const isActiveLink = (path: string) => {
   const router = useRouter()
@@ -138,7 +139,7 @@ const selectRestaurant = async (rest: any) => {
             <input
               onChange={(e) => setValue(e.target.value)}
               value={value}
-              className='w-[304px] h-[45px] rounded-[10px] bg-white ps-5 placeholder-inputPlaceholder' type="text" placeholder='Search' />
+              className='w-[304px] h-[45px] rounded-[10px] bg-white ps-5 placeholder-inputPlaceholder' type="text" placeholder={t('Search Restaurant')} />
 
             <div className='relative w-[59px] flex flex-col items-center h-10' >
               <div onClick={openLang}>
@@ -146,15 +147,12 @@ const selectRestaurant = async (rest: any) => {
               </div>
               {isOpenLang && <div >
                 <div onClick={openLang} className=' text-14px roboto-medium z-30 flex flex-col mt-2 w-[59px]  bg-white relative  items-center py-1 font-medium'>
-                  <div onClick={openLang} className=' border-b-1 border-white py-4'  ><img src="/icons/langaz.svg" alt="" 
-                  // onClick={() => handlechange("az", i18n)} 
+                  <div onClick={openLang} className=' border-b-1 border-white py-4'  ><img  onClick={()=>handlechange("az",i18n)}src="/icons/langaz.svg" alt="" 
                   /></div>
-                  <div className=' border-b-1 border-white py-4'  ><img src="/icons/langfr.svg" alt="" 
-                  // onClick={() => handlechange("fr", i18n)} 
+                  <div className=' border-b-1 border-white py-4'  ><img onClick={()=>handlechange("fr",i18n)} src="/icons/langfr.svg" alt="" 
                   />
                   </div>
-                  <div className=' border-b-1 border-white py-4'  ><img src="/icons/langen.svg" alt="" 
-                  // onClick={() => handlechange("en", i18n)}
+                  <div className=' border-b-1 border-white py-4'  ><img onClick={()=>handlechange("en",i18n)} src="/icons/langen.svg" alt="" 
                    /></div>
 
                 </div>
@@ -175,49 +173,20 @@ const selectRestaurant = async (rest: any) => {
 
           </div>
         </div>
-        {/* {isOpenAvatar &&
-        (
-         <div className=' font-roboto right-16 pt-6 font-[400] shadow px-3  text-base bg-white z-50 w-[178px] h-[234px] '>
-        <div onClick={() => {
-          push("/user/profile")
-        }} className=' cursor-pointer border-b   text-black pb-2 mb-2'>Profile</div>
-        <div onClick={() => {
-          push("/user/basket")
-        }} className=' cursor-pointer border-b  text-black  pb-2 mb-2'>Your Basket</div>
-
-        <div onClick={()=>push(ROUTER.ORDER)} className=' cursor-pointer border-b  text-black pb-2 mb-2'>Your Orders</div>
-
-        <div className='cursor-pointer border-b  text-black  pb-2 mb-2'>Checkout</div>
-
-
-        <div onClick={() => {
-          localStorage.removeItem("user_accesToken");
-
-          setIsUser(false)
-          push("/")
-          setIsOpenAvatar(false)
-           queryClient.invalidateQueries(QUERIES.User)
-
-           setProfilImg && setProfilImg("");
-          setLetters("")
-          
-  
-        }} className='cursor-pointer   text-black  pb-2 mb-2'>Logout</div>
-      </div>)
-      } */}
+     
 
       </header>
       {isOpenAvatar && <div className=' font-roboto absolute top-[110px] right-8 pt-6 font-[400] shadow px-3  text-base bg-white z-50 w-[178px] h-[234px] '>
         <div onClick={() => {
           push("/user/profile")
-        }} className=' cursor-pointer border-b   text-black pb-2 mb-2'>Profile</div>
+        }} className=' cursor-pointer border-b   text-black pb-2 mb-2'>{t("Profile")}</div>
         <div onClick={() => {
           push("/user/basket")
-        }} className=' cursor-pointer border-b  text-black  pb-2 mb-2'>Your Basket</div>
+        }} className=' cursor-pointer border-b  text-black  pb-2 mb-2'>{t("Your Basket")}</div>
 
-        <div onClick={()=>push(ROUTER.ORDER)} className=' cursor-pointer border-b  text-black pb-2 mb-2'>Your Orders</div>
+        <div onClick={()=>push(ROUTER.ORDER)} className=' cursor-pointer border-b  text-black pb-2 mb-2'>{t("Your Orders")}</div>
 
-        <div className='cursor-pointer border-b  text-black  pb-2 mb-2'>Checkout</div>
+        <div className='cursor-pointer border-b  text-black  pb-2 mb-2'>{t("Checkout")}</div>
 
 
         <div onClick={() => {

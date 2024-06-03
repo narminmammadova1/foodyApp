@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { addBasket } from '../../../services';
 import { toast } from 'react-toastify';
 import { QUERIES } from '../../../Constant/Queries';
+import { useTranslation } from 'react-i18next';
 
 interface ProductTableProps{
   currentProducts:ProductProps[]
@@ -16,7 +17,7 @@ const ProductsTable:React.FC<ProductTableProps>
 
   const {isUser,addBasketmutation}=useGlobalContext() || {}
 
-
+ const {t}=useTranslation()
   const queryClient=useQueryClient()
   // const{mutate:addBasketmutation}=useMutation({
   //   mutationFn:addBasket,
@@ -35,7 +36,7 @@ const ProductsTable:React.FC<ProductTableProps>
   
   return (
     <div className=' bg-headerbg rounded-[4px]  ms-[57px] max-h-[961px] min-h-[961px] w-[846px]  overflow-y-auto'>
-        <h1 className='text-center font-roboto font-[700] text-[25px] text-modal_p my-10'>Products</h1>
+        <h1 className='text-center font-roboto font-[700] text-[25px] text-modal_p my-10'>{t("Products")}</h1>
       <table className=" w-full ">
  
   <tbody>
@@ -73,7 +74,7 @@ currentProducts && currentProducts?.length>0 ? (currentProducts?.map((currentPro
     
 ))) :(
   <tr>
-    <td className="text-center py-4">There is no product</td>
+    <td className="text-center py-4">{t("There is no product")}</td>
   </tr>
 )}
 

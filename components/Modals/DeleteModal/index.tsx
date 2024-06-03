@@ -82,7 +82,6 @@ const {mutate:deleteRestaurantMutation}=useMutation(deleteRestaurant,
     queryClient.invalidateQueries(QUERIES.Restaurants);
   },
 onError:(error)=>{
-console.log("error rest mutation");
 toast.error("error delete mutation")
 
 
@@ -90,13 +89,12 @@ toast.error("error delete mutation")
 )
 
 
-const {mutate:deleteOrderMutation}=useMutation({
+const {mutate:deleteUserOrderMutation}=useMutation({
   mutationFn:deleteUserOrder,
   onSuccess:()=>{toast.success("order deleted",{autoClose:2000})
 
-  console.log("delete order mutation isleyirrrrrrrrrrrrrrr");
-  queryClient.invalidateQueries(QUERIES.Order)
-  setUserOrder(userOrder?.filter(order => order.id !== orderId));
+  queryClient.invalidateQueries(QUERIES.UserOrder)
+  // setUserOrder(userOrder?.filter(order => order.id !== orderId));
 
   },
   onError:()=>{
@@ -106,6 +104,23 @@ const {mutate:deleteOrderMutation}=useMutation({
   
 })
 
+
+
+
+
+
+
+const { mutate: deleteOrderMutation } = useMutation(deleteUserOrder, {
+  onSuccess: () => {
+    toast.success("Order deleted", { autoClose: 2000 });
+    console.log("Order deleted successfully");
+    queryClient.invalidateQueries(QUERIES.Order);
+  },
+  onError: (error) => {
+    console.error("Error deleting order:", error);
+    toast.error("Error deleting order");
+  }
+});
 
 
 
@@ -128,12 +143,26 @@ const {mutate:deleteOrderMutation}=useMutation({
         deleteProductMutation(String(selectedId));
       }
     }
-    else if(pathname === '/user/orders'  && deleteOrderMutation){
+    else if(pathname === '/user/orders'  && deleteUserOrderMutation){
 
       if(myOrder){
-        deleteOrderMutation(String(orderId))
+        deleteUserOrderMutation(String(orderId))
       }
     }
+
+    else if(pathname === '/admin/orders'  && deleteOrderMutation){
+
+      if(selectedId){
+        deleteOrderMutation(String(selectedId))
+      }
+    }
+
+
+    // else if (pathname === '/admin/orders' && deleteOrderMutation) {
+    //   if (selectedId) {
+    //     deleteOrderMutation(String(selectedId));
+    //   }
+    // }
     onCloseDelModal();
   };
    

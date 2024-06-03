@@ -8,6 +8,7 @@ import FooterClient from '../../components/Client/FooterClient';
 import { NextPage } from 'next';
 import AnimatedSection2 from '../../components/AnimatedSection2';
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -18,7 +19,7 @@ import AnimatedSection from '../../components/AnimatedSection/AnimatedSection';
 
 const FaqsPage:NextPage = () => {
 
-  
+   const {t}=useTranslation()
   return (
     <div>
          <Head>
@@ -46,8 +47,8 @@ const FaqsPage:NextPage = () => {
      </span>
        )}
 
-       title="How to contact with Customer Service?">
-        <p className='roboto-medium font-medium  text-lg  text-par3-text'>   Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.
+       title={t("How to contact with Customer Service?")}>
+        <p className='roboto-medium font-medium  text-lg  text-par3-text'>{t("Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.")}
 </p>
       </AccordionItem>
       <AccordionItem key="2"  
@@ -58,10 +59,8 @@ const FaqsPage:NextPage = () => {
        <span className={isOpen ? 'block' : 'hidden'} style={{fontSize:"20px"}}>I</span>
      </span>
        )}
-       title="App installation failed, how to update system information?
-       
-      ">
-         <p className='roboto-medium font-medium  text-lg  text-par3-text'>   Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.
+       title={t("App installation failed, how to update system information?")}>
+         <p className='roboto-medium font-medium  text-lg  text-par3-text'>{t("Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.")}
 </p>
       </AccordionItem>
       <AccordionItem key="3"
@@ -71,7 +70,7 @@ const FaqsPage:NextPage = () => {
          <span className={ isOpen ? 'hidden' : 'block'} style={{fontSize:"22px"}}>+</span>
          <span className={isOpen ? 'block' : 'hidden'} style={{fontSize:"20px"}}>I</span>
        </span>
-         )}title="Website reponse taking time, how to improve?">
+         )}title={t("Website reponse taking time, how to improve?")}>
 
 
 <p className='roboto-medium font-medium  text-lg  text-par3-text'>   Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.
@@ -84,9 +83,10 @@ const FaqsPage:NextPage = () => {
       <span className={ isOpen ? 'hidden' : 'block'} style={{fontSize:"22px"}}>+</span>
       <span className={isOpen ? 'block' : 'hidden'} style={{fontSize:"20px"}}>I</span>
     </span>
-      )}title="How do I create a account?">
+      )}title={t("How do I create a account?")}>
 
-<p className='roboto-medium font-medium  text-lg  text-par3-text'>   Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.
+<p className='roboto-medium font-medium  text-lg  text-par3-text'>
+  {t(" Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat .We try to reply quickly, so you need not to wait too long for a response!.")}
 </p>
       </AccordionItem>
       <AccordionItem key="5"  
@@ -96,10 +96,10 @@ const FaqsPage:NextPage = () => {
        <span className={ isOpen ? 'hidden' : 'block'} style={{fontSize:"22px"}}>+</span>
        <span className={isOpen ? 'block' : 'hidden'} style={{fontSize:"20px"}}>I</span>
      </span>
-       )}title="Website reponse taking time, how to improve?">
+       )}title={t("Website reponse taking time, how to improve?")}>
 
 <p className='roboto-medium font-medium  text-lg  text-par3-text'>  
- Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.
+ {t("Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat .We try to reply quickly, so you need not to wait too long for a response!.")}
 </p>
       </AccordionItem>
     </Accordion> 

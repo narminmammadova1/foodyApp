@@ -168,6 +168,7 @@ import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useQueryClient } from 'react-query';
 import { QUERIES } from '../../../Constant/Queries';
 import { UserOrderProps } from '../../../shared/interface';
+import { useTranslation } from 'react-i18next';
 
 
 interface UserOrderCardProps {
@@ -188,6 +189,7 @@ const queryClient=useQueryClient()
   useEffect(() => {
     setHydration(true);
   }, [userOrdersData]);
+  const {t}=useTranslation()
 
   const toggleDropdown = (id:string | number |null ) => {
     setOpenDropdownId(openDropdownId === id ? null : id);
@@ -203,16 +205,20 @@ const queryClient=useQueryClient()
     } else {
       setUserOrder([]); // or handle the undefined case as necessary
     }
-    queryClient.invalidateQueries(QUERIES.Order);
+    queryClient.invalidateQueries(QUERIES.UserOrder);
   }, [userOrdersData, queryClient]);
 
 
 
 
-  const monthNames = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+
+
+
 
   if (!hydration) return null;
-
 
   return (
     <>
@@ -223,7 +229,7 @@ const queryClient=useQueryClient()
           userOrder={userOrder}
         colorModal='inputPlaceholder' />
         <div>
-          <h1 className='font-mukta font-[600] text-[30px] text-modal_p mt-[49px] mb-[51px]'>Your Orders</h1>
+          <h1 className='font-mukta font-[600] text-[30px] text-modal_p mt-[49px] mb-[51px]'>{t("Your Orders")}</h1>
         </div>
         <table className="table-fixed bg-white">
           <thead>
@@ -232,12 +238,12 @@ const queryClient=useQueryClient()
                 <div className='flex justify-center'>ID</div>
               </td>
               <td>
-                <div className='flex justify-center'>Time</div>
+                <div className='flex justify-center'>{t("Time")}</div>
               </td>
-              <td>Delivery Address</td>
-              <td>Amount</td>
-              <td>Payment Method</td>
-              <td>Contact</td>
+              <td>{t("Delivery Address")}</td>
+              <td>{t("Amount")}</td>
+              <td>{t("Payment Method")}</td>
+              <td>{t("Contact")}</td>
             </tr>
           </thead>
           <tbody>
@@ -257,7 +263,7 @@ const queryClient=useQueryClient()
                 <td>
                   <div className='flex justify-center'>${order.amount}</div>
                 </td>
-                <td>{order.payment_method = 0 ? "pay with cash" : "pay with credit card"}</td>
+                <td>{order.payment_method ==0 ? "pay with cash" : "pay with credit card"}</td>
                 <td>
                   <div className='flex justify-center'>
                     <div>{order.contact}</div>

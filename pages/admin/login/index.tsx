@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import AdminHeader from '../../../components/Admin/Header';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -15,11 +15,12 @@ import { useRouter } from 'next/router';
 import { ROUTER } from '../../../Constant/Router';
 import { toast } from 'react-toastify';
 import { useGlobalContext } from '../../../Context/GlobalContext';
+import { useDropdownn } from '../../../shared/hooks/useDropdown';
+import { handlechange } from '../../../components/Admin/SideBar';
+import i18n from '../../../utils/i18n';
+import { useTranslation } from 'react-i18next';
 
 
-
-
-// Form doğrulama fonksiyonu
 const validate = (values: any) => {
   let errors: any = {};
 
@@ -50,9 +51,12 @@ const validate = (values: any) => {
 
 const AdminLogin: NextPage = () => {
  
+  const [loading, setLoading] = useState(false);
 
+const {t,i18n}=useTranslation()
+const {isAdmin, setIsAdmin,showPassword,setShowPassword,togglePassword,isLoading}=useGlobalContext() || {}
 
-const {isAdmin, setIsAdmin,showPassword,setShowPassword,togglePassword}=useGlobalContext() || {}
+const { isOpenLang, openLang } = useDropdownn()
 
   const {push}=useRouter()
 
@@ -60,6 +64,7 @@ const {isAdmin, setIsAdmin,showPassword,setShowPassword,togglePassword}=useGloba
 const { mutate: signInAdmin } = useMutation({
   mutationFn: signInUser,
   onSuccess: (data) => {
+    setLoading(false)
     console.log("adminmutation data", data);
     console.log("datauser adm mutat",data.data.user);
    
@@ -82,6 +87,7 @@ const { mutate: signInAdmin } = useMutation({
     }
   },
   onError: (error) => {
+    setLoading(false)
     toast.error("You are not Admin",{autoClose:1500})
     console.error("An error occurred:", error);
   }
@@ -96,6 +102,7 @@ const { mutate: signInAdmin } = useMutation({
     },
     validate,
     onSubmit: (values) => {
+      setLoading(true)
       signInAdmin(values);
       console.log(values);
       console.log("welcomeeeeee");
@@ -106,12 +113,7 @@ const { mutate: signInAdmin } = useMutation({
   });
 
 
-  
-  
-
-
-
-  
+  const isDisabled = !formik.values.email || !formik.values.password && !loading;
 
 
   return (
@@ -124,12 +126,12 @@ const { mutate: signInAdmin } = useMutation({
       <Layout>
         <div className=' mt-[57px] ms-[37px]'><img src="/svgs/logo.svg" alt="" /></div>
 
-        <div className='flex bg-dark-body items-center justify-center   h-screen'>
-          <div className='flex  w-[830px] h-[411px] '>
+        <div className='w-full flex  bg-dark-body items-center justify-center   h-screen'>
+          <div className=' lg:flex  w-[830px] h-[411px] '>
 
-            <div className='w-1/2 bg-login-gray  flex flex-col px-[53px] '>
+            <div className='w-1/2  lg:bg-login-gray  flex flex-col px-[53px] '>
               <div className=' m-auto'>
-                <h1 className=' font-bold   text-4xl text-par-text  font-montserrat' >Welcome Admin</h1>
+                <h1 className=' font-bold text-[24px]   lg:text-4xl text-par-text  font-montserrat' >{t("Welcome Admin")}</h1>
                 <form className='flex flex-col font-roboto ' onSubmit={formik.handleSubmit}>
                   <input
                     name="email"
@@ -157,26 +159,48 @@ const { mutate: signInAdmin } = useMutation({
              </div>                                                  
                                                     
                                                     
-                                                    </div>
+ </div>
 
-                  {formik.errors.password && <div>{formik.errors.password}</div>}
+ {formik.errors.password && <div>{formik.errors.password}</div>}
   
-                  <button type="submit" className='  bg-btn-pink  rounded-[4px] w-full  mt-[35px] font-bold text-white h-[50px]'>Sign in</button>
+                  <button type="submit"                 disabled={isDisabled}
+ className='   bg-btn-pink  rounded-[4px] w-full   mt-[35px] font-bold text-white h-[50px]'>{loading ? "loading..." :" Sign In"}</button>
                 </form>
               </div>
             </div>
 
-            <div className='w-1/2 bg-white flex flex-col gap-2'>
-              <div className='flex justify-end   '>
+            <div className='w-1/2 relative lg:bg-white flex flex-col gap-2'>
+              <div>
+              <div onClick={openLang} className='flex justify-end   '>
                 <Image
                   width={100}
                   height={100}
                   alt='lang.svg'
-                  src="/svgs/lang.svg"
+                  src={`/icons/lang${i18n.language === 'en' ? 'en' : i18n.language === "fr" ? 'fr' : 'az'}.svg`}
                   className='w-[41px] h-[41px] mt-2 me-3'
                 />
+
               </div>
-              <div>
+
+
+              
+{isOpenLang &&
+                <div onClick={openLang} className=' text-14px w-[60px] right-0 top-10 roboto-medium z-50 flex flex-col mt-2 bg-white absolute items-center py-1 font-medium'>
+                 
+                 
+                  <div onClick={openLang} className=' border-b-1 border-white py-4'  ><img  onClick={()=>handlechange("az",i18n)}src="/icons/langaz.svg" alt="" 
+                  /></div>
+                  <div className=' border-b-1 border-white py-4'  ><img onClick={()=>handlechange("fr",i18n)} src="/icons/langfr.svg" alt="" 
+                  />
+                  </div>
+                  <div className=' border-b-1 border-white py-4'  ><img onClick={()=>handlechange("en",i18n)} src="/icons/langen.svg" alt="" 
+                   /></div>
+
+                </div>
+              }
+              </div>
+
+              <div className=' z-30'>
                 <Image
                   width={100}
                   height={100}
@@ -186,6 +210,9 @@ const { mutate: signInAdmin } = useMutation({
                 />
               </div>
             </div>
+
+
+
           </div>
         </div>
       </Layout>

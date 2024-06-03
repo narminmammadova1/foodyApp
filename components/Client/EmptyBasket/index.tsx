@@ -17,6 +17,7 @@ import React from 'react'
 import BtnCheckout from '../BtnCheckout'
 import Image from 'next/image';
 import { colors } from '@nextui-org/react';
+import { useTranslation } from 'react-i18next';
 
 interface BasketCardProps{
   size: string | undefined;
@@ -36,7 +37,7 @@ const EmptyBasket:React.FC<BasketCardProps> = ({size,headtitle}) => {
 const pad_size=size==="small"? "padding4":"padding8"
 const btn_size=size==="small" ?"btn_small":"btn_large"
 const btn2_size=size==="small" ?"btn2_small":"btn2_large"
-
+const {t}=useTranslation()
   return (
     <div className={` bg-headerbg size=" ${divSize}   flex flex-col justify-between  rounded boxShadow3  overflow-y-auto `}>
      <div className='pt-2'>
@@ -50,7 +51,7 @@ const btn2_size=size==="small" ?"btn2_small":"btn2_large"
  
 <Image className='w-[263px] h-[236px]' width={200} height={200} src="/icons/emptybasket.svg" alt="emptybasket"/>
 <p className='  font-roboto letter3 font-medium  text-[40px] text-btn-cncl'>OPPS!</p>
-<p  className=' font-roboto font-medium text-[40px] text-btn-cncl'>Basket Empty</p>
+<p  className=' font-roboto font-medium text-[40px] text-btn-cncl'>{t("Basket Empty")}</p>
       </div>
       </div> 
       {/* <div className='' >
@@ -58,7 +59,7 @@ const btn2_size=size==="small" ?"btn2_small":"btn2_large"
       </div> */}
 
 <div className=''>
-     <button  className={`${btn_size} roboto-medium font-medium bg-btn-cncl w-full text-white rounded-full h-[47px]`}><div className='flex  justify-between ps-6 items-center'><p>Checkout</p><div className={`w-[135px] h-[43px] rounded-full ${btn2_size} bg-white text-btn-cncl flex items-center justify-center`}><p>$0.00</p></div></div></button> 
+     <button  className={`${btn_size} roboto-medium font-medium bg-btn-cncl w-full text-white rounded-full h-[47px]`}><div className='flex  justify-between ps-6 items-center'><p>{t("Checkout")}</p><div className={`w-[135px] h-[43px] rounded-full ${btn2_size} bg-white text-btn-cncl flex items-center justify-center`}><p>$0.00</p></div></div></button> 
     </div>
     </div>
   )

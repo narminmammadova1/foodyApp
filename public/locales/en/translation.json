@@ -76,6 +76,12 @@
     "Cancel": "Cancel",
     "Delete": "Delete",
     "Update Product": "Update Product",
+    "Update Category": "Update Category",
+    "Edit Your Category Informations":"Edit Your Category Informations",
+    "Add Your Category Informations":"Add Your Category Informations",
+
+"There is no product":"There is no product",
+    "Add Category":"Add Category",
     "Upload Image": "Upload Image",
     "Upload image": "Upload image",
     "Upload your offer image": "Upload your offer image",

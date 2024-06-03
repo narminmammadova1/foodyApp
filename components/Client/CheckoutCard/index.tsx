@@ -8,6 +8,7 @@ import { addOrder, clearBasket } from '../../../services';
 import { toast } from 'react-toastify';
 import { QUERIES } from '../../../Constant/Queries';
 import { UserDataProps } from '../../../shared/interface';
+import { useTranslation } from 'react-i18next';
 
 
 interface CheckoutCardProps{
@@ -26,7 +27,7 @@ interface AddedOrderProps{
 const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => {
   const { basketData } = useGlobalContext() || {};
   const queryClient = useQueryClient();
-
+const {t}=useTranslation()
   useEffect(() => {
     if (user) {
       formik.setFieldValue('contact', user.phone);
@@ -49,7 +50,7 @@ const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => 
       };
     addOrdermutation &&  addOrdermutation(addedOrder) ;
 
-   
+   queryClient.invalidateQueries(QUERIES.Order)
       console.log("formik addedOrderDataaaaaaaa",addedOrder);
     }
   });
@@ -62,10 +63,10 @@ const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => 
 
   return (
     <div className='bg-headerbg w-[618px] px-9 pt-9'>
-      <h1 className='font-mukta font-[600] text-[30px] text-modal_p letter3 mb-6'>Checkout</h1>
+      <h1 className='font-mukta font-[600] text-[30px] text-modal_p letter3 mb-6'>{t("Checkout")}</h1>
       <div>
         <form className='flex flex-col' onSubmit={formik.handleSubmit}>
-          <label className='font-mukta font-[600] text-lg text-modal_p' htmlFor='delivery_address'>Delivery Address</label>
+          <label className='font-mukta font-[600] text-lg text-modal_p' htmlFor='delivery_address'>{t("Delivery Address")}</label>
           <input
             name='delivery_address'
             value={formik.values.delivery_address}
@@ -74,7 +75,7 @@ const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => 
             type='text'
           />
 
-          <label className='font-mukta font-[600] text-lg text-modal_p' htmlFor='contact'>Contact Number</label>
+          <label className='font-mukta font-[600] text-lg text-modal_p' htmlFor='contact'>{t("Contact Number")}</label>
           <input
             name='contact'
             value={formik.values.contact}
@@ -83,7 +84,7 @@ const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => 
             type='text'
           />
 
-          <p className='text-lg font-mukta font-[600] text-modal_p mb-4'>Payment Method</p>
+          <p className='text-lg font-mukta font-[600] text-modal_p mb-4'>{t("Payment Method")}</p>
           <div className='flex gap-[79px]'>
             <div className='flex gap-[5px]'>
               <input
@@ -94,7 +95,7 @@ const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => 
                 type='radio'
                 checked={formik.values.payment_method === '0'}
               />
-              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCash'>Pay at the door</label>
+              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCash'>{t("Pay at the door")}</label>
             </div>
             <div className='flex gap-[5px]'>
               <input
@@ -105,7 +106,7 @@ const CheckoutCard:React.FC<CheckoutCardProps> = ({ user,addOrdermutation }) => 
                 type='radio'
                 checked={formik.values.payment_method === '1'}
               />
-              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCard'>Pay at the door by credit card</label>
+              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCard'>{t("Pay at the door by credit card")}</label>
             </div>
           </div>
 

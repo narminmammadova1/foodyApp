@@ -1,39 +1,58 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { useModal } from '../../../shared/hooks/useModal'
 import AdminModal from '../../UI/AdminModal'
 import { useDropdownn } from '../../../shared/hooks/useDropdown'
 import { useTranslation } from 'react-i18next'
- import { handlechange } from '../SideBar'
+ import SideBar, { handlechange } from '../SideBar'
 
  import i18n from "../../../next.config"
 import ProductModal from '../../Modals/ProductModal'
+import { useSpring,animated } from '@react-spring/web'
 
 const AdminHeader = () => {
 
 const {t,i18n}=useTranslation()
  
-
+const[isNavbar,setIsNavbar]=useState(true)
 const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=useModal()
 
 
 
+  const {isOpenLang,openLang,openSidebar,isOpenSidebar,closeSidebar}=useDropdownn()
 
-  const {isOpenLang,openLang}=useDropdownn()
+
+ 
+  const sidebarAnimation = useSpring({
+    transform: isOpenSidebar ? 'translateX(0%)' : 'translateX(-100%)',
+    config: { tension: 300, friction: 30 },
+  })
   return (
 <div>
 <ProductModal   onClose={closeProductModal} isOpen={isOpenProductModal}
   />
 
-    <div  className=' bg-dark-div flex items-center  px-[21px] py-[10px] rounded-b-[14px] mx-5 mb-4 justify-between '>
+    <div  className=' bg-dark-div mx-0 flex items-center   px-[21px] py-[10px] rounded-b-[14px]  lg:mx-5 mb-4 justify-between '>
+<div className='flex-col relative'>
+<div className=' flex'>
+  <Image onClick={openSidebar}  className='w-[26px] h-[24px]   lg:hidden'  width={1000} height={1000} src="/icons/navbar.svg" alt='nav'/>
+  <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/>
 
+</div>
+{isOpenSidebar && <animated.div style={sidebarAnimation} className='absolute top-[-18px] left-[-58px] z-48'>
+<SideBar isNavbar={isNavbar} closeSidebar={closeSidebar}/>
+
+</animated.div>}
+
+</div>
     <div>
-      <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/>
+      {/* <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/> */}
     </div>
     <div className='flex gap-5 items-center'>
-      <button className='flex  justify-end  items-center bg-btn-pink rounded-[14px] px-3 h-[28px]  font-roboto text-white  font-[700] text-[10px]'  onClick={openProductModal}><img className='me-[3px]' src="/icons/plus.svg" alt=""  />ADD PRODUCT</button>
+      <button className='hidden  lg:block  justify-end  items-center bg-btn-pink rounded-[14px] px-3 h-[28px]  font-roboto text-white  font-[700] text-[10px]'  onClick={openProductModal}><div className='flex'><img className='me-[3px]' src="/icons/plus.svg" alt=""  /> {t(" ADD PRODUCT")}</div></button>
+
       <div className=' bg-dark-div relative w-[59px] flex flex-col items-center h-10' >
-        <div  onClick={openLang}>
+        <div className=''  onClick={openLang}>
         <img className=' cursor-pointer'  src={`/icons/lang${i18n.language === 'en' ? 'en': i18n.language==="fr"  ? 'fr': 'az'}.svg`}  alt="flag"   />
         </div>
         {isOpenLang && <div className=''>
@@ -48,12 +67,17 @@ const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=
 
       </div>
       <div className='flex justify-center items-center gap-4'>
+      <button className=' justify-end  items-center bg-btn-pink rounded-full  w-[40px] h-[40px]  font-roboto text-white  font-[700] text-[20px] lg:hidden'  onClick={openProductModal}>+</button>
+
         <img className=' cursor-pointer' src="/icons/avatar.svg" alt="avatar" />
-        <p className=' text-text-header  font-roboto  font-medium  text-[16px]'>Admin</p>
+        <p className='hidden lg:block text-text-header  font-roboto  font-medium  text-[16px]'>{t("Admin")}</p>
       </div>
     </div>
+    </div> 
+    {/* <SideBar isNavbar/> */}
+
     </div>
-    </div>
+
   )
 }
 

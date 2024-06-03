@@ -8,4 +8,5 @@ export const QUERIES={
     Order:"order",
     UserOrder:"userOrder",
     Basket: "basket",
+    OrderHistory:"orderHistory"
 }

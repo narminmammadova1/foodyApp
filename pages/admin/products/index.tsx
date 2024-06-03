@@ -67,13 +67,14 @@ useEffect(() => {
       <Layout>
       <AdminHeader/>
       <div className='flex'>
-
+<div className='hidden lg:block' >
       <SideBar/>
+      </div>
       <div className='flex flex-col w-full me-4'>
 
       <TopDiv select selectText="Restuarant type" title="Products" />
 
-      <div className='flex gap-5 flex-wrap'>
+      <div className=' m-auto lg:m-0 lg:flex lg:gap-5 flex-wrap'>
         {/* {Array.isArray(productsData) && productsData.map((product)=>(
 
 <ProductCards key={product.id} product={product}/>

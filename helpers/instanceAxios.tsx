@@ -187,9 +187,17 @@ instanceAxios.interceptors.request.use(
   }
 );
 
+
+
 instanceAxios.interceptors.response.use(
   (response) => response,
   (error) => {
+
+
+    
+const router = useRouter();
+const pathname = router.pathname;
+
     if (error.response && error.response.status === 401) {
       // Token expired, logout the user
       localStorage.removeItem('user_accesToken');
@@ -197,16 +205,15 @@ instanceAxios.interceptors.response.use(
       localStorage.removeItem('user_LoginDate');
       localStorage.removeItem('isUser');
       localStorage.removeItem('isAdmin'); 
-      const router = useRouter();
-      const pathname = router.pathname;
+     
       const { setIsUser, setIsAdmin } = useGlobalContext() || {};
 
       if (pathname.startsWith('/admin')) {
         setIsAdmin && setIsAdmin(false);
-        router.push("/admin/login"); // Redirect to admin login page
+        router.push("/admin/login"); 
       } else {
         setIsUser && setIsUser(false);
-        router.push("/login"); // Redirect to user login page
+        router.push("/login"); 
       }
     }
     return Promise.reject(error);

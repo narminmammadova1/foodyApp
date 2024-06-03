@@ -7,10 +7,12 @@ import FooterClient from '../../components/Client/FooterClient'
 import { NextPage } from 'next'
 import { useAnimatedStyles } from '../../shared/animated/animated'
 import { animated, useSpring } from '@react-spring/web'
+import { useTranslation } from 'react-i18next'
 
 const AboutUs:NextPage = () => {
 
   const{springStyles,springStyles2}=useAnimatedStyles()
+  const {t}=useTranslation()
   return (
     <div>
     <Head>
@@ -23,7 +25,7 @@ const AboutUs:NextPage = () => {
             <HeaderClient/>
 <div className='flex mt-[113px]'>
             <div className='ps-[62px] pe-10 w-1/2'>
-                <h1 className=' font-mukta font-[600] mb-7 text-[45px] text-inputPlaceholder'>About Us</h1>
+                <h1 className=' font-mukta font-[600] mb-7 text-[45px] text-inputPlaceholder'>{t("About Us")}</h1>
                 <p className=' text-par3-text roboto-medium text-[20px]'>Lorem ipsum is placeholder text commonly used in the graphic, print, 
                     and publishing industries for previewing layouts and visual mockups
                     .Lorem ipsum is placeholder text commonly used in the graphic, print,

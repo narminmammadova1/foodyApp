@@ -12,18 +12,23 @@ import i18n from "../../../next.config"
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useQueryClient } from 'react-query';
 import { QUERIES } from '../../../Constant/Queries';
+import Image from 'next/image';
+import { useDropdownn } from '../../../shared/hooks/useDropdown';
   
 export const handlechange =(language:string,i18n:any)=>{
   i18n.changeLanguage(language)
      }
+     interface SideBarProp{
+      isNavbar?:boolean,
+      closeSidebar?:()=>void
+     }
 
-const SideBar:React.FC = () => {
+const SideBar:React.FC<SideBarProp>= ({isNavbar,closeSidebar}) => {
    const {setIsAdmin,setSelectedId,setDefaultText,setIdForFilter}=useGlobalContext() || {}
   const {t,i18n}=useTranslation()
 
   const router=useRouter()
 const {push}=router
-
 console.log("langggg",router);
 console.log("isAdmin:", setIsAdmin); 
 
@@ -33,9 +38,15 @@ const restoreDefaulttext=()=>{
 }
   return (
     <div>
-        <div className={` w-[256px]  h-[474px] bg-main-purple rounded-[14px] py-10  ms-4 me-7
+        <div className={` w-[256px]  bg-main-purple ${isNavbar ? "rounded-0 min-h-svh  " :"rounded-[14px] h-[474px]"}  py-10  ms-4 me-7
         `}>
 <div>
+  {isNavbar && <div className='flex ps-6 mb-8  '>
+    <Image onClick={closeSidebar} className=' w-[24px] h-[24px] cursor-pointer' width={100} height={100} alt="logo" src="/icons/arrowBack.svg"/>
+
+    <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/>
+
+    </div>}
     <ul className='flex font-medium flex-col gap-6 text-[16px] text-text-sideBar '>
       <div className= {`${isActiveLink(ROUTER.DASHBOARD) ? "activeLink" : ""} ms-4 ps-6 `}>
         <li className= {`  flex gap-6 cursor-pointer` }  onClick={()=>push(ROUTER.DASHBOARD)}> <img src="/icons/dashboard.svg" alt="a"/>
@@ -66,6 +77,10 @@ const restoreDefaulttext=()=>{
         <li className='flex gap-6  cursor-pointer'  onClick={()=>push(ROUTER.ADMINORDERS)}><img src="/icons/orders.svg" alt="" />
         {t("Orders")}  </li>
         </div>
+        <div  className= {`${isActiveLink(ROUTER.ADMINHISTORY) ? "activeLink" : ""} ms-4 ps-6 `}>
+        <li className='flex gap-6  cursor-pointer'  onClick={()=>push(ROUTER.ADMINHISTORY)}><img src="/icons/orders.svg" alt="" />
+        {t("History")}  </li>
+        </div>
         <div  className= {`${isActiveLink(ROUTER.ADMINOFFER) ? "activeLink" : ""} ms-4 ps-6 `}>
         <li className='flex gap-6  cursor-pointer'  onClick={()=>push(ROUTER.ADMINOFFER)}><img src="/icons/offer.svg" alt="" />
         {t("Offers")}  </li>
@@ -83,10 +98,9 @@ const restoreDefaulttext=()=>{
        </div>
 
 
-          <li className='flex gap-6 mt-6 cursor-pointer'><img src="/icons/logout.svg" alt="" />
-          aktivdil:{i18n.language}</li>
+         
     </ul>
-    <button onClick={()=>handlechange("az",i18n)}> click</button>
+    {/* <button onClick={()=>handlechange("az",i18n)}> click</button> */}
 </div>
 
         </div>

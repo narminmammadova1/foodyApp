@@ -6,6 +6,7 @@ import AdminModal from '../../UI/AdminModal'
 import { useQuery } from 'react-query'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import Category from '../../../pages/admin/category'
+import { useTranslation } from 'react-i18next'
 
 
 interface OfferProps{
@@ -23,7 +24,9 @@ const OfferCards = () => {
 
 const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFormComponent}=useGlobalContext() || {}
   const  {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal,}=useModal()
-    return (
+  const {t}=useTranslation()
+ 
+  return (
       <>
  <DeleteModal  isOpenDelModal={isOpenDelModal}   onCloseDelModal={closeDelModal} delDescription="offer, it will not come back!" colorModal='red-950'/>
      <AdminModal modalType="addOffer" 
@@ -32,14 +35,14 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
        isOpen={isOpen}
         onClose={close} />
       
-        <div className=' bg-white w-full'>
+        <div className=' bg-white w-full  max-h-[400px]  overflow-x-auto  overflow-y-auto  lg:overflow-x-hidden'>
             <table className="table-fixed min-w-full divide-y divide-gray-200">
       <thead>
         <tr className=' '>
           <th className='py-6 px-6'>ID</th>
-          <th className='px-20 text-center'>Image</th>
-          <th className=' text-start '>Title</th>
-          <th  className='text-start '>Descriptions</th>
+          <th className='px-20 text-center'>{t("Image")}</th>
+          <th className=' text-start '>{t("Title")}</th>
+          <th  className='text-start '>{t("Descriptions")}</th>
           <th>
             
           </th>
@@ -57,7 +60,7 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
       <td className=' text-start '> {offer.description.length > 30 ? `${offer.description.slice(0, 30)}...` : offer.description}</td>
 
       <td className='pe-6'><div className=' flex justify-end  gap-1'>
-        <img onClick={()=>{
+        {/* <img onClick={()=>{
           open()
           console.log("handle edit offer isleyir");
           
@@ -66,15 +69,39 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
 
 
 
-        }} className=' cursor-pointer' src="/icons/edit.svg" alt="edit" />
-        <img
+        }} className=' cursor-pointer' src="/icons/edit.svg" alt="edit" /> */}
+        
+        {/* <img
         onClick={() => {
           openDelModal();
           if(setSelectedId){
             setSelectedId(offer.id)
           }
       }}
-           className=' cursor-pointer' src="/icons/delete2.svg" alt="del" />
+           className=' cursor-pointer' src="/icons/delete2.svg" alt="del" /> */}
+<Image onClick={()=>{
+          open()
+          console.log("handle edit offer isleyir");
+          
+          setIsEdit(true)
+          if(setSelectedId){setSelectedId(offer.id)}
+
+
+
+        }} className='  cursor-pointer  w-[20px] min-w-[20px] min-h-[15px] h-[20px]' src="/icons/edit.svg" alt="edit"   width={200} height={200}  />
+ 
+
+
+
+
+<Image onClick={() => {
+          openDelModal();
+          if(setSelectedId){
+            setSelectedId(offer.id)
+          }
+      }}  className='  cursor-pointer  w-[20px] min-w-[20px] min-h-[15px] h-[20px]' src="/icons/delete2.svg" alt="del"   width={200} height={200}  />
+ 
+
       </div></td>
 
     </tr>))}
