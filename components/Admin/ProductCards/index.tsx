@@ -18,6 +18,12 @@ const ProductCards:React.FC<ProductCardsProps> = ({product}) => {
 
   const {isOpen,open,close,isOpenDelModal,isOpenProductModal,openDelModal,openProductModal,closeDelModal,closeProductModal}=useModal()
 
+
+
+
+
+
+  
   return (
     <>
     <ProductModal isEdit  onClose={closeProductModal} isOpen={isOpenProductModal} />

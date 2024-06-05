@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { useModal } from '../../../shared/hooks/useModal'
 import DeleteModal from '../../Modals/DeleteModal'
 import AdminModal from '../../UI/AdminModal'
@@ -7,6 +7,7 @@ import { useQuery } from 'react-query'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import Category from '../../../pages/admin/category'
 import { useTranslation } from 'react-i18next'
+import PaginationAdmin from '../../Pagination'
 
 
 interface OfferProps{
@@ -26,8 +27,48 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
   const  {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal,}=useModal()
   const {t}=useTranslation()
  
+
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5;
+
+  const paginatedData = () => {
+    const offset = currentPage * itemsPerPage;
+    return offerData?.slice(offset, offset + itemsPerPage);
+  };
+
+  const handlePageClick = useCallback((selected: number) => {
+    setCurrentPage(selected);
+  }, [])
+  const pageCount = offerData ? Math.ceil(offerData?.length / itemsPerPage) :0;
+
+  const getPageNumbers = useCallback(()=>{
+    const maxPageButtons = 3;
+    const startPage = Math.max(0, currentPage - 1);
+    const endPage = Math.min(pageCount, startPage + maxPageButtons);
+    return Array.from({ length: endPage - startPage }, (_, i) => startPage + i);
+  },[currentPage, pageCount]
+
+  ) 
+   
+
+  const getPageNumbersForMob = useCallback(() => {
+    const maxPageButtons = 1;
+    const startPage = Math.max(0, currentPage);
+    const endPage = Math.min(pageCount, startPage + maxPageButtons);
+    return Array.from({ length: endPage - startPage }, (_, i) => startPage + i);
+  }, [currentPage, pageCount]);
+
+
+
+
+
+
+
+
   return (
       <>
+      <div className='w-full'>
  <DeleteModal  isOpenDelModal={isOpenDelModal}   onCloseDelModal={closeDelModal} delDescription="offer, it will not come back!" colorModal='red-950'/>
      <AdminModal modalType="addOffer" 
       formm ={formComponent}
@@ -50,7 +91,7 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
         </tr>
       </thead>
       <tbody>
-      {offerData?.map((offer:OfferProps)=>( <tr  key={offer.id} className='text-center border-b'>
+      {paginatedData()?.map((offer:OfferProps)=>( <tr  key={offer.id} className='text-center border-b'>
       <td  className='px-8'>
         <div className='flex justify-center'><div className='w-[57px]   h-[24px] flex justify-center items-center border px-[12px]  rounded-lg '>
         {offer.id.slice(0,5)}</div></div></td>
@@ -60,25 +101,7 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
       <td className=' text-start '> {offer.description.length > 30 ? `${offer.description.slice(0, 30)}...` : offer.description}</td>
 
       <td className='pe-6'><div className=' flex justify-end  gap-1'>
-        {/* <img onClick={()=>{
-          open()
-          console.log("handle edit offer isleyir");
-          
-          setIsEdit(true)
-          if(setSelectedId){setSelectedId(offer.id)}
-
-
-
-        }} className=' cursor-pointer' src="/icons/edit.svg" alt="edit" /> */}
         
-        {/* <img
-        onClick={() => {
-          openDelModal();
-          if(setSelectedId){
-            setSelectedId(offer.id)
-          }
-      }}
-           className=' cursor-pointer' src="/icons/delete2.svg" alt="del" /> */}
 <Image onClick={()=>{
           open()
           console.log("handle edit offer isleyir");
@@ -111,6 +134,10 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
       </tbody>
     </table>
           
+        </div>
+        <div className='mt-6'>
+        <PaginationAdmin currentPage={currentPage} handlePageClick={handlePageClick} pageCount={pageCount} getPageNumbers={getPageNumbers} getPageNumbersForMob={getPageNumbersForMob} />
+        </div>
         </div>
         </>
       )

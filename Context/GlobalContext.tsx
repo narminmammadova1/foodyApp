@@ -30,7 +30,7 @@ interface ContextProps {
     setDefaultText:any,
     productsData:any[],
     userOrdersData:any[],
-    orderData:any[];
+    orderData:any[] | undefined;
     basketData:BasketProps;
     formComponent:any;
     historyData:any[];

@@ -1,11 +1,12 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { useModal } from '../../../shared/hooks/useModal'
 import DeleteModal from '../../Modals/DeleteModal'
 import AdminModal from '../../UI/AdminModal'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
 import ShowModal from '../../Client/Modals/ShowModal'
+import PaginationAdmin from '../../Pagination'
 
 const OrderCards= () => {
   const  {isOpen,open,close,isOpenDelModal,openDelModal,closeDelModal,openShowwModal,isOpenShowwModal,closeShowwModal}=useModal()
@@ -16,11 +17,46 @@ const {t}=useTranslation()
  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
+ const [currentPage, setCurrentPage] = useState(0);
+ const itemsPerPage = 5;
+
+ const paginatedData = () => {
+   const offset = currentPage * itemsPerPage;
+   return orderData?.slice(offset, offset + itemsPerPage);
+ };
+ const handlePageClick = useCallback((selected: number) => {
+  setCurrentPage(selected);
+}, [])
+
+ const pageCount =orderData ? Math.ceil(orderData?.length / itemsPerPage) :0;
+ const getPageNumbers = useCallback(()=>{
+  const maxPageButtons = 3;
+  const startPage = Math.max(0, currentPage - 1);
+  const endPage = Math.min(pageCount, startPage + maxPageButtons);
+  return Array.from({ length: endPage - startPage }, (_, i) => startPage + i);
+},[currentPage, pageCount]
+
+) 
+ 
+
+const getPageNumbersForMob = useCallback(() => {
+  const maxPageButtons = 1;
+  const startPage = Math.max(0, currentPage);
+  const endPage = Math.min(pageCount, startPage + maxPageButtons);
+  return Array.from({ length: endPage - startPage }, (_, i) => startPage + i);
+}, [currentPage, pageCount]);
+
+
+
+
+
+
 
 
   return (
 
     <>
+    <div className='w-full'>
         <ShowModal isOpenShowwModal={isOpenShowwModal} closeShowModal={closeShowwModal} />
 
 <DeleteModal  delDescription='' isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950'/>
@@ -50,7 +86,7 @@ const {t}=useTranslation()
     </tr>
   </thead>
   <tbody className=''>
-{orderData?.map((order)=>(
+{paginatedData()?.map((order)=>(
 
 <tr key={order.id} className='  text-center border-b'>
 <td  className='py-3'>
@@ -93,6 +129,11 @@ openDelModal()
 </table>
       
     </div>
+
+    <div className='mt-6'>
+        <PaginationAdmin currentPage={currentPage} handlePageClick={handlePageClick} pageCount={pageCount} getPageNumbers={getPageNumbers}  getPageNumbersForMob ={ getPageNumbersForMob } />
+        </div>
+        </div>
     </>
   )
 }

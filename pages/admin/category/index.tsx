@@ -13,6 +13,7 @@ import { divider } from '@nextui-org/react'
 import { ROUTER } from '../../../Constant/Router'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'react-i18next'
+import PaginationAdmin from '../../../components/Pagination'
 
 const Category :NextPage = () => {
   const{formComponent,setFormComponent,isAdmin,setIsAdmin}=useGlobalContext() || {}
@@ -58,7 +59,10 @@ return (
               </div>
             </div>
           </div>
+          {/* <PaginationAdmin/> */}
+
         </Layout>
+
       </div>
     ) : (
       <>
