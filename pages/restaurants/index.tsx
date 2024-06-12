@@ -11,11 +11,17 @@ import { instanceAxios } from '../../helpers/instanceAxios'
 import { useGlobalContext } from '../../Context/GlobalContext'
 import { useRouter } from 'next/router'
 import { RestProps } from '../../shared/interface'
+import Image from 'next/image'
+import { useDropdownn } from '../../shared/hooks/useDropdown'
+import { useSpring,animated ,config as springConfig } from '@react-spring/web'
 
 
 const RestaurantsPage:NextPage = () => {
  ;
-const {restaurantData,isLoading,categoryData,selectedId,}=useGlobalContext() || {}
+const {restaurantData,isLoading,categoryData,selectedId,setSelectedId}=useGlobalContext() || {}
+
+const { isOpenLang, openLang, isOpenAvatar, setIsOpenAvatar,openSidebar,isOpenSidebar,closeSidebar } = useDropdownn()
+
 
 console.log("restdaki restdata newwwwwwwww",restaurantData);
 
@@ -42,7 +48,23 @@ const [filteredRest,setFilteredRest]=useState<RestProps[]>([])
 // }, [selectedId,restaurantData])
 
 
+// const sidebarAnimation = useSpring({
+//   transform: isOpenSidebar ? 'translateY(-100%)' : 'translateY(0%)',
+//   config: { tension: 300, friction: 30 },
+// })
 
+
+
+const sidebarAnimation = useSpring({
+  transform: isOpenSidebar ? 'translateY(0%)' : 'translateY(100%)',
+  opacity: isOpenSidebar ? 1 : 0,
+  config: { 
+    tension: 200, 
+    friction: 20, 
+    clamp: true, 
+        precision: 0.01, 
+  },
+});
 
 useEffect(() => {
   if (restaurantData) {
@@ -80,20 +102,74 @@ if (isLoading ) {
     <HeaderClient/>
 
     <div className='flex mt-4'>
+      <div className='hidden lg:block'>
 <SidebarClient categoryData={categoryData}/>
+</div>
 
-<div className='w-full flex flex-wrap gap-9 pt-2 ps-10'>
- 
+<div className='w-full flex flex-wrap gap-9 pt-2 lg:ps-10'>
+<div className='flex justify-center lg:hidden w-full h-[35px] mx-[18px] boxShadow3 mt-4  bg-white '>
+  <div className='flex gap-1'>
+    <Image onClick={openSidebar} className='w-6 h-6' width={200} height={200} src="/icons/filter.svg" alt="filter"/>
+ <p className='text-base'>Filters</p>
+  </div>
+</div>
+<div className='flex w-full flex-wrap'>
  {(selectedId ? filteredRest : restData)?.map((rest:RestProps) => (
               <RestaurantCards key={rest.id} rest={rest} 
               />
             ))}
-
+</div>
 
     
 </div>
 
 </div>
+{/* <div className=' bg-white rounded-[20px] max-h-[474px] fixed bottom-0 overflow-y-auto w-full flex-col  items-center  lg:hidden'>
+<div className='flex  my-[15px] justify-center bg-orange-800'>
+  <Image className='w-[35px] h-[35px]' width={200} height={200} src="/icons/xfilter.svg" alt="x"/>
+  
+</div>
+<div className=''>
+<ul className='px-7 flex flex-col gap-4 py-4'>
+{categoryData?.map((category)=>(
+        <li key={category.id} onClick={()=>{
+          setSelectedId &&   setSelectedId(category.id)
+          // handleFilter()
+        }} className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3  font-roboto-medium   font-medium cursor-pointer  text-[18px]'><span className='mb-2'>{category?.name.slice(0,15)}</span></li>
+
+ 
+))}
+       
+        </ul>
+</div>
+
+
+</div> */}
+{isOpenSidebar && <animated.div style={sidebarAnimation} className=' w-full  gap-6 lg:hidden fixed bottom-0 h-[900px] z-50  '>
+  <div className='h-[600px]  bg-zinc-400 opacity-25'>
+  </div>
+<div className=' bg-white ] rounded-[20px]  max-h-[474px]  overflow-y-auto  flex-col  items-center '>
+<div className='flex  my-[15px] justify-center'>
+  <Image onClick={closeSidebar} className='w-[35px] h-[35px]' width={200} height={200} src="/icons/xfilter.svg" alt="x"/>
+  
+</div>
+<div className=''>
+<ul className='px-7 flex flex-col gap-4 py-4'>
+{categoryData?.map((category)=>(
+        <li key={category.id} onClick={()=>{
+          setSelectedId &&   setSelectedId(category.id)
+          // handleFilter()
+        }} className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3  font-roboto-medium   font-medium cursor-pointer  text-[18px]'><span className='mb-2'>{category?.name.slice(0,15)}</span></li>
+
+ 
+))}
+       
+        </ul>
+</div>
+
+
+</div>   
+  </animated.div>}
 </MainClient>
      <FooterClient/>
     </div>

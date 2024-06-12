@@ -5,16 +5,16 @@ const FooterClient = () => {
 
   const {t}=useTranslation()
   return (
-    <div className='w-full h-[385px] bg-textblack flex flex-col  '>
+    <div className='w-full h-[385px] bg-textblack flex flex-col '>
 
-        <div className='footertop flex  justify-around mt-40 '>
+        <div className='footertop lg:flex  justify-around mt-40 '>
 
-<div className='leftt w-1/2 '>
+<div className='leftt bg-red-400 w-full lg:w-1/2 '>
 
-      <div className='flex flex-col items-start ms-24 '>
+      <div className='flex flex-col items-center lg:items-start mx-auto lg:ms-24 '>
         <img src="/svgs/logo.svg" alt="" />
-        <div className='me-32 ps-2'>
-        <p className='text-[22px] letter3 text-par3-text'>Lorem ipsum is placeholder text commonly used in the graphic, </p>
+        <div className='lg:me-32 lg:ps-2 text-center lg:text-start'>
+        <p className='text-[18px] lg:text-[22px] letter3 text-par3-text'>Lorem ipsum is placeholder text commonly used in the graphic, </p>
         </div>
       <div className='flex gap-4 mt-4'>
         <div className='flex p-1 w-[50px] h-[50px] rounded-full  border-[1px] border-white'>
@@ -31,7 +31,7 @@ const FooterClient = () => {
       </div>
       </div>
 
-     <div className='right flex gap-[91px] me-10'>
+     <div className='right bg- hidden md:hidden lg:flex gap-[91px] me-10'>
       <div>
         <ul className='footerUl line3'>
             <li className='font-[900]  text-[18px]'>{t("Popular")}</li>
@@ -62,7 +62,17 @@ const FooterClient = () => {
       </div>
       </div> 
       </div>
-      <div className='footerbottom flex justify-center mt-8 '>
+
+
+
+
+
+
+
+
+
+
+      <div className='footerbottom flex justify-center  '>
         <p className='text-[14px] text-white font-roboto font-[400]'>{t("All rights reserved © 2003-2023 Foody TERMS OF USE | Privacy Policy")}</p>
       </div>
     </div>

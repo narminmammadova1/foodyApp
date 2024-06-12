@@ -102,12 +102,12 @@ const formik = useFormik({
 initialValues: {
   ...oldData,
   ...newData,
-  // img_url:userData?.user.img_url
+  
  
  
 },
 onSubmit: async (values) => {
-  setLoading(true); // Yüklenme durumunu aç
+  setLoading(true); 
 
   const updatedUserData = {
     email: userData?.email, 
@@ -142,15 +142,17 @@ const isDisabled=formik.values.address==="" || formik.values.username===""  || f
       </Head>
       <MainClient>
         <HeaderClient/>
-        <div className='mt-4 flex gap-4 mb-[186px]'>
+        <div className='mt-4 flex  gap-4 mb-[186px]'>
+          <div className='hidden lg:block'>
           <UserSidebar/> 
+          </div>
            {/* <UsersProfile /> */}
            <>
-      <div className='bg-headerbg w-full pb-[95px] px-[30px]'>
+      <div className= ' bg-white lg:bg-headerbg w-full pb-[95px] px-[30px]'>
         <div className='pt-10'>
           <p className='font-mukta text-[30px] font-[600] text-modal_p '>Profile</p>
         </div>
-        <div className='mt-[61px]'>
+        <div className='lg:mt-[61px]'>
           <form className='' action="" onSubmit={formik.handleSubmit}>
             <div className='flex justify-center'>
               <div className='w-[146px] h-[141px] flex flex-col items-center justify-center bg-white rounded-full'>
@@ -176,49 +178,51 @@ const isDisabled=formik.values.address==="" || formik.values.username===""  || f
                   className='hidden invisible' type="file" id='fileInput' />
               </div>
             </div>
-            <div className='flex justify-between gap-[53px] '>
-              <div className='flex flex-col w-1/2 '>
-                <label className='font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Contact</label>
+            <div className='lg:flex mx-4 lg:mx-0  justify-between gap-[53px] '>
+              <div className=' gap-3 lg:gap-0  flex flex-col w-full lg:w-1/2 '>
+                <label className=' mt-3 lg:mt-0  font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Contact</label>
                 <input
                   name="phone"
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   className='h-[53px] px-[23px] rounded' type="number"
                   placeholder='+994' />
-                <label className='font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Username</label>
+                <label className='mt-3 lg:mt-0 font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Username</label>
                 <input
                   name="username"
                   value={formik.values.username}
                   onChange={formik.handleChange}
                   className='h-[53px] px-[23px] rounded' type="text" placeholder='username' />
 
-                <label className='font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Full Name</label>
+                <label className='mt-3 lg:mt-0 font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Full Name</label>
                 <input
                   name="fullname"
                   value={formik.values.fullname}
                   onChange={formik.handleChange}
                   className='h-[53px] px-[23px] rounded' type="text" />
               </div>
-              <div className='flex flex-col w-1/2 '>
+              <div className=' flex flex-col w-full lg:w-1/2  '>
 
-                <label className='font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Email</label>
+                <label className='mt-3 lg:mt-0 font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Email</label>
                 <input
                   name="email"
                   value={userData?.email}
                   // onChange={formik.handleChange}
                   className='h-[53px] px-[23px] rounded' type="email" />
 
-                <label className='font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Address</label>
+                <label className='mt-3 lg:mt-0 font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">Address</label>
                 <input
                   name="address"
                   value={formik.values.address}
                   onChange={formik.handleChange}
                   className='h-[53px] px-[23px] rounded' type="text" />
-                <div className='mt-7'>
+                <div className='mt-10 lg:mt-7'>
                   <ButtonGreen btnTitle="Save" disabled={isDisabled} />
                 </div>
               </div>
             </div>
+
+            
           </form>
         </div>
       </div>

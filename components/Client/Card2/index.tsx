@@ -10,7 +10,7 @@ interface Card2Props{
 const Card2:React.FC <Card2Props> = ({Title1,Title2,img}) => {
   return (
    
-       <div className="w-[327px] border-b-2   boxShadow h-[386px] flex flex-col items-center">
+       <div className=" mx-auto mb-[55px]  lg:mb-0 lg:mx-0 w-[327px] border-b-2   boxShadow h-[386px] flex flex-col items-center">
  
  <Image className="w-[229px] h-[223px]" width={1000} height={1000} src={img} alt="shopping"/>
  <div className=" text-center px-5">

@@ -68,19 +68,19 @@ signUpUserMutation(values)
       </Head>
    <MainClient>
 <RedHeader/>
-<div className='flex  mt-7 '>
+<div className='lg:flex px-3 lg:px-0 mt-7 '>
 
-    <div className='leftt w-2/3 py-[90px] bg-mainRed rounded-[4px] px-14'>
-        <Image width={1000} height={1000} src="/pngs/register.svg" alt='png'/>
+    <div className='lefttw-full flex justify-center lg:w-2/3 bg-mainRed rounded-[4px]'>
+        <Image className='w-[240px] lg:w-[567px]' width={1000} height={1000} src="/pngs/register.svg" alt='png'/>
     </div>
-    <div className='rightt w-1/2 flex flex-col px-10 '>
+    <div className='rightt w-full lg:w-1/2 flex flex-col px-10 '>
         <div>
 <div className='flex mt-24 mb-[72px] gap-[65px] justify-center'>
-    <button onClick={()=>push(ROUTER.USER_LOGIN)}  className='  text-par3-text font-roboto  font-[400] text-[30px] letter3' >Login</button>
-    <button  onClick={()=>push(ROUTER.USER_REGISTER)} className=' text-mainRed font-roboto  font-[600] text-[30px] letter3'>Register</button>
+    <button onClick={()=>push(ROUTER.USER_LOGIN)}  className='  text-par3-text font-roboto  font-[400] text-[20px] lg:text-[30px] letter3' >Login</button>
+    <button  onClick={()=>push(ROUTER.USER_REGISTER)} className=' text-mainRed font-roboto  font-[600] text-[20px] lg:text-[30px] letter3'>Register</button>
 </div>
 <form action="submit" onSubmit={formik.handleSubmit}>
-    <label className=' text-modal_p text-[20px] font-[500] ' htmlFor="">Full Name</label>
+    <label className=' text-modal_p text-lg lg:text-[20px] font-[500] ' htmlFor="">Full Name</label>
     <input
     name="fullname"
     value={formik.values.fullname}
@@ -89,7 +89,7 @@ signUpUserMutation(values)
       type="text" placeholder='fullname' />
 
 
-    <label className=' text-modal_p  text-[20px] font-[500] ' htmlFor="">Username</label>
+    <label className=' text-modal_p   text-lg lg:text-[20px]  font-[500] ' htmlFor="">Username</label>
     <input name="username"
     value={formik.values.username}
     onChange={formik.handleChange}
@@ -109,7 +109,7 @@ signUpUserMutation(values)
    
 
 
-    <label className=' text-modal_p  text-[20px] font-[500] ' htmlFor="">Password</label>
+    <label className=' text-modal_p   text-lg lg:text-[20px] font-[500] ' htmlFor="">Password</label>
     <div className='flex relative'>
     <input name="password"
     value={formik.values.password}

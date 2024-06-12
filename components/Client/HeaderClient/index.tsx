@@ -11,6 +11,8 @@ import { useQueryClient } from 'react-query'
 import { QUERIES } from '../../../Constant/Queries'
 import { UserDataProps } from '../../../shared/interface'
 import { handlechange } from '../../Admin/SideBar'
+import NavbarMobile from '../NavbarMobile'
+import { useSpring,animated } from '@react-spring/web'
 
 export const isActiveLink = (path: string) => {
   const router = useRouter()
@@ -22,7 +24,7 @@ const HeaderClient = () => {
 
   const { t, i18n } = useTranslation()
 const queryClient=useQueryClient()
-  const { isOpenLang, openLang, isOpenAvatar, setIsOpenAvatar, openAvatar, isOpenSearchDiv, setIsOpenSearchDiv } = useDropdownn()
+  const { isOpenLang, openLang, isOpenAvatar, setIsOpenAvatar,openSidebar,isOpenSidebar,closeSidebar, openAvatar, isOpenSearchDiv, setIsOpenSearchDiv } = useDropdownn()
   const router = useRouter()
   const { push } = router
 
@@ -46,7 +48,10 @@ useEffect(() => {
 
 
   
-
+  const sidebarAnimation = useSpring({
+    transform: isOpenSidebar ? 'translateX(0%)' : 'translateX(-100%)',
+    config: { tension: 300, friction: 30 },
+  })
 
   useEffect(() => {
     console.log('Debounced search term:', debouncedTerm);
@@ -120,11 +125,24 @@ const selectRestaurant = async (rest: any) => {
 
   return (
     <div>
-      <header className='  bg-headerbg '>
-        <div className='flex ms-10 h-[103px] items-center '>
-          <div className=' cursor-pointer ' onClick={() => push("/")}><img src="/svgs/logoblack.svg" alt="logo" /></div>
-          <div className='ms-20 me-10'>
-            <ul className='  headertext flex gap-6  '>
+      <header className='bg-headerbg py-4 px-4 lg:py-0 lg:px-0  '>
+        <div className='hidden  bg-emerald-50 lg:flex  h-[103px] md:justify-start items-center '>
+
+        <div className='block lg:hidden'>
+  <Image  className='w-[30px] block h-[30.75px] lg:hidden  '  width={1000} height={1000} src="/icons/navbarBlack.svg" alt='nav'/>
+
+  
+  <Image onClick={() => push("/")} className='w-[131px] h-[30px]  cursor-pointer flex' width={100} height={100} alt="logo" src="/svgs/logoblack.svg"/>
+
+            
+</div>
+<div className=' md:hidden lg:flex  w-[131px] h-[30px]'>
+<Image onClick={() => push("/")} className=' w-[131px] h-[30px] cursor-pointer ' width={100} height={100} alt="logo" src="/svgs/logoblack.svg"/>
+
+
+</div>
+          <div className='md:ms-0 xl:ms-20 md:me-2 xl:me-10 flex bg-green-700'>
+            <ul className='  headertext flex  md:gap-2 lg:gap-6  '>
               <li className={`${isActiveLink(ROUTER.HOME) ? "activeLink2" : ""} cursor-pointer `} onClick={() => push("/")}>{t("Home")}</li>
               <li className={`${isActiveLink(ROUTER.RESTAURANTS) ? "activeLink2" : ""} cursor-pointer `} onClick={() =>{push(ROUTER.RESTAURANTS)
            setSelectedId && setSelectedId("")
@@ -135,13 +153,14 @@ const selectRestaurant = async (rest: any) => {
             </ul>
           </div>
 
-          <div className='flex gap-6'>
+          <div className='flex  gap-6'>
+            <div className='flex'>
             <input
               onChange={(e) => setValue(e.target.value)}
               value={value}
               className='w-[304px] h-[45px] rounded-[10px] bg-white ps-5 placeholder-inputPlaceholder' type="text" placeholder={t('Search Restaurant')} />
-
-            <div className='relative w-[59px] flex flex-col items-center h-10' >
+</div>
+            <div className='relative w-[59px]  flex flex-col items-center h-10' >
               <div onClick={openLang}>
                 <img className=' cursor-pointer' src={`/icons/lang${i18n.language === 'en' ? 'en' : i18n.language === "fr" ? 'fr' : 'az'}.svg`} alt="flag" />
               </div>
@@ -160,7 +179,7 @@ const selectRestaurant = async (rest: any) => {
 
 
             </div>
-
+<div className='hidden lg:flex'>
             <button onClick={() => { push(ROUTER.USER_LOGIN) }} className={`${isUser ? " hidden" : "px-[22px] w-[115px] h-[41px]  rounded-full  text-white font-roboto font-medium  text-[16px] bg-btnRed"}`} >Sign up</button>
             <div className={`${isUser ? "flex gap-4" : "hidden"}`}>
               <Image onClick={()=>push(ROUTER.BASKET)} width={200} height={200} src="/icons/headerBasket.svg" className=' cursor-pointer w-10 h-10' alt='basket' />
@@ -170,10 +189,55 @@ const selectRestaurant = async (rest: any) => {
 
 
             </div>
-
+            </div>
           </div>
         </div>
-     
+
+
+
+
+
+
+
+
+
+
+        {/*  */}
+     <div className='flex  lg:hidden justify-between'>
+     <div className=' flex'>
+  <Image  onClick={openSidebar} className='w-[30px] block  h-[30.75px]  '  width={1000} height={1000} src="/icons/navbarBlack.svg" alt='nav'/>
+
+  
+  <Image onClick={() => push("/")} className=' cursor-pointer flex' width={100} height={100} alt="logo" src="/svgs/logoblack.svg"/>
+
+            
+</div>
+
+<div className='relative w-[59px]  flex flex-col items-center h-10' >
+              <div onClick={openLang}>
+                <img className=' cursor-pointer' src={`/icons/lang${i18n.language === 'en' ? 'en' : i18n.language === "fr" ? 'fr' : 'az'}.svg`} alt="flag" />
+              </div>
+              {isOpenLang && <div >
+                <div onClick={openLang} className=' text-14px roboto-medium z-30 flex flex-col mt-2 w-[59px]  bg-white relative  items-center py-1 font-medium'>
+                  <div onClick={openLang} className=' border-b-1 border-white py-4'  ><img  onClick={()=>handlechange("az",i18n)}src="/icons/langaz.svg" alt="" 
+                  /></div>
+                  <div className=' border-b-1 border-white py-4'  ><img onClick={()=>handlechange("fr",i18n)} src="/icons/langfr.svg" alt="" 
+                  />
+                  </div>
+                  <div className=' border-b-1 border-white py-4'  ><img onClick={()=>handlechange("en",i18n)} src="/icons/langen.svg" alt="" 
+                   /></div>
+
+                </div>
+              </div>}
+
+
+            </div>
+     </div>
+
+{isOpenSidebar && <animated.div style={sidebarAnimation} className='fixed w-full left-0 top-0 z-50  '>
+      <NavbarMobile closeSidebar={closeSidebar}/>
+     </animated.div>}
+   
 
       </header>
       {isOpenAvatar && <div className=' font-roboto absolute top-[110px] right-8 pt-6 font-[400] shadow px-3  text-base bg-white z-50 w-[178px] h-[234px] '>

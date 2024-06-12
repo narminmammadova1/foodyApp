@@ -48,7 +48,8 @@ colors:{
 "blackhead":"#00072B",
 "select":" #00072B",
 "accordionIcon":"#323232",
-"avatarColor":"#F178B6"
+"avatarColor":"#F178B6",
+"liborder":"#E0E0E0"
 },
 fontFamily:{
   'mukta':["Mukta", 'sans-serif'],

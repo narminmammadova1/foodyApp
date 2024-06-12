@@ -28,17 +28,19 @@ const FaqsPage:NextPage = () => {
         </Head> 
         <MainClient>
             <HeaderClient/>
-            <div className='mt-4 mx-[205px]'>
+            <div >
+            <div className='mt-[65px]  lg:mt-4 mx-4 lg:mx-[205px]'>
               <AnimatedSection>
 <div>
-              <h1 className=' text-center roboto-medium font-medium text-[45px] mb-10 text-inputPlaceholder'>F.A.Q</h1>
+              <h1 className=' text-center roboto-medium font-medium  text-[35px] lg:text-[45px] mb-10 text-inputPlaceholder'>F.A.Q</h1>
               </div>
               </AnimatedSection>
            
+           <div className=' mx-auto  lg:w-full'>
             <Accordion  variant="splitted">
 
       <AccordionItem key="1" 
-       className=' custom-accordion  roboto-medium font-medium text-[22px] text-inputPlaceholder' 
+       className=' custom-accordion w-min-[300px] lg:w-full roboto-medium font-medium text-[16px] lg:text-[22px] text-inputPlaceholder' 
        aria-label="Dec" 
        
        indicator={({isOpen})=>(<span  style={{ color: '#323232'}}>
@@ -47,19 +49,20 @@ const FaqsPage:NextPage = () => {
      </span>
        )}
 
-       title={t("How to contact with Customer Service?")}>
+       title={t("How to contact with Customer Service?")} >
         <p className='roboto-medium font-medium  text-lg  text-par3-text'>{t("Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.")}
 </p>
       </AccordionItem>
       <AccordionItem key="2"  
-      className=' custom-accordion roboto-medium font-medium text-[22px] text-inputPlaceholder'
+      className=' custom-accordion   roboto-medium font-medium text-[22px] text-inputPlaceholder'
        aria-label="Dec" 
        indicator={({isOpen})=>(<span  style={{ color: '#323232'}}>
        <span className={ isOpen ? 'hidden' : 'block'} style={{fontSize:"22px"}}>+</span>
        <span className={isOpen ? 'block' : 'hidden'} style={{fontSize:"20px"}}>I</span>
      </span>
        )}
-       title={t("App installation failed, how to update system information?")}>
+       title={t("App installation failed, how to update system information?")}
+       >
          <p className='roboto-medium font-medium  text-lg  text-par3-text'>{t("Our Customer Experience Team is available 7 days a week and we offer 2 ways to get in contact.Email and Chat . We try to reply quickly, so you need not to wait too long for a response!.")}
 </p>
       </AccordionItem>
@@ -103,8 +106,9 @@ const FaqsPage:NextPage = () => {
 </p>
       </AccordionItem>
     </Accordion> 
+    </div>
             </div>
-            
+            </div>
             </MainClient> 
 
             <div className='mt-[278px]'>

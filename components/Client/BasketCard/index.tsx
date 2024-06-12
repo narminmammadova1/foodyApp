@@ -89,7 +89,8 @@ const handlePush=()=>{
 
 
 return (
-  <div className={`bg-headerbg ${divSize} flex flex-col justify-between rounded boxShadow3 overflow-y-auto`}>
+
+  <div className={ ` bg-white  lg:bg-headerbg ${divSize} flex flex-col justify-between rounded overflow-y-auto`}>
     {basket?.length > 0 ? (
       <>
         <div className='pt-8'>
@@ -104,7 +105,7 @@ return (
                 onClick={() => {
                   clearBasketmutation(String(basketData?.id));
                 }}
-                className='w-[40px] h-[30px] relative top-5'
+                className='w-[40px] h-[30px] relative top-5 hidden lg:flex'
                 src="/icons/delete3.svg"
                 width={200}
                 height={200}
@@ -112,13 +113,14 @@ return (
               />
             </div>
           </div>
-          <div className='w-full'>
-            <table className="w-full">
+          <div className='w-full px-2 lg:px-0'>
+            <table className="w-full ">
               <tbody>
                 {basket?.map((item) => (
-                  <tr key={item.id} className={`border-b justify-between flex ${pad_size} border-t`}>
-                    <td className='w-1/6'>
-                      <div className={`flex ${img_size}`}>
+                  <tr key={item.id} className={`border-b justify-between flex ${pad_size} border-t py-6 lg:py-8`}>
+                    <td className='lg:w-1/6'>
+                      <div className={`flex ${img_size} mt-4 lg:mt-0 bg-orange-900`}>
+
                         <Image
                           className={`cursor-pointer rounded-full ${img_size}`}
                           width={200}
@@ -128,12 +130,12 @@ return (
                         />
                       </div>
                     </td>
-                    <td className='flex-col w-3/5'>
+                    <td className='flex-col lg:w-3/5  bg-amber-500'>
                       <p className={`${p_size} roboto-medium font-medium text-modal_p`}>{item.name.slice(0, 25)}</p>
                       <p className={`${p14_size} roboto-medium font-medium text-modal_p`}>${item.price}</p>
                     </td>
-                    <td className='flex gap-[19px]'>
-                      <div className={`flex flex-col font-medium items-center ${whitebtn_size} bg-white rounded-[50px]`}>
+                    <td className='flex bg-red-900 '>
+                      <div className={`flex flex-col font-medium items-center ${whitebtn_size} bg-headerbg lg:bg-white rounded-[50px]`}>
                         <Image
                           onClick={() => {
                             addBasketmutation(item.id);
@@ -165,7 +167,7 @@ return (
             </table>
           </div>
         </div>
-        <div>
+        <div className='mt-9'>
           <BtnCheckout onClick={handlePush}  total_price={basketData?.total_amount} size={size} />
         </div>
       </>
@@ -181,7 +183,7 @@ return (
           <p className='font-roboto font-medium text-[40px] text-btn-cncl'>Basket Empty</p>
         </div>
         <div className=''>
-          <button className={`${size === "small" ? "btn_small" : "btn_large"} roboto-medium mt-12 font-medium bg-btn-cncl w-full text-white rounded-full h-[47px]`}>
+          <button className={`${size === "small" ? "btn_small" : "btn_large"} roboto-medium mt-12 font-medium bg-btn-cncl w-full text-white rounded-full h-[41px] lg:h-[47px]`}>
             <div className='flex justify-between ps-6 items-center'>
               <p>Checkout</p>
               <div className={`w-[135px] h-[43px] rounded-full ${size === "small" ? "btn2_small" : "btn2_large"} bg-white text-btn-cncl flex items-center justify-center`}>

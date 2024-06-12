@@ -59,8 +59,14 @@ console.log("currentProducttttttttttttttttttttttt yeniiiiiiiiiiii",currentProduc
         <div className="flex gap-[50px] mt-[48px] pe-5">
           <ProductsTable currentProducts={currentProduct} />
 
-          {!isUser || basketData && basketData.items?.length<0 ?( <EmptyBasket size="small"/>
-):(       <BasketCard basketData={basketData}  size="small" /> 
+          {!isUser || basketData && basketData.items?.length<0 ?( 
+          <div className='hidden lg:block'>
+          <EmptyBasket size="small"/>
+          </div>
+):(     
+  <div className='hidden lg:block'> 
+   <BasketCard basketData={basketData}  size="small" /> 
+   </div>
 )
 
 

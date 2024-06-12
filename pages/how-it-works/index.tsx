@@ -21,8 +21,8 @@ const HowItWorks:NextPage = () => {
 <div className='flex flex-col items-center px-24 mt-[74px]'>
   <AnimatedSection>
 <div className='  flex flex-col items-center'>
-    <h1 className=' font-mukta font-[600] text-[45px] text-inputPlaceholder'>How it works</h1>
-    <p className='px-8 text-center roboto-medium font-medium  text-par3-text text-xl '>Delivery may be extended during sale periods. Please refer to the checkout page 
+    <h1 className=' font-mukta font-[600] text-[35px] lg:text-[45px] text-inputPlaceholder'>How it works</h1>
+    <p className='lg:px-8 text-center roboto-medium font-medium  text-par3-text text-base lg:text-xl '>Delivery may be extended during sale periods. Please refer to the checkout page 
         for an updated estimate for your location. Kindly note that once you have placed an order,
          it is no longer possible to modify your order. Taxes and duties are included in all product prices.
          It is possible to place an order with shipment to a different address than your home or billing 
@@ -32,9 +32,11 @@ const HowItWorks:NextPage = () => {
          registered home address.</p>
 </div>
 </AnimatedSection>
-<div className='mt-[55px] flex justify-center relative w-full '>
-    <Image className='   ' width={1000} height={1000} src="/svgs/howitorange.svg" alt='delivery'/>
-    <Image className=' absolute  top-[-55px]  w-[628px]' width={1000} height={1000} src="/svgs/delivery.svg"  alt='delivery'/>
+<div className='mt-[55px] mb-[122px] lg:mb-0  flex justify-center relative w-full '>
+    <Image className='hidden lg:block   ' width={1000} height={1000} src="/svgs/howitorange.svg" alt='delivery'/>
+    <Image className='block lg:hidden   ' width={1000} height={1000} src="/icons/yellow2.svg" alt='yellow'/>
+
+    <Image className=' absolute top-[50px] lg:top-[-55px]  lg:w-[628px]' width={1000} height={1000} src="/svgs/delivery.svg"  alt='delivery'/>
 
 </div>
 

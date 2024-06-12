@@ -190,8 +190,8 @@ const{mutate:addBasketmutation}=useMutation({
 // }
 
 const togglePassword = useCallback(() => {
-  setShowPassword(!showPassword);
-}, []);
+  setShowPassword(prevState => !prevState);
+}, [setShowPassword]);
 
 
 

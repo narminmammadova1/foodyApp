@@ -19,10 +19,13 @@ const UserBasket = () => {
         </Head>
         <MainClient>
             <HeaderClient/>
-            <div className='mt-4 flex gap-4'>
-
+            <div className='mt-4  mx-4 lg:mx-0 bg-orange-800 flex gap-4'>
+<div className='hidden lg:block'>
 <UserSidebar/>
+</div>
+<div className='w-full '>
 <BasketCard basketData={basketData} size="large" headtitle="Your Basket"/>
+</div>
             </div>
         </MainClient>
     </div>

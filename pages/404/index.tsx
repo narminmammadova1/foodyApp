@@ -17,7 +17,7 @@ const index:NextPage = () => {
       <MainClient>
 
         <HeaderClient/>
-        <div className='mt-4 w-full '>
+        <div className='mt-4 w-full mb-[420px] lg:mb-0 px-4 lg:px-0'>
             <Image className=' w-full h-full object-cover' width={1000} height={1000} src="/svgs/404.svg" alt='404'/>
             
         </div>

@@ -155,7 +155,7 @@ const { mutate: signInAdmin } = useMutation({
                                   />
 
  <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
-              <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eyepassword.svg" alt="eye"/>
+              <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eyePassword.svg" alt="eye"/>
              </div>                                                  
                                                     
                                                     

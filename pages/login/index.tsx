@@ -90,15 +90,15 @@ const LoginPage: NextPage = () => {
       </Head>
       <MainClient>
         <RedHeader />
-        <div className='flex  mt-7 '>
-          <div className='leftt w-2/3 bg-mainRed rounded-[4px]'>
-            <Image width={1000} height={1000} src="/pngs/member.svg" alt='png' />
+        <div className=' lg:flex h-[1024px]  px-3 lg:px-0   mt-7 '>
+          <div className='lefttw-full flex justify-center lg:w-2/3 bg-mainRed rounded-[4px]'>
+            <Image className='w-[240px] lg:w-[567px]' width={1000} height={1000} src="/pngs/member.svg" alt='png' />
           </div>
-          <div className='rightt w-1/2 flex flex-col px-10 '>
+          <div className='rightt w-full lg:w-1/2 flex flex-col px-10 '>
             <div>
               <div className='flex mt-24 mb-[72px] gap-[65px] justify-center'>
-                <button onClick={() => push(ROUTER.USER_LOGIN)} className=' text-mainRed font-roboto  font-[600] text-[30px] letter3'>Login</button>
-                <button onClick={() => push(ROUTER.USER_REGISTER)} className='  text-par3-text font-roboto  font-[400] text-[30px] letter3'>Register</button>
+                <button onClick={() => push(ROUTER.USER_LOGIN)} className=' text-mainRed font-roboto  font-[600] text-[20px] lg:text-[30px] letter3'>Login</button>
+                <button onClick={() => push(ROUTER.USER_REGISTER)} className='  text-par3-text font-roboto  font-[400] text-[20px] lg:text-[30px] letter3'>Register</button>
               </div>
               <form onSubmit={formik.handleSubmit}>
                 <label className=' text-modal_p text-[20px] font-[500] ' htmlFor="">Username</label>
@@ -106,15 +106,15 @@ const LoginPage: NextPage = () => {
                   name="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
-                  className=' font-roboto font-[400] text-modal_p h-[68px] w-full mb-7 bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  ' type="email" placeholder='username' />
+                  className=' font-roboto font-[400] text-modal_p h-[68px] w-full mb-7 bg-lightPink  mt-4 ps-6 rounded-[5px]  text-lg lg:text-[20px] ' type="email" placeholder='username' />
 
-                <label className=' text-modal_p  text-[20px] font-[500] ' htmlFor="">Password</label>
+                <label className=' text-modal_p text-lg lg:text-[20px] font-[500] ' htmlFor="">Password</label>
                 <div className='flex relative items-center'>
                   <input
                     name='password'
                     value={formik.values.password}
                     onChange={formik.handleChange}
-                    className=' font-roboto font-[400] text-modal_p h-[68px] w-full bg-lightPink  mt-4 ps-6 rounded-[5px]  text-[18px]  '
+                    className=' font-roboto font-[400] text-modal_p h-[68px] w-full bg-lightPink  mt-4 ps-6 rounded-[5px] text-lg lg:text-[20px] '
                     type={`${showPassword ? "text" : "password"}`} placeholder='password' />
                   <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
                     <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eye.svg" alt="eye" />

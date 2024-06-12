@@ -23,8 +23,8 @@ const AboutUs:NextPage = () => {
         <MainClient>
 
             <HeaderClient/>
-<div className='flex mt-[113px]'>
-            <div className='ps-[62px] pe-10 w-1/2'>
+<div className='lg:flex mt-[113px] px-6 lg:px-0'>
+            <div className='lg:ps-[62px] lg:pe-10 w-full lg:w-1/2 text-center lg:text-start'>
                 <h1 className=' font-mukta font-[600] mb-7 text-[45px] text-inputPlaceholder'>{t("About Us")}</h1>
                 <p className=' text-par3-text roboto-medium text-[20px]'>Lorem ipsum is placeholder text commonly used in the graphic, print, 
                     and publishing industries for previewing layouts and visual mockups
@@ -36,22 +36,24 @@ const AboutUs:NextPage = () => {
                       </p>
             </div>
 
-            <div className='w-1/2 relative   me-10'>
-              <div className='mt-6 '>
-                <Image width={1000} height={1000} src="/svgs/about.svg" alt='aboutus'/>
+            <div className=' w-full lg:w-1/2 relative   me-10'>
+              <div className='mt-6 px-4 py-4 bg-zinc-700 '>
+                <Image className='hidden lg:flex' width={1000} height={1000} src="/svgs/about.svg" alt='aboutus'/>
+                <Image className='block lg:hidden ' width={1000} height={1000} src="/icons/yellow2.svg" alt='yellow'/>
+
                 </div>
-                <animated.div style={springStyles2} className="absolute  top-10 right-10">
-                <Image className='w-[274px] h-[228px] ' width={1000} height={1000} src="/svgs/abouthamb.svg" alt='aboutus'/>
+                <animated.div style={springStyles2} className="hidden lg:flex  absolute  top-10 right-10">
+                <Image className='w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/abouthamb.svg" alt='aboutus'/>
                 </animated.div>
-                <animated.div style={springStyles} className="absolute  top-[220px] left-[20px] ">
+                <animated.div style={springStyles} className="absolute top-[120px] left-[80px]  lg:top-[220px] lg:left-[20px] ">
                 <Image className='w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutpizza.svg" alt='aboutus'/>
                 </animated.div>
 
-                <animated.div style={springStyles2} className="absolute  top-[312px] right-[10px]">
+                <animated.div style={springStyles2} className=" hidden lg:flex absolute  top-[312px] right-[10px]">
                 <Image  className='   w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutsoup.svg" alt='aboutus'/>
                 </animated.div>
 
-                <animated.div style={springStyles} className=" absolute  top-[524px] left-[20px]">
+                <animated.div style={springStyles} className=" absolute top-[400px] left-[80px]  lg:top-[524px] lg:left-[20px]">
                 <Image  className='   w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutcoffee.svg" alt='aboutus'/>
                 </animated.div>
 
