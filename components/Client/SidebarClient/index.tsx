@@ -13,7 +13,7 @@ const SidebarClient:React.FC<CategoryDataProps> = ({categoryData}) => {
   
   const {selectedId,setSelectedId}=useGlobalContext() || {}
   return (
-    <div className='w-[251px] pt-6 bg-headerbg'>
+    <div className='w-[251px]  pt-6 bg-headerbg'>
 
         <ul className='px-7 flex flex-col gap-9'>
 {categoryData?.map((category)=>(

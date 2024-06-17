@@ -126,7 +126,7 @@ const selectRestaurant = async (rest: any) => {
   return (
     <div>
       <header className='bg-headerbg py-4 px-4 lg:py-0 lg:px-0  '>
-        <div className='hidden  bg-emerald-50 lg:flex  h-[103px] md:justify-start items-center '>
+        <div className='hidden lg:flex  h-[103px] md:justify-start items-center '>
 
         <div className='block lg:hidden'>
   <Image  className='w-[30px] block h-[30.75px] lg:hidden  '  width={1000} height={1000} src="/icons/navbarBlack.svg" alt='nav'/>
@@ -141,7 +141,7 @@ const selectRestaurant = async (rest: any) => {
 
 
 </div>
-          <div className='md:ms-0 xl:ms-20 md:me-2 xl:me-10 flex bg-green-700'>
+          <div className='md:ms-0 xl:ms-20 md:me-2 xl:me-10 flex'>
             <ul className='  headertext flex  md:gap-2 lg:gap-6  '>
               <li className={`${isActiveLink(ROUTER.HOME) ? "activeLink2" : ""} cursor-pointer `} onClick={() => push("/")}>{t("Home")}</li>
               <li className={`${isActiveLink(ROUTER.RESTAURANTS) ? "activeLink2" : ""} cursor-pointer `} onClick={() =>{push(ROUTER.RESTAURANTS)
@@ -266,7 +266,7 @@ const selectRestaurant = async (rest: any) => {
           setLetters("")
           
   
-        }} className='cursor-pointer   text-black  pb-2 mb-2'>Logout</div>
+        }} className='cursor-pointer   text-black  pb-2 mb-2'>{t("Logout")}</div>
       </div>
       }
 

@@ -9,7 +9,7 @@ const FooterClient = () => {
 
         <div className='footertop lg:flex  justify-around mt-40 '>
 
-<div className='leftt bg-red-400 w-full lg:w-1/2 '>
+<div className='leftt w-full lg:w-1/2 '>
 
       <div className='flex flex-col items-center lg:items-start mx-auto lg:ms-24 '>
         <img src="/svgs/logo.svg" alt="" />

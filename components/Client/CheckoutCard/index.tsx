@@ -62,16 +62,16 @@ const {t}=useTranslation()
   };
 
   return (
-    <div className='bg-headerbg w-[618px] px-9 pt-9'>
-      <h1 className='font-mukta font-[600] text-[30px] text-modal_p letter3 mb-6'>{t("Checkout")}</h1>
+    <div className=   ' bg-white   lg:bg-headerbg   lg:w-[618px] mx-4 lg:mx-0  lg:px-9 pt-9'>
+      <h1 className=' hidden lg:block font-mukta font-[600] text-[30px] text-modal_p letter3 mb-6'>{t("Checkout")}</h1>
       <div>
         <form className='flex flex-col' onSubmit={formik.handleSubmit}>
-          <label className='font-mukta font-[600] text-lg text-modal_p' htmlFor='delivery_address'>{t("Delivery Address")}</label>
+          <label className='font-mukta  font-[600] text-lg text-modal_p' htmlFor='delivery_address'>{t("Delivery Address")}</label>
           <input
             name='delivery_address'
             value={formik.values.delivery_address}
             onChange={formik.handleChange}
-            className='w-full rounded h-[53px] mb-7 font-mukta font-[400] text-xl text-par3-text'
+            className='w-full rounded px-2 h-[53px] mb-7 bg-headerbg lg:bg-white font-mukta font-[400] text-xl text-par3-text'
             type='text'
           />
 
@@ -80,7 +80,7 @@ const {t}=useTranslation()
             name='contact'
             value={formik.values.contact}
             onChange={formik.handleChange}
-            className='w-full h-[53px] rounded mb-7 font-mukta font-[400] text-xl text-par3-text'
+            className='w-full px-2 h-[53px] rounded mb-7 font-mukta font-[400]  bg-headerbg lg:bg-white text-xl text-par3-text'
             type='text'
           />
 
@@ -95,7 +95,7 @@ const {t}=useTranslation()
                 type='radio'
                 checked={formik.values.payment_method === '0'}
               />
-              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCash'>{t("Pay at the door")}</label>
+              <label className='text-[14px] roboto-medium  font-[400] text-par3-text' htmlFor='withCash'>{t("Pay at the door")}</label>
             </div>
             <div className='flex gap-[5px]'>
               <input
@@ -106,7 +106,7 @@ const {t}=useTranslation()
                 type='radio'
                 checked={formik.values.payment_method === '1'}
               />
-              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCard'>{t("Pay at the door by credit card")}</label>
+              <label className='text-[14px] roboto-medium font-[400] text-par3-text' htmlFor='withCard'>{t("Pay at the door by Credit card")}</label>
             </div>
           </div>
 

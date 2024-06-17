@@ -6,6 +6,9 @@ import Image from 'next/image'
 import { isActiveLink } from '../HeaderClient'
 import { useDropdownn } from '../../../shared/hooks/useDropdown'
 import { useGlobalContext } from '../../../Context/GlobalContext'
+import { useQueryClient } from 'react-query'
+import { QUERIES } from '../../../Constant/Queries'
+import { useTranslation } from 'react-i18next'
 
 
 interface NavbarMobileProps{
@@ -13,9 +16,14 @@ interface NavbarMobileProps{
 }
 const NavbarMobile:React.FC<NavbarMobileProps> = ({closeSidebar}) => {
     // const {openSidebar,isOpenSidebar,}=useDropdownn()
-const { isUser, setIsUser,profilImg,letters}=useGlobalContext() || {}
+const { isUser, setIsUser,profilImg,letters,setProfilImg,setLetters,userData}=useGlobalContext() || {}
     const router=useRouter()
     const {push}= router
+    const queryClient=useQueryClient()
+    const userFullname = userData?.fullname;
+console.log("gggggggggggg",userFullname);
+const { t } = useTranslation()
+
   return (
 <div className='w-full h-[1044px]  z-50 flex'>
 
@@ -30,11 +38,11 @@ const { isUser, setIsUser,profilImg,letters}=useGlobalContext() || {}
 {isUser ? (<div className=' flex gap-2 items-center'> <div  className=' w-10 h-10 cursor-pointer rounded-full object-cover text-white flex justify-center items-center font-roboto roboto-medium bg-avatarColor '>
                 {profilImg ? <img className=' w-10 h-10 rounded-full' src={profilImg} /> : <span>{letters}</span>}
               </div>
-              <p className='text-base font-medium  font-roboto-medium text-blackli'>Nermin Memmedova</p> </div>) :
+              <p className='text-base font-medium  font-roboto-medium text-blackli'>{userFullname}</p> </div>) :
               (<div className='w-[127px]'>
               <ButtonRed onClick={()=>{
-    push(ROUTER.USER_REGISTER)
-}} btnText="Sign Up"/>
+    push(ROUTER.USER_LOGIN)
+}} btnText={t("Sign Up")}/>
 </div>)}
 
 </div>
@@ -43,37 +51,44 @@ const { isUser, setIsUser,profilImg,letters}=useGlobalContext() || {}
         <ul className='flex-col gap-4 text-lg font-roboto text-headerUl roboto-medium'>
             <li  className={`${isActiveLink(ROUTER.HOME) ? "activeLink2" : ""} cursor-pointer `} onClick={()=>{
                 push(ROUTER.HOME)
-            }}>Home</li>
+            }}>{t("Home")}</li>
             <li  className={`${isActiveLink(ROUTER.RESTAURANTS) ? "activeLink2" : ""} cursor-pointer `}  onClick={()=>{
                 push(ROUTER.RESTAURANTS)
-            }}>Restaurants</li>
+            }}>{t("Restaurants")}</li>
 
-<li  className={`${isActiveLink(ROUTER.RESTAURANTS) ? "activeLink2" : ""} ${isUser ? "flex" : "hidden"} cursor-pointer  `}  onClick={()=>{
+<li  className={`${isActiveLink(ROUTER.PROFILE) ? "activeLink2" : ""} ${isUser ? "flex" : "hidden"} cursor-pointer  `}  onClick={()=>{
                 push(ROUTER.PROFILE)
-            }}>Profile</li>
+            }}>{t("Profile")}</li>
               <li  className={`${isActiveLink(ROUTER.BASKET) ? "activeLink2" : ""} ${isUser ? "flex" : "hidden"} cursor-pointer `}  onClick={()=>{
                 push(ROUTER.BASKET)
-            }}>Your Basket</li>
+            }}>{t("Your Basket")}</li>
               <li  className={`${isActiveLink(ROUTER.ORDER) ? "activeLink2" : ""} ${isUser ? "flex" : "hidden"} cursor-pointer `}  onClick={()=>{
                 push(ROUTER.ORDER)
-            }}>Your Orders</li>
+            }}>{t("Your Orders")}</li>
               <li  className={`${isActiveLink(ROUTER.CHECKOUT) ? "activeLink2" : ""} ${isUser ? "flex" : "hidden"} cursor-pointer `}  onClick={()=>{
                 push(ROUTER.CHECKOUT)
-            }}>Checkout</li>
+            }}>{t("Checkout")}</li>
             <li  className={`${isActiveLink(ROUTER.ABOUTus) ? "activeLink2" : ""} cursor-pointer `}  onClick={()=>{
                 push(ROUTER.ABOUTus)
-            }}>About Us</li>
+            }}>{t("About Us")}</li>
             <li  className={`${isActiveLink(ROUTER.HOWITWORKS) ? "activeLink2" : ""} cursor-pointer `}  onClick={()=>{
                 push(ROUTER.HOWITWORKS)
-            }}>How It Works</li>
+            }}>{t("How It Works")}</li>
             <li className={`${isActiveLink(ROUTER.FAQS) ? "activeLink2" : ""} cursor-pointer `}   onClick={()=>{
                 push(ROUTER.FAQS)
-            }}>Fags</li>
+            }}>{t("Fags")}</li>
 
-             <li className={`${isActiveLink(ROUTER.FAQS) ? "activeLink2" : ""} cursor-pointer mt-[58px] `}   onClick={()=>{
+             <li className={` cursor-pointer mt-[58px]  ${isUser ? "flex" : "hidden"} `}   onClick={()=>{
+                          localStorage.removeItem("user_accesToken");
+
                 setIsUser(false)
-                push(ROUTER.HOME)
-            }}>Logout</li>
+                localStorage.setItem("IsUser","false")
+                push("/")
+                 queryClient.invalidateQueries(QUERIES.User)
+      
+                 setProfilImg && setProfilImg("");
+                setLetters("")
+            }}>{t("Logout")}</li>
             
             
 

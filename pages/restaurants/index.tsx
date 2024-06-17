@@ -113,7 +113,7 @@ if (isLoading ) {
  <p className='text-base'>Filters</p>
   </div>
 </div>
-<div className='flex w-full flex-wrap'>
+<div className='flex w-full   justify-normal flex-wrap'>
  {(selectedId ? filteredRest : restData)?.map((rest:RestProps) => (
               <RestaurantCards key={rest.id} rest={rest} 
               />

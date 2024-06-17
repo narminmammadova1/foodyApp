@@ -88,8 +88,11 @@ useEffect(() => {
       </Head>
       <MainClient>
         <HeaderClient/>
-        <div className='flex mt-4 gap-4 w-full'>
+        <div className='flex flex-col-reverse lg:flex-row mt-4 gap-4 w-full'>
+          <div className='hidden lg:block'>
             <UserSidebar/>
+            </div>
+            
 {isOrdered ?(<OrderReceived/>) :(<> <CheckoutCard user={userData} addOrdermutation={addOrdermutation}/>
             <Check/>
             </>
@@ -100,6 +103,7 @@ useEffect(() => {
       <div className='mt-[272px]'>
       <FooterClient/>
       </div>
+
     </div>
   )
 }

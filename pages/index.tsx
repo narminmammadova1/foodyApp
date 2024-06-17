@@ -16,6 +16,7 @@ import { useCallback,} from "react";
 import AnimatedSection from "../components/AnimatedSection/AnimatedSection";
 import AnimatedSection2 from "../components/AnimatedSection2";
 import { useAnimatedStyles } from "../shared/animated/animated";
+import { useTranslation } from "react-i18next";
 // 
 
 
@@ -41,6 +42,7 @@ const handlePush=useCallback((routerr:any)=>{
   push(routerr)
 
 },[router])
+const {t}=useTranslation()
 
   return (
 
@@ -58,16 +60,17 @@ const handlePush=useCallback((routerr:any)=>{
   <div className="flex bg-headerbg pb-8 lg:pb-40 pt-16" >
   <div className="flex flex-col-reverse lg:flex-row">
 <div className="leftDiv  lg:py-10 lg:ps-8 text-center lg:text-start ">
-  <h1 className="lg:line lg:pe-0 font-roboto font-[900] lg:font-[800] letter3 text-[20px] lg:text-[60px]">Our Food site makes it easy to find local food</h1>
+  <h1 className="lg:line lg:pe-0 font-roboto font-[900] lg:font-[800] letter3 text-[20px] lg:text-[60px]">
+  {t("Our Food site makes it easy to find local food")}</h1>
   <p className=" mt-5 hidden lg:block  lg:me-72 font-roboto line2 letter3 text-headerUl text-[22px] font-[400]">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
 
-<div className="sm:flex  lg:flex gap-10 bg-red-300 mt-10">
+<div className="sm:flex  lg:flex gap-10  mt-10">
 
-  <ButtonRed btnText="Register"  onClick={()=>{
+  <ButtonRed btnText={t("Register")}  onClick={()=>{
     handlePush("/register")
   }}   />
   <div className=" mt-3 lg:mt-0">
-  <ButtonWhite  onClick={()=>push(ROUTER.CHECKOUT)}  btnText="Order now"            />
+  <ButtonWhite  onClick={()=>push(ROUTER.CHECKOUT)}  btnText={t("Order now")}            />
   </div>
 </div>
 </div>
@@ -120,8 +123,8 @@ const handlePush=useCallback((routerr:any)=>{
 </div>
 </div>
 <AnimatedSection>
- <div className="flex flex-col bg-orange-800 items-center lg:px-64 mt-[20px]  lg:mt-[82px]  text-center">
-  <p className=" font-roboto font-[700]  lg:font-[900] text-[32px]  lg:text-[40px]">Features</p>
+ <div className="flex flex-col items-center lg:px-64 mt-[20px]  lg:mt-[82px]  text-center">
+  <p className=" font-roboto font-[700]  lg:font-[900] text-[32px]  lg:text-[40px]">{t("Features")}</p>
   <p className="  font-roboto  text-par3-text font-[400] text-[16px]  lg:text-[22px]">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
  </div>
  </AnimatedSection>
@@ -133,15 +136,15 @@ const handlePush=useCallback((routerr:any)=>{
 
 <section className="mt-10">
 <AnimatedSection>
-<div className=" mt-7 bg-orange-700 pb-10 lg:flex  justify-center  gap-[78px]">
+<div className=" mt-7  pb-10 lg:flex  justify-center  gap-[78px]">
 <div>
-<Card2   img="/pngs/shoppinggirl.svg" Title1="Discount Boucher" Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
+<Card2   img="/pngs/shoppinggirl.svg" Title1={t("Discount Boucher")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
 </div>
 <div >
-<Card2  img="/pngs/soup.svg"  Title1="Fresh healthy Food" Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
+<Card2  img="/pngs/soup.svg"  Title1={t("Fresh healthy Food")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
 </div>
 <div >
-<Card2 img="/pngs/kargo.svg"  Title1="Fast Home Delivery" Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
+<Card2 img="/pngs/kargo.svg"  Title1={t("Fast Home Delivery")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
 </div>
 
 
@@ -151,39 +154,18 @@ const handlePush=useCallback((routerr:any)=>{
  </div>
  </AnimatedSection>
 </section>
-{/* 
+
+
+
 <section className="lg:mt-[281px]">
-<div className="lg:flex  bg-orange-500 mx-8  lg:mx-0 justify-center">
-  <div  className="leftdiv  text-center lg:text-start  lg:pt-8 lg:w-1/2">
-    <p className=" font-roboto font-[900] text-[50px] line text-textblack">{offerName?.[0]}</p>
-    <p className="font-roboto font-[400] text-[22px] line2 text-par3-text mt-7  lg:me-32 lg:pe-16">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
-  </div>
-  <AnimatedSection>
-  <div className="rightdiv  bg-green-200  lg:w-[619px] lg:h-[653px]"> 
-  <div className=" bg-amber-400   ">
-  <Image className=" relative  lg:w-[619px] lg:h-[653px] top-0 lg:left-[-50px]  " width={1000} height={1000} src="/pngs/redkamp.svg" alt="kfc"/>
-
-    <Image className=" absolute top-auto right-20 lg:top-44  lg:right-44
-     rounded-full w-[280px]  h-[280px] lg:w-[360px] lg:h-[360px] " width={1000} height={1000} src={offerImage ? offerImage[0] : "/pngs/kfcmeny.svg"} alt="kfc"/>
- </div>
- 
-  </div>
-  </AnimatedSection>
-</div>
-
-
-</section> */}
-
-
-<section className="lg:mt-[281px] bg-sky-800">
-<div className="text-center lg:text-start lg:flex  bg-orange-500">
-  <div  className="leftdiv w-full lg:w-2/3 px-4 lg:px-0 bg-green-950 ">
+<div className="text-center lg:text-start lg:flex ">
+  <div  className="leftdiv w-full lg:w-2/3 px-4 lg:px-0 ">
     <p className=" font-roboto font-[900] text-[25px] lg:text-[50px] line text-textblack">{offerName?.[0]}</p>
     <p className="font-roboto font-[400] text-[16px] lg:text-[22px] line2 text-par3-text mt-7  ">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
   <AnimatedSection>
-  <div className="rightdiv w-full lg:w-4/5 bg-green-600  lg:flex items-center  "> 
-  <div className=" relative bg-amber-400  lg:w-[721px] lg:h-[556px]    ">
+  <div className="rightdiv w-full lg:w-4/5 lg:flex items-center  "> 
+  <div className=" relative lg:w-[721px] lg:h-[556px]    ">
   <Image className=" absolute " width={1000} height={1000} src="/pngs/redkamp.svg" alt="kfc"/>
 
     <Image className=" absolute mx-auto lg:mx-0 top-40  left-32 lg:top-48 lg:left-40
@@ -220,8 +202,8 @@ const handlePush=useCallback((routerr:any)=>{
 <div className="flex  justify-center">
   
   <div className="leftdiv pt-8 w-2/3">
-    <p className=" font-roboto font-[900] text-[50px] line text-textblack"> Do You Like French Fries?
-Mmm...</p>
+    <p className=" font-roboto font-[900] text-[50px] line text-textblack"> {t("Do You Like French Fries?Mmm...")}
+</p>
     <p className="font-roboto font-[400] text-[22px] line2 text-par3-text mt-7 me-36 pe-40">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
   <AnimatedSection>
@@ -240,7 +222,7 @@ Mmm...</p>
 <section className="mt-[162px]">
   <div className="flex flex-col items-center justify-center ">
     <div className="lg:mx-96 text-center  mb-3">  
-         <p className=" font-roboto font-[900]  text-[25px] lg:text-[40px] letter3">Our Popular Update New Foods</p>
+         <p className=" font-roboto font-[900]  text-[25px] lg:text-[40px] letter3">{t("Our Popular Update New Foods")}</p>
 </div>
 <div className="text-center lg:mx-64 px-4 lg:px-0">    
  <p className=" font-roboto font-[400] line2 text-[16px] lg:text-[22px]  text-par3-text"> Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
@@ -253,10 +235,10 @@ Mmm...</p>
 <AnimatedSection>
 <div className=" pb-10 lg:flex  justify-center  gap-[78px]">
 
-<Card2 img="/pngs/double.svg" Title1="Discount Boucher" Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
-<Card2  img="/pngs/margarita.svg" Title1="Fresh healthy Food" Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
+<Card2 img="/pngs/double.svg" Title1={t("Discount Boucher")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
+<Card2  img="/pngs/margarita.svg" Title1={t("Fresh healthy Food")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
 
-<Card2 img="/pngs/kfc.svg" Title1="Fast Home Delivery" Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
+<Card2 img="/pngs/kfc.svg" Title1={t("Fast Home Delivery")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
 
 
 
@@ -274,10 +256,11 @@ Mmm...</p>
 <Image width={1000} height={1000} src="pngs/pizza3.svg" alt="pizza"/>
 </div>
 <div className="px-14 flex flex-col items-center">
-  <p className="font-roboto  text-white  font-medium text-[20px] lg:text-[50px] line letter3 text-center">Discover Restaurants Near From You</p>
+  <p className="font-roboto  text-white  font-medium text-[20px] lg:text-[50px] line letter3 text-center">
+   {t("Discover Restaurants Near From You")}</p>
   <ButtonOrange onClick={()=>{
     handlePush(ROUTER.RESTAURANTS)
-  }} btnText="Explore now" />
+  }} btnText={t("Explore now")} />
 </div>
 
 <div className="w-[200px]  hidden lg:block h-[200px] pt-10">

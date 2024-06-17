@@ -26,9 +26,13 @@ if(isLoading){
       </Head>
       <MainClient>
         <HeaderClient/>
-        <div className='mt-4 flex gap-4'>
+        <div className='mt-4 flex lg:gap-4'>
+          <div className='hidden   lg:block'>
             <UserSidebar/>
+            </div>
+            <div className='w-full px-4  lg:px-0'>
             <UserOrderCard  />
+            </div>
 
         </div>
       </MainClient>

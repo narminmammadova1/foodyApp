@@ -37,7 +37,7 @@ const AboutUs:NextPage = () => {
             </div>
 
             <div className=' w-full lg:w-1/2 relative   me-10'>
-              <div className='mt-6 px-4 py-4 bg-zinc-700 '>
+              <div className='mt-6 px-4 py-4 '>
                 <Image className='hidden lg:flex' width={1000} height={1000} src="/svgs/about.svg" alt='aboutus'/>
                 <Image className='block lg:hidden ' width={1000} height={1000} src="/icons/yellow2.svg" alt='yellow'/>
 

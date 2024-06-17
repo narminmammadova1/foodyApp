@@ -6,8 +6,11 @@ import Image from 'next/image'
 import FooterClient from '../../components/Client/FooterClient'
 import { NextPage } from 'next'
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
+import { useTranslation } from 'react-i18next'
 
 const HowItWorks:NextPage = () => {
+  const {t}=useTranslation()
+
   return (
     <div>
       
@@ -21,7 +24,7 @@ const HowItWorks:NextPage = () => {
 <div className='flex flex-col items-center px-24 mt-[74px]'>
   <AnimatedSection>
 <div className='  flex flex-col items-center'>
-    <h1 className=' font-mukta font-[600] text-[35px] lg:text-[45px] text-inputPlaceholder'>How it works</h1>
+    <h1 className=' font-mukta font-[600] text-[35px] lg:text-[45px] text-inputPlaceholder'>{t("How it works")}</h1>
     <p className='lg:px-8 text-center roboto-medium font-medium  text-par3-text text-base lg:text-xl '>Delivery may be extended during sale periods. Please refer to the checkout page 
         for an updated estimate for your location. Kindly note that once you have placed an order,
          it is no longer possible to modify your order. Taxes and duties are included in all product prices.

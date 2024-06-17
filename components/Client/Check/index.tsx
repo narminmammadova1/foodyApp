@@ -14,8 +14,10 @@ const {t}=useTranslation()
 setUserBasket(basketItems)
   },[])
   return (
-    <div className='bg-headerbg rounded max-h-[372px] overflow-y-auto flex flex-col p-9 w-[397px]  text-par3-text'>
-      <h1 className=' roboto-medium font-medium text-lg mb-2 letter3 text-center '>{t("Your Order")}</h1>
+    <div className='lg:bg-headerbg rounded max-h-[372px] overflow-y-auto mx-4 lg:mx-0 flex  flex-col p-9 lg:w-[397px]  text-par3-text'>
+           <h1 className=' block lg:hidden  font-mukta font-[600] text-[30px] text-modal_p letter3 mb-10'>{t("Checkout")}</h1>
+
+      <h1 className=' roboto-medium font-medium text-lg mb-3 letter3 lg:text-center '>{t("Your Order")}</h1>
       <table className=' roboto-medium text-[14px]  '>
         <tbody>
           {userBasket?.map((data)=>( 

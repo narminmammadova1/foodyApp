@@ -12,7 +12,7 @@ import { BasketProps, BasketPropsItem } from '../../../shared/interface';
 import { useTranslation } from 'react-i18next';
 
 interface BasketCardProps{
-  size: string | undefined;
+  size?: string | undefined;
   headtitle?: string | undefined,
   basketData?:BasketProps |undefined
 }
@@ -105,7 +105,7 @@ return (
                 onClick={() => {
                   clearBasketmutation(String(basketData?.id));
                 }}
-                className='w-[40px] h-[30px] relative top-5 hidden lg:flex'
+                className='w-[40px] h-[30px] relative top-5 flex'
                 src="/icons/delete3.svg"
                 width={200}
                 height={200}
@@ -119,7 +119,7 @@ return (
                 {basket?.map((item) => (
                   <tr key={item.id} className={`border-b justify-between flex ${pad_size} border-t py-6 lg:py-8`}>
                     <td className='lg:w-1/6'>
-                      <div className={`flex ${img_size} mt-4 lg:mt-0 bg-orange-900`}>
+                      <div className={`flex ${img_size} mt-4 lg:mt-0 `}>
 
                         <Image
                           className={`cursor-pointer rounded-full ${img_size}`}
@@ -130,11 +130,11 @@ return (
                         />
                       </div>
                     </td>
-                    <td className='flex-col lg:w-3/5  bg-amber-500'>
+                    <td className='flex-col lg:w-3/5 '>
                       <p className={`${p_size} roboto-medium font-medium text-modal_p`}>{item.name.slice(0, 25)}</p>
                       <p className={`${p14_size} roboto-medium font-medium text-modal_p`}>${item.price}</p>
                     </td>
-                    <td className='flex bg-red-900 '>
+                    <td className='flex'>
                       <div className={`flex flex-col font-medium items-center ${whitebtn_size} bg-headerbg lg:bg-white rounded-[50px]`}>
                         <Image
                           onClick={() => {

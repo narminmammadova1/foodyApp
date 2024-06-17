@@ -5,10 +5,12 @@ import HeaderClient from '../../../components/Client/HeaderClient'
 import UserSidebar from '../../../components/Client/UserSidebar'
 import BasketCard from '../../../components/Client/BasketCard'
 import { useGlobalContext } from '../../../Context/GlobalContext'
+import { useTranslation } from 'react-i18next'
 
 const UserBasket = () => {
   const {basketData}=useGlobalContext() || {}
-  
+  const { t } = useTranslation()
+
   return (
     <div>
 
@@ -19,12 +21,12 @@ const UserBasket = () => {
         </Head>
         <MainClient>
             <HeaderClient/>
-            <div className='mt-4  mx-4 lg:mx-0 bg-orange-800 flex gap-4'>
+            <div className='mt-4  mx-4 lg:mx-0 flex gap-4'>
 <div className='hidden lg:block'>
 <UserSidebar/>
 </div>
 <div className='w-full '>
-<BasketCard basketData={basketData} size="large" headtitle="Your Basket"/>
+<BasketCard basketData={basketData} size="large" headtitle={t("Your Basket")}/>
 </div>
             </div>
         </MainClient>
