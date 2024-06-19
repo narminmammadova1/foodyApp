@@ -13,7 +13,7 @@ const FooterClient = () => {
 
       <div className='flex flex-col items-center lg:items-start mx-auto lg:ms-24 '>
         <img src="/svgs/logo.svg" alt="" />
-        <div className='lg:me-32 lg:ps-2 text-center lg:text-start'>
+        <div className='lg:me-32 ps-4 lg:ps-2 text-center lg:text-start'>
         <p className='text-[18px] lg:text-[22px] letter3 text-par3-text'>Lorem ipsum is placeholder text commonly used in the graphic, </p>
         </div>
       <div className='flex gap-4 mt-4'>
@@ -73,7 +73,7 @@ const FooterClient = () => {
 
 
       <div className='footerbottom flex justify-center  '>
-        <p className='text-[14px] text-white font-roboto font-[400]'>{t("All rights reserved © 2003-2023 Foody TERMS OF USE | Privacy Policy")}</p>
+        <p className='text-[14px] px-4 text-center text-white font-roboto font-[400]'>{t("All rights reserved © 2003-2023 Foody TERMS OF USE | Privacy Policy")}</p>
       </div>
     </div>
   )

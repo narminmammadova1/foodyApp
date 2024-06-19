@@ -8,7 +8,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { ROUTER } from '../../Constant/Router'
 import { QueryClient, useMutation, useQueryClient } from 'react-query'
-import { signInUser } from '../../services'
+import { getBasket, signInUser } from '../../services'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import { useGlobalContext } from '../../Context/GlobalContext'
@@ -79,6 +79,7 @@ const LoginPage: NextPage = () => {
       localStorage.removeItem("admin_accessToken");  
 
       signInUserMutation(values)
+      getBasket()
     }
   })
 

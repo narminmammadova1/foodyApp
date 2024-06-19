@@ -291,6 +291,9 @@ const refreshToken = async () => {
     throw new Error("No refresh token available or refresh failed");
   }
 };
+// const router = useRouter();
+// const { setIsUser, setIsAdmin } = useGlobalContext() || {};
+
 
 instanceAxios.interceptors.response.use(
   (response) => response,

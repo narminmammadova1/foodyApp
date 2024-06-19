@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import MainClient from '../../../components/Client/MainClient'
 import HeaderClient from '../../../components/Client/HeaderClient'
 import UserSidebar from '../../../components/Client/UserSidebar'
@@ -8,8 +8,22 @@ import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
 
 const UserBasket = () => {
-  const {basketData}=useGlobalContext() || {}
+  const { basketData: initialBasketData ,isUser} = useGlobalContext() || {};
+  const [basketData, setBasketData] = useState(initialBasketData);
+
+
+  // const {basketData}=useGlobalContext() || {}
   const { t } = useTranslation()
+
+
+  // useEffect(() => {
+  //   if(isUser && initialBasketData){
+  //     setBasketData(initialBasketData);
+
+  //   }
+    
+  // }, [,isUser,initialBasketData]);
+
 
   return (
     <div>

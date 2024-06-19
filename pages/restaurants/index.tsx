@@ -20,7 +20,7 @@ const RestaurantsPage:NextPage = () => {
  ;
 const {restaurantData,isLoading,categoryData,selectedId,setSelectedId}=useGlobalContext() || {}
 
-const { isOpenLang, openLang, isOpenAvatar, setIsOpenAvatar,openSidebar,isOpenSidebar,closeSidebar } = useDropdownn()
+const {  openSidebar,isOpenSidebar,closeSidebar } = useDropdownn()
 
 
 console.log("restdaki restdata newwwwwwwww",restaurantData);
@@ -29,30 +29,6 @@ console.log("restdaki restdata newwwwwwwww",restaurantData);
 const [restData,setRestData]=useState<RestProps[]>([])
 
 const [filteredRest,setFilteredRest]=useState<RestProps[]>([])
-// if(isLoading){    return <div>Loading....................</div>
-// }
-// useEffect(() => {
-//   if (restaurantData) {
-//       setRestData(restaurantData);
-//   }
-// }, [restaurantData]);
-
-
-// useEffect(() => {
-//   if (selectedId) {
-//     const filtered = restaurantData?.filter((restaurant) => restaurant.category_id === selectedId) || []
-//     setFilteredRest(filtered)
-//   } else {
-//     setFilteredRest([])
-//   }
-// }, [selectedId,restaurantData])
-
-
-// const sidebarAnimation = useSpring({
-//   transform: isOpenSidebar ? 'translateY(-100%)' : 'translateY(0%)',
-//   config: { tension: 300, friction: 30 },
-// })
-
 
 
 const sidebarAnimation = useSpring({
@@ -85,9 +61,9 @@ useEffect(()=>{
   }
 },[selectedId])
 
-if (isLoading ) {
-  return <div>Loading....................</div>;
-}
+// if (isLoading ) {
+//   return <div>Loading....................</div>;
+// }
 
   return (
     <div>
@@ -106,14 +82,14 @@ if (isLoading ) {
 <SidebarClient categoryData={categoryData}/>
 {/* </div> */}
 
-<div className='w-full flex flex-wrap gap-9 pt-2 lg:ps-10'>
-<div className='flex justify-center lg:hidden w-full h-[35px] mx-[18px] boxShadow3 mt-4  bg-white '>
+<div className='w-full flex items-center  flex-wrap lg:gap-9 pt-2 lg:ps-10'>
+<div onClick={openSidebar} className='flex justify-center  lg:hidden w-full h-[35px] mx-[18px] boxShadow3 mt-4   bg-white '>
   <div className='flex gap-1'>
-    <Image onClick={openSidebar} className='w-6 h-6' width={200} height={200} src="/icons/filter.svg" alt="filter"/>
+    <Image  className='w-6 h-6' width={200} height={200} src="/icons/filter.svg" alt="filter"/>
  <p className='text-base'>Filters</p>
   </div>
 </div>
-<div className='flex w-full   justify-normal flex-wrap'>
+<div className='flex w-full justify-center   lg:justify-normal flex-wrap'>
  {(selectedId ? filteredRest : restData)?.map((rest:RestProps) => (
               <RestaurantCards key={rest.id} rest={rest} 
               />
@@ -124,27 +100,7 @@ if (isLoading ) {
 </div>
 
 </div>
-{/* <div className=' bg-white rounded-[20px] max-h-[474px] fixed bottom-0 overflow-y-auto w-full flex-col  items-center  lg:hidden'>
-<div className='flex  my-[15px] justify-center bg-orange-800'>
-  <Image className='w-[35px] h-[35px]' width={200} height={200} src="/icons/xfilter.svg" alt="x"/>
-  
-</div>
-<div className=''>
-<ul className='px-7 flex flex-col gap-4 py-4'>
-{categoryData?.map((category)=>(
-        <li key={category.id} onClick={()=>{
-          setSelectedId &&   setSelectedId(category.id)
-          // handleFilter()
-        }} className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3  font-roboto-medium   font-medium cursor-pointer  text-[18px]'><span className='mb-2'>{category?.name.slice(0,15)}</span></li>
-
- 
-))}
-       
-        </ul>
-</div>
-
-
-</div> */}
+{/* 
 {isOpenSidebar && <animated.div style={sidebarAnimation} className=' w-full  gap-6 lg:hidden fixed bottom-0 h-[900px] z-50  '>
   <div className='h-[600px]  bg-zinc-400 opacity-25'>
   </div>
@@ -155,11 +111,15 @@ if (isLoading ) {
 </div>
 <div className=''>
 <ul className='px-7 flex flex-col gap-4 py-4'>
+  <li onClick={()=> { setSelectedId && setSelectedId("") 
+  closeSidebar()}}  className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3 
+         font-roboto-medium   font-medium cursor-pointer  text-[18px]'>All Restaurants</li>
 {categoryData?.map((category)=>(
         <li key={category.id} onClick={()=>{
           setSelectedId &&   setSelectedId(category.id)
           // handleFilter()
-        }} className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3  font-roboto-medium   font-medium cursor-pointer  text-[18px]'><span className='mb-2'>{category?.name.slice(0,15)}</span></li>
+        }} className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3 
+         font-roboto-medium   font-medium cursor-pointer  text-[18px]'><span className='mb-2'>{category?.name.slice(0,15)}</span></li>
 
  
 ))}
@@ -169,7 +129,7 @@ if (isLoading ) {
 
 
 </div>   
-  </animated.div>}
+  </animated.div>} */}
 </MainClient>
      <FooterClient/>
     </div>

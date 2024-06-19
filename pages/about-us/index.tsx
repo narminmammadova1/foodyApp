@@ -45,7 +45,7 @@ const AboutUs:NextPage = () => {
                 <animated.div style={springStyles2} className="hidden lg:flex  absolute  top-10 right-10">
                 <Image className='w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/abouthamb.svg" alt='aboutus'/>
                 </animated.div>
-                <animated.div style={springStyles} className="absolute top-[120px] left-[80px]  lg:top-[220px] lg:left-[20px] ">
+                <animated.div style={springStyles} className="absolute top-[40px] left-[80px]  lg:top-[220px] lg:left-[20px] ">
                 <Image className='w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutpizza.svg" alt='aboutus'/>
                 </animated.div>
 
@@ -53,8 +53,8 @@ const AboutUs:NextPage = () => {
                 <Image  className='   w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutsoup.svg" alt='aboutus'/>
                 </animated.div>
 
-                <animated.div style={springStyles} className=" absolute top-[400px] left-[80px]  lg:top-[524px] lg:left-[20px]">
-                <Image  className='   w-[274px] h-[228px]' width={1000} height={1000} src="/svgs/aboutcoffee.svg" alt='aboutus'/>
+                <animated.div style={springStyles} className=" absolute top-[260px] left-[40px]  lg:top-[524px] lg:left-[20px]">
+                <Image  className='   w-[264px] h-[228px]' width={1000} height={1000} src="/svgs/aboutcoffee.svg" alt='aboutus'/>
                 </animated.div>
 
             </div>

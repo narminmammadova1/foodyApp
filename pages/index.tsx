@@ -166,7 +166,7 @@ const {t}=useTranslation()
   </div>
   <AnimatedSection>
   <div className="rightdiv w-full flex justify-center "> 
-  <div  className=" mt-6 lg:mt-0 flex  items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]  bg-mainRed  custom-rotate1 rounded-[50px] ">
+  <div  className=" mt-6 lg:mt-0 flex  items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]   bg-btn-del custom-rotate1 rounded-[50px] ">
 
     <Image className="  left-32 lg:top-48 lg:left-40
      rounded-full  w-[150px] h-[150px] lg:w-[300px] lg:h-[300px]
@@ -185,7 +185,7 @@ const {t}=useTranslation()
 <div className=" flex flex-col-reverse lg:flex lg:flex-row  justify-center gap-5">
 <AnimatedSection>
   <div className="rightdiv w-full flex justify-center ">
-<div className=" flex mt-6 lg:mt-0 items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]  bg-mainRed  custom-rotate2 rounded-[50px]">
+<div className=" flex mt-6 lg:mt-0 items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]   bg-btn-del custom-rotate2 rounded-[50px]">
 <Image className=" rounded-full w-[150px] h-[150px] lg:w-[300px] lg:h-[300px] " width={1000} height={1000} src={offerImage ? offerImage[1] : "/pngs/pizzakamp.svg"} alt="pizza"/>
 
 </div>
@@ -255,11 +255,13 @@ const {t}=useTranslation()
  </AnimatedSection>
 </section>
 
-<section className="flex justify-center">
+<section className=" flex justify-center">
 <AnimatedSection2>
   
-<div className=" relative bottom-[-130px]  mx-[18px] lg:mx-[187px] h-[206px] lg:h-[372px]  pb-[31px] lg:pb-0 px-[51px]  bg-blackdiv2 flex items-center rounded-[50px]">
-<div className="w-[200px] hidden lg:block h-[200px] pt-10" >
+<div className=" relative bottom-[-130px] mx-[28px] lg:mx-[187px] h-[206px] lg:h-[372px]  pb-[31px] lg:pb-0 lg:px-[51px]  bg-blackdiv2 flex items-center rounded-[50px]">
+
+<div className="flex">
+<div className="lg:w-[200px] hidden lg:block h-[200px] pt-10" >
 <Image width={1000} height={1000} src="pngs/pizza3.svg" alt="pizza"/>
 </div>
 <div className="px-14 flex flex-col items-center">
@@ -273,6 +275,7 @@ const {t}=useTranslation()
 <div className="w-[200px]  hidden lg:block h-[200px] pt-10">
 <Image width={1000} height={1000} src="pngs/hamburger.svg" alt="hamburger"/>
 
+</div>
 </div>
 </div>
 </AnimatedSection2>

@@ -127,7 +127,7 @@ const productsData=products?.data?.result.data
 
 
  const{data:basket}=useQuery(QUERIES.Basket,getBasket)
- const  basketData=basket?.data.result.data
+ const  basketData=basket?.data.result.data || []
 
 
  const {data:userOrders}=useQuery(QUERIES.UserOrder,getUserOrder)

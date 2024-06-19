@@ -16,7 +16,7 @@ interface RestaurantCardsProps{
 const RestaurantCards:React.FC<RestaurantCardsProps> = ({rest}) => {
 const router=useRouter()
 const {push}=router
-const{selectedId,setSelectedId}=useGlobalContext() || {}
+// const{selectedId,setSelectedId}=useGlobalContext() || {}
 const {t}=useTranslation()
 
 
