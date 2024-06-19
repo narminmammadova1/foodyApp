@@ -61,7 +61,7 @@ const {t}=useTranslation()
   <div className="flex bg-headerbg pb-8 lg:pb-40 pt-16" >
   <div className="flex flex-col-reverse lg:flex-row">
 <div className="leftDiv  lg:py-10 lg:ps-8 text-center lg:text-start ">
-  <h1 className="lg:line lg:pe-0 font-roboto font-[900] lg:font-[800] letter3 text-[20px] lg:text-[60px]">
+  <h1 className="lg:line lg:pe-0 px-4 lg:px-0 font-roboto font-[900] lg:font-[800] letter3 text-[20px] lg:text-[60px]">
   {t("Our Food site makes it easy to find local food")}</h1>
   <p className=" mt-5 hidden lg:block  lg:me-72 font-roboto line2 letter3 text-headerUl text-[22px] font-[400]">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
 
@@ -158,7 +158,7 @@ const {t}=useTranslation()
 
 
 
-<section className="lg:mt-[281px]">
+<section className="mt-0  lg:mt-[281px]">
 <div className="text-center lg:text-start lg:flex">
   <div  className="leftdiv w-full lg:w-1/2 px-4 lg:px-0 ">
     <p className=" font-roboto font-[900] text-[25px] lg:text-[50px] line text-textblack">{offerName?.[0]}</p>
@@ -181,7 +181,7 @@ const {t}=useTranslation()
 
 </section>
 
-<section className="mt-[150px]">
+<section className=" mt-0 lg:mt-[150px]">
 <div className=" flex flex-col-reverse lg:flex lg:flex-row  justify-center gap-5">
 <AnimatedSection>
   <div className="rightdiv w-full flex justify-center ">
@@ -226,7 +226,7 @@ const {t}=useTranslation()
 </section> 
 
 
-<section className="mt-[162px]">
+<section className="mt-[50px] lg:mt-[162px]">
   <div className="flex flex-col items-center justify-center ">
     <div className="lg:mx-96 text-center  mb-3">  
          <p className=" font-roboto font-[900]  text-[25px] lg:text-[40px] letter3">{t("Our Popular Update New Foods")}</p>
@@ -238,7 +238,7 @@ const {t}=useTranslation()
 </section>
 
 
-<section  className=" mt-10">
+<section  className=" lg:mt-10">
 <AnimatedSection>
 <div className=" pb-10 lg:flex  justify-center  gap-[78px]">
 

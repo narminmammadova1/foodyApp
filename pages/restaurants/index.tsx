@@ -17,7 +17,7 @@ import { useSpring,animated ,config as springConfig } from '@react-spring/web'
 
 
 const RestaurantsPage:NextPage = () => {
- ;
+ 
 const {restaurantData,isLoading,categoryData,selectedId,setSelectedId}=useGlobalContext() || {}
 
 const {  openSidebar,isOpenSidebar,closeSidebar } = useDropdownn()
@@ -83,8 +83,8 @@ useEffect(()=>{
 {/* </div> */}
 
 <div className='w-full flex items-center  flex-wrap lg:gap-9 pt-2 lg:ps-10'>
-<div onClick={openSidebar} className='flex justify-center  lg:hidden w-full h-[35px] mx-[18px] boxShadow3 mt-4   bg-white '>
-  <div className='flex gap-1'>
+<div   onClick={openSidebar} className='flex justify-center  lg:hidden w-full h-[35px] mx-[18px] boxShadow3 mt-4   bg-white '>
+  <div  className='flex gap-1'>
     <Image  className='w-6 h-6' width={200} height={200} src="/icons/filter.svg" alt="filter"/>
  <p className='text-base'>Filters</p>
   </div>
@@ -100,7 +100,7 @@ useEffect(()=>{
 </div>
 
 </div>
-{/* 
+
 {isOpenSidebar && <animated.div style={sidebarAnimation} className=' w-full  gap-6 lg:hidden fixed bottom-0 h-[900px] z-50  '>
   <div className='h-[600px]  bg-zinc-400 opacity-25'>
   </div>
@@ -129,7 +129,7 @@ useEffect(()=>{
 
 
 </div>   
-  </animated.div>} */}
+  </animated.div>}
 </MainClient>
      <FooterClient/>
     </div>
