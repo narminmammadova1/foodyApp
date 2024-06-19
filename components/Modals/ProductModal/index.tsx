@@ -120,7 +120,7 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
                 <div className='rleft w-1/3 hidden lg:block me-10'>
                   <div className='min-h-36 mt-1'>
                      <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover' 
-                src={downloadURL|| "/icons/uploadgreen.svg"} 
+                src={downloadURL && downloadURL|| "/icons/uploadgreen.svg"} 
                 alt='product' /> 
                   </div>
                   <div className='py-2'>

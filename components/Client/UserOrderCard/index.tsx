@@ -138,7 +138,7 @@ const queryClient=useQueryClient()
           </tbody>
         </table>
         </div>
-        <SelectModal />
+        {/* <SelectModal /> */}
       </div>
     </>
   );

@@ -180,7 +180,16 @@ border-radius: 4px;
   transition: none !important
 }
 
+.custom-rotate1 {
+  @apply transform;
+  transform: rotate(22.82deg);
+}
 
+
+.custom-rotate2 {
+  @apply transform;
+  transform: rotate(-22.82deg);
+}
 
 
 

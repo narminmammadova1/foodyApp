@@ -415,6 +415,8 @@ const FormAddRestaurant:React.FC<FormAddRestProps> = ({ onClose }) => {
           img_url: downloadURL
         };
         AddRestaurantMutation(newValues);
+        formik.resetForm()
+        setDownloadURL("")
       }
     }
   });

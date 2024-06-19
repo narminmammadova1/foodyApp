@@ -83,12 +83,12 @@ console.log("currentProducttttttttttttttttttttttt yeniiiiiiiiiiii",currentProduc
 
 
 <div className=''>
-     <button onClick={openSidebar}  className={`  block lg:hidden roboto-medium font-medium bg-btnRed w-full text-white rounded-full h-[47px] pe-2 `}><div className='flex  justify-between ps-6 items-center'><div className='flex items-center gap-3'><Image className='w-[19px] h-[17px]' width={200} height={200}  src="/icons/basket3.svg" alt='basket'/> <p>{basketData?.total_item} items</p></div><div className={`w-[135px] h-[43px] rounded-full  bg-white text-btnRed flex items-center justify-center`}><p>$ {total_price}</p></div></div></button> 
+     <button onClick={openSidebar}  className={`${isUser ? "block" :"hidden" } block lg:hidden roboto-medium font-medium bg-btnRed w-full text-white rounded-full h-[47px] pe-2 `}><div className='flex  justify-between ps-6 items-center'><div className='flex items-center gap-3'><Image className='w-[19px] h-[17px]' width={200} height={200}  src="/icons/basket3.svg" alt='basket'/> <p>{basketData?.total_item} items</p></div><div className={`w-[135px] h-[43px] rounded-full  bg-white text-btnRed flex items-center justify-center`}><p>$ {total_price}</p></div></div></button> 
     </div>
 
 
           {!isUser || basketData && basketData.items?.length<0 ?( 
-          <div className='hidden lg:block'>
+          <div className={`hidden lg:block`}>
           <EmptyBasket size="small"/>
           </div>
 ):(     

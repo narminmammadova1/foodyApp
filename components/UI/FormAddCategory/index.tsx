@@ -404,6 +404,7 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
           name: values.name,
         };
         addCategoryMutation(newCategory);
+        setDownloadURL("")
       }
     },
   });
@@ -411,6 +412,8 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
   const { mutate: addCategoryMutation } = useMutation(addCategory, {
     onSuccess: (data) => {
       toast.success('Category added', { autoClose: 2000 });
+      formik.resetForm();
+
       queryClient.invalidateQueries(QUERIES.Categories);
       setFile(null);
       setDownloadURL('');

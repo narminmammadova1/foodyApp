@@ -129,7 +129,7 @@ if (isLoading) {
   return <div>Loading...</div>;
 }
 
-const isDisabled=formik.values.address==="" || formik.values.username===""  || formik.values.fullname===""  || formik.values.phone===""
+const isDisabled=formik.values.username===""  || formik.values.fullname===""  || formik.values.phone===""
 
 
   return (
@@ -156,8 +156,7 @@ const isDisabled=formik.values.address==="" || formik.values.username===""  || f
               <div className='w-[146px] h-[141px] flex flex-col items-center justify-center bg-white rounded-full'>
                 <label htmlFor="fileInput">
                   <img className='w-[60px] h-[60px]  rounded-full' 
-                    // src={downloadURL ? downloadURL : "/icons/uploadgreen.svg" : {userData?.user.img_url}} 
-                    // src='/icons/uploadgreen.svg'
+                  
                     src={downloadURL ? downloadURL : (userData?.img_url || "/icons/uploadgreen.svg")}
 
  alt="upload" />

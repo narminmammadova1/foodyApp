@@ -99,8 +99,8 @@ const CategoryCard = () => {
                     <Image className='object-cover w-[48px] h-[48px]' src={category.img_url} width={1000} height={1000} alt='pizza' />
                   </div>
                 </td>
-                <td className='text-start max-w-xs break-words whitespace-normal'>{category.name.slice(0, 10)}</td>
-                <td className='text-start max-w-xs break-words whitespace-normal'>{category?.name.slice(0, 10).toLowerCase()}</td>
+                <td className='text-start max-w-xs break-words whitespace-normal'>{category.name.slice(0, 20)}</td>
+                <td className='text-start max-w-xs break-words whitespace-normal'>{category?.name.slice(0, 15).toLowerCase()}</td>
                 <td className='pe-6'>
                   <div className='flex justify-end gap-1'>
                     <img

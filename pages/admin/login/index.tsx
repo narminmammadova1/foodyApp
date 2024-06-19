@@ -54,7 +54,7 @@ const AdminLogin: NextPage = () => {
   const [loading, setLoading] = useState(false);
 
 const {t,i18n}=useTranslation()
-const {isAdmin, setIsAdmin,showPassword,setShowPassword,togglePassword,isLoading}=useGlobalContext() || {}
+const { setIsAdmin,showPassword,togglePassword}=useGlobalContext() || {}
 
 const { isOpenLang, openLang } = useDropdownn()
 
@@ -66,14 +66,14 @@ const { mutate: signInAdmin } = useMutation({
   onSuccess: (data) => {
     setLoading(false)
     console.log("adminmutation data", data);
-    console.log("datauser adm mutat",data.data.user);
    
     if (data && data.data.user && data.data.user.email === "admin11@gmail.com") {
-      // localStorage.setItem("acces_token", data?.data.user.access_token);
-      // localStorage.setItem("refresh_token", data?.data.user.access_token);
+     
 
       
       localStorage.setItem("admin_accesToken", data?.data.user.access_token);
+      localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
+
       localStorage.setItem("admin_LoginDate", String(new Date().getTime()))
       localStorage.setItem("isAdmin", "true"); 
 
@@ -81,7 +81,7 @@ const { mutate: signInAdmin } = useMutation({
       toast.success("Welcome Admin", { autoClose: 1500 });
       setTimeout(() => {
         push(ROUTER.DASHBOARD);
-      }, 2000);
+      }, 1000);
     } else {
       toast.error("You are not Admin", { autoClose: 1500 });
     }
@@ -126,11 +126,11 @@ const { mutate: signInAdmin } = useMutation({
       <Layout>
         <div className=' mt-[57px] ms-[37px]'><img src="/svgs/logo.svg" alt="" /></div>
 
-        <div className='w-full flex  bg-dark-body items-center justify-center   h-screen'>
-          <div className=' lg:flex  w-[830px] h-[411px] '>
+        <div className='w-full flex mt-[110px] lg:mt-0 bg-dark-body items-center justify-center   h-screen'>
+          <div className='flex flex-col-reverse lg:flex lg:flex-row w-[830px] items-center h-[411px] '>
 
-            <div className='w-1/2  lg:bg-login-gray  flex flex-col px-[53px] '>
-              <div className=' m-auto'>
+            <div className='w-1/2  lg:bg-login-gray mx-auto h-full flex flex-col  '>
+              <div className='  items-end justify-center m-auto' >
                 <h1 className=' font-bold text-[24px]   lg:text-4xl text-par-text  font-montserrat' >{t("Welcome Admin")}</h1>
                 <form className='flex flex-col font-roboto ' onSubmit={formik.handleSubmit}>
                   <input
@@ -140,7 +140,7 @@ const { mutate: signInAdmin } = useMutation({
                     onBlur={formik.handleBlur}
                     type="email"
                     placeholder='email'
-                    className='px-[40px]  font-normal text-par-text    mt-[48px] rounded-[4px]  bg-input-gray  h-[50px] text-[18px]'
+                    className='px-[40px]   font-normal text-par-text    mt-[48px] rounded-[4px]  bg-input-gray  h-[50px] text-[18px]'
                   />
                   {formik.errors.email && <div>{formik.errors.email}</div>}
                   <div className='flex relative'>
@@ -169,7 +169,7 @@ const { mutate: signInAdmin } = useMutation({
               </div>
             </div>
 
-            <div className='w-1/2 relative lg:bg-white flex flex-col gap-2'>
+            <div className='w-1/2 h-full relative lg:bg-white flex   flex-col gap-2'>
               <div>
               <div onClick={openLang} className='flex justify-end   '>
                 <Image

@@ -52,7 +52,7 @@ currentProducts && currentProducts?.length>0 ? (currentProducts?.map((currentPro
       <td className='ps-4 roboto-medium font-medium '><p className='text-lg text-modal_p'>{currentProduct?.name}</p>
       <p className='text-sm text-par3-text '>{currentProduct?.description}</p></td>
       <td className=''>
-        <p className=' roboto-medium font-medium    text-[12px] text-par3-text'>from <span className='text-base text-modal_p'>from{currentProduct?.price}</span> </p></td> 
+        <p className=' roboto-medium font-medium    text-[12px] text-par3-text'>from <span className='text-base text-modal_p'>{currentProduct?.price}</span> </p></td> 
        <td className=''> 
      <div onClick={()=>{
       if(isUser){

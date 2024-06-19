@@ -17,6 +17,7 @@ import AnimatedSection from "../components/AnimatedSection/AnimatedSection";
 import AnimatedSection2 from "../components/AnimatedSection2";
 import { useAnimatedStyles } from "../shared/animated/animated";
 import { useTranslation } from "react-i18next";
+import { transform } from "framer-motion";
 // 
 
 
@@ -158,18 +159,19 @@ const {t}=useTranslation()
 
 
 <section className="lg:mt-[281px]">
-<div className="text-center lg:text-start lg:flex ">
-  <div  className="leftdiv w-full lg:w-2/3 px-4 lg:px-0 ">
+<div className="text-center lg:text-start lg:flex">
+  <div  className="leftdiv w-full lg:w-1/2 px-4 lg:px-0 ">
     <p className=" font-roboto font-[900] text-[25px] lg:text-[50px] line text-textblack">{offerName?.[0]}</p>
     <p className="font-roboto font-[400] text-[16px] lg:text-[22px] line2 text-par3-text mt-7  ">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
   <AnimatedSection>
-  <div className="rightdiv w-full lg:w-4/5 lg:flex items-center  "> 
-  <div className=" relative lg:w-[721px] lg:h-[556px]    ">
-  <Image className=" absolute " width={1000} height={1000} src="/pngs/redkamp.svg" alt="kfc"/>
+  <div className="rightdiv w-full flex justify-center "> 
+  <div  className=" mt-6 lg:mt-0 flex  items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]  bg-mainRed  custom-rotate1 rounded-[50px] ">
 
-    <Image className=" absolute mx-auto lg:mx-0 top-40  left-32 lg:top-48 lg:left-40
-     rounded-full w-[256px] lg:h-[256px]  " width={1000} height={1000} src={offerImage ? offerImage[0] : "/pngs/kfcmeny.svg"} alt="kfc"/>
+    <Image className="  left-32 lg:top-48 lg:left-40
+     rounded-full  w-[150px] h-[150px] lg:w-[300px] lg:h-[300px]
+     
+     " width={1000} height={1000} src={offerImage ? offerImage[0] : "/pngs/kfcmeny.svg"} alt="kfc"/>
  </div>
  
   </div>
@@ -179,11 +181,16 @@ const {t}=useTranslation()
 
 </section>
 
-<section className="mt-[650px] lg:mt-[150px]">
-<div className="lg:flex  justify-center gap-5">
+<section className="mt-[150px]">
+<div className=" flex flex-col-reverse lg:flex lg:flex-row  justify-center gap-5">
 <AnimatedSection>
-  <div className="rightdiv  relative "> 
-    <Image className=" w-[619px] h-[653px]" width={1000} height={1000} src="/pngs/pizzakamp.svg" alt="pizza"/>
+  <div className="rightdiv w-full flex justify-center ">
+<div className=" flex mt-6 lg:mt-0 items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]  bg-mainRed  custom-rotate2 rounded-[50px]">
+<Image className=" rounded-full w-[150px] h-[150px] lg:w-[300px] lg:h-[300px] " width={1000} height={1000} src={offerImage ? offerImage[1] : "/pngs/pizzakamp.svg"} alt="pizza"/>
+
+</div>
+ 
+ 
   </div>
   </AnimatedSection>
 

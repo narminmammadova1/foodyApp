@@ -48,10 +48,11 @@ const LoginPage: NextPage = () => {
       toast.success("sisteme daxil oldunuz", { autoClose: 2000 })
 
       localStorage.setItem("user_accesToken", data?.data.user.access_token);
+      localStorage.setItem("user_refreshToken", data?.data.user.refresh_token);
+
       localStorage.setItem("user_LoginDate", String(new Date().getTime()))
       localStorage.setItem("isUser", "true")
       setIsUser(true)
-      // localStorage.setItem("user_refreshToken", data?.data.user.access_token);
       setIsAvatar(true)
       setIsBasket(true)
       setIsLoginBtn(false)
@@ -75,7 +76,7 @@ const LoginPage: NextPage = () => {
       password: ""
     },
     onSubmit: (values) => {
-      localStorage.removeItem("admin_accessToken");  // Clear admin token if any
+      localStorage.removeItem("admin_accessToken");  
 
       signInUserMutation(values)
     }

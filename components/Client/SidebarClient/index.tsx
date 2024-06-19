@@ -13,14 +13,14 @@ const SidebarClient:React.FC<CategoryDataProps> = ({categoryData}) => {
   
   const {selectedId,setSelectedId}=useGlobalContext() || {}
   return (
-    <div className='w-[251px]  pt-6 bg-headerbg'>
+    <div className='w-[251px] hidden lg:block  pt-6 bg-headerbg'>
 
-        <ul className='px-7 flex flex-col gap-9'>
+        <ul className='ps-4 flex flex-col gap-9'>
 {categoryData?.map((category)=>(
         <li key={category.id} onClick={()=>{
           setSelectedId &&   setSelectedId(category.id)
           // handleFilter()
-        }} className='flex gap-4 w-[28px] h-[28px]  text-blackli   letter3  cursor-pointer font-mukta  text-[20px]'><img className='  rounded-full ' width="28px" height="28px" src={category?.img_url} alt="" />{category?.name.slice(0,15)}</li>
+        }} className='flex gap-4 bg- text-blackli   letter3  cursor-pointer font-mukta  text-[20px]'><img className='  w-[28px] h-[28px]  rounded-full ' width="28px" height="28px" src={category?.img_url} alt="" />{category?.name.slice(0,15)}</li>
 
 
 ))}

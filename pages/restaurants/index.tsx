@@ -102,9 +102,9 @@ if (isLoading ) {
     <HeaderClient/>
 
     <div className='flex mt-4'>
-      <div className='hidden lg:block'>
+      {/* <div className='hidden lg:block '> */}
 <SidebarClient categoryData={categoryData}/>
-</div>
+{/* </div> */}
 
 <div className='w-full flex flex-wrap gap-9 pt-2 lg:ps-10'>
 <div className='flex justify-center lg:hidden w-full h-[35px] mx-[18px] boxShadow3 mt-4  bg-white '>
