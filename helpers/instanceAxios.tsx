@@ -291,14 +291,11 @@ const refreshToken = async () => {
     throw new Error("No refresh token available or refresh failed");
   }
 };
-// const router = useRouter();
-// const { setIsUser, setIsAdmin } = useGlobalContext() || {};
-
 
 instanceAxios.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const router = useRouter();
+    // const router = useRouter();
     const { setIsUser, setIsAdmin } = useGlobalContext() || {};
 
     if (error.response && error.response.status === 401) {
@@ -316,10 +313,10 @@ instanceAxios.interceptors.response.use(
 
         if (error.config.url.includes('/admin')) {
           setIsAdmin && setIsAdmin(false);
-          router.push("/admin/login"); 
+          // router.push("/admin/login"); 
         } else {
           setIsUser && setIsUser(false);
-          router.push("/login"); 
+          // router.push("/login"); 
         }
       }
     }

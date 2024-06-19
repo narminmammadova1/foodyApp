@@ -7,7 +7,7 @@ interface ButtonGreenProps{
 const ButtonGreen:React.FC<ButtonGreenProps> = ({btnTitle,disabled}) => {
   return (
     <div>
-    <button disabled={disabled} className='h-[53px] w-full letter3  font-[600] text-lg text-white bg-btnGreen rounded' type="submit">{btnTitle}</button>
+    <button disabled={disabled} className=' disabled h-[53px] w-full letter3  font-[600] text-lg text-white bg-btnGreen rounded' type="submit">{btnTitle}</button>
 
     </div>
   )

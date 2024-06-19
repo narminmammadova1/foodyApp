@@ -17,8 +17,8 @@ import { QUERIES } from '../../Constant/Queries'
 const LoginPage: NextPage = () => {
   const router = useRouter()
   const { push } = router
-  const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar, userData,setIsAdmin, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
-
+  const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar, userData,setIsAdmin,isLoading, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
+const [loading,setLoading]=useState(false)
   const queryClient = useQueryClient()
   useEffect(() => {
     const userToken = localStorage.getItem("user_accesToken")
@@ -41,11 +41,27 @@ const LoginPage: NextPage = () => {
       setLetters(userLetters);
     }
   }, [letters,userData]);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: ""
+    },
+    onSubmit: (values) => {
+      // localStorage.removeItem("admin_accessToken");  
+setLoading(true)
+      signInUserMutation(values)
+      queryClient.invalidateQueries(QUERIES.Basket)
+
+      // getBasket()
+    }
+  })
   const { mutate: signInUserMutation } = useMutation({
     mutationFn: signInUser,
     onSuccess: (data) => {
       console.log("SignIn user mutate ugurlu", data?.data.user);
       toast.success("sisteme daxil oldunuz", { autoClose: 2000 })
+      setLoading(false)
 
       localStorage.setItem("user_accesToken", data?.data.user.access_token);
       localStorage.setItem("user_refreshToken", data?.data.user.refresh_token);
@@ -70,19 +86,8 @@ const LoginPage: NextPage = () => {
     }
   })
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: ""
-    },
-    onSubmit: (values) => {
-      localStorage.removeItem("admin_accessToken");  
-
-      signInUserMutation(values)
-      getBasket()
-    }
-  })
-
+  
+const isDisabled=!formik.values.email || !formik.values.password || loading
   return (
     <>
       <Head>
@@ -122,7 +127,7 @@ const LoginPage: NextPage = () => {
                     <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eye.svg" alt="eye" />
                   </div>
                 </div>
-                <button className='mt-[72px] bg-mainRed h-[68px] w-full text-white rounded-[5px] text-[22px]' type="submit">Log in</button>
+                <button  disabled={isDisabled} className={`mt-[72px] ${isDisabled ? "disabled" :""} bg-mainRed h-[68px] w-full text-white rounded-[5px] text-[22px]`} type="submit">{loading? "loading..." :"Log in"}</button>
               </form>
             </div>
           </div>

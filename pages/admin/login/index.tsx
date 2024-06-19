@@ -54,7 +54,7 @@ const AdminLogin: NextPage = () => {
   const [loading, setLoading] = useState(false);
 
 const {t,i18n}=useTranslation()
-const { setIsAdmin,showPassword,togglePassword}=useGlobalContext() || {}
+const { setIsAdmin,showPassword,isLoading,togglePassword}=useGlobalContext() || {}
 
 const { isOpenLang, openLang } = useDropdownn()
 
@@ -78,10 +78,10 @@ const { mutate: signInAdmin } = useMutation({
       localStorage.setItem("isAdmin", "true"); 
 
       setIsAdmin(true);
-      toast.success("Welcome Admin", { autoClose: 1500 });
+      toast.success("Welcome Admin", { autoClose: 1000 });
       setTimeout(() => {
         push(ROUTER.DASHBOARD);
-      }, 1000);
+      }, 500);
     } else {
       toast.error("You are not Admin", { autoClose: 1500 });
     }
@@ -104,7 +104,6 @@ const { mutate: signInAdmin } = useMutation({
     onSubmit: (values) => {
       setLoading(true)
       signInAdmin(values);
-      console.log(values);
       console.log("welcomeeeeee");
 
       
@@ -113,7 +112,7 @@ const { mutate: signInAdmin } = useMutation({
   });
 
 
-  const isDisabled = !formik.values.email || !formik.values.password && !loading;
+  const isDisabled = !formik.values.email || formik.values.password!=="admin11" || !formik.values.password  || loading;
 
 
   return (
@@ -126,12 +125,12 @@ const { mutate: signInAdmin } = useMutation({
       <Layout>
         <div className=' mt-[57px] ms-[37px]'><img src="/svgs/logo.svg" alt="" /></div>
 
-        <div className='w-full flex mt-[110px] lg:mt-0 bg-dark-body items-center justify-center   h-screen'>
+        <div className='w-full flex mt-[150px] lg:mt-0 bg-dark-body items-center justify-center   h-screen'>
           <div className='flex flex-col-reverse lg:flex lg:flex-row w-[830px] items-center h-[411px] '>
 
-            <div className='w-1/2  lg:bg-login-gray mx-auto h-full flex flex-col  '>
+            <div className=' w-full lg:w-1/2  lg:bg-login-gray mx-auto h-full flex flex-col  '>
               <div className='  items-end justify-center m-auto' >
-                <h1 className=' font-bold text-[24px]   lg:text-4xl text-par-text  font-montserrat' >{t("Welcome Admin")}</h1>
+                <h1 className=' font-bold text-[24px] text-center  lg:text-4xl text-par-text  font-montserrat' >{t("Welcome Admin")}</h1>
                 <form className='flex flex-col font-roboto ' onSubmit={formik.handleSubmit}>
                   <input
                     name="email"
@@ -163,13 +162,13 @@ const { mutate: signInAdmin } = useMutation({
 
  {formik.errors.password && <div>{formik.errors.password}</div>}
   
-                  <button type="submit"                 disabled={isDisabled}
- className='   bg-btn-pink  rounded-[4px] w-full   mt-[35px] font-bold text-white h-[50px]'>{loading ? "loading..." :" Sign In"}</button>
+                  <button type="submit"              
+ className={`   bg-btn-pink cursor-pointer  rounded-[4px] w-full ${isDisabled ? "disabled" : ""}   mt-[35px] font-bold text-white h-[50px]`}>{loading ? "loading..." :" Sign In"}</button>
                 </form>
               </div>
             </div>
 
-            <div className='w-1/2 h-full relative lg:bg-white flex   flex-col gap-2'>
+            <div className=' w-full px-14 lg:px-0 lg:w-1/2 h-full relative lg:bg-white flex   flex-col gap-2'>
               <div>
               <div onClick={openLang} className='flex justify-end   '>
                 <Image

@@ -38,10 +38,10 @@ const restoreDefaulttext=()=>{
 }
   return (
     <div>
-        <div className={` w-[256px]  bg-main-purple ${isNavbar ? "rounded-0 min-h-svh  " :"rounded-[14px] h-[474px]"}  py-10  ms-4 me-7
+        <div className={` w-[256px] z-50  bg-main-purple ${isNavbar ? "rounded-0 min-h-svh  " :"rounded-[14px] h-[474px]"}  py-10  ms-4 me-7
         `}>
 <div>
-  {isNavbar && <div className='flex ps-6 mb-8  '>
+  {isNavbar && <div className='flex  ps-6 mb-8  '>
     <Image onClick={closeSidebar} className=' w-[24px] h-[24px] cursor-pointer' width={100} height={100} alt="logo" src="/icons/arrowBack.svg"/>
 
     <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/>

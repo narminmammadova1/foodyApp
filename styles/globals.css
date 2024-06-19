@@ -176,6 +176,10 @@ border-radius: 4px;
 
 
 }
+
+.disabled{
+  @apply  cursor-not-allowed  opacity-40
+}
 .next-accordion-item-indicator {
   transition: none !important
 }

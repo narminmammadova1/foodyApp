@@ -25,7 +25,7 @@ console.log("gggggggggggg",userFullname);
 const { t } = useTranslation()
 
   return (
-<div className='w-full h-[1044px]  z-50 flex'>
+<div className='w-full h-[1024px]  z-50 flex'>
 
     
 
