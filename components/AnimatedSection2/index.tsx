@@ -14,7 +14,7 @@ threshold:0.1
 
  const fadefromBottom=useSpring({
     loop: { reverse: true},
-    from: { y: 30 },
+    from: { y: 10 },
     to: { y: 0 },
     config: { duration: 2000},
  })

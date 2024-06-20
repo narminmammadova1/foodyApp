@@ -106,7 +106,7 @@ console.log("currentProducttttttttttttttttttttttt yeniiiiiiiiiiii",currentProduc
         {isOpenSidebar && <div className=' w-full  gap-6 lg:hidden fixed bottom-0  z-50  '>
   <div className='h-[600px]  bg-zinc-400 opacity-25'>
   </div>
-<div className=' bg-white ] rounded-[20px]  max-h-[474px]  overflow-y-auto  flex-col  items-center '>
+<div className=' bg-white ] rounded-t-[20px]  max-h-[474px]  overflow-y-auto  flex-col  items-center '>
 <div className='flex  my-[15px] justify-center'>
   <Image onClick={closeSidebar} className='w-[35px] h-[35px]' width={200} height={200} src="/icons/xfilter.svg" alt="x"/>
   

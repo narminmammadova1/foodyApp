@@ -18,7 +18,7 @@ const AnimatedSection:React.FC<AnimatedProps> = ({ children }) => {
   });
 
   return (
-    <animated.div ref={ref} style={fadeInStyles}>
+    <animated.div  ref={ref} style={fadeInStyles}>
       {children}
     </animated.div>
   );

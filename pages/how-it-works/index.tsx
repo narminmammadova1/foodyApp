@@ -21,7 +21,7 @@ const HowItWorks:NextPage = () => {
       </Head>
       <MainClient>
 <HeaderClient/>
-<div className='flex flex-col items-center px-24 mt-[74px]'>
+<div className='flex flex-col items-center px-[28px] lg:px-24 mt-[74px]'>
   <AnimatedSection>
 <div className='  flex flex-col items-center'>
     <h1 className=' font-mukta font-[600] text-[35px] lg:text-[45px] text-inputPlaceholder'>{t("How it works")}</h1>

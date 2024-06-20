@@ -30,7 +30,7 @@ const { springStyles, springStyles2, fadeInStyles } = useAnimatedStyles();
    const router=useRouter()
    const {push}=router
 
-const {offerData}=useGlobalContext() || {}
+const {offerData,isLoading}=useGlobalContext() || {}
 console.log("homedeki offerData",offerData);
 
 const offerName=offerData?.map((offer)=>offer.name)
@@ -45,6 +45,10 @@ const handlePush=useCallback((routerr:any)=>{
 },[router])
 const {t}=useTranslation()
 
+
+
+if(isLoading){    return <div>Loading....................</div>
+}
   return (
 
     <>
@@ -60,7 +64,7 @@ const {t}=useTranslation()
 
   <div className="flex bg-headerbg pb-8 lg:pb-40 pt-16" >
   <div className="flex flex-col-reverse lg:flex-row">
-<div className="leftDiv  lg:py-10 lg:ps-8 text-center lg:text-start ">
+<div className="leftDiv lg:py-10 lg:ps-8 text-center lg:text-start ">
   <h1 className="lg:line lg:pe-0 px-4 lg:px-0 font-roboto font-[900] lg:font-[800] letter3 text-[20px] lg:text-[60px]">
   {t("Our Food site makes it easy to find local food")}</h1>
   <p className=" mt-5 hidden lg:block  lg:me-72 font-roboto line2 letter3 text-headerUl text-[22px] font-[400]">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
@@ -75,15 +79,14 @@ const {t}=useTranslation()
   </div>
 </div>
 </div>
-<div className="rightDiv flex flex-col   relative">
+<div className="rightDiv   mx-10 lg:mx-0 flex flex-col  relative">
   <animated.div style={fadeInStyles} >
- <div  className=" ms-4 me-16">
-    <Image className=" invisible lg:visible " width={1000} height={1000} 
-    src="/pngs/black.svg"
-     alt="black"/>
+ <div  className=" lg:relative top-[-30px] lg:w-[529px] hidden lg:block lg:h-[446px] me-[42px] bg-black rounded-[80px]">
+
    </div>
-  
-    < animated.div  style={springStyles} className="  w-[278px] boxShadow  z-20 h-[91px] flex absolute top-[-30px] right-7 justify-start   px-5 items-center gap-5 rounded-[15px]  bg-white">
+   <Image className=" lg:absolute lg:top-[-70px]   left-[-20px]"  width={1000} height={1000} src="/pngs/hamburger.svg" alt="hamb"/>
+
+    < animated.div  style={springStyles} className="  w-[278px] boxShadow  z-20 h-[91px] flex absolute top-[20px] lg:top-[-30px] right-7 justify-start   px-5 items-center gap-5 rounded-[15px]  bg-white">
     <Image className="w-[70px] h-[50px]" width={1000} height={1000} src="/pngs/pizzahut.svg" alt="pizzahut"/>
     <div>
       <p>Pizza Hut</p>
@@ -100,7 +103,7 @@ const {t}=useTranslation()
   < animated.div  style={springStyles2}  className=" w-[278px] h-[91px]   z-20 boxShadow hidden lg:flex justify-start  absolute bottom-[-10px] right-[47px]  px-5 items-center gap-5  rounded-[15px]  bg-white">
  
  <AnimatedSection>
- <div  className="px-auto lg:px-0">
+ <div  className="px-auto  mx-auto  lg:px-0">
   <Image className=" w-[70px] h-[50px]" width={1000} height={1000} src="/pngs/cheeseburger.svg"alt="cheeseburger"/>
   </div>
   </AnimatedSection>
@@ -111,7 +114,7 @@ const {t}=useTranslation()
   </animated.div> 
 
   <div className=" absolute top-[-55px] left-[-25px] z-10">
-    <Image  width={1000} height={1000} src="/pngs/hamburger.svg" alt="hamb"/>
+    {/* <Image  width={1000} height={1000} src="/pngs/hamburger.svg" alt="hamb"/> */}
 
     </div>
 
@@ -135,10 +138,10 @@ const {t}=useTranslation()
 
 
 
-<section className="mt-10">
+<section className="mt-0 lg:mt-10 mb-0">
 <AnimatedSection>
-<div className=" mt-7  pb-10 lg:flex  justify-center  gap-[78px]">
-<div>
+<div className=" lg:flex lg:justify-center  lg:gap-[78px]">
+<div className="">
 <Card2   img="/pngs/shoppinggirl.svg" Title1={t("Discount Boucher")} Title2="Lorem ipsum is placeholder  commonly used in the graphic "/>
 </div>
 <div >
@@ -166,7 +169,7 @@ const {t}=useTranslation()
   </div>
   <AnimatedSection>
   <div className="rightdiv w-full flex justify-center "> 
-  <div  className=" mt-6 lg:mt-0 flex  items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]   bg-btn-del custom-rotate1 rounded-[50px] ">
+  <div  className=" mt-6 lg:mt-0   flex   items-center  justify-center w-[187px] h-[251px] lg:w-[421.31px] lg:h-[556.74px]   bg-btn-del custom-rotate1 rounded-[50px] ">
 
     <Image className="  left-32 lg:top-48 lg:left-40
      rounded-full  w-[150px] h-[150px] lg:w-[300px] lg:h-[300px]

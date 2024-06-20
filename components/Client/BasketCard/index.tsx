@@ -23,8 +23,8 @@ const BasketCard:React.FC<BasketCardProps> = ({size,headtitle,basketData}) => {
 const {addBasketmutation}=useGlobalContext() || {}
 
 
-// const basketArr:BasketPropsItem[]=basketData?.items || []
-// console.log("basketArrrrr",basketArr);
+const basketArr:BasketPropsItem[]=basketData?.items || []
+console.log("basketArrrrr",basketArr);
 
   const divSize=size=== "small" ? "basket_small" :"basket_large"
 
@@ -42,19 +42,19 @@ const [basket,setBasket]=useState<BasketPropsItem[]>([])
 
 const queryClient=useQueryClient()
 
-// useEffect(()=>{
-// if(basketData){
+useEffect(()=>{
+if(basketData){
 
-// setBasket(basketArr)
-// }
-// },[basketData])
+setBasket(basketArr)
+}
+},[basketData])
 
 
-useEffect(() => {
-  if (basketData) {
-    setBasket(basketData.items || []);
-  }
-}, [basketData]);
+// useEffect(() => {
+//   if (basketData) {
+//     setBasket(basketData.items || []);
+//   }
+// }, [basketData]);
 
 const {mutate:deleteBasketmutation}=useMutation({
   mutationFn:deleteBasket,
@@ -136,8 +136,8 @@ return (
                         />
                       </div>
                     </td>
-                    <td className=' lg:w-3/5'>
-                    <div className='flex-col   '>
+                    <td className='w-full ps-4 lg:ps-0 lg:w-3/5  bg-orange-20'>
+                    <div className='flex-col text-start  '>
                       <p className={` text-[22px] roboto-medium   font-medium text-modal_p`}>{item.name.slice(0, 25)}</p>
                       <p className={`${p14_size} roboto-medium font-medium text-modal_p`}>${item.price}</p>
                       </div>

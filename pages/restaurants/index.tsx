@@ -102,15 +102,15 @@ useEffect(()=>{
 </div>
 
 {isOpenSidebar && <animated.div style={sidebarAnimation} className=' w-full  gap-6 lg:hidden fixed bottom-0 h-[900px] z-50  '>
-  <div className='h-[600px]  bg-zinc-400 opacity-25'>
+  <div className='h-[600px]   bg-zinc-400 opacity-25'>
   </div>
-<div className=' bg-white ] rounded-[20px]  max-h-[474px]  overflow-y-auto  flex-col  items-center '>
+<div className=' bg-white   rounded-t-[20px] max-h-[674px]  overflow-y-auto  flex-col  items-center '>
 <div className='flex  my-[15px] justify-center'>
   <Image onClick={closeSidebar} className='w-[35px] h-[35px]' width={200} height={200} src="/icons/xfilter.svg" alt="x"/>
   
 </div>
 <div className=''>
-<ul className='px-7 flex flex-col gap-4 py-4'>
+<ul className='px-7 flex flex-col gap-4'>
   <li onClick={()=> { setSelectedId && setSelectedId("") 
   closeSidebar()}}  className='flex mx-[18px]   border-b-1 border-liborder text-black  letter3 
          font-roboto-medium   font-medium cursor-pointer  text-[18px]'>All Restaurants</li>

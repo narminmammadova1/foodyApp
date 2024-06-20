@@ -125,10 +125,10 @@ const { mutate: signInAdmin } = useMutation({
       <Layout>
         <div className=' mt-[57px] ms-[37px]'><img src="/svgs/logo.svg" alt="" /></div>
 
-        <div className='w-full flex mt-[150px] lg:mt-0 bg-dark-body items-center justify-center   h-screen'>
-          <div className='flex flex-col-reverse lg:flex lg:flex-row w-[830px] items-center h-[411px] '>
+        <div className='w-full flex lg:mt-0 bg-dark-body items-center justify-center   h-screen'>
+          <div className='flex flex-col-reverse lg:flex lg:flex-row lg:w-[830px] items-center h-[411px] '>
 
-            <div className=' w-full lg:w-1/2  lg:bg-login-gray mx-auto h-full flex flex-col  '>
+            <div className='  lg:w-1/2  lg:bg-login-gray mx-auto h-full flex flex-col  '>
               <div className='  items-end justify-center m-auto' >
                 <h1 className=' font-bold text-[24px] text-center  lg:text-4xl text-par-text  font-montserrat' >{t("Welcome Admin")}</h1>
                 <form className='flex flex-col font-roboto ' onSubmit={formik.handleSubmit}>
@@ -168,7 +168,7 @@ const { mutate: signInAdmin } = useMutation({
               </div>
             </div>
 
-            <div className=' w-full px-14 lg:px-0 lg:w-1/2 h-full relative lg:bg-white flex   flex-col gap-2'>
+            <div className=' px-14 lg:px-0 lg:w-1/2 h-full relative lg:bg-white flex   flex-col gap-2'>
               <div>
               <div onClick={openLang} className='flex justify-end   '>
                 <Image
@@ -205,7 +205,7 @@ const { mutate: signInAdmin } = useMutation({
                   height={100}
                   alt='log.svg'
                   src="/svgs/loginImg.svg"
-                  className=' w-[346px] h-[303px] m-auto'
+                  className=' w-[174px] h-[153px ] lg:w-[346px] lg:h-[303px] m-auto'
                 />
               </div>
             </div>
