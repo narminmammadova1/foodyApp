@@ -11,5 +11,6 @@ export const ENDPOINTS = {
     HISTORY: "/order/history",
     SIGNUP: "/auth/signup",
     SIGNIN: "/auth/signin",
+    REFRESH:"/auth/refresh"
   };
   
