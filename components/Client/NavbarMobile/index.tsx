@@ -35,7 +35,7 @@ const { t } = useTranslation()
 
 <div className=' mt-[112px] h-[41px] flex items-center justify-center '>
 {isUser ? (<div className=' flex gap-2 items-center'> <div  className=' w-10 h-10 cursor-pointer rounded-full object-cover text-white flex justify-center items-center font-roboto roboto-medium bg-avatarColor '>
-                {profilImg ? <img className=' w-10 h-10 rounded-full' src={profilImg} /> : <span>{letters}</span>}
+                {profilImg ? <Image className=' w-10 h-10 rounded-full' width={200} height={200} src={profilImg} alt="img" /> : <span>{letters}</span>}
               </div>
               <p className='text-base font-medium  font-roboto-medium text-blackli'>{userFullname}</p> </div>) :
               (<div className='w-[127px]'>

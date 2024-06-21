@@ -17,7 +17,7 @@ import { QUERIES } from '../../Constant/Queries'
 const LoginPage: NextPage = () => {
   const router = useRouter()
   const { push } = router
-  const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar, userData,setIsAdmin,isLoading, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
+  const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar,setProfilImg, userData,setIsAdmin,isLoading, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
 const [loading,setLoading]=useState(false)
   const queryClient = useQueryClient()
   useEffect(() => {
