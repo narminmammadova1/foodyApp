@@ -50,11 +50,6 @@ setBasket(basketArr)
 },[basketData])
 
 
-// useEffect(() => {
-//   if (basketData) {
-//     setBasket(basketData.items || []);
-//   }
-// }, [basketData]);
 
 const {mutate:deleteBasketmutation}=useMutation({
   mutationFn:deleteBasket,

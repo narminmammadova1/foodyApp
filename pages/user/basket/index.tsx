@@ -8,9 +8,7 @@ import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
 
 const UserBasket = () => {
-  // const { basketData: initialBasketData ,isUser} = useGlobalContext() || {};
-  // const [basketData, setBasketData] = useState(initialBasketData);
-
+ 
 
   const {basketData,isLoading}=useGlobalContext() || {}
   const { t } = useTranslation()
@@ -18,15 +16,7 @@ const UserBasket = () => {
   if(isLoading){    return <div className='mx-10'>Loading....................</div>
   }
 
-  // useEffect(() => {
-  //   if(isUser && initialBasketData){
-  //     setBasketData(initialBasketData);
-
-  //   }
-    
-  // }, [,isUser,initialBasketData]);
-
-
+  
   return (
     <div>
 

@@ -19,6 +19,7 @@ import UseFileUpload from '../../../helpers/uploadImages'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+import { UserDataProps } from '../../../shared/interface'
 
 
 
@@ -27,7 +28,7 @@ const UserProfile = () => {
   const {userData,profilImg,setProfilImg,setLetters,letters,isLoading}=useGlobalContext() || {}
 
 const queryClient=useQueryClient()
-const { handleFileChange, handleUpload, file, setFile,downloadURL,setDownloadURL } = UseFileUpload() || {};
+const { handleFileChange, handleUpload, file, setFile,downloadURL,imageUrl } = UseFileUpload() || {};
 // const { data: userData, isLoading, isError } = useQuery(QUERIES.User, getUser);
 const [loading,setLoading]=useState(false)
 useEffect(() => {
@@ -36,6 +37,8 @@ useEffect(() => {
     
   }
 }, [file])
+
+
 
 console.log("userData profildeki", userData);
 console.log("user imageeeeeeeeeee",userData?.img_url);
@@ -95,7 +98,6 @@ useEffect(() => {
       img_url: img_url || '',
     });
   userData && setProfilImg && setProfilImg(userData?.img_url || "")
-      // setUsername(oldName)
   }
 }, [userData]);
 
@@ -157,7 +159,7 @@ const isDisabled=formik.values.username===""  || formik.values.fullname===""  ||
                 <label htmlFor="fileInput">
                   <img className='w-[60px] h-[60px]  rounded-full' 
                   
-                    src={downloadURL ? downloadURL : (userData?.img_url || "/icons/uploadgreen.svg")}
+                    src={imageUrl ? imageUrl : (userData?.img_url || "/icons/uploadgreen.svg")}
 
  alt="upload" />
                   <p className='roboto-medium font-medium text-lg text-text92'>upload</p>
