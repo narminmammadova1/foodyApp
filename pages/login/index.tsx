@@ -48,40 +48,39 @@ const [loading,setLoading]=useState(false)
       password: ""
     },
     onSubmit: (values) => {
-      // localStorage.removeItem("admin_accessToken");  
 setLoading(true)
       signInUserMutation(values)
       queryClient.invalidateQueries(QUERIES.Basket)
+      queryClient.invalidateQueries(QUERIES.User)
 
-      // getBasket()
+
     }
   })
   const { mutate: signInUserMutation } = useMutation({
     mutationFn: signInUser,
     onSuccess: (data) => {
-      console.log("SignIn user mutate ugurlu", data?.data.user);
       toast.success("sisteme daxil oldunuz", { autoClose: 2000 })
       setLoading(false)
 
       localStorage.setItem("user_accesToken", data?.data.user.access_token);
       localStorage.setItem("user_refreshToken", data?.data.user.refresh_token);
 
-      localStorage.setItem("user_LoginDate", String(new Date().getTime()))
+      // localStorage.setItem("user_LoginDate", String(new Date().getTime()))
       localStorage.setItem("isUser", "true")
+
       setIsUser(true)
       setIsAvatar(true)
       setIsBasket(true)
       setIsLoginBtn(false)
       setIsUser(true)
       setIsAdmin(false);
-      queryClient.invalidateQueries(QUERIES.User)
       push("/")
 
 
     },
     onError: (error) => {
       console.log(error, "signin user error ");
-      toast.error("xeta mutationda")
+      toast.error("signin user error")
 
     }
   })

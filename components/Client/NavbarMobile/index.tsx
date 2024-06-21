@@ -91,6 +91,7 @@ const { t } = useTranslation()
       
                  setProfilImg && setProfilImg("");
                 setLetters("")
+                
             }}>{t("Logout")}</li>
             
             
