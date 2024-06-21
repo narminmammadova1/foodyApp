@@ -5,21 +5,19 @@ import React, { useEffect, useState } from 'react'
 import MainClient from '../../../components/Client/MainClient'
 import HeaderClient from '../../../components/Client/HeaderClient'
 import UserSidebar from '../../../components/Client/UserSidebar'
-import UsersProfile from '../../../components/Client/UsersProfile'
 import FooterClient from '../../../components/Client/FooterClient'
 import ButtonGreen from '../../../components/Client/ButtonGreen'
 
 
 import { useGlobalContext } from '../../../Context/GlobalContext'
-import { editUser, getUser } from '../../../services'
+import { editUser,  } from '../../../services'
 import { useFormik } from 'formik'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { QUERIES } from '../../../Constant/Queries'
 import UseFileUpload from '../../../helpers/uploadImages'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
-import { UserDataProps } from '../../../shared/interface'
 
 
 

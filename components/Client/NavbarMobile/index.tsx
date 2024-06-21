@@ -21,7 +21,6 @@ const { isUser, setIsUser,profilImg,letters,setProfilImg,setLetters,userData}=us
     const {push}= router
     const queryClient=useQueryClient()
     const userFullname = userData?.fullname;
-console.log("gggggggggggg",userFullname);
 const { t } = useTranslation()
 
   return (
@@ -83,6 +82,10 @@ const { t } = useTranslation()
 
                 setIsUser(false)
                 localStorage.setItem("IsUser","false")
+                localStorage.removeItem("user_accesToken");
+
+                localStorage.removeItem("user_refreshToken");
+
                 push("/")
                  queryClient.invalidateQueries(QUERIES.User)
       
