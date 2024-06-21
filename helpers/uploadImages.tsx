@@ -12,7 +12,8 @@ interface UploadProps {
   file: File | null;
   setFile: React.Dispatch<React.SetStateAction<File | null>>;
   productFile: File | null;
-  imageUrl: string; // Ekledik
+  setImageUrl:any,
+  imageUrl: string; 
 }
 
 const UseFileUpload = (): UploadProps => {
@@ -42,7 +43,7 @@ const UseFileUpload = (): UploadProps => {
     }
   }
 
-  return { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile, productFile, imageUrl };
+  return { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile, productFile, setImageUrl, imageUrl };
 }
 
 export default UseFileUpload;

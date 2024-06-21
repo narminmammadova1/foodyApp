@@ -183,7 +183,9 @@ const isDisabled=formik.values.username===""  || formik.values.fullname===""  ||
                   value={formik.values.phone}
                   onChange={formik.handleChange}
                   className='h-[53px] px-[23px]  bg-headerbg lg:bg-white rounded' type="number"
-                  placeholder='+994' />
+                  placeholder='+994' 
+                  
+                  />
                 <label className='mt-3 lg:mt-0 font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">{t("Username")}</label>
                 <input
                   name="username"

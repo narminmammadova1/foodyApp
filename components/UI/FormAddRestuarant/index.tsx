@@ -21,7 +21,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
   const { categoryData, restaurantData, isEdit, setIsEdit, selectedId } = useGlobalContext() || {};
   const { t } = useTranslation();
 
-  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl } = UseFileUpload() || {};
+  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl,setImageUrl } = UseFileUpload() || {};
   const router = useRouter();
   const queryClient = useQueryClient();
 
@@ -74,6 +74,8 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
         EditRestaurantMutation(editedValues);
         setIsEdit(false)
         setDownloadURL("");
+        setImageUrl("")
+
 
 
       } else {
@@ -84,6 +86,8 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
         AddRestaurantMutation(newValues);
         formik.resetForm();
         setDownloadURL("");
+        setImageUrl("")
+
       }
     }
   });
@@ -108,6 +112,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
       queryClient.invalidateQueries(QUERIES.Restaurants);
       formik.resetForm();
       // setFile(null);
+      setImageUrl("")
       setDownloadURL("");
       setSelectedType("");
       setTimeout(() => {
@@ -260,6 +265,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
                 setDownloadURL("");
                 setIsEdit(false)
                 setFile(null)
+                setImageUrl("")
 
                 onClose();
               }}

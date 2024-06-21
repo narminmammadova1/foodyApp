@@ -69,12 +69,12 @@ const {t}=useTranslation()
   {t("Our Food site makes it easy to find local food")}</h1>
   <p className=" mt-5 hidden lg:block  lg:me-72 font-roboto line2 letter3 text-headerUl text-[22px] font-[400]">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
 
-<div className="sm:flex  lg:flex gap-10  mt-10">
+<div className=" md:flex lg:flex gap-10  mt-10">
 
   <ButtonRed btnText={t("Register")}  onClick={()=>{
     handlePush("/register")
   }}   />
-  <div className=" mt-3 lg:mt-0">
+  <div className=" mt-3 md:mt-0 lg:mt-0">
   <ButtonWhite  onClick={()=>push(ROUTER.CHECKOUT)}  btnText={t("Order now")}            />
   </div>
 </div>

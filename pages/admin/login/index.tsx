@@ -19,6 +19,7 @@ import { useDropdownn } from '../../../shared/hooks/useDropdown';
 import { handlechange } from '../../../components/Admin/SideBar';
 import i18n from '../../../utils/i18n';
 import { useTranslation } from 'react-i18next';
+import { FaRegEyeSlash } from "react-icons/fa";
 
 
 const validate = (values: any) => {
@@ -54,7 +55,7 @@ const AdminLogin: NextPage = () => {
   const [loading, setLoading] = useState(false);
 
 const {t,i18n}=useTranslation()
-const { setIsAdmin,showPassword,isLoading,togglePassword}=useGlobalContext() || {}
+const { setIsAdmin,showPassword,isLoading,togglePassword,setShowPassword}=useGlobalContext() || {}
 
 const { isOpenLang, openLang } = useDropdownn()
 
@@ -154,7 +155,12 @@ const { mutate: signInAdmin } = useMutation({
                                   />
 
  <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
-              <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eyePassword.svg" alt="eye"/>
+  <div className=''>
+              <Image className={` ${ showPassword ?"block"  :"hidden"} w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} width={200} height={200} src="/icons/eyePassword.svg" alt="eye"/>
+             
+             <FaRegEyeSlash className={` ${ showPassword ?"hidden"  :"block"} text-headerbg w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} />
+
+              </div>
              </div>                                                  
                                                     
                                                     

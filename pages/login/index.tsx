@@ -13,7 +13,8 @@ import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import { useGlobalContext } from '../../Context/GlobalContext'
 import { QUERIES } from '../../Constant/Queries'
-
+import { FaRegEyeSlash } from "react-icons/fa";
+ 
 const LoginPage: NextPage = () => {
   const router = useRouter()
   const { push } = router
@@ -123,8 +124,13 @@ const isDisabled=!formik.values.email || !formik.values.password || loading
                     className=' font-roboto font-[400] text-modal_p h-[68px] w-full bg-lightPink  mt-4 ps-6 rounded-[5px] text-lg lg:text-[20px] '
                     type={`${showPassword ? "text" : "password"}`} placeholder='password' />
                   <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
-                    <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eye.svg" alt="eye" />
-                  </div>
+                  <div className=''>
+              <Image className={` ${ showPassword ?"block"  :"hidden"} w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} width={200} height={200} src="/icons/eye.svg" alt="eye"/>
+             
+             <FaRegEyeSlash className={` ${ showPassword ?"hidden"  :"block"}   text-modal_p w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} />
+
+              </div>  
+                              </div>
                 </div>
                 <button  disabled={isDisabled} className={`mt-[72px] ${isDisabled ? "disabled" :""} bg-mainRed h-[68px] w-full text-white rounded-[5px] text-[22px]`} type="submit">{loading? "loading..." :"Log in"}</button>
               </form>

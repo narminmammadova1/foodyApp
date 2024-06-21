@@ -12,6 +12,7 @@ import { log } from 'util'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import { useGlobalContext } from '../../Context/GlobalContext'
+import { FaRegEyeSlash } from "react-icons/fa";
 
 const RegisterPage:NextPage = () => {
    const router=useRouter()
@@ -22,12 +23,13 @@ const {showPassword,setLetters,setShowPassword,userData,togglePassword}=useGloba
 const{mutate:signUpUserMutation}=useMutation({
     mutationFn:signUpUser,
     onSuccess:(values)=>{
-        toast.success("Welcome",{autoClose:2000})
-        
+        toast.success("Welcome",{autoClose:1000})
+        push(ROUTER.HOME)
     },
     onError:(error)=>{
         console.log(error,"signupuser error");
-        
+        toast.error("This email is already in use ",{autoClose:1000})
+
     }
    
         
@@ -119,8 +121,12 @@ signUpUserMutation(values)
      type={`${showPassword? "text" :"password"}`}   
        placeholder='password' />
      <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
-              <Image className='w-[35px] h-[32px]' width={200} height={200} src="/icons/eye.svg" alt="eye"/>
-             </div>
+     <div className=''>
+              <Image className={` ${ showPassword ?"block"  :"hidden"} w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} width={200} height={200} src="/icons/eye.svg" alt="eye"/>
+             
+             <FaRegEyeSlash className={` ${ showPassword ?"hidden"  :"block"}  text-modal_p w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} />
+
+              </div>               </div>
              </div>
 <button type="submit" className='mt-[72px] mb-[105px] bg-mainRed h-[68px] w-full text-white rounded-[5px] text-[22px]' >Register</button>
 </form>
@@ -133,3 +139,10 @@ signUpUserMutation(values)
 }
 
 export default RegisterPage
+
+
+
+
+
+
+
