@@ -28,7 +28,7 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
  const [selectedType,setSelectedType]=useState("")
  const { t } = useTranslation();
 
- const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile } = UseFileUpload();
+ const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile, imageUrl } = UseFileUpload();
  const { restaurantData,setIsEdit}=useGlobalContext() || {}
     const { mutate: addProductMutation } = useMutation({
         mutationFn: addProduct,
@@ -120,7 +120,7 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
                 <div className='rleft w-1/3 hidden lg:block me-10'>
                   <div className='min-h-36 mt-1'>
                      <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover' 
-                src={downloadURL && downloadURL|| "/icons/uploadgreen.svg"} 
+                src={imageUrl || "/icons/uploadgreen.svg"} 
                 alt='product' /> 
                   </div>
                   <div className='py-2'>

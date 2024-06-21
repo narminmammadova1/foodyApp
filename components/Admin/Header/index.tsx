@@ -39,8 +39,10 @@ const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=
   <Image className=' cursor-pointer' width={100} height={100} alt="logo" src="/svgs/logo.svg"/>
 
 </div>
-{isOpenSidebar && <animated.div style={sidebarAnimation} className='fixed lg:hidden top-0 left-[-20px] z-50'>
+{isOpenSidebar && <animated.div style={sidebarAnimation} className='fixed w-full lg:hidden top-0 z-50'>
+<div className=' relative left-[-40px]'>
 <SideBar isNavbar={isNavbar} closeSidebar={closeSidebar}/>
+</div>
 
 </animated.div>}
 

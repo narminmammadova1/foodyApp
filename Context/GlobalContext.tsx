@@ -17,7 +17,6 @@ interface ContextProps {
     selectedId: string |number | null |undefined;
     idForFilter:string |number | null |undefined;
     setSelectedId: React.Dispatch<React.SetStateAction<string | null | number |undefined>> | undefined
-    // setSelectedId: Dispatch<SetStateAction<string | number | null | undefined>>;
 
     setIdForFilter:React.Dispatch<React.SetStateAction<string | null | number |undefined>> | undefined
     categoryData: any[]; 
@@ -25,7 +24,6 @@ interface ContextProps {
     restaurantData:RestProps[]  | undefined;
 
     // restaurantType:string;
-    // addProductMutation:(newProduct:any)=>void 
     defaultText:string,
     setDefaultText:any,
     productsData:any[],
@@ -110,16 +108,13 @@ const userData=User?.user
 
 const { data: category } = useQuery(QUERIES.Categories, getCategory);
 const categoryData=category?.data?.result.data;
-// console.log("contextdeki Categorydata", categoryData)
 
 const { data: offers } = useQuery(QUERIES.Offers, getOffer);
 const offerData=offers?.data?.result.data;
-console.log("offersData", offerData);
 
 
 const {data:restaurants}=useQuery(QUERIES.Restaurants,getRestaurant)
  const restaurantData=restaurants?.data?.result.data || []
- console.log("restaurant data",restaurantData);
 
  
 const{data:products}=useQuery(QUERIES.Products,getProduct)
@@ -133,7 +128,6 @@ const productsData=products?.data?.result.data
  const {data:userOrders}=useQuery(QUERIES.UserOrder,getUserOrder)
  const userOrdersData=userOrders?.data?.result.data || []
  console.log("get Basket",basketData);
- console.log("userOrdersDataaaa",userOrdersData);
  
 
  const {data:Orders}=useQuery(QUERIES.Order,getOrder)
@@ -150,26 +144,6 @@ const productsData=products?.data?.result.data
  console.log("historyDataaa",historyData);
 
 
-// const{mutate:editCategoryMutation}=useMutation(editCategory,
-//     {onSuccess:(data)=>{
-
-//         console.log("categoryedit mutation isleyir");
-//         toast.success("Edited Category",{autoClose:2000})
-//         queryClient.invalidateQueries(QUERIES.Categories)
-        
-//     },
-// onError:(err)=>{
-//     console.log("error edit categ mutation");
-//     toast.error("error edit mutation")
-    
-// }}
-    
-    
-// )
-
-
-
-
 const{mutate:addBasketmutation}=useMutation({
     mutationFn:addBasket,
     onSuccess:(values)=>{
@@ -184,102 +158,14 @@ const{mutate:addBasketmutation}=useMutation({
   })
  const [showPassword,setShowPassword]=useState(false)
 
-// const togglePassword=()=>{
+const togglePassword=()=>{
 
-//   setShowPassword(!showPassword)
-// }
-
-const togglePassword = useCallback(() => {
-  setShowPassword(prevState => !prevState);
-}, [setShowPassword]);
+  setShowPassword(!showPassword)
+}
 
 
-
-
-// const {mutate:addProductMutation}=useMutation(addProduct,{
-
-//     onSuccess:(data)=>{
-
-//         console.log("Product added mutation");
-//         toast.success("Added product succesdeki",{autoClose:2000})
-//         queryClient.invalidateQueries(QUERIES.Products)
-        
-//     },
-//     onError:(error)=>{
-//         console.error("Error Product offer")
-//         toast.error("error Adding Product")
-//     }
-// })
-
-// const value:ContextProps={
-//     isAdmin, setIsAdmin,
-//     userData,
-//     categoryData,
-//     offerData,
-//     orderData,
-//     historyData,
-//     restaurantData,
-//     productsData,
-//     basketData,
-//     userOrdersData,
-//     selectedId, 
-//     formComponent,
-//     idForFilter,
-//     setIdForFilter,
-//      setFormComponent,
-//     setSelectedId,
-// isEdit,
-// setIsEdit,
-// isBasket,
-//     setIsBasket,
-//     isAvatar,
-//     setIsAvatar,
-//     isName,
-//     setIsName,
-//     isLoginBtn ,
-//     setIsLoginBtn ,
-//     isUser,
-//     setIsUser ,
-//     profilImg,
-//     setProfilImg,
-//     letters,
-//     defaultText,
-//     setDefaultText,
-//     setLetters,
-//     showPassword,
-//     setShowPassword,
-//     togglePassword,
-//     selectedRestaurant,
-//     setSelectedRestaurant,
-//     isLoading,currentProduct,
-//     setCurrentProduct,
-//     addBasketmutation,
-//   myOrder,
-//    setMyOrder,
-//    orderId,
-//    setOrderId
-
-//     }
-
-
-const setSelectedIdMemo = useCallback(
-  (id:any) => {
-    setSelectedId(id);
-  },
-  []
-);
-
-const setIdForFilterMemo = useCallback(
-  (id:any) => {
-    setIdForFilter(id);
-  },
-  []
-);
-
-const value = useMemo(
-  () => ({
-    isAdmin,
-    setIsAdmin,
+const value:ContextProps={
+    isAdmin, setIsAdmin,
     userData,
     categoryData,
     offerData,
@@ -289,24 +175,24 @@ const value = useMemo(
     productsData,
     basketData,
     userOrdersData,
-    selectedId,
+    selectedId, 
     formComponent,
     idForFilter,
-    setIdForFilter: setIdForFilterMemo,
-    setFormComponent,
-    setSelectedId: setSelectedIdMemo,
-    isEdit,
-    setIsEdit,
-    isBasket,
+    setIdForFilter,
+     setFormComponent,
+    setSelectedId,
+isEdit,
+setIsEdit,
+isBasket,
     setIsBasket,
     isAvatar,
     setIsAvatar,
     isName,
     setIsName,
-    isLoginBtn,
-    setIsLoginBtn,
+    isLoginBtn ,
+    setIsLoginBtn ,
     isUser,
-    setIsUser,
+    setIsUser ,
     profilImg,
     setProfilImg,
     letters,
@@ -318,66 +204,17 @@ const value = useMemo(
     togglePassword,
     selectedRestaurant,
     setSelectedRestaurant,
-    isLoading,
-    currentProduct,
+    isLoading,currentProduct,
     setCurrentProduct,
     addBasketmutation,
-    myOrder,
-    setMyOrder,
-    orderId,
-    setOrderId,
-  }),
-  [
-    isAdmin,
-    setIsAdmin,
-    userData,
-    categoryData,
-    offerData,
-    orderData,
-    historyData,
-    restaurantData,
-    productsData,
-    basketData,
-    userOrdersData,
-    selectedId,
-    formComponent,
-    idForFilter,
-    setIdForFilterMemo,
-    setFormComponent,
-    setSelectedIdMemo,
-    isEdit,
-    setIsEdit,
-    isBasket,
-    setIsBasket,
-    isAvatar,
-    setIsAvatar,
-    isName,
-    setIsName,
-    isLoginBtn,
-    setIsLoginBtn,
-    isUser,
-    setIsUser,
-    profilImg,
-    setProfilImg,
-    letters,
-    defaultText,
-    setDefaultText,
-    setLetters,
-    showPassword,
-    setShowPassword,
-    togglePassword,
-    selectedRestaurant,
-    setSelectedRestaurant,
-    isLoading,
-    currentProduct,
-    setCurrentProduct,
-    addBasketmutation,
-    myOrder,
-    setMyOrder,
-    orderId,
-    setOrderId,
-  ]
-);
+  myOrder,
+   setMyOrder,
+   orderId,
+   setOrderId
+
+    }
+
+
 
     return (
         <GlobalContext.Provider value={value}>

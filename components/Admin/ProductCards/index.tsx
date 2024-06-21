@@ -36,12 +36,12 @@ const ProductCards:React.FC<ProductCardsProps> = ({product}) => {
     
         <div className='flex-col justify-between items-end  w-[163px]'>
             <div className='ms-10 lg:ms-0 flex flex-col justify-between h-14  font-medium  '>
-        <p className=' text-lg  text-text-darkk'>{product && product.name ? product.name.slice(0,20) :"name not availabla"}</p>
-        <p className=' text-par2-text text-[14px]'>{ product && product.description ? product.description.slice(0,20):"product not available"}</p>
+        <p className=' text-lg whitespace-nowrap text-ellipsis text-text-darkk'>{product && product.name ? product.name.slice(0,18) :"name not availabla"}</p>
+        <p className=' text-par2-text  whitespace-nowrap text-ellipsis text-[14px]'>{ product && product.description ? product.description.slice(0,18):"product not available"}</p>
         {/* <p className=' text-par-blue-text text-[12px] mt-2'>{product.price}$</p> */}
         </div>
         <div className='ms-10 lg:ms-0  w-full flex justify-between gap-[6px]'>
-        <p className=' text-par-blue-text text-[12px] mt-2'>{product && product.price ? product.price :"price not available"}$</p>
+        <p className=' text-par-blue-text text-[12px] mt-2'>{product && product.price ? product.price.toString().slice(0,10) :"price not available"}$</p>
 <div className='flex'>
             <img onClick={()=>{
               openProductModal()

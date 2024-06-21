@@ -55,8 +55,8 @@ const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
         </div>
 
 <div className=' font-roboto w-2/4 flex flex-col justify-center '>
-    <h2 className=' font-[18px]'>{restaurant.name.slice(0,15)}</h2>
-    <p className=' text-par3-text font-[14px]'>{restaurant.cuisine.slice(0,19)}</p>
+    <h2 className='  whitespace-nowrap text-ellipsis font-[18px]'>{restaurant.name.slice(0,15)}</h2>
+    <p className=' text-par3-text  whitespace-nowrap text-ellipsis font-[14px]'>{restaurant.cuisine.slice(0,12)}</p>
     </div>
 <div className='flex flex-col   justify-between py-1 pe-3'>
     <img onClick={()=>{

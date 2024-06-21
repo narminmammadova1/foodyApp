@@ -3,8 +3,7 @@ import { ENDPOINTS } from "../Constant/Endpoints";
 import { instanceAxios } from "../helpers/instanceAxios";
 import { AxiosPromise } from "axios";
 
-import { AxiosError } from "axios";
-import { CategoryDataProps, RestProps } from "../shared/interface";
+import {  RestProps } from "../shared/interface";
 
 
 // Register
@@ -158,7 +157,6 @@ export const deleteProduct = async (productId: string) => {
     headers:{Authorization:`Bearer ${accesToken}`}
         });
       
-    console.log("offer Adddd");
     };
 
 ///////////////////////////////////////
@@ -286,7 +284,6 @@ export const clearBasket=async (basketId:number |string)=>{
 
     method:"DELETE",
     url:`${ENDPOINTS.BASKET}/clear`,
-    // data:basketId,
     data:{basket_id:basketId},
     headers:{Authorization:`Bearer ${accesToken}`}
   })

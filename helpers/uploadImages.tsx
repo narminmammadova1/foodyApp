@@ -1,52 +1,37 @@
+
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { fileStorage } from "../server/configs/firebase";
 import { ChangeEvent, SetStateAction, useState } from "react";
-import { Dispatch  } from 'react';
+import { Dispatch } from 'react';
 
-
-interface UploadProps{
-   handleFileChange:(e: ChangeEvent<HTMLInputElement>) => void;
-  //  handleUpload:(file:File)=>void | undefined;
+interface UploadProps {
+  handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleUpload: (file: File) => Promise<void>;
+  downloadURL: string;
+  setDownloadURL: Dispatch<SetStateAction<string>>;
+  file: File | null;
+  setFile: React.Dispatch<React.SetStateAction<File | null>>;
+  productFile: File | null;
+  imageUrl: string; // Ekledik
+}
 
-    downloadURL:string;
-    
-    // setDownloadURL:Dispatch<SetStateAction<string | null>>;
-
-    setDownloadURL: Dispatch<SetStateAction<string>>;
-
-
-     file:File | null;
-    //  setFile:React.Dispatch<React.SetStateAction<string | null >>;
-    setFile: React.Dispatch<React.SetStateAction<File | null>>;
-    productFile:File | null;
-    }
-
-
-const UseFileUpload = ():UploadProps => {
+const UseFileUpload = (): UploadProps => {
   const [file, setFile] = useState<File | null>(null);
   const [downloadURL, setDownloadURL] = useState("");
+  const [productFile, setProductFile] = useState(null);
+  const [imageUrl, setImageUrl] = useState(""); 
 
-  const[productFile,setProductFile]=useState(null)
-  const [downloadProductURL, setDownloadProductURL] = useState("");
-
-  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedFile: File | null = e.target.files?.[0] || null;
-    setFile(selectedFile);    // setNewFile(selectedFile);
-    // setFile(selectedFile);
-
 
     if (selectedFile) {
-      const storageRef = ref(fileStorage, 'uploads/' + selectedFile.name);
-      await uploadBytes(storageRef, selectedFile).then(() => {
-        console.log("File uploaded successfully");
-      }).catch((error) => {
-        console.error("Error uploading file:", error);
-      });
+      const imageUrl = URL.createObjectURL(selectedFile);
+      setImageUrl(imageUrl);
+      setFile(selectedFile); 
     }
-  }
+  };
 
-  const handleUpload = async (file:File) => {
+  const handleUpload = async (file: File) => {
     if (file) {
       const storageRef = ref(fileStorage, 'uploads/' + file.name);
       await uploadBytes(storageRef, file);
@@ -57,6 +42,7 @@ const UseFileUpload = ():UploadProps => {
     }
   }
 
-  return { handleFileChange, handleUpload, downloadURL, setDownloadURL ,file,setFile,productFile};
+  return { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile, productFile, imageUrl };
 }
+
 export default UseFileUpload;

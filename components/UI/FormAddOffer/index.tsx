@@ -21,7 +21,7 @@ const FormAddOffer:React.FC <FormAddProps>= ({onClose}) => {
 
 const  {isEdit, setIsEdit}=useGlobalContext() ||{}
 
-const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile } = UseFileUpload() || {};
+const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl } = UseFileUpload() || {};
 const router = useRouter();
 const { pathname } = router;
 const queryClient=useQueryClient()
@@ -104,7 +104,7 @@ return (
         <div className='rleft hidden lg:block w-1/3 me-10'>
           <div className='min-h-36 mt-1 mb-4'>
             <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover'
-                src={downloadURL|| "/icons/uploadgreen.svg"} 
+                src={imageUrl || "/icons/uploadgreen.svg"} 
                 alt='' /> 
           </div>
           <div className='py-2'>
@@ -170,6 +170,8 @@ className='bg-input-gray rounded-lg h-[99px] modal-input modal-input'></textarea
                             sizeMob="w-[139px]"
                             btnIcon='' onClick={()=>{formik.resetForm()
             setDownloadURL("")
+            setIsEdit(false)
+setFile(null)
             onClose()}} btnText={t("Cancel" )} btncolor="modal-div" />
         </div>
         <div className='btn-text'>

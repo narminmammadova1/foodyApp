@@ -37,7 +37,7 @@ const restoreDefaulttext=()=>{
   setDefaultText("Restauranttt Type")
 }
   return (
-    <div>
+    <div className=''>
         <div className={` w-[256px] z-50  bg-main-purple ${isNavbar ? "rounded-0 min-h-svh  " :"rounded-[14px] h-[474px]"}  py-10  ms-4 me-7
         `}>
 <div>
@@ -89,7 +89,7 @@ const restoreDefaulttext=()=>{
         <li className='flex gap-6 mt-6 cursor-pointer' onClick={()=>{
           push(ROUTER.ADMIN_LOGIN)
           localStorage.removeItem("admin_accesToken")
-          localStorage.removeItem("refresh_token")
+          localStorage.removeItem("admin_refreshToken")
           localStorage.setItem('isAdmin',"false");
 
 

@@ -255,6 +255,7 @@ const selectRestaurant = async (rest: any) => {
 
         <div onClick={() => {
           localStorage.removeItem("user_accesToken");
+          localStorage.removeItem("user_refreshToken");
 
           setIsUser(false)
           localStorage.setItem("IsUser","false")

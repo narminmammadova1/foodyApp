@@ -3,7 +3,7 @@ import { ReactNode } from "react";
  export interface RestProps {
    category_id: string;
    name: string;
-   id: number |string ;
+   id: number |string | undefined ;
    img_url: string | undefined;
    address:string | undefined;
    delivery_price: number | string| undefined;
@@ -36,16 +36,7 @@ import { ReactNode } from "react";
 
  }
 
-// interface UserProps{
-//     img_url?: string;
-//     fullname?: string;
-//     email?: string;
-//     address?: string;
-//     phone?: number;
-//     id?: string;
-//     username?: string;
-//     creationTime?: string;
-//  }
+
 export interface CategoryDataProps {
    categoryData: { 
       id: string | number | undefined;

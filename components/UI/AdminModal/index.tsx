@@ -72,7 +72,6 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
           case "addCategory":
           setFormComponent(<FormAddCategory onClose={onClose}/>);
            break;
-    //       // Diğer case'ler buraya eklenebilir
           default:
          setFormComponent(null);
       }
