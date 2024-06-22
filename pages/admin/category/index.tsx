@@ -66,7 +66,7 @@ return (
       </div>
     ) : (
       <>
-     
+     This page for only admin
       </>
     )}
   </>

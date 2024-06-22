@@ -9,20 +9,12 @@ import DeleteModal from '../../../components/Modals/DeleteModal';
 import { useModal } from '../../../shared/hooks/useModal';
 import { NextPage } from 'next';
 import { useGlobalContext } from '../../../Context/GlobalContext';
+import { useTranslation } from 'react-i18next';
 
 
 
  
-  // function toggleOptions() {
-  //   const select = document.getElementById('restaurant-type');
-  //   select.classList.toggle('hidden');
-  // }
-
-  // function handleChange() {
-  //   // Burada seçilen değeri kullanabilirsiniz
-  //   const select = document.getElementById('restaurant-type');
-  //   console.log(select.value);
-  // }
+const {t}=useTranslation()
 
 
 
@@ -72,14 +64,10 @@ useEffect(() => {
       </div>
       <div className='flex flex-col w-full me-4'>
 
-      <TopDiv select selectText="Restuarant type" title="Products" />
+      <TopDiv select selectText={t("Restuarant type")} title={t("Products")} />
 
       <div className=' m-auto lg:m-0 lg:flex lg:gap-5 flex-wrap'>
-        {/* {Array.isArray(productsData) && productsData.map((product)=>(
-
-<ProductCards key={product.id} product={product}/>
-
-        ))} */}
+    
 
 {(idForFilter ? showFilteredProducts : showProducts)?.map((product)=>(
 
@@ -94,7 +82,7 @@ useEffect(() => {
       </div>
       </div>
       </div>
-      </Layout></>): (<></>)}
+      </Layout></>): (<>this page for admin</>)}
  
 
     </div>

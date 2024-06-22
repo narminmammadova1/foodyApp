@@ -56,7 +56,7 @@ useEffect(()=>{
       <SideBar/>
       </div>
       <div className='flex flex-col w-full me-4'>
-      <TopDiv addButton onClick={open} select title="Restuarants" btnText={t("ADD RESTUARANT" )}selectText={t("Category type")}/>
+      <TopDiv addButton onClick={open} select title={t("Restuarants")} btnText={t("ADD RESTUARANT" )}selectText={t("Category type")}/>
       <div className=' m-auto lg:m-0 lg:flex gap-4 flex-wrap'>
         {(idForFilter ? showFilteredRestaurant :showRestaurant)?.map((restaurant)=>(
       <RestuarantCards key={restaurant.id} restaurant={restaurant}/>

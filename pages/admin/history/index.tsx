@@ -44,7 +44,8 @@ const OrderHistory:NextPage = () => {
       </div>
       </div>
       </Layout>
-</>): (<>error..........</>)}
+</>): (<>this page for only admin
+</>)}
     </div>
   )
 }

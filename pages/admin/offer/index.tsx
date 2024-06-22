@@ -10,6 +10,8 @@ import { useModal } from '../../../shared/hooks/useModal'
 import AdminModal from '../../../components/UI/AdminModal'
 import { NextPage } from 'next'
 import { useGlobalContext } from '../../../Context/GlobalContext'
+import { useTranslation } from 'react-i18next'
+const {t}=useTranslation()
 
 const AdminOffers:NextPage = () => {
 
@@ -31,7 +33,7 @@ const AdminOffers:NextPage = () => {
 
       <Layout
       >
-        <AdminModal modalType="addOffer" formm={formComponent} modalTitle='Add Offer' modalDescription="Add your offer infarmation" btnText="Create Offer" onClose={close} isOpen={isOpen}  />
+        <AdminModal modalType="addOffer" formm={formComponent} modalTitle={t('Add Offer')} modalDescription={t("Add your offer infarmation")} btnText={t("Create Offer")} onClose={close} isOpen={isOpen}  />
       <AdminHeader
       />
       <div className='flex'>
@@ -39,7 +41,7 @@ const AdminOffers:NextPage = () => {
       <SideBar/>
       </div>
       <div className='lg:flex-col w-full pe-4 lg:pe-0 me-4'>
-      <TopDiv addButton onClick={open} title="Offers" btnText="ADD OFFER"/>
+      <TopDiv addButton onClick={open} title={t("Offers")} btnText={t("ADD OFFER")}/>
       <div className='flex gap-5 ms-4 lg:ms-0'>
       <OfferCards
       />
@@ -48,7 +50,7 @@ const AdminOffers:NextPage = () => {
       </div>
       </Layout>
 
-    </div>) :(<></>)}
+    </div>) :(<>this page for admin</>)}
    
     </>
   )

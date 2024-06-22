@@ -47,7 +47,7 @@ const {t}=useTranslation()
       </div>
       </div>
       </Layout>
-</>): (<></>)}
+</>): (<>this page for admin</>)}
  
     </div>
   )

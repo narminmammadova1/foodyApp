@@ -9,7 +9,7 @@ import Image from 'next/image'
 import useDebounce from '../../../helpers/useDebounce'
 import { useQueryClient } from 'react-query'
 import { QUERIES } from '../../../Constant/Queries'
-import { UserDataProps } from '../../../shared/interface'
+import { BasketPropsItem, UserDataProps } from '../../../shared/interface'
 import { handlechange } from '../../Admin/SideBar'
 import NavbarMobile from '../NavbarMobile'
 import { useSpring,animated } from '@react-spring/web'
@@ -20,7 +20,7 @@ export const isActiveLink = (path: string) => {
 }
 
 const HeaderClient = () => {
-  const { isBasket, setIsBasket,currentProduct,setCurrentProduct, isAvatar, setIsAvatar,userData,selectedRestaurant,setSelectedRestaurant, isLoginBtn,setSelectedId,selectedId, setIsLoginBtn, isUser, setIsUser, profilImg, letters, setLetters,  setProfilImg, restaurantData, productsData } = useGlobalContext() || {}
+  const { isBasket, setIsBasket,currentProduct,setCurrentProduct,basketData, isAvatar, setIsAvatar,userData,selectedRestaurant,setSelectedRestaurant, isLoginBtn,setSelectedId,selectedId, setIsLoginBtn, isUser, setIsUser, profilImg, letters, setLetters,  setProfilImg, restaurantData, productsData } = useGlobalContext() || {}
 
   const { t, i18n } = useTranslation()
 const queryClient=useQueryClient()
@@ -34,7 +34,7 @@ const queryClient=useQueryClient()
   const [searchError, setSearchError] = useState("")
   const [searchResult, setSearchResult] = useState<any[]>([]);
 
-  console.log("userdata nedirrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr?",userData);
+  console.log("userdata home",userData);
 
 useEffect(() => {
   const userToken = localStorage.getItem("user_accesToken")
@@ -92,7 +92,7 @@ useEffect(() => {
     setIsLoginBtn(false);
     setIsUser(true);
     if (setProfilImg && userData?.img_url) {
-      setProfilImg(userData.img_url);
+      setProfilImg(userData.img_url || "");
     }
 
     const userFullname = userData?.fullname;
@@ -121,8 +121,14 @@ const selectRestaurant = async (rest: any) => {
     console.log("err", err);
   }
 };
-
-
+const basketArr:BasketPropsItem[]=basketData?.items || []
+ const[headerBasket,setHeaderBasket]=useState<BasketPropsItem[]>([])
+ useEffect(()=>{
+  if(basketData){
+  
+  setHeaderBasket(basketArr)
+  }
+  },[basketData])
   return (
     <div>
       <header className='bg-headerbg py-4 px-4 lg:py-0 lg:px-0  '>
@@ -182,7 +188,19 @@ const selectRestaurant = async (rest: any) => {
 <div className='hidden lg:flex'>
             <button onClick={() => { push(ROUTER.USER_LOGIN) }} className={`${isUser ? " hidden" : "px-[22px] w-[115px] h-[41px]  rounded-full  text-white font-roboto font-medium  text-[16px] bg-btnRed"}`} >Sign up</button>
             <div className={`${isUser ? "flex gap-4" : "hidden"}`}>
-              <Image onClick={()=>push(ROUTER.BASKET)} width={200} height={200} src="/icons/headerBasket.svg" className=' cursor-pointer w-10 h-10' alt='basket' />
+            <div className='relative cursor-pointer w-10 h-10'>
+  <div className='absolute bg-white text-mainRed text-center w-[20px] h-[20px] rounded-full top-[-5px] right-[-10px] z-50'>
+    {basketArr.length}
+  </div>
+  <Image 
+    onClick={() => push(ROUTER.BASKET)} 
+    width={200} 
+    height={200} 
+    src="/icons/headerBasket.svg" 
+    className='' 
+    alt='basket' 
+  />
+</div>
               <div onClick={openAvatar} className=' w-10 h-10 cursor-pointer rounded-full object-cover text-white flex justify-center items-center font-roboto roboto-medium bg-avatarColor '>
                 {profilImg ? <img className=' w-10 h-10 rounded-full' src={profilImg} /> : <span>{letters}</span>}
               </div>

@@ -169,7 +169,7 @@ const { mutate: signInAdmin } = useMutation({
  {formik.errors.password && <div>{formik.errors.password}</div>}
   
                   <button type="submit"              
- className={`   bg-btn-pink cursor-pointer  rounded-[4px] w-full ${isDisabled ? "disabled" : ""}   mt-[35px] font-bold text-white h-[50px]`}>{loading ? "loading..." :" Sign In"}</button>
+ className={`   bg-btn-pink cursor-pointer  rounded-[4px] w-full ${isDisabled ? "disabled" : ""}   mt-[35px] font-bold text-white h-[50px]`}>{t(loading ? "loading..." :"Sign In")}</button>
                 </form>
               </div>
             </div>

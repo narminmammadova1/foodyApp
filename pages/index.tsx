@@ -18,6 +18,7 @@ import AnimatedSection2 from "../components/AnimatedSection2";
 import { useAnimatedStyles } from "../shared/animated/animated";
 import { useTranslation } from "react-i18next";
 import { transform } from "framer-motion";
+import { BasketPropsItem } from "../shared/interface";
 // 
 
 
