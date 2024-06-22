@@ -189,7 +189,7 @@ const basketArr:BasketPropsItem[]=basketData?.items || []
             <button onClick={() => { push(ROUTER.USER_LOGIN) }} className={`${isUser ? " hidden" : "px-[22px] w-[115px] h-[41px]  rounded-full  text-white font-roboto font-medium  text-[16px] bg-btnRed"}`} >Sign up</button>
             <div className={`${isUser ? "flex gap-4" : "hidden"}`}>
             <div className='relative cursor-pointer w-10 h-10'>
-  <div className='absolute bg-white text-mainRed text-center w-[20px] h-[20px] rounded-full top-[-5px] right-[-10px] z-50'>
+  <div className='absolute bg-white text-mainRed text-center w-[22px] h-[22px] rounded-full top-[-5px] right-[-10px] z-50'>
     {basketArr.length}
   </div>
   <Image 
