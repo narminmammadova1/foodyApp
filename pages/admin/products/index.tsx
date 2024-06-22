@@ -14,7 +14,6 @@ import { useTranslation } from 'react-i18next';
 
 
  
-const {t}=useTranslation()
 
 
 
@@ -23,6 +22,7 @@ const AdminProducts:NextPage = () => {
   // const {isOpen,open,close}=useModal()
 
 const { isAdmin, setIsAdmin,productsData,selectedId ,idForFilter,setIdForFilter} = useGlobalContext()|| {}
+const {t}=useTranslation()
 
  
 useEffect(() => {
