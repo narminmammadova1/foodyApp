@@ -14,7 +14,6 @@ import { useTranslation } from 'react-i18next';
 
 
  
-// const {t}=useTranslation()
 
 
 
@@ -23,6 +22,7 @@ const AdminProducts:NextPage = () => {
   // const {isOpen,open,close}=useModal()
 
 const { isAdmin, setIsAdmin,productsData,selectedId ,idForFilter,setIdForFilter} = useGlobalContext()|| {}
+const {t}=useTranslation()
 
  
 useEffect(() => {
@@ -64,7 +64,7 @@ useEffect(() => {
       </div>
       <div className='flex flex-col w-full me-4'>
 
-      <TopDiv select selectText="Restuarant type" title="Products" />
+      <TopDiv select selectText={t("Restuarant type")} title={t("Products")} />
 
       <div className=' m-auto lg:m-0 lg:flex lg:gap-5 flex-wrap'>
     

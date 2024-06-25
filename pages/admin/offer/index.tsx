@@ -11,9 +11,9 @@ import AdminModal from '../../../components/UI/AdminModal'
 import { NextPage } from 'next'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
-const {t}=useTranslation()
 
 const AdminOffers:NextPage = () => {
+  const {t}=useTranslation()
 
   const {isOpen,open,close}=useModal()
   const{formComponent,setFormComponent,isAdmin,setIsAdmin}=useGlobalContext() || {}
