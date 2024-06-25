@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 
  
-const {t}=useTranslation()
+// const {t}=useTranslation()
 
 
 
@@ -64,7 +64,7 @@ useEffect(() => {
       </div>
       <div className='flex flex-col w-full me-4'>
 
-      <TopDiv select selectText={t("Restuarant type")} title={t("Products")} />
+      <TopDiv select selectText="Restuarant type" title="Products" />
 
       <div className=' m-auto lg:m-0 lg:flex lg:gap-5 flex-wrap'>
     
