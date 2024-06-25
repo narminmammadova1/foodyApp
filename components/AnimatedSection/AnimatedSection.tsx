@@ -13,7 +13,7 @@ const AnimatedSection:React.FC<AnimatedProps> = ({ children }) => {
 
   const fadeInStyles = useSpring({
     opacity: inView ? 1 : 0,
-    transform: inView ? 'scale(0.8)' : 'scale(0.5)',
+    transform: inView ? 'scale(0.9)' : 'scale(0.5)',
     config: { duration: 500},
   });
 

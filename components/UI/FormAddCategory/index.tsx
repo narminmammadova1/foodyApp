@@ -17,7 +17,7 @@ interface FormAddCategoryProps {
 }
 
 const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
-  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl
+  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl,setImageUrl
     
    } = UseFileUpload();
   const { t } = useTranslation();
@@ -55,12 +55,14 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
       if (isEdit) {
         const editedValues = {
           ...values,
-          img_url: downloadURL || values.img_url,
+          img_url: downloadURL || oldCategoryData?.img_url,
+          // img_url: imageUrl || values.img_url,
+
           id: selectedId
         };
         editCategoryMutation(editedValues);
         setDownloadURL("")
-        // setFile(null)
+        setFile(null)
         setIsEdit(false)
 
 
@@ -172,12 +174,12 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
                   <input
                     name='img_url'
                     onBlur={formik.handleBlur}
-                    // value={formik.values.img_url}
 
                     onChange={(e) => {
                       if (e.target.files && e.target.files.length > 0) {
                         handleFileChange(e);
-                        setFile(e.target.files[0]);
+                        setFile(e.target.files[0])
+                        // setImageUrl(e.target.files[0]);
                       }
                     }}
                     className='hidden invisible'
@@ -225,7 +227,7 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
             btnIcon=''
             onClick={() => {
               formik.resetForm();
-              // setDownloadURL('');
+              setDownloadURL('');
               setIsEdit(false)
 
               onClose();
@@ -242,7 +244,10 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
                   btnSize='w-[400px]'
                   sizeMob="w-[139px]"
                   btnIcon=''
-                  onClick={formik.handleSubmit}
+                  onClick={
+                    formik.handleSubmit
+
+                  }
                   btnText={t(`${isEdit ? 'Update Category' : 'Add Category'}`)}
                   disabled={isDisabled}
                   btncolor='btn-pink'

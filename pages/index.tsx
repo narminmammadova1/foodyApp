@@ -198,7 +198,7 @@ const {t}=useTranslation()
   </div>
   </AnimatedSection>
 
-  <div className="leftdiv text-center lg:text-start pt-8 w-full px-4 lg:px-0 lg:w-1/2">
+  <div className="leftdiv text-center lg:text-start pt-8 w-full px-4 lg:px-14 lg:w-1/2">
     <p className=" font-roboto font-[900] line  text-[25px] lg:text-[50px] text-textblack">{offerName ? offerName?.[1] :"Yummy Always Papa John’s Pizza.Agree?"}</p>
     <p className="font-roboto font-[400] line2 text-[16px] lg:text-[22px] text-par3-text mt-7 lg:me-32 lg:pe-16">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
@@ -218,7 +218,7 @@ const {t}=useTranslation()
     <p className="font-roboto font-[400] text-[22px] line2 text-par3-text mt-7 me-36 pe-40">Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
   </div>
   <AnimatedSection>
-  <div className="rightdiv relative w-[619px] h-[653px]"> 
+  <div className="rightdiv relative w-[600px] h-[633px]"> 
     <Image className="absolute  top-14 left-[-50px]  " width={1000} height={1000} src="/pngs/redkamp.svg" alt="kfc"/>
     <Image className=" absolute  top-28 left-[-50px] " width={1000} height={1000} src="/pngs/frieskamp.svg" alt="kfc"/>
 

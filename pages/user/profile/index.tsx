@@ -42,8 +42,6 @@ console.log("userData profildeki", userData);
 console.log("user imageeeeeeeeeee",userData?.img_url);
 // const oldName = userData?.user.username;
 // const oldFullname=userData?.user.fullname
-console.log("usernamebackden gelen",userData?.username);
-// console.log(oldName,"usernamebackden gelen const");
 
 const oldData = {
   email: userData?.email || '',
