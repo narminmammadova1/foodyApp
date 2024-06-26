@@ -7,15 +7,17 @@ import UserOrderCard from '../../../components/Client/UserOrderCard'
 import FooterClient from '../../../components/Client/FooterClient'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
+import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
 
 const UserOrders = () => {
 
 const{   userOrdersData,isLoading,isUser}=useGlobalContext() || {}
 const {t}=useTranslation()
-if(isLoading){
 
-  return <div>loading.......</div>
-}
+if (isLoading ) {
+  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+</div>;
+  }
 
 
   return (

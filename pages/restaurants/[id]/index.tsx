@@ -15,6 +15,7 @@ import { QUERIES } from '../../../Constant/Queries';
 import BtnCheckout from '../../../components/Client/BtnCheckout';
 import { useDropdownn } from '../../../shared/hooks/useDropdown';
 import { useSpring,animated ,config as springConfig } from '@react-spring/web'
+import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
 
 const ChoiseUser = () => {
   
@@ -28,10 +29,14 @@ const { data: restaurantData,  isLoading } = useQuery([QUERIES.RestaurantById, i
   enabled: !!id,
 });
 
-  if(isLoading){    return <div>Loading....................</div>
-}
 
 
+
+if (isLoading ) {
+   return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+</div>;
+   }
+  
 
 const total_price=basketData && basketData.total_amount
 
@@ -39,19 +44,9 @@ console.log("mobilede total priceeeeeeeeeeeeee",total_price);
 
 const selectedRestaurant=restaurantData?.data.result.data
  const currentProduct=restaurantData?.data.result.data.products
-console.log("currentProducttttttttttttttttttttttt yeniiiiiiiiiiii",currentProduct);
        
 
-// const sidebarAnimation = useSpring({
-//   transform: isOpenSidebar ? 'translateY(0%)' : 'translateY(100%)',
-//   opacity: isOpenSidebar ? 1 : 0,
-//   // config: { 
-//   //   tension: 200, 
-//   //   friction: 20, 
-//   //   clamp: true, 
-//   //       precision: 0.01, 
-//   // },
-// });
+
 
   return (
     <div>
@@ -99,8 +94,6 @@ console.log("currentProducttttttttttttttttttttttt yeniiiiiiiiiiii",currentProduc
 
 
           }
-          {/* // <EmptyBasket size="small"/> */}
-          {/* <BasketCard size="small" /> */}
         </div>
 
         {isOpenSidebar && <div className=' w-full  gap-6 lg:hidden fixed bottom-0  z-50  '>

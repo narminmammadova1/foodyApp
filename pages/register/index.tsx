@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React from 'react'
 import MainClient from '../../components/Client/MainClient'
 import RedHeader from '../../components/Client/RedHeader'
 import Image from 'next/image'
@@ -8,7 +8,6 @@ import { ROUTER } from '../../Constant/Router'
 import { useRouter } from 'next/router'
 import { useMutation } from 'react-query'
 import { signUpUser } from '../../services'
-import { log } from 'util'
 import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import { useGlobalContext } from '../../Context/GlobalContext'
@@ -23,25 +22,17 @@ const {showPassword,setLetters,setShowPassword,userData,togglePassword}=useGloba
 const{mutate:signUpUserMutation}=useMutation({
     mutationFn:signUpUser,
     onSuccess:(values)=>{
-        toast.success("Welcome",{autoClose:1000})
-        push(ROUTER.HOME)
+        toast.success("Successful",{autoClose:1000})
+        push(ROUTER.USER_LOGIN)
     },
     onError:(error)=>{
-        console.log(error,"signupuser error");
         toast.error("This email is already in use ",{autoClose:1000})
 
     }
    
         
 })
-// useEffect(() => {
-//   if (letters) {
-//     const userFullname = userData?.user.fullname;
-//     const lettersArr = userFullname?.toUpperCase().split(' ');
-//     const userLetters = lettersArr?.map((item) => item[0]).join("");
-//     setLetters(userLetters);
-//   }
-// }, []);
+
 
 
 

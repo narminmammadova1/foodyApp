@@ -73,7 +73,6 @@ setLoading(true)
       setIsAvatar(true)
       setIsBasket(true)
       setIsLoginBtn(false)
-      setIsUser(true)
       setIsAdmin(false);
       push("/")
 

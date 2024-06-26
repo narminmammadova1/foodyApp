@@ -13,8 +13,8 @@ import { ReactNode } from "react";
  
  export interface ProductProps{
 
-    name?:string,
-    id?:number |string;
+    name?:string | undefined,
+    id?:number | string |null;
     rest_id?:string;
     description?:string;
     price?:number;

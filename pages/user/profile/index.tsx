@@ -18,6 +18,7 @@ import UseFileUpload from '../../../helpers/uploadImages'
 import Image from 'next/image'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
+import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
 
 
 
@@ -123,9 +124,10 @@ onSubmit: async (values) => {
 }
 });
 
-if (isLoading) {
-  return <div>Loading...</div>;
-}
+if (isLoading ) {
+  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+</div>;
+  }
 
 const isDisabled=formik.values.username===""  || formik.values.fullname===""  || formik.values.phone===""
 

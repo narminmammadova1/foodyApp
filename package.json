@@ -35,6 +35,7 @@
     "react-intersection-observer": "^9.10.2",
     "react-paginate": "^8.2.0",
     "react-query": "^3.39.3",
+    "react-spinners": "^0.13.8",
     "react-text-typing": "^0.2.0",
     "react-toastify": "^10.0.5",
     "styled-components": "^6.1.8",

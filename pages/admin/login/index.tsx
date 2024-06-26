@@ -20,6 +20,7 @@ import { handlechange } from '../../../components/Admin/SideBar';
 import i18n from '../../../utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { FaRegEyeSlash } from "react-icons/fa";
+import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
 
 
 const validate = (values: any) => {
@@ -69,7 +70,7 @@ const { mutate: signInAdmin } = useMutation({
     console.log("adminmutation data", data);
    
     if (data && data.data.user && data.data.user.email === "admin11@gmail.com") {
-     
+    
 
       
       localStorage.setItem("admin_accesToken", data?.data.user.access_token);
@@ -115,6 +116,10 @@ const { mutate: signInAdmin } = useMutation({
 
   const isDisabled = !formik.values.email || formik.values.password!=="admin11" || !formik.values.password  || loading;
 
+  if (isLoading ) {
+    return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+ </div>;
+    }
 
   return (
     <>

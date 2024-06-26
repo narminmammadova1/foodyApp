@@ -10,6 +10,7 @@ import { useModal } from '../../../shared/hooks/useModal';
 import { NextPage } from 'next';
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useTranslation } from 'react-i18next';
+import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
 
 
 
@@ -21,7 +22,7 @@ import { useTranslation } from 'react-i18next';
 const AdminProducts:NextPage = () => {
   // const {isOpen,open,close}=useModal()
 
-const { isAdmin, setIsAdmin,productsData,selectedId ,idForFilter,setIdForFilter} = useGlobalContext()|| {}
+const { isAdmin, setIsAdmin,productsData,selectedId ,isLoading,idForFilter,setIdForFilter} = useGlobalContext()|| {}
 const {t}=useTranslation()
 
  
@@ -48,6 +49,13 @@ useEffect(() => {
     setShowFilteredProducts(filteredProducts || []);
   }
 }, [idForFilter, filteredProducts]);
+
+
+if (isLoading ) {
+  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+</div>;
+  }
+ 
   return (
     <div>
       {isAdmin ? (<>       <Head>

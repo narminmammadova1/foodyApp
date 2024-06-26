@@ -7,6 +7,7 @@ import BasketCard from '../../../components/Client/BasketCard'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
 import { divider } from '@nextui-org/react'
+import { CircleLoader} from 'react-spinners';
 
 const UserBasket = () => {
  
@@ -14,9 +15,11 @@ const UserBasket = () => {
   const {basketData,isLoading,isUser}=useGlobalContext() || {}
   const { t } = useTranslation()
 
-  if(isLoading){    return <div className='mx-10'>Loading....................</div>
+ 
+if (isLoading ) {
+  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+</div>;
   }
-
   
   return (
     <div>

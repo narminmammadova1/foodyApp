@@ -14,11 +14,12 @@ import { toast } from 'react-toastify'
 import { QUERIES } from '../../../Constant/Queries'
 import { useRouter } from 'next/router'
 import { ROUTER } from '../../../Constant/Router'
+import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
 
 
 
 const UserCheckout = () => {
-  const {userData,basketData,isUser}=useGlobalContext() ||{}
+  const {userData,basketData,isUser,isLoading}=useGlobalContext() ||{}
 
 
 const queryClient=useQueryClient()
@@ -77,6 +78,10 @@ useEffect(() => {
 }, [isOrdered, router]);
 
 
+if (isLoading ) {
+  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+</div>;
+  }
 
 
 

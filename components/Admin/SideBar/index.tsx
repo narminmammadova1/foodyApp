@@ -92,7 +92,7 @@ const restoreDefaulttext=()=>{
           localStorage.removeItem("admin_refreshToken")
           localStorage.setItem('isAdmin',"false");
 
-
+setIsAdmin(false)
           }}><img src="/icons/logout.svg" alt="" />
        {t("Logout")}  </li>
        </div>

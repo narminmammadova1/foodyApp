@@ -164,6 +164,14 @@ const togglePassword=()=>{
 }
 
 
+useEffect(() => {
+  if (User) {
+    setIsUser(true);
+  } else {
+    setIsUser(false);
+  }
+}, [User]);
+
 const value:ContextProps={
     isAdmin, setIsAdmin,
     userData,

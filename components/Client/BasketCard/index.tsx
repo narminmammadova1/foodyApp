@@ -20,7 +20,7 @@ interface BasketCardProps{
 const BasketCard:React.FC<BasketCardProps> = ({size,headtitle,basketData}) => {
 
 
-const {addBasketmutation}=useGlobalContext() || {}
+const {addBasketmutation,isLoading}=useGlobalContext() || {}
 
 
 const basketArr:BasketPropsItem[]=basketData?.items || []
@@ -39,7 +39,6 @@ const pad_size=size==="small"? "padding4":"padding8"
 const [basket,setBasket]=useState<BasketPropsItem[]>([])
 
 
-
 const queryClient=useQueryClient()
 
 useEffect(()=>{
@@ -54,9 +53,10 @@ setBasket(basketArr)
 const {mutate:deleteBasketmutation}=useMutation({
   mutationFn:deleteBasket,
   onSuccess:(values)=>{
-    queryClient.invalidateQueries(QUERIES.Basket)
     
-toast.success("product deleted",{autoClose:1500})    
+toast.success("product deleted",{autoClose:1000})   
+queryClient.invalidateQueries(QUERIES.Basket)
+
   },
   onError:(error)=>{
     toast.error("error deleted mutation")
@@ -72,7 +72,7 @@ toast.success("product deleted",{autoClose:1500})
       queryClient.invalidateQueries(QUERIES.Basket)
     },
     onError:(error)=>{
-      toast.error("silinmediii")
+      toast.error("error")
     
     }
   })
@@ -139,7 +139,7 @@ return (
                     </td>
 
                     <td className='flex'>
-                      <div className={`flex flex-col font-medium items-center ${whitebtn_size} bg-headerbg lg:bg-white rounded-[50px]`}>
+                      <div className={`${isLoading ?" cursor-not-allowed" :""}   flex flex-col font-medium items-center ${whitebtn_size} bg-headerbg lg:bg-white rounded-[50px]`}>
                         <Image
                           onClick={() => {
                             addBasketmutation(item.id);
@@ -154,10 +154,12 @@ return (
                         <p className='text-inputPlaceholder'>{item.count}</p>
                         <Image
                           onClick={() => {
-                            deleteBasketmutation(item.id);
-                            queryClient.invalidateQueries(QUERIES.Basket);
+                            if (!isLoading) {
+                              deleteBasketmutation(item.id);
+                              queryClient.invalidateQueries(QUERIES.Basket);
+                            }
                           }}
-                          className='cursor-pointer w-[23px] h-[16px]'
+                          className={` ${isLoading ?" cursor-not-allowed" :""} cursor-pointer w-[23px] h-[16px]`}
                           width={200}
                           height={200}
                           src="/icons/minus3.svg"

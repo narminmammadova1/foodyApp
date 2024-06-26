@@ -24,6 +24,8 @@ import { BasketPropsItem } from "../shared/interface";
 
 //props:InferGetServerSidePropsType<typeof getServerSideProps>
 const Home = () => {
+  
+
 
   
 const { springStyles, springStyles2, fadeInStyles } = useAnimatedStyles();

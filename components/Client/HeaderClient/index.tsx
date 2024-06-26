@@ -211,16 +211,6 @@ const basketArr:BasketPropsItem[]=basketData?.items || []
           </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-        {/*  */}
      <div className='flex  lg:hidden justify-between'>
      <div className=' flex'>
   <Image  onClick={openSidebar} className='w-[30px] block  h-[30.75px]  '  width={1000} height={1000} src="/icons/navbarBlack.svg" alt='nav'/>
