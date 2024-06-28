@@ -8,6 +8,7 @@ import DeleteModal from '../../Modals/DeleteModal'
 import { useGlobalContext } from '../../../Context/GlobalContext'
 import { useTranslation } from 'react-i18next'
 import PaginationAdmin from '../../Pagination'
+import AdminEditModal from '../../UI/AdminEditModal'
 
 interface CategoryProps {
   img_url: string
@@ -18,13 +19,16 @@ const itemsPerPage = 5;
 
 const CategoryCard = () => {
   const { isOpen, open, close, isOpenDelModal, openDelModal, closeDelModal } = useModal()
-  const { categoryData, setSelectedId, formComponent, isEdit, setIsEdit, setFormComponent } = useGlobalContext() || {}
+  const { categoryData, setSelectedId, formComponent, isEdit, setIsEdit,selectedId, setFormComponent } = useGlobalContext() || {}
   const { t } = useTranslation()
 
   const handleEditCategory = useCallback((category: CategoryProps) => {
     setSelectedId && setSelectedId(category.id);
     setIsEdit(true);
     if (open && formComponent) open()
+
+      console.log("selectedIddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",selectedId);
+      
   }, [setSelectedId, open, formComponent, setIsEdit])
 
   const handleDeleteCategory = useCallback((category: CategoryProps) => {
@@ -72,7 +76,7 @@ const CategoryCard = () => {
   return (
     <>
       <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950' delDescription="category, it will not come back!" />
-      <AdminModal modalType="addCategory" isOpen={isOpen} formm={formComponent} onClose={close} />
+      <AdminEditModal modalType="editCategory" isOpen={isOpen} formm={formComponent} onClose={close}   />
       <div className='bg-white min-w-full max-h-[500px] overflow-y-auto'>
         <table className="w-full divide-y divide-gray-200 table-fixed">
           <thead className='py-6'>

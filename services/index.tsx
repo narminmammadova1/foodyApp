@@ -87,7 +87,47 @@ export const deleteCategory=async (categoryId:string)=>{
 
   
 }
+// export const editCategory = async (id:string |number | null ,editedCategory:any) => {
+//   try {
+//     const response = await axios.put(`/api/category/${id}`, editedCategory
+//   );
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(error.response?.data?.message || 'Error editing category');
+//   }
+// };
 
+
+
+
+
+// export const editCategory = (id:string |number | null ,editedCategory:any)=> {
+//   const accesToken = localStorage.getItem("admin_accesToken");
+
+//   return instanceAxios({
+//     method: "PUT",
+//     url: `${ENDPOINTS.CATEGORY}/${id}`,
+//     data: editedCategory,
+//     headers:{Authorization:`Bearer ${accesToken}`}
+
+//   });
+// };
+   
+
+// export const editCategory = async (id: string | number, data: any) => {
+//   try {
+//       const response = await instanceAxios.put(`/api/category/${id}`, data);
+//       return response;
+//   } catch (error) {
+//       console.log({ error })
+//   }
+// }
+
+
+
+
+
+// main editcateg
 
 export const editCategory = (editedCategory:any)=> {
   const accesToken = localStorage.getItem("admin_accesToken");
@@ -100,7 +140,7 @@ export const editCategory = (editedCategory:any)=> {
 
   });
 };
-   
+
 
 
     // Product

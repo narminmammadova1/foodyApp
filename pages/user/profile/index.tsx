@@ -1,5 +1,4 @@
 
-
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import MainClient from '../../../components/Client/MainClient'
@@ -7,148 +6,118 @@ import HeaderClient from '../../../components/Client/HeaderClient'
 import UserSidebar from '../../../components/Client/UserSidebar'
 import FooterClient from '../../../components/Client/FooterClient'
 import ButtonGreen from '../../../components/Client/ButtonGreen'
-
-
 import { useGlobalContext } from '../../../Context/GlobalContext'
-import { editUser,  } from '../../../services'
+import { editUser } from '../../../services'
 import { useFormik } from 'formik'
 import { useMutation, useQueryClient } from 'react-query'
 import { QUERIES } from '../../../Constant/Queries'
 import UseFileUpload from '../../../helpers/uploadImages'
-import Image from 'next/image'
 import { toast } from 'react-toastify'
 import { useTranslation } from 'react-i18next'
-import { BarLoader, CircleLoader, ClipLoader, GridLoader } from 'react-spinners';
-
-
-
+import { CircleLoader } from 'react-spinners';
+import { isValidPhone } from '../../../Constant/Regex/Regex'
 
 const UserProfile = () => {
-  const {userData,profilImg,setProfilImg,setLetters,letters,isLoading,isUser}=useGlobalContext() || {}
+  const { userData, profilImg, setProfilImg, setLetters, letters, isLoading, isUser } = useGlobalContext() || {};
+  const queryClient = useQueryClient();
+  const { handleFileChange, handleUpload, file, setFile, downloadURL, imageUrl } = UseFileUpload() || {};
+  const [loading, setLoading] = useState(false);
+  const [initialValues, setInitialValues] = useState({
+    email: '',
+    fullname: '',
+    username: '',
+    address: '',
+    phone: '',
+    img_url: ''
+  });
 
-const queryClient=useQueryClient()
-const { handleFileChange, handleUpload, file, setFile,downloadURL,imageUrl } = UseFileUpload() || {};
-// const { data: userData, isLoading, isError } = useQuery(QUERIES.User, getUser);
-const [loading,setLoading]=useState(false)
-useEffect(() => {
-  if (file) {
-    handleUpload(file)
-    
-  }
-}, [file])
+  useEffect(() => {
+    if (file) {
+      handleUpload(file);
+    }
+  }, [file]);
+  const { t } = useTranslation()
+  useEffect(() => {
+    if (userData) {
+      setInitialValues({
+        email: userData.email || '',
+        fullname: userData.fullname || '',
+        username: userData.username || '',
+        address: userData.address || '',
+        phone: String(userData.phone) || '',
+        img_url: downloadURL || userData.img_url || ''
+      });
+    }
+  }, [userData, downloadURL]);
 
+  useEffect(() => {
+    if (letters && profilImg) {
+      const userFullname = userData?.fullname;
+      const lettersArr = userFullname?.toUpperCase().split(' ');
+      const userLetters = lettersArr?.map((item) => item[0]).join("");
+      setLetters(userLetters);
+    }
+  }, [letters, profilImg]);
 
+  const { mutate: updateUserMutation } = useMutation({
+    mutationFn: editUser,
+    onSuccess: (data) => {
+      toast.success("Profile updated",{autoClose:1000});
+      queryClient.invalidateQueries(QUERIES.User);
+      if (setProfilImg) setProfilImg(userData?.img_url || "");
+    },
+    onError: (error) => {
+      toast.error("Error updating profile");
+    }
+  });
 
-console.log("userData profildeki", userData);
-console.log("user imageeeeeeeeeee",userData?.img_url);
-// const oldName = userData?.user.username;
-// const oldFullname=userData?.user.fullname
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues,
+    onSubmit: async (values) => {
+      setLoading(true);
+      if (!isValidPhone(values.phone)) {
+        toast.error("Invalid phone number");
+        setLoading(false);
+        return;
+      }
+      const updatedUserData = {
+        email: userData?.email,
+        fullname: values.fullname,
+        username: values.username,
+        address: values.address,
+        phone: values.phone,
+        img_url: downloadURL || userData?.img_url
+      };
+      updateUserMutation(updatedUserData);
+    }
+  });
 
-const oldData = {
-  email: userData?.email || '',
-  fullname:userData?.fullname || '',
-  username: userData?.username || '',
-  address: userData?.address || '',
-  phone: userData?.phone || '',
-  img_url: downloadURL || ""
-};
-
-
-useEffect(() => {
-  if (letters && profilImg) {
-    const userFullname = userData?.fullname;
-    const lettersArr = userFullname?.toUpperCase().split(' ');
-    const userLetters = lettersArr?.map((item) => item[0]).join("");
-    setLetters(userLetters);
-  }
-}, []);
-
-const {mutate:updateUserMutation}=useMutation({
-  mutationFn:editUser,
-  onSuccess:(data)=>{
-    console.log(data,"userupdmutation data");
-    toast.success("Profile updated")
-queryClient.invalidateQueries(QUERIES.User)
-    // setProfilImg(downloadURL)
-   userData && setProfilImg &&  setProfilImg(userData?.img_url || "")
-    // setLetters(userLetters)
-
-  },
-  onError:(error)=>{
-    console.log(error,"mutationuserde errorrrrrrrrrrrrrrrr");
-    toast.error("Error updating profile")
-  }
-})
-
-const [newData, setNewData] = useState({});
-const { t } = useTranslation()
-
-useEffect(() => {
-  if (userData ) {
-    const { email, fullname, username, address, phone, img_url } = userData 
-    setNewData({
-      email: email || '',
-      fullname: fullname || '',
-      username: username || '',
-      address: address || '',
-      phone: phone || '',
-      img_url: img_url || '',
-    });
-  userData && setProfilImg && setProfilImg(userData?.img_url || "")
-  }
-}, [userData]);
-
-const formik = useFormik({
-
-initialValues: {
-  ...oldData,
-  ...newData,
-  
- 
- 
-},
-onSubmit: async (values) => {
-  setLoading(true); 
-
-  const updatedUserData = {
-    email: userData?.email, 
-    fullname: values.fullname,
-    username: values.username,
-    address: values.address,
-    phone: values.phone,
-    img_url: downloadURL || userData?.img_url
-  };
-  console.log("formik valuessssssssssssssss", updatedUserData);
-  updateUserMutation(updatedUserData);
-  
-}
-});
-
-if (isLoading ) {
-  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
-</div>;
+  if (isLoading) {
+    return (
+      <div className='w-full h-screen fixed justify-center items-center flex m-auto bg-black'>
+        <CircleLoader color="#36D7B7" loading={true} />
+      </div>
+    );
   }
 
-const isDisabled=formik.values.username===""  || formik.values.fullname===""  || formik.values.phone===""
+  const isDisabled = formik.values.username === "" || formik.values.fullname === "" || formik.values.phone === "" || isLoading;
 
-
-  
-return (
-  <>
-    <div>
-      {isUser ? (
-        <>
-          <Head>
-            <title>User</title>
-            <meta name='description' content="Generated by next create app" />
-          </Head>
-          <MainClient>
-            <HeaderClient />
-            <div className='mt-4 flex gap-4 mb-[186px]'>
-              <div className='hidden lg:block'>
-                <UserSidebar />
-              </div>
-              <>
+  return (
+    <>
+      <div>
+        {isUser ? (
+          <>
+            <Head>
+              <title>User</title>
+              <meta name='description' content="Generated by next create app" />
+            </Head>
+            <MainClient>
+              <HeaderClient />
+              <div className='mt-4 flex gap-4 mb-[186px]'>
+                <div className='hidden lg:block'>
+                  <UserSidebar />
+                </div>
                 <div className='bg-white lg:bg-headerbg w-full pb-[95px] px-[30px]'>
                   <div className='pt-10'>
                     <p className='font-mukta text-[30px] font-[600] text-modal_p '>{t("Profile")}</p>
@@ -165,7 +134,7 @@ return (
                           </label>
                           <input
                             name='img_url'
-                            value={formik.values.img_url}
+                            // value={formik.values.img_url}
                             onBlur={formik.handleBlur}
                             onChange={(e) => {
                               if (e.target.files && e.target.files.length > 0) {
@@ -183,7 +152,7 @@ return (
                             name="phone"
                             value={formik.values.phone}
                             onChange={formik.handleChange}
-                            className='h-[53px] px-[23px] bg-headerbg lg:bg-white rounded' type="number"
+                            className='h-[53px] px-[23px] bg-headerbg lg:bg-white rounded' type="string"
                             placeholder='+994'
                           />
                           <label className='mt-3 lg:mt-0 font-mukta font-[600] text-modal_p text-lg letter3' htmlFor="">{t("Username")}</label>
@@ -219,26 +188,19 @@ return (
                     </form>
                   </div>
                 </div>
-              </>
-            </div>
-          </MainClient>
-          <FooterClient />
-        </>
-      ) : (
-        <div> you are logout</div>
-      )}
-    </div>
-  </>
-)
+              </div>
+            </MainClient>
+            <FooterClient />
+          </>
+        ) : (
+          <div> you are logout</div>
+        )}
+      </div>
+    </>
+  )
 }
 
-export default UserProfile
-
-
-
-
-
-
+export default UserProfile;
 
 
 

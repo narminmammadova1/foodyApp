@@ -12,6 +12,7 @@ import { toast } from 'react-toastify'
 import { useFormik } from 'formik'
 import { useGlobalContext } from '../../Context/GlobalContext'
 import { FaRegEyeSlash } from "react-icons/fa";
+import { isValidEmail } from '../../Constant/Regex/Regex'
 
 const RegisterPage:NextPage = () => {
    const router=useRouter()
@@ -45,6 +46,10 @@ fullname:""
 
   },
 onSubmit:(values)=>{
+  if (!isValidEmail(values.email)){
+    toast.error("Invalid email");
+    return;
+  }
 signUpUserMutation(values)
     console.log("signupuser formik isleyir");
     

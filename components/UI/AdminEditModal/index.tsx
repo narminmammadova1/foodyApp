@@ -12,6 +12,7 @@ import UseFileUpload from '../../../helpers/uploadImages';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 import { useGlobalContext } from '../../../Context/GlobalContext';
+import FormEditCategory from '../FormEditCategory';
 // import FormProduct from '../FormProduct';
 
 interface AdminModalProps {
@@ -26,7 +27,7 @@ interface AdminModalProps {
   modalType:string
 }
 
-const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose, formm,modalType}) => {
+const AdminEditModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose, formm,modalType}) => {
 
   const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile } = UseFileUpload();
   const{formComponent,isEdit,setIsEdit,setFormComponent}=useGlobalContext() || {}
@@ -69,8 +70,8 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
           case "addOffer":
            setFormComponent(<FormAddOffer onClose={onClose}  />);
           break;
-          case "addCategory":
-          setFormComponent(<FormAddCategory onClose={onClose}/>);
+          case "editCategory":
+          setFormComponent(<FormEditCategory onClose={onClose}/>);
            break;
           default:
          setFormComponent(null);
@@ -119,7 +120,7 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
   )
 }
 
-export default AdminModal
+export default  AdminEditModal
 
 
 
