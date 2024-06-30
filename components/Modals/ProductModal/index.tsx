@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AddButton from '../../Admin/AddButton';
 import { useMutation, useQueryClient } from 'react-query';
-import { addProduct } from '../../../services';
+import { addProduct, editProduct } from '../../../services';
 import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import UseFileUpload from '../../../helpers/uploadImages';
@@ -29,7 +29,44 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
  const { t } = useTranslation();
 
  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile, imageUrl } = UseFileUpload();
- const { restaurantData,setIsEdit}=useGlobalContext() || {}
+ const { restaurantData,setIsEdit,productsData,selectedId}=useGlobalContext() || {}
+
+const oldProductData=productsData?.find((product)=>product.id ===selectedId)
+
+const [initialValues,setInitialVaues]=useState({
+  name: "",
+          img_url: "",
+          description: "",
+          price: "",
+          rest_id: ""
+})
+
+useEffect(()=>{
+
+  if(isEdit){
+    setInitialVaues({
+
+      name:oldProductData?.name,
+      img_url: oldProductData?.img_url || "",
+      description: oldProductData?.description,
+      price: oldProductData?.price,
+      rest_id: oldProductData?.rest_id
+    })
+  }
+  else{
+setInitialVaues({
+  name:formik.values.name,
+            img_url: downloadURL,
+            rest_id: formik.values.rest_id,
+            description: formik.values.description,
+            price: formik.values.price
+})
+
+  }
+},[isEdit,oldProductData])
+
+
+
     const { mutate: addProductMutation } = useMutation({
         mutationFn: addProduct,
         onSuccess: (data) => {
@@ -42,36 +79,67 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
           toast.error("error added product")
         }
       })
+
+
+
+      const { mutate: editProductMutation } = useMutation({
+        mutationFn: editProduct,
+        onSuccess: (data) => {
+          toast.success("Product updated", { autoClose: 1000 });
+          queryClient.invalidateQueries(QUERIES.Products)
+        },
+        onError:(error)=>{
+          toast.error("error edited product")
+
+          formik.resetForm();
+          setFile(null);
+          setDownloadURL("");
+          setTimeout(() => {
+            onClose();
+          }, 2000);
+        }
+      })
+
+
+      
+      
   
   
   
       const formik = useFormik({
-        initialValues: {
-          name: "",
-          img_url: "",
-          description: "",
-          price: "",
-          rest_id: ""
-        },
+        initialValues,
+        enableReinitialize:true,
         onSubmit: async (values) => {
 
+if(isEdit){
+  const editedValues={
+    ...values,
+    img_url: oldProductData.img_url || downloadURL,
+    id:selectedId
 
-          values = {name:formik.values.name,
-            img_url: downloadURL,
-            rest_id: formik.values.rest_id,
-            description: formik.values.description,
-            price: formik.values.price
-          };
-  
-          addProductMutation(values);
+  }
+  editProductMutation(editedValues);
+
+}
+else{
+
+  const newValues={
+    ...values,
+    img_url:downloadURL,
+  }
+  addProductMutation(newValues);
+
+}
+         
           setTimeout(() => {
             onClose();
+            formik.resetForm()
+            setDownloadURL("")
+            setFile(null)
+            setSelectedType("")
+            console.log("product handle isleyir");
           }, 2000);
-          formik.resetForm()
-          setDownloadURL("")
-          setFile(null)
-          setSelectedType("")
-          console.log("product handle isleyir");
+         
           
         },
       });
@@ -120,8 +188,8 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
                 <div className='rleft w-1/3 hidden lg:block me-10'>
                   <div className='min-h-36 mt-1'>
                      <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover' 
-                src={imageUrl || "/icons/uploadgreen.svg"} 
-                alt='product' /> 
+              src={`${isEdit ? (imageUrl || initialValues.img_url) : (imageUrl || "/icons/uploadgreen.svg")}`}
+              alt='product' /> 
                   </div>
                   <div className='py-2'>
                     <p className='mt-4 font-roboto font-medium text-par-text text-[16px]'>{`${isEdit ?"Edit" :"Add"}`} your Product informations</p>
@@ -135,7 +203,7 @@ const ProductModal: React.FC<ProductModalProps> = ({onClose,isOpen,isEdit}) => {
                       <div className='w-full  flex flex-col'>
                         <input
                           name='img_url'
-                          value={formik.values.img_url}
+                          // value={formik.values.img_url}
                           onBlur={formik.handleBlur}
                           onChange={(e) => {
                             if (e.target.files && e.target.files.length > 0) {

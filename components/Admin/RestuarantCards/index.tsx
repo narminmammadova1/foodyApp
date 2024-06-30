@@ -54,8 +54,8 @@ const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
             <Image className='object-cover w-full  h-full  ' width={247} height={83} src={restaurant.img_url} alt={restaurant.name}/>
         </div>
 
-<div className=' font-roboto w-2/4 flex flex-col justify-center '>
-    <h2 className='  whitespace-nowrap text-ellipsis font-[18px]'>{restaurant.name.slice(0,13)}</h2>
+<div className=' bg-gray-80 font-roboto w-2/3 flex flex-col justify-center '>
+    <h2 className='  whitespace-nowrap text-ellipsis font-[18px]'>{restaurant.name.slice(0,21)}</h2>
     <p className=' text-par3-text  whitespace-nowrap text-ellipsis font-[14px]'>{restaurant.cuisine.slice(0,12)}</p>
     </div>
 <div className='flex flex-col   justify-between py-1 pe-3'>

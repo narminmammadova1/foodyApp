@@ -76,7 +76,9 @@ const CategoryCard = () => {
   return (
     <>
       <DeleteModal isOpenDelModal={isOpenDelModal} onCloseDelModal={closeDelModal} colorModal='red-950' delDescription="category, it will not come back!" />
-      <AdminEditModal modalType="editCategory" isOpen={isOpen} formm={formComponent} onClose={close}   />
+      {/* <AdminEditModal modalType="editCategory" isOpen={isOpen} formm={formComponent} onClose={close}   /> */}
+       <AdminModal modalType="addCategory" isOpen={isOpen} formm={formComponent} onClose={close}   /> 
+
       <div className='bg-white min-w-full max-h-[500px] overflow-y-auto'>
         <table className="w-full divide-y divide-gray-200 table-fixed">
           <thead className='py-6'>

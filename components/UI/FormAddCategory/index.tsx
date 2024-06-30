@@ -155,8 +155,8 @@
 //               height={1000}
 //               className='w-[124px] h-[117px] object-cover'
 //               // src={modalImg || "/icons/uploadgreen.svg"}
-//               // src={`${isEdit ?(modalImg)  :( downloadURL ? downloadURL :"/icons/uploadgreen.svg")}`}
-//               src={imageUrl || initialValues.img_url || "/icons/uploadgreen.svg"}
+//               src={`${isEdit ?(imageUrl || initialValues.img_url )  :( imageUrl  || "/icons/uploadgreen.svg")}`}
+//               // src={imageUrl || initialValues.img_url || "/icons/uploadgreen.svg"}
 //               alt=''
 //             />
 //           </div>
@@ -265,7 +265,6 @@
 
 
 
-
 import React, { useEffect, useState } from 'react';
 import AddButton from '../../Admin/AddButton';
 import { useRouter } from 'next/router';
@@ -284,36 +283,30 @@ interface FormAddCategoryProps {
 }
 
 const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
-  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl,setImageUrl
-    
-   } = UseFileUpload();
+  const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile, imageUrl, setImageUrl } = UseFileUpload();
   const { t } = useTranslation();
-  const { isEdit, selectedId,setSelectedId, categoryData,setIsEdit } = useGlobalContext() || {};
+  const { isEdit, selectedId, setSelectedId, categoryData, setIsEdit } = useGlobalContext() || {};
   const queryClient = useQueryClient();
-  const [modalImg, setModalImg] = useState("");
-  const [initialValues, setInitialValues] = useState(
-    { name: '', img_url: '' });
-
+  const [initialValues, setInitialValues] = useState({ name: '', img_url: '' });
 
   const oldCategoryData = categoryData?.find((category) => category.id === selectedId);
 
-
   useEffect(() => {
     if (isEdit) {
-     
-        setInitialValues({
-          name: oldCategoryData.name || "",
-          img_url: oldCategoryData?.img_url || "",
-        });
-
-      
+      setInitialValues({
+        name: oldCategoryData?.name || '',
+        img_url: oldCategoryData?.img_url || '',
+      });
     } else {
-      setInitialValues({ name: '', img_url: "" });
+      setInitialValues({ name: '', img_url: '' });
     }
-  }, [isEdit,  categoryData]);
+  }, [isEdit, categoryData]);
 
-
-
+  useEffect(() => {
+    if (file) {
+      handleUpload(file);
+    }
+  }, [file, handleUpload]);
 
   const formik = useFormik({
     initialValues,
@@ -323,27 +316,16 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
         const editedValues = {
           ...values,
           img_url: downloadURL || oldCategoryData?.img_url,
-          // img_url: imageUrl || values.img_url,
-
-          id: selectedId
+          id: selectedId,
         };
         editCategoryMutation(editedValues);
-        setDownloadURL("")
-        setFile(null)
-        setIsEdit(false)
-
-
-          
-        }
-        else {
-          const newValues = {
-            ...values,
-            img_url: downloadURL
-          };
-    addCategoryMutation(newValues);
-          formik.resetForm();
-          setDownloadURL("");
-        }
+      } else {
+        const newValues = {
+          ...values,
+          img_url: downloadURL,
+        };
+        addCategoryMutation(newValues);
+      }
     },
   });
 
@@ -351,12 +333,11 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
     onSuccess: (data) => {
       toast.success('Category added', { autoClose: 2000 });
       formik.resetForm();
-
       queryClient.invalidateQueries(QUERIES.Categories);
       setFile(null);
       setDownloadURL('');
-      setModalImg('');
-     setSelectedId && setSelectedId(null)
+      setImageUrl('');
+      setSelectedId && setSelectedId(null);
       setTimeout(() => {
         onClose();
       }, 2000);
@@ -368,16 +349,17 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
 
   const { mutate: editCategoryMutation } = useMutation(editCategory, {
     onSuccess: (data) => {
-      toast.success('Category edited', { autoClose: 2000 });
-
+      toast.success('Category edited', { autoClose: 1000 });
       queryClient.invalidateQueries(QUERIES.Categories);
-      setFile(null);
-
-      // formik.resetForm();
-      setDownloadURL('');
-
+      
       setTimeout(() => {
         onClose();
+        setIsEdit(false);
+        setFile(null);
+        setDownloadURL('');
+        setImageUrl('');
+        setImageUrl("")
+        
       }, 2000);
     },
     onError: (error) => {
@@ -385,45 +367,30 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
     },
   });
 
-
-
-  useEffect(() => {
-    if (file) {
-      handleUpload(file);
-    }
-  }, [file, handleUpload]);
-
-
-  const isDisabled = !formik.values.name ;
+  const isDisabled = !formik.values.name;
 
   return (
     <div>
       <header className='font-roboto font-medium text-par-text'>
-      <div className='flex  justify-between'>
+        <div className='flex justify-between'>
           <p className='text-2xl'>{t(`${isEdit ? 'Edit Category' : 'Add Category'}`)}</p>
-
-          <div className=' block  lg:hidden'       onClick={()=>{
-            setIsEdit(false)
-            onClose()
-
-          }   }   >
-
+          <div className='block lg:hidden' onClick={() => {
+            setIsEdit(false);
+            onClose();
+          }}>
             <img src="/icons/x.svg" alt="" />
           </div>
-
-          </div>
+        </div>
         <p className='mt-[22px] text-lg'>{t("Upload Image")}</p>
       </header>
       <div className='flex h-full'>
-        <div className='rleft hidden lg:block  w-1/3 me-10'>
+        <div className='rleft hidden lg:block w-1/3 me-10'>
           <div className='min-h-36 mt-1 mb-4'>
             <Image
               width={1000}
               height={1000}
               className='w-[124px] h-[117px] object-cover'
-              // src={modalImg || "/icons/uploadgreen.svg"}
-              // src={`${isEdit ?(modalImg)  :( downloadURL ? downloadURL :"/icons/uploadgreen.svg")}`}
-              src={imageUrl || initialValues.img_url || "/icons/uploadgreen.svg"}
+              src={`${isEdit ? (imageUrl || initialValues.img_url) : (imageUrl || "/icons/uploadgreen.svg")}`}
               alt=''
             />
           </div>
@@ -433,20 +400,18 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
             </p>
           </div>
         </div>
-        <div className='rright w-full  lg:w-2/3 lg:ms-8 flex flex-col'>
+        <div className='rright w-full lg:w-2/3 lg:ms-8 flex flex-col'>
           <div className='flex w-full flex-col lg:p-5 rounded-xl'>
-            <form action='' className='flex flex-col' onSubmit={formik.handleSubmit}>
+            <form className='flex flex-col' onSubmit={formik.handleSubmit}>
               <div className='flex w-full flex-col bg-modal-div h-[122px] items-center justify-center rounded-xl mb-[78px]'>
                 <div className='flex flex-col'>
                   <input
                     name='img_url'
                     onBlur={formik.handleBlur}
-
                     onChange={(e) => {
                       if (e.target.files && e.target.files.length > 0) {
                         handleFileChange(e);
-                        setFile(e.target.files[0])
-                        // setImageUrl(e.target.files[0]);
+                        setFile(e.target.files[0]);
                       }
                     }}
                     className='hidden invisible'
@@ -459,11 +424,11 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
                   <p className='font-roboto font-medium text-par-text text-2xl'>{t("upload")}</p>
                 </div>
               </div>
-              <div className= 'block lg:hidden pb-2 '>
-              <p className=' font-roboto font-medium text-par-text text-[16px]'>
-                {`${isEdit ? 'Edit your category description and necessary information' : 'Add your category description and necessary information'}`}
-              </p>
-            </div>
+              <div className='block lg:hidden pb-2'>
+                <p className='font-roboto font-medium text-par-text text-[16px]'>
+                  {`${isEdit ? 'Edit your category description and necessary information' : 'Add your category description and necessary information'}`}
+                </p>
+              </div>
               <div className='bg-modal-div flex flex-col h-[161px] px-[23px] rounded-xl'>
                 <label className='modal-label' htmlFor='name'>
                   {t("Name")}
@@ -476,9 +441,7 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
                   type='text'
                 />
               </div>
-              <div className='mt-8'>
-                
-              </div>
+              <div className='mt-8'></div>
             </form>
           </div>
         </div>
@@ -490,13 +453,12 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
             center
             btnSize='w-[400px]'
             sizeMob="w-[139px]"
-
             btnIcon=''
             onClick={() => {
               formik.resetForm();
               setDownloadURL('');
-              setIsEdit(false)
-
+              setImageUrl('');
+              setIsEdit(false);
               onClose();
             }}
             btnText={t('Cancel')}
@@ -504,23 +466,18 @@ const FormAddCategory: React.FC<FormAddCategoryProps> = ({ onClose }) => {
           />
         </div>
         <div className='btn-text'>
-
-        <AddButton
-                  shadow
-                  center
-                  btnSize='w-[400px]'
-                  sizeMob="w-[139px]"
-                  btnIcon=''
-                  onClick={
-                    formik.handleSubmit
-
-                  }
-                  btnText={t(`${isEdit ? 'Update Category' : 'Add Category'}`)}
-                  disabled={isDisabled}
-                  btncolor='btn-pink'
-                />
-                        </div>
-
+          <AddButton
+            shadow
+            center
+            btnSize='w-[400px]'
+            sizeMob="w-[139px]"
+            btnIcon=''
+            onClick={formik.handleSubmit}
+            btnText={t(`${isEdit ? 'Update Category' : 'Add Category'}`)}
+            disabled={isDisabled}
+            btncolor='btn-pink'
+          />
+        </div>
       </div>
     </div>
   );

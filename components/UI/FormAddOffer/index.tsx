@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddButton from '../../Admin/AddButton';
 import UseFileUpload from '../../../helpers/uploadImages';
 import { useRouter } from 'next/router';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import {  addOffer,  } from '../../../services';
+import {  addOffer, editOffer,  } from '../../../services';
 import Image from 'next/image';
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { QUERIES } from '../../../Constant/Queries';
@@ -19,13 +19,45 @@ interface FormAddProps{
 const FormAddOffer:React.FC <FormAddProps>= ({onClose}) => {
 
 
-const  {isEdit, setIsEdit}=useGlobalContext() ||{}
+const  {isEdit, setIsEdit,offerData,selectedId}=useGlobalContext() ||{}
 
 const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl } = UseFileUpload() || {};
 const router = useRouter();
 const { pathname } = router;
 const queryClient=useQueryClient()
 const {t}=useTranslation()
+
+const oldOfferData=offerData?.find((offer)=>offer.id===selectedId)
+const [initialValues,setInitialVaues]=useState({
+  name: "",
+  img_url: "",
+  description:""
+
+})
+
+useEffect(()=>{
+
+  if(isEdit){
+    setInitialVaues({
+
+      name:oldOfferData?.name,
+      img_url:oldOfferData?.img_url || "",
+      description:oldOfferData?.description
+
+    })
+  }
+  else{
+setInitialVaues({
+  name: "",
+  img_url: "",
+  description:""
+})
+
+  }
+},[isEdit,oldOfferData])
+
+
+
 const { mutate: addOfferMutation } = useMutation(
   {mutationFn:addOffer,
    onSuccess: (data) => {
@@ -44,26 +76,49 @@ const { mutate: addOfferMutation } = useMutation(
      toast.error("Error adding offer");
    }
  });
+ const {mutate:editOfferMutation}=useMutation({
+  mutationFn:editOffer,
+  onSuccess:(data)=>{
 
+    toast.success("Offer updated",{autoClose:1000})
+    formik.resetForm();
+    setFile(null);
+    setDownloadURL("");
+    setTimeout(() => {
+      onClose();
+    }, 2000);
+  },
+  onError:(error)=>{
+    toast.error("error edited mutation",{autoClose:1000})
+  }
+ })
 
 
 
 
 const formik = useFormik({
-  initialValues: {
-    name: "",
-    img_url: "",
-    description:""
-  },
+  initialValues,
+  enableReinitialize: true,
   onSubmit:async (values) => {
    console.log("offerde submit olundu");
-   
-     values = {
+   if(isEdit){
+    const editedValues={
+      ...values,
+      img_url:downloadURL || oldOfferData?.img_url,
+        id:selectedId
+    }
+    editOfferMutation(editedValues)
+   }
+   else{
+    const newValues={
+      ...values,
       img_url: downloadURL,
-    name: formik.values.name,
-      description:formik.values.description
-    };
-    addOfferMutation(values);
+    }
+
+    addOfferMutation(newValues);
+
+   }
+     
   },
 });
 
@@ -76,7 +131,7 @@ useEffect(() => {
 }, [file]);
 
 
-const isDisabled = formik.values.name === "" || formik.values.description === "" || !file;
+const isDisabled = formik.values.name === "" || formik.values.description === ""
 
 
 
@@ -104,7 +159,9 @@ return (
         <div className='rleft hidden lg:block w-1/3 me-10'>
           <div className='min-h-36 mt-1 mb-4'>
             <Image width={1000} height={1000} className='w-[124px] h-[117px] object-cover'
-                src={imageUrl || "/icons/uploadgreen.svg"} 
+            src={`${isEdit ? (imageUrl || initialValues.img_url) : (imageUrl || "/icons/uploadgreen.svg")}`}
+
+                // src={imageUrl || "/icons/uploadgreen.svg"} 
                 alt='' /> 
           </div>
           <div className='py-2'>
@@ -118,7 +175,7 @@ return (
                 <div className='flex flex-col'>
                   <input
                     name='img_url'
-                    value={formik.values.img_url}
+                    // value={formik.values.img_url}
                     onBlur={formik.handleBlur}
                     onChange={(e) => {
                       if (e.target.files && e.target.files.length > 0) {

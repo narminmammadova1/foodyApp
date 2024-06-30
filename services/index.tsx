@@ -180,7 +180,19 @@ export const deleteProduct = async (productId: string) => {
     });
 };
 
+// edit product 
 
+
+export const editProduct=async (editedProduct:any)=>{
+  const accesToken = localStorage.getItem("admin_accesToken");
+
+  return instanceAxios({
+    method: "PUT",
+    url: `${ENDPOINTS.PRODUCT}/${editedProduct.id}`,
+    data: editedProduct,
+    headers:{Authorization:`Bearer ${accesToken}`}
+
+  })}
 
 
 
@@ -221,6 +233,24 @@ export const deleteProduct = async (productId: string) => {
         });
     };
      
+
+
+
+
+
+    export const editOffer=async (editedOffer:any)=>{
+      const accesToken = localStorage.getItem("admin_accesToken");
+
+      return instanceAxios({
+        method: "PUT",
+        url: `${ENDPOINTS.OFFER}/${editedOffer.id}`,
+        data: editedOffer,
+        headers:{Authorization:`Bearer ${accesToken}`}
+    
+      });
+
+
+    }
     //Add restaurant
 
     export const addRestaurant = async (newRest: object) => {

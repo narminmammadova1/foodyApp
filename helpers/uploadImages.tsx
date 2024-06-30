@@ -40,6 +40,8 @@ const UseFileUpload = (): UploadProps => {
       setDownloadURL(url);
       console.log("File uploaded successfully");
       console.log("url", url);
+      console.log("downloaddddddddddurl",downloadURL);
+
     }
   }
 

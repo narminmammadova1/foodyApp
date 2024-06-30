@@ -42,7 +42,7 @@ const validate = (values: any) => {
   //   errors.email = ("This is not Admin email");
   // }
 
-  if (values.password !== "admin11") {
+  if (values.password !== "admin111") {
     errors.password = ("This is not Admin password");
   }
 
@@ -56,7 +56,7 @@ const AdminLogin: NextPage = () => {
   const [loading, setLoading] = useState(false);
 
 const {t,i18n}=useTranslation()
-const { setIsAdmin,showPassword,isLoading,togglePassword,setShowPassword}=useGlobalContext() || {}
+const { setIsAdmin,setIsUser,showPassword,isLoading,togglePassword,setShowPassword}=useGlobalContext() || {}
 
 const { isOpenLang, openLang } = useDropdownn()
 
@@ -69,7 +69,7 @@ const { mutate: signInAdmin } = useMutation({
     setLoading(false)
     console.log("adminmutation data", data);
    
-    if (data && data.data.user && data.data.user.email === "admin11@gmail.com") {
+    if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
     
 
       
@@ -80,6 +80,7 @@ const { mutate: signInAdmin } = useMutation({
       localStorage.setItem("isAdmin", "true"); 
 
       setIsAdmin(true);
+      // setIsUser(false)
       toast.success("Welcome Admin", { autoClose: 1000 });
       setTimeout(() => {
         push(ROUTER.DASHBOARD);
@@ -114,7 +115,7 @@ const { mutate: signInAdmin } = useMutation({
   });
 
 
-  const isDisabled = !formik.values.email || formik.values.password!=="admin11" || !formik.values.password  || loading;
+  const isDisabled = !formik.values.email || formik.values.password!=="admin111" || !formik.values.password  || loading;
 
   if (isLoading ) {
     return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
