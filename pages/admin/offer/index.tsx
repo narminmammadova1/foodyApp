@@ -18,7 +18,9 @@ const AdminOffers:NextPage = () => {
   const {isOpen,open,close}=useModal()
   const{formComponent,setFormComponent,isAdmin,setIsAdmin}=useGlobalContext() || {}
   useEffect(() => {
-    const storedIsAdmin = localStorage.getItem('isAdmin');
+    // const storedIsAdmin = localStorage.getItem('isAdmin');
+    const storedIsAdmin = sessionStorage.getItem('isAdmin');
+
     setIsAdmin(storedIsAdmin === 'true');
   }, []);
 

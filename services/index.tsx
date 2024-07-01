@@ -31,6 +31,17 @@ export const signInUser=(values:any)=>{
     })
 }
 
+
+export const signAdmin=(values:any)=>{
+
+  return instanceAxios({
+      method:"POST",
+      url:ENDPOINTS.SIGNIN,
+      data:values,
+    
+  })
+}
+
 // update user
 
 

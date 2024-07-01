@@ -11,12 +11,16 @@ import Layout from "../../components/Layout";
 import { useGlobalContext } from "../../Context/GlobalContext";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import ChartSalary from "../../components/Admin/Charts/ChartSalary";
 
 const AdminDashboard: NextPage = () => {
 const {isAdmin,setIsAdmin}=useGlobalContext() || {}
 
 useEffect(() => {
-  const storedIsAdmin = localStorage.getItem('isAdmin');
+  
+  // const storedIsAdmin = localStorage.getItem('isAdmin');
+  const storedIsAdmin = sessionStorage.getItem('isAdmin');
+
   setIsAdmin(storedIsAdmin === 'true');
 }, []);
 const {t}=useTranslation()
@@ -56,12 +60,12 @@ const {t}=useTranslation()
 
       </div>
 
-      <div className="   mx-auto lg:mx-4  mt-20 lg:mt-0  w-[287px] h-[472px] bg-dark-div lg:w-[634px] lg:h-[472px] lg:flex-col  rounded-[14px] ">
+      <div className="   mx-auto lg:mx-4  mt-20 lg:mt-0  w-[287px] h-[372px] bg-dark-div lg:w-[634px] lg:h-[372px] lg:flex-col  rounded-[14px] ">
       <div>
     <p className="text20">{t("Total Salary")}</p>
   </div>
 <div className="flex flex-col m-auto">
-  
+<ChartSalary />
       </div>
      
 

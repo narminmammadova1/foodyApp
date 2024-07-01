@@ -21,15 +21,15 @@ const LoginPage: NextPage = () => {
   const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar,setProfilImg, userData,setIsAdmin,isLoading, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
 const [loading,setLoading]=useState(false)
   const queryClient = useQueryClient()
-  useEffect(() => {
-    const userToken = localStorage.getItem("user_accesToken")
-    if (userToken) {
-      setIsAvatar(true)
-      setIsBasket(true)
-      setIsLoginBtn(false)
-      setIsUser(true)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const userToken = localStorage.getItem("user_accesToken")
+  //   if (userToken) {
+  //     setIsAvatar(true)
+  //     setIsBasket(true)
+  //     setIsLoginBtn(false)
+  //     setIsUser(true)
+  //   }
+  // }, [])
   useEffect(() => {
     console.log("userData controllllllllllllllllllllll",userData);
   }, []);
@@ -60,7 +60,7 @@ setLoading(true)
   const { mutate: signInUserMutation } = useMutation({
     mutationFn: signInUser,
     onSuccess: (data) => {
-      toast.success("sisteme daxil oldunuz", { autoClose: 2000 })
+      toast.success("sisteme daxil oldunuz", { autoClose: 1000 })
       setLoading(false)
 
       localStorage.setItem("user_accesToken", data?.data.user.access_token);

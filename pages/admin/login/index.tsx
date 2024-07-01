@@ -8,7 +8,7 @@ import Layout from '../../../components/Layout';
 import { NextPage } from 'next';
 import { useFormik } from 'formik';
 import { isValidEmail, isValidPassword } from '../../../Constant/Regex/Regex';
-import { signInUser, signUpUser } from '../../../services';
+import { signAdmin, signInUser, signUpUser } from '../../../services';
 import { useMutation } from 'react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -63,24 +63,58 @@ const { isOpenLang, openLang } = useDropdownn()
   const {push}=useRouter()
 
 
-const { mutate: signInAdmin } = useMutation({
-  mutationFn: signInUser,
-  onSuccess: (data) => {
-    setLoading(false)
-    console.log("adminmutation data", data);
+// const { mutate: signInAdminMutation } = useMutation({
+//   mutationFn: signAdmin,
+//   onSuccess: (data) => {
+//     setLoading(false)
+//     console.log("adminmutation data", data);
    
-    if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
+//     if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
     
 
       
-      localStorage.setItem("admin_accesToken", data?.data.user.access_token);
-      localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
+//       localStorage.setItem("admin_accesToken", data?.data.user.access_token);
+//       localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
 
-      localStorage.setItem("admin_LoginDate", String(new Date().getTime()))
-      localStorage.setItem("isAdmin", "true"); 
+//       localStorage.setItem("admin_LoginDate", String(new Date().getTime()))
+//       localStorage.setItem("isAdmin", "true"); 
+
+//       setIsAdmin(true);
+//       // setIsUser(false)
+//       toast.success("Welcome Admin", { autoClose: 1000 });
+//       setTimeout(() => {
+//         push(ROUTER.ADMINPRODUCTS);
+//       }, 500);
+//     } else {
+//       toast.error("You are not Admin", { autoClose: 1500 });
+//     }
+//   },
+//   onError: (error) => {
+//     setLoading(false)
+//     toast.error("You are not Admin",{autoClose:1500})
+//     console.error("An error occurred:", error);
+//   }
+// });
+
+
+
+
+
+
+
+const { mutate: signInAdminMutation } = useMutation({
+  mutationFn: signAdmin,
+  onSuccess: (data) => {
+    setLoading(false);
+    console.log("adminmutation data", data);
+
+    if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
+      sessionStorage.setItem("admin_accessToken", data?.data.user.access_token);
+      sessionStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
+      // sessionStorage.setItem("admin_LoginDate", String(new Date().getTime()));
+      sessionStorage.setItem("isAdmin", "true");
 
       setIsAdmin(true);
-      // setIsUser(false)
       toast.success("Welcome Admin", { autoClose: 1000 });
       setTimeout(() => {
         push(ROUTER.DASHBOARD);
@@ -90,12 +124,11 @@ const { mutate: signInAdmin } = useMutation({
     }
   },
   onError: (error) => {
-    setLoading(false)
-    toast.error("You are not Admin",{autoClose:1500})
+    setLoading(false);
+    toast.error("You are not Admin", { autoClose: 1500 });
     console.error("An error occurred:", error);
   }
 });
-
 
 
   const formik = useFormik({
@@ -106,7 +139,7 @@ const { mutate: signInAdmin } = useMutation({
     validate,
     onSubmit: (values) => {
       setLoading(true)
-      signInAdmin(values);
+      signInAdminMutation(values);
       console.log("welcomeeeeee");
 
       
@@ -117,10 +150,10 @@ const { mutate: signInAdmin } = useMutation({
 
   const isDisabled = !formik.values.email || formik.values.password!=="admin111" || !formik.values.password  || loading;
 
-  if (isLoading ) {
-    return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
- </div>;
-    }
+//   if (isLoading ) {
+//     return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+//  </div>;
+//     }
 
   return (
     <>
@@ -156,15 +189,15 @@ const { mutate: signInAdmin } = useMutation({
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     placeholder='Password'
-                    className='px-[40px] font-normal text-par-text  text-[18px]  bg-input-gray mt-[26px]  rounded-[4px] h-[50px]'
+                    className='px-[40px] font-normal  text-par-text   text-[18px]  bg-input-gray mt-[26px]  rounded-[4px] h-[50px]'
                     type={`${showPassword? "text" :"password"}`}    
                                   />
 
- <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-8 '>
-  <div className=''>
-              <Image className={` ${ showPassword ?"block"  :"hidden"} w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} width={200} height={200} src="/icons/eyePassword.svg" alt="eye"/>
+ <div onClick={togglePassword} className=' cursor-pointer absolute right-4 top-10 '>
+  <div className=' '>
+              <Image className={` ${ showPassword ?"block"  :"hidden"} w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} width={200} height={200} src="/icons/eye.svg" alt="eye"/>
              
-             <FaRegEyeSlash className={` ${ showPassword ?"hidden"  :"block"} text-headerbg w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} />
+             <FaRegEyeSlash className={` ${ showPassword ?"hidden"  :"block"}  text-modal_p w-[32px] h-[20px] lg:w-[35px] lg:h-[32px]`} />
 
               </div>
              </div>                                                  

@@ -1,34 +1,46 @@
-// import { Line } from 'react-chartjs-2';
 
-// const data = {
-//   labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran'],
-//   datasets: [
-//     {
-//       label: 'Maaş',
-//       data: [3000, 3500, 3200, 4000, 3800, 4200],
-//       fill: false,
-//       backgroundColor: 'rgb(75, 192, 192)',
-//       borderColor: 'rgba(75, 192, 192, 0.2)',
-//     },
-//   ],
-// };
 
-// const options = {
-//   scales: {
-//     y: {
-//       type: 'linear',
-//       ticks: {
-//         beginAtZero: true,
-//       },
-//     },
-//   },
-// };
 
-// const ChartSalary = () => (
-//   <div>
-//     <h2>Maaş Grafiği</h2>
-//     <Line data={data} options={options} />
-//   </div>
-// );
+import React, { useRef, useEffect } from 'react';
+import { Chart, registerables } from 'chart.js';
 
-// export default ChartSalary;
+Chart.register(...registerables);
+
+const ChartSalary: React.FC = () => {
+  const chartRef = useRef<any>(null);
+
+  useEffect(() => {
+    const myChartRef = chartRef.current.getContext("2d");
+
+    new Chart(myChartRef, {
+      type: 'bar',
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+          {
+            label: 'Total Salary',
+            data: [12000, 15000, 13000, 14000, 17000, 16000, 18000],
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }, []);
+
+  return (
+    <div>
+      <canvas id="myChart" ref={chartRef}></canvas>
+    </div>
+  );
+};
+
+export default ChartSalary;

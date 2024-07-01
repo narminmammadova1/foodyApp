@@ -20,7 +20,9 @@ const Restuarants:NextPage = () => {
   const [showRestaurant,setShowRestaurant]=useState<any[]>([])
   const [showFilteredRestaurant,setShowFilteredRestaurant]=useState<any[]>([])
   useEffect(() => {
-    const storedIsAdmin = localStorage.getItem('isAdmin');
+    // const storedIsAdmin = localStorage.getItem('isAdmin');
+    const storedIsAdmin = sessionStorage.getItem('isAdmin');
+
     setIsAdmin(storedIsAdmin === 'true');
   }, []);
  useEffect(()=>{
