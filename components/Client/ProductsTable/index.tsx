@@ -64,7 +64,7 @@ const ProductsTable: React.FC<ProductTableProps> = ({ currentProducts }) => {
                           toast.error(t("please login"));
                         }
                       }}
-                      className={`cursor-pointer ${isProductInBasket ? 'bg-green-900' : ''} flex justify-center items-center w-10 border-[1px] border-btn-cncl h-10 rounded-full`}
+                      className={`cursor-pointer ${isProductInBasket ? 'bg-btn-greenshadow' : ''} flex justify-center items-center w-10 border-[1px] border-btn-cncl h-10 rounded-full`}
                     >
                       <Image className="w-[14px] h-[14px]" width={200} height={200} src="/icons/plus2.svg" alt="" />
                     </div>

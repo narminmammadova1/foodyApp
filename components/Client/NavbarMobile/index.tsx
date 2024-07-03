@@ -16,7 +16,7 @@ interface NavbarMobileProps{
 }
 const NavbarMobile:React.FC<NavbarMobileProps> = ({closeSidebar}) => {
     // const {openSidebar,isOpenSidebar,}=useDropdownn()
-const { isUser, setIsUser,profilImg,letters,setProfilImg,setLetters,userData}=useGlobalContext() || {}
+const { isUser, setIsUser,profilImg,letters,setProfilImg,setIsAdmin,setLetters,userData}=useGlobalContext() || {}
     const router=useRouter()
     const {push}= router
     const queryClient=useQueryClient()
@@ -83,8 +83,13 @@ const { t } = useTranslation()
                 setIsUser(false)
                 localStorage.setItem("IsUser","false")
                 localStorage.removeItem("user_accesToken");
-
                 localStorage.removeItem("user_refreshToken");
+
+          localStorage.removeItem("admin_accesToken")
+          localStorage.removeItem("admin_refreshToken")
+          localStorage.setItem('isAdmin',"false");
+
+setIsAdmin(false)
 
                 push("/")
                  queryClient.invalidateQueries(QUERIES.User)

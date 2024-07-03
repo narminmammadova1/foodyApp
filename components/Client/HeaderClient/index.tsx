@@ -20,7 +20,7 @@ export const isActiveLink = (path: string) => {
 }
 
 const HeaderClient = () => {
-  const { isBasket, setIsBasket,currentProduct,setCurrentProduct,basketData, isAvatar, setIsAvatar,userData,selectedRestaurant,setSelectedRestaurant, isLoginBtn,setSelectedId,selectedId, setIsLoginBtn, isUser, setIsUser, profilImg, letters, setLetters,  setProfilImg, restaurantData, productsData } = useGlobalContext() || {}
+  const { isBasket, setIsBasket,setIsAdmin,currentProduct,setCurrentProduct,basketData, isAvatar, setIsAvatar,userData,selectedRestaurant,setSelectedRestaurant, isLoginBtn,setSelectedId,selectedId, setIsLoginBtn, isUser, setIsUser, profilImg, letters, setLetters,  setProfilImg, restaurantData, productsData } = useGlobalContext() || {}
 
   const { t, i18n } = useTranslation()
 const queryClient=useQueryClient()
@@ -269,7 +269,11 @@ const basketArr:BasketPropsItem[]=basketData?.items || []
         <div onClick={() => {
           localStorage.removeItem("user_accesToken");
           localStorage.removeItem("user_refreshToken");
+          localStorage.removeItem("admin_accesToken")
+          localStorage.removeItem("admin_refreshToken")
+          localStorage.setItem('isAdmin',"false");
 
+setIsAdmin(false)
           setIsUser(false)
           localStorage.setItem("IsUser","false")
           push("/")
