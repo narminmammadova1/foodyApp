@@ -45,7 +45,7 @@ useEffect(() => {
   if (productsData) {
     setShowProducts(productsData);
   }
-}, []);
+}, [productsData]);
 useEffect(() => {
   if (idForFilter) {
     setShowFilteredProducts(filteredProducts || []);

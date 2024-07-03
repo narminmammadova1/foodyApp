@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { QUERIES } from '../../../Constant/Queries';
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useTranslation } from 'react-i18next';
+import { ROUTER } from '../../../Constant/Router';
 
 interface FormAddRestProps {
   onClose: () => void;
@@ -23,6 +24,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
 
   const { handleFileChange, handleUpload, downloadURL, setDownloadURL, file, setFile,imageUrl,setImageUrl } = UseFileUpload() || {};
   const router = useRouter();
+  const {push}=router
   const queryClient = useQueryClient();
 
   const restaurantForEdited = restaurantData?.find((rest) => rest.id === selectedId);
@@ -117,6 +119,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
       setImageUrl("")
       setDownloadURL("");
       setSelectedType("");
+      push(ROUTER.ADMINPRODUCTS)
       setTimeout(() => {
         onClose();
       }, 2000);
