@@ -18,8 +18,8 @@ const {isAdmin,setIsAdmin}=useGlobalContext() || {}
 
 useEffect(() => {
   
-  // const storedIsAdmin = localStorage.getItem('isAdmin');
-  const storedIsAdmin = sessionStorage.getItem('isAdmin');
+  const storedIsAdmin = localStorage.getItem('isAdmin');
+  // const storedIsAdmin = sessionStorage.getItem('isAdmin');
 
   setIsAdmin(storedIsAdmin === 'true');
 }, []);

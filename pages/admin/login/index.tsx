@@ -109,14 +109,14 @@ const { mutate: signInAdminMutation } = useMutation({
     console.log("adminmutation data", data);
 
     if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
-      sessionStorage.setItem("admin_accessToken", data?.data.user.access_token);
-    //  localStorage.setItem("admin_accessToken", data?.data.user.access_token);
-    // localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
-
-      sessionStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
+      // sessionStorage.setItem("admin_accessToken", data?.data.user.access_token);
+     localStorage.setItem("admin_accessToken", data?.data.user.access_token);
+    localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
+// localStorage.setItem("role","admin")
+      // sessionStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
       // sessionStorage.setItem("admin_LoginDate", String(new Date().getTime()));
-      sessionStorage.setItem("isAdmin", "true");
-    //  localStorage.setItem("isAdmin", "true");
+      // sessionStorage.setItem("isAdmin", "true");
+     localStorage.setItem("isAdmin", "true");
 
 
       setIsAdmin(true);
@@ -139,13 +139,14 @@ const { mutate: signInAdminMutation } = useMutation({
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: ""
+      password: "",
+      role:"admin"
     },
     validate,
     onSubmit: (values) => {
       setLoading(true)
       signInAdminMutation(values);
-      console.log("welcomeeeeee");
+      console.log("welcomeeeeeeeeeee",values);
 
       
 

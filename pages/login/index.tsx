@@ -46,7 +46,7 @@ const [loading,setLoading]=useState(false)
   const formik = useFormik({
     initialValues: {
       email: "",
-      password: ""
+      password: "",
     },
     onSubmit: (values) => {
 setLoading(true)
@@ -65,6 +65,7 @@ setLoading(true)
 
       localStorage.setItem("user_accesToken", data?.data.user.access_token);
       localStorage.setItem("user_refreshToken", data?.data.user.refresh_token);
+      // localStorage.setItem("role","user");
 
       // localStorage.setItem("user_LoginDate", String(new Date().getTime()))
       localStorage.setItem("isUser", "true")

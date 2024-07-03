@@ -12,7 +12,7 @@ import ButtonOrange from "../components/Client/ButtonOrange";
 import { useGlobalContext } from "../Context/GlobalContext";
 import { useRouter } from "next/router";
 import { ROUTER } from "../Constant/Router";
-import { useCallback,} from "react";
+import { useCallback, useEffect,} from "react";
 import AnimatedSection from "../components/AnimatedSection/AnimatedSection";
 import AnimatedSection2 from "../components/AnimatedSection2";
 import { useAnimatedStyles } from "../shared/animated/animated";
@@ -24,8 +24,7 @@ import { BasketPropsItem } from "../shared/interface";
 
 //props:InferGetServerSidePropsType<typeof getServerSideProps>
 const Home = () => {
-  
-
+ 
 
   
 const { springStyles, springStyles2, fadeInStyles } = useAnimatedStyles();

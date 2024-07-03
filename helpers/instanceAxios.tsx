@@ -7,14 +7,13 @@ const instanceAxios = axios.create({
 
 instanceAxios.interceptors.request.use(
   (config) => {
-    // const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
-    const isAdmin = sessionStorage.getItem('isAdmin') === 'true'; 
+    const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
+    // const isAdmin = sessionStorage.getItem('isAdmin') === 'true'; 
 
     const accessToken = isAdmin 
-      // ? localStorage.getItem("admin_accesToken") 
-      // : localStorage.getItem("user_accesToken");
-      ? sessionStorage.getItem("admin_accesToken") 
+      ? localStorage.getItem("admin_accesToken") 
       : localStorage.getItem("user_accesToken");
+   
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -28,12 +27,10 @@ instanceAxios.interceptors.request.use(
 const refreshToken = async () => {
   const isAdmin = localStorage.getItem('isAdmin') === 'true'; 
   const refreshToken = isAdmin 
-    // ? localStorage.getItem("admin_refreshToken") 
-    // : localStorage.getItem("user_refreshToken");
-
-    ? sessionStorage.getItem("admin_refreshToken") 
+    ? localStorage.getItem("admin_refreshToken") 
     : localStorage.getItem("user_refreshToken");
 
+  
 
   if (!refreshToken) {
     throw new Error("No refresh token available");
@@ -44,12 +41,12 @@ const refreshToken = async () => {
     const { access_token, refresh_token } = response.data;
 
     if (isAdmin) {
-      // localStorage.setItem("admin_accesToken", access_token);
-      sessionStorage.setItem("admin_accesToken", access_token);
+      localStorage.setItem("admin_accesToken", access_token);
+      // sessionStorage.setItem("admin_accesToken", access_token);
 
       if (refresh_token) {
-        // localStorage.setItem("admin_refreshToken", refresh_token);
-        sessionStorage.setItem("admin_refreshToken", refresh_token);
+        localStorage.setItem("admin_refreshToken", refresh_token);
+        // sessionStorage.setItem("admin_refreshToken", refresh_token);
 
       }
     } else {
@@ -75,16 +72,16 @@ instanceAxios.interceptors.response.use(
         return instanceAxios(error.config);
       } catch (refreshError) {
         localStorage.removeItem('user_accesToken');
-        // localStorage.removeItem('admin_accesToken');
-        sessionStorage.removeItem('admin_accesToken');
+        localStorage.removeItem('admin_accesToken');
+        // sessionStorage.removeItem('admin_accesToken');
 
         localStorage.removeItem('user_refreshToken');
-        // localStorage.removeItem('admin_refreshToken');
-        sessionStorage.removeItem('admin_refreshToken');
+        localStorage.removeItem('admin_refreshToken');
+        // sessionStorage.removeItem('admin_refreshToken');
 
         localStorage.removeItem('isUser');
-        // localStorage.removeItem('isAdmin');
-        sessionStorage.removeItem('isAdmin');
+        localStorage.removeItem('isAdmin');
+        // sessionStorage.removeItem('isAdmin');
 
       }
     }
