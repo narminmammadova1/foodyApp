@@ -49,7 +49,7 @@ const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
      
        isOpen={isOpen}
         onClose={close} />
-      {restaurant ? ( <div className=' bg-white lg:w-[247px] lg:h-[83px] mb-6 lg:mb-0  flex  justify-between rounded-md'>
+      {restaurant ? ( <div className=' bg-white w-[247px] h-[83px] mb-6 lg:mb-0  flex  justify-between rounded-md'>
         <div  className='w-[90px] h-[80px]-300 ps-3 pe-3 py-2  flex items-center justify-center overflow-hidden  object-cover  rounded-md '>
             <Image className='object-cover w-full  h-full  ' width={247} height={83} src={restaurant.img_url} alt={restaurant.name}/>
         </div>
