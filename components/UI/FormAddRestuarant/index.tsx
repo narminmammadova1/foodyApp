@@ -74,8 +74,9 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
         EditRestaurantMutation(editedValues);
         setIsEdit(false)
         setDownloadURL("");
-        setImageUrl("")
+        setImageUrl(restaurantForEdited?.img_url || "");
 
+        formik.resetForm();
 
 
       } else {
@@ -94,12 +95,13 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
 
   const { mutate: EditRestaurantMutation } = useMutation(editRestaurant, {
     onSuccess: (data) => {
-      toast.success("Restaurant updated");
+      toast.success("Restaurant updated",{autoClose:1000});
       queryClient.invalidateQueries(QUERIES.Restaurants);
       setFile(null);
       setDownloadURL("");
       setSelectedType("");
       onClose();
+      setIsEdit(false)
     },
     onError: (error) => {
       toast.error("Error editing restaurant");
@@ -108,7 +110,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
 
   const { mutate: AddRestaurantMutation } = useMutation(addRestaurant, {
     onSuccess: (data) => {
-      toast.success("Restaurant added", { autoClose: 2000 });
+      toast.success("Restaurant added", { autoClose: 1000 });
       queryClient.invalidateQueries(QUERIES.Restaurants);
       formik.resetForm();
       // setFile(null);
@@ -128,7 +130,7 @@ const FormAddRestaurant: React.FC<FormAddRestProps> = ({ onClose }) => {
     if (file) {
       handleUpload(file);
     }
-  }, [file, handleUpload]);
+  }, [file]);
 
   const isDisabled = !formik.values.name || !formik.values.category_id || !formik.values.cuisine || !formik.values.address || !formik.values.delivery_min || !formik.values.delivery_price;
 

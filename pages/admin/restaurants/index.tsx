@@ -31,7 +31,7 @@ if(restaurantData){
 
 }
 
- },[restaurantData])
+ },[])
 const filteredRestaurant=restaurantData?.filter((resttaurant)=>resttaurant.category_id===idForFilter)
 useEffect(()=>{
 

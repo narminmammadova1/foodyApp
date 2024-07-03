@@ -60,7 +60,7 @@ const {t}=useTranslation()
 
       </div>
 
-      <div className="   mx-auto lg:mx-4  mt-20 lg:mt-0  w-[287px] h-[372px] bg-dark-div lg:w-[634px] lg:h-[372px] lg:flex-col  rounded-[14px] ">
+      <div className="   mx-auto lg:mx-4  mt-20 lg:mt-0  w-[287px] h-[372px] bg-dark-div lg:w-[634px] lg:h-[472px] lg:flex-col  rounded-[14px] ">
       <div>
     <p className="text20">{t("Total Salary")}</p>
   </div>

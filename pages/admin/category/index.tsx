@@ -46,9 +46,12 @@ return (
         </Head>
 
         <Layout>
-          <AdminModal modalType="addCategory" formm={formComponent}  btnText={t("Create Category" )} isOpen={isOpen} onClose={close}/>
 
-          <AdminHeader/>
+
+        <AdminModal modalType="addCategory" formm={formComponent}  btnText={t("Create Category" )} isOpen={isOpen} onClose={close}/>
+        <AdminHeader/>
+
+
           <div className='flex'>
             <div className='hidden lg:block'>
             <SideBar/>
@@ -61,7 +64,6 @@ return (
               </div>
             </div>
           </div>
-          {/* <PaginationAdmin/> */}
 
         </Layout>
 

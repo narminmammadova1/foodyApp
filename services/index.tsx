@@ -62,7 +62,8 @@ export const getUser = async () => {
 
 
 export const addCategory = async (newCategory: object) => {
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
 
    return  instanceAxios({
       method:"POST",
@@ -84,7 +85,8 @@ export const addCategory = async (newCategory: object) => {
 
 export const deleteCategory=async (categoryId:string)=>{
 
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
 
   
  return instanceAxios({
@@ -141,8 +143,9 @@ export const deleteCategory=async (categoryId:string)=>{
 // main editcateg
 
 export const editCategory = (editedCategory:any)=> {
-  const accesToken = localStorage.getItem("admin_accesToken");
-
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
+//
   return instanceAxios({
     method: "PUT",
     url: `${ENDPOINTS.CATEGORY}/${editedCategory.id}`,
@@ -157,7 +160,8 @@ export const editCategory = (editedCategory:any)=> {
     // Product
 
     export const addProduct=async (newProduct:object)=>{
-      const accesToken = localStorage.getItem("admin_accesToken");
+      // const accesToken = localStorage.getItem("admin_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
 
  return instanceAxios({
     method:"POST",
@@ -180,7 +184,8 @@ export const editCategory = (editedCategory:any)=> {
 
 
 export const deleteProduct = async (productId: string) => {
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
 
    return instanceAxios({
       method: "DELETE",
@@ -195,7 +200,8 @@ export const deleteProduct = async (productId: string) => {
 
 
 export const editProduct=async (editedProduct:any)=>{
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
 
   return instanceAxios({
     method: "PUT",
@@ -210,7 +216,8 @@ export const editProduct=async (editedProduct:any)=>{
     //   ADD OFFER
     export const addOffer = async (newOffer: object) => {
     
-      const accesToken = localStorage.getItem("admin_accesToken");
+      // const accesToken = localStorage.getItem("admin_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
 
         
   return instanceAxios({
@@ -233,8 +240,9 @@ export const editProduct=async (editedProduct:any)=>{
 
 
     export const deleteOffer = async (itemId: string) => {
-    
-      const accesToken = localStorage.getItem("admin_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
+
+      // const accesToken = localStorage.getItem("admin_accesToken");
       return instanceAxios({
           method: "DELETE",
           url: `${ENDPOINTS.OFFER}/${itemId}`,
@@ -250,7 +258,8 @@ export const editProduct=async (editedProduct:any)=>{
 
 
     export const editOffer=async (editedOffer:any)=>{
-      const accesToken = localStorage.getItem("admin_accesToken");
+      // const accesToken = localStorage.getItem("admin_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
 
       return instanceAxios({
         method: "PUT",
@@ -265,7 +274,9 @@ export const editProduct=async (editedProduct:any)=>{
     //Add restaurant
 
     export const addRestaurant = async (newRest: object) => {
-      const accesToken = localStorage.getItem("admin_accesToken");
+      // const accesToken = localStorage.getItem("admin_accesToken");
+
+      const accesToken = sessionStorage.getItem("admin_accesToken");
 
    return  instanceAxios({
     method: "POST",
@@ -296,7 +307,9 @@ export const editProduct=async (editedProduct:any)=>{
 
 
     export const deleteRestaurant=(restId:string|number)=>{
-      const accesToken = localStorage.getItem("admin_accesToken");
+      // const accesToken = localStorage.getItem("admin_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
+
       return  instanceAxios({
         method:"DELETE",
         url:`${ENDPOINTS.RESTUARANT}/${restId}`,
@@ -308,7 +321,9 @@ export const editProduct=async (editedProduct:any)=>{
 
 export const editRestaurant=(restData:RestProps)=>{
 
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
+
    return instanceAxios({
     method:"PUT",
     url:`${ENDPOINTS.RESTUARANT}/${restData.id}`,
@@ -325,7 +340,9 @@ export const editRestaurant=(restData:RestProps)=>{
 
 
     export const getBasket=()=>{
-      const accesToken = localStorage.getItem("user_accesToken");
+      // const accesToken = localStorage.getItem("user_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
+
       return instanceAxios({
         method:"GET",
         url:ENDPOINTS.BASKET,
@@ -334,7 +351,9 @@ export const editRestaurant=(restData:RestProps)=>{
     }
 
     export const addBasket=async (productId:any)=>{
-      const accesToken = localStorage.getItem("user_accesToken");
+      // const accesToken = localStorage.getItem("user_accesToken");
+      const accesToken = sessionStorage.getItem("admin_accesToken");
+
 
 return instanceAxios({
   method:"POST",
@@ -416,17 +435,15 @@ export const getUserOrder=()=>{
 
 }
 
-export const deleteUserOrder=(orderId:string)=>{
+export const deleteOrder=(orderId:string)=>{
 
 
-  // const accesToken = localStorage.getItem("user_accesToken");
+  const accesToken = localStorage.getItem("user_accesToken");
 
   return instanceAxios({
     method:"DELETE",
     url:ENDPOINTS.ORDER,
-    data:{order_id:orderId},
-    // headers:{Authorization:`Bearer ${accesToken}`}
-  })
+    data:{order_id:orderId} })
 
 }
 
@@ -434,8 +451,9 @@ export const deleteUserOrder=(orderId:string)=>{
 
 export const getOrder=()=>{
 
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
 
+  const accesToken = sessionStorage.getItem("admin_accesToken");
 
 return instanceAxios({
 
@@ -450,12 +468,15 @@ return instanceAxios({
 
 export const getOrderHistory=()=>{
 
-  const accesToken = localStorage.getItem("admin_accesToken");
+  // const accesToken = localStorage.getItem("admin_accesToken");
+  const accesToken = sessionStorage.getItem("admin_accesToken");
 
   return instanceAxios({
 
     method:"GET",
-    url:ENDPOINTS.HISTORY
+    url:ENDPOINTS.HISTORY,
+    headers:{Authorization:`Bearer ${accesToken}`}
+
   })
 }
 

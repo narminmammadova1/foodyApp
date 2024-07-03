@@ -66,6 +66,7 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
           case "addRestaurant":
             setFormComponent(<FormAddRestuarant onClose={onClose} />);
             break;
+          
           case "addOffer":
            setFormComponent(<FormAddOffer onClose={onClose}  />);
           break;
@@ -83,7 +84,7 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
 
   useEffect(() => {
     changeModalItem();
-  }, [isOpen, pathname]);
+  }, [isOpen]);
 
   
 
@@ -93,6 +94,13 @@ const AdminModal: React.FC<AdminModalProps> = ({ isOpenEDitModal,isOpen,onClose,
       handleUpload(file);
     }
   }, [file]);
+
+
+
+
+
+
+  
 
   // const isDisabled = formik.values.name === "" || formik.values.description === "" || downloadURL === ""
   // || formik.values.price === "" || formik.values.restuarant === ""

@@ -110,9 +110,14 @@ const { mutate: signInAdminMutation } = useMutation({
 
     if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
       sessionStorage.setItem("admin_accessToken", data?.data.user.access_token);
+    //  localStorage.setItem("admin_accessToken", data?.data.user.access_token);
+    // localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
+
       sessionStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
       // sessionStorage.setItem("admin_LoginDate", String(new Date().getTime()));
       sessionStorage.setItem("isAdmin", "true");
+    //  localStorage.setItem("isAdmin", "true");
+
 
       setIsAdmin(true);
       toast.success("Welcome Admin", { autoClose: 1000 });

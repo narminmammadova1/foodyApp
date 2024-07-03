@@ -45,7 +45,7 @@ useEffect(() => {
   if (productsData) {
     setShowProducts(productsData);
   }
-}, [productsData]);
+}, []);
 useEffect(() => {
   if (idForFilter) {
     setShowFilteredProducts(filteredProducts || []);
@@ -53,10 +53,10 @@ useEffect(() => {
 }, [idForFilter, filteredProducts]);
 
 
-if (isLoading ) {
-  return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
-</div>;
-  }
+// if (isLoading ) {
+//   return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
+// </div>;
+//   }
  
   return (
     <div>

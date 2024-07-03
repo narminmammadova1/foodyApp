@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next'
  import i18n from "../../../next.config"
 import ProductModal from '../../Modals/ProductModal'
 import { useSpring,animated } from '@react-spring/web'
+import { useRouter } from 'next/router'
+import { ROUTER } from '../../../Constant/Router'
 
 const AdminHeader = () => {
 
@@ -17,7 +19,8 @@ const {t,i18n}=useTranslation()
 const[isNavbar,setIsNavbar]=useState(true)
 const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=useModal()
 
-
+const router=useRouter()
+const {push}=router
 
   const {isOpenLang,openLang,openSidebar,isOpenSidebar,closeSidebar}=useDropdownn()
 
@@ -29,8 +32,7 @@ const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=
   })
   return (
 <div>
-<ProductModal   onClose={closeProductModal} isOpen={isOpenProductModal}
-  />
+<ProductModal   onClose={closeProductModal} isOpen={isOpenProductModal} />
 
     <div  className=' bg-dark-div mx-0 flex items-center   px-[21px] py-[10px] rounded-b-[14px]  lg:mx-5 mb-4 justify-between '>
 <div className='flex-col relative'>
@@ -69,7 +71,7 @@ const {isOpen,open,close,isOpenProductModal,openProductModal,closeProductModal}=
 
       </div>
       <div className='flex justify-center items-center gap-4'>
-      <button className=' justify-end  items-center bg-btn-pink rounded-full  w-[40px] h-[40px]  font-roboto text-white  font-[700] text-[20px] lg:hidden'  onClick={openProductModal}>+</button>
+      <button className=' justify-end  items-center bg-btn-pink rounded-full  w-[40px] h-[40px]  font-roboto text-white  font-[700] text-[20px] lg:hidden'    onClick={openProductModal}>+</button>
 
         <img className=' cursor-pointer' src="/icons/avatar.svg" alt="avatar" />
         <p className='hidden lg:block text-text-header  font-roboto  font-medium  text-[16px]'>{t("Admin")}</p>

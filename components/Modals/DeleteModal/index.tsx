@@ -4,7 +4,7 @@ import React from 'react'
 import { useGlobalContext } from '../../../Context/GlobalContext';
 import { useRouter } from 'next/router';
 import { QueryClient, useMutation, useQueryClient } from 'react-query';
-import { deleteCategory, deleteOffer, deleteProduct, deleteRestaurant, deleteUserOrder } from '../../../services';
+import { deleteCategory, deleteOffer, deleteOrder, deleteProduct, deleteRestaurant,  } from '../../../services';
 import { QUERIES } from '../../../Constant/Queries';
 import { toast } from 'react-toastify';
 
@@ -90,7 +90,7 @@ toast.error("error delete mutation")
 
 
 const {mutate:deleteUserOrderMutation}=useMutation({
-  mutationFn:deleteUserOrder,
+  mutationFn:deleteOrder,
   onSuccess:()=>{toast.success("order deleted",{autoClose:2000})
 
   queryClient.invalidateQueries(QUERIES.UserOrder)
@@ -110,9 +110,9 @@ const {mutate:deleteUserOrderMutation}=useMutation({
 
 
 
-const { mutate: deleteOrderMutation } = useMutation(deleteUserOrder, {
+const { mutate: deleteOrderMutation } = useMutation(deleteOrder, {
   onSuccess: () => {
-    toast.success("Order deleted", { autoClose: 2000 });
+    toast.success("Order deleted", { autoClose: 1000 });
     console.log("Order deleted successfully");
     queryClient.invalidateQueries(QUERIES.Order);
   },
@@ -133,6 +133,11 @@ const { mutate: deleteOrderMutation } = useMutation(deleteUserOrder, {
     } else if (pathname === '/admin/offer' && deleteOfferMutation) {
       if (selectedId) {
         deleteOfferMutation(String(selectedId));
+      }
+    }
+    else if (pathname === '/admin/order' && deleteOrderMutation) {
+      if (selectedId) {
+        deleteOrderMutation(String(selectedId));
       }
     } else if (pathname === '/admin/restaurants' && deleteRestaurantMutation) {
       if (selectedId) {

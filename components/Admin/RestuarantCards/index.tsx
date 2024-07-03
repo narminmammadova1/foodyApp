@@ -49,14 +49,14 @@ const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
      
        isOpen={isOpen}
         onClose={close} />
-      {restaurant ? ( <div className=' bg-white lg:w-[247px] lg:h-[83px] mb-6 lg:mb-0  flex gap-5 justify-between rounded-md'>
-        <div  className='w-[90px] h-[80px] ps-3 py-2  flex items-center justify-center overflow-hidden  object-cover  rounded-md '>
+      {restaurant ? ( <div className=' bg-white lg:w-[247px] lg:h-[83px] mb-6 lg:mb-0  flex  justify-between rounded-md'>
+        <div  className='w-[90px] h-[80px]-300 ps-3 pe-3 py-2  flex items-center justify-center overflow-hidden  object-cover  rounded-md '>
             <Image className='object-cover w-full  h-full  ' width={247} height={83} src={restaurant.img_url} alt={restaurant.name}/>
         </div>
 
 <div className=' bg-gray-80 font-roboto w-2/3 flex flex-col justify-center '>
-    <h2 className='  whitespace-nowrap text-ellipsis font-[18px]'>{restaurant.name.slice(0,21)}</h2>
-    <p className=' text-par3-text  whitespace-nowrap text-ellipsis font-[14px]'>{restaurant.cuisine.slice(0,12)}</p>
+    <h2 className='  whitespace-nowrap text-ellipsis font-[18px]'>{restaurant.name.slice(0,17)}</h2>
+    <p className=' text-par3-text  whitespace-nowrap text-ellipsis font-[14px]'>{restaurant.cuisine.slice(0,17)}</p>
     </div>
 <div className='flex flex-col   justify-between py-1 pe-3'>
     <img onClick={()=>{

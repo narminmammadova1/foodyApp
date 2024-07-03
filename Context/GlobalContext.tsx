@@ -61,7 +61,9 @@ interface ContextProps {
    isLoading:boolean;
    currentProduct:any[];
    setCurrentProduct:any,
-   addBasketmutation:any
+   addBasketmutation:any,
+   newImg:any,
+   setNewImg:any
    
   }
 
@@ -98,7 +100,7 @@ const[isUser,setIsUser]=useState(false)
 const [orderId,setOrderId]=useState<string | null |number | undefined>(null)
 
 
-
+const[newImg,setNewImg]=useState("")
     const queryClient=useQueryClient()
 
 
@@ -173,6 +175,7 @@ useEffect(() => {
 }, [User]);
 
 const value:ContextProps={
+  newImg,setNewImg,
     isAdmin, setIsAdmin,
     userData,
     categoryData,

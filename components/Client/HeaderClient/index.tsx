@@ -213,7 +213,12 @@ const basketArr:BasketPropsItem[]=basketData?.items || []
 
      <div className='flex  lg:hidden justify-between'>
      <div className=' flex'>
-  <Image  onClick={openSidebar} className='w-[30px] block  h-[30.75px]  '  width={1000} height={1000} src="/icons/navbarBlack.svg" alt='nav'/>
+  <Image  onClick={()=>{
+    if (setProfilImg && userData?.img_url) {
+      setProfilImg(userData.img_url || "");
+    }
+    openSidebar()
+  }} className='w-[30px] block  h-[30.75px]  '  width={1000} height={1000} src="/icons/navbarBlack.svg" alt='nav'/>
 
   
   <Image onClick={() => push("/")} className=' cursor-pointer flex' width={100} height={100} alt="logo" src="/svgs/logoblack.svg"/>
