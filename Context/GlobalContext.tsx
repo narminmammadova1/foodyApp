@@ -129,13 +129,11 @@ const productsData=products?.data?.result.data
 
  const {data:userOrders}=useQuery(QUERIES.UserOrder,getUserOrder)
  const userOrdersData=userOrders?.data?.result.data || []
- console.log("get Basket",basketData);
  
 
  const {data:Orders}=useQuery(QUERIES.Order,getOrder)
 
  const orderData=Orders?.data?.result?.data || []
- console.log("ordersssdata",orderData);
  
 
 
@@ -143,13 +141,11 @@ const productsData=products?.data?.result.data
 
  const historyData=history?.data?.result?.data
 
- console.log("historyDataaa",historyData);
 
 
 const{mutate:addBasketmutation}=useMutation({
     mutationFn:addBasket,
     onSuccess:(values)=>{
-      console.log("baskete add edilen",values);
       toast.success("added basket",{autoClose:1000})
       queryClient.invalidateQueries(QUERIES.Basket)
     },

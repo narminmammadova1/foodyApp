@@ -34,12 +34,10 @@ useEffect(() => {
 }, []);
 const [showProducts,setShowProducts]=useState<any[]>([])
 const [showFilteredProducts,setShowFilteredProducts]=useState<any[]>([])
-console.log("topdivde selectedidddddddddddddddddddddddddddddddd",idForFilter);
 
 
 
 const filteredProducts=productsData?.filter((product)=>product.rest_id===idForFilter)
-console.log("topdivde selectedidddd proddddddddd",filteredProducts);
 
 useEffect(() => {
   if (productsData) {

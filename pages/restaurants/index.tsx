@@ -23,7 +23,6 @@ const {restaurantData,isLoading,categoryData,selectedId,setSelectedId}=useGlobal
 const {  openSidebar,isOpenSidebar,closeSidebar } = useDropdownn()
 
 
-console.log("restdaki restdata newwwwwwwww",restaurantData);
 
 
 const [restData,setRestData]=useState<RestProps[]>([])

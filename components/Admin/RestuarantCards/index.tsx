@@ -36,7 +36,6 @@ const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
     if (setSelectedId) {
       setSelectedId(restaurant.id);
     }
-    console.log("Selected restaurant ID for edit:", restaurant.id);
   };
   const {t}=useTranslation()
 
@@ -60,7 +59,6 @@ const RestuarantCards: React.FC<RestaurantCardProps> = ({restaurant}) => {
     </div>
 <div className='flex flex-col   justify-between py-1 pe-3'>
     <img onClick={()=>{
-console.log("delete click isleyir");
 
       openDelModal()
 if(setSelectedId){

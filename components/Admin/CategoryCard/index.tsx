@@ -26,7 +26,6 @@ const CategoryCard = () => {
     setIsEdit(true);
     if (open && formComponent) open()
 
-      console.log("selectedIddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",selectedId);
       
   }, [setSelectedId, open, formComponent, setIsEdit])
 

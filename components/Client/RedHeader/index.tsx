@@ -30,19 +30,7 @@ const queryClient=useQueryClient()
   return (
     <div>
     <header className=' bg-mainRed rounded-[4px] '>
-{/* <div className='flex ms-10 h-[122px] items-center justify-between me-[23px]'>
-<div ><img src="/svgs/logo.svg" alt="logo" /></div>
 
-
-<div> 
-</div>
-
-<div className='flex gap-6'> 
-
-  <img src="/icons/langaz.svg" alt="lang" />
-
-</div>
-</div> */}
  <div className='flex h-[59px] lg:h-[122px] me-4   items-center justify-between'>
      <div className=' flex ms-3 lg:ms-[36px]'>
   <Image  onClick={openSidebar} className='w-[30px] block  lg:hidden h-[30.75px]  '  width={1000} height={1000} src="/icons/navbar.svg" alt='nav'/>

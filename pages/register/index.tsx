@@ -51,7 +51,6 @@ onSubmit:(values)=>{
     return;
   }
 signUpUserMutation(values)
-    console.log("signupuser formik isleyir");
     
 }})
 

@@ -61,7 +61,6 @@ setInitialVaues({
 const { mutate: addOfferMutation } = useMutation(
   {mutationFn:addOffer,
    onSuccess: (data) => {
-     console.log("Offer added:", data);
      toast.success("Offer added", { autoClose: 2000 });
      queryClient.invalidateQueries(QUERIES.Offers)
 
@@ -100,7 +99,6 @@ const formik = useFormik({
   initialValues,
   enableReinitialize: true,
   onSubmit:async (values) => {
-   console.log("offerde submit olundu");
    if(isEdit){
     const editedValues={
       ...values,

@@ -21,18 +21,8 @@ const LoginPage: NextPage = () => {
   const { isBasket, setIsBasket, isAvatar, letters, setIsAvatar,setProfilImg, userData,setIsAdmin,isLoading, isName, setLetters, setIsName, isLoginBtn, setIsLoginBtn, setIsUser, showPassword, setShowPassword, togglePassword } = useGlobalContext() || {}
 const [loading,setLoading]=useState(false)
   const queryClient = useQueryClient()
-  // useEffect(() => {
-  //   const userToken = localStorage.getItem("user_accesToken")
-  //   if (userToken) {
-  //     setIsAvatar(true)
-  //     setIsBasket(true)
-  //     setIsLoginBtn(false)
-  //     setIsUser(true)
-  //   }
-  // }, [])
-  useEffect(() => {
-    console.log("userData controllllllllllllllllllllll",userData);
-  }, []);
+  
+ 
 
   useEffect(() => {
     if (letters && userData) {
@@ -80,7 +70,6 @@ setLoading(true)
 
     },
     onError: (error) => {
-      console.log(error, "signin user error ");
       toast.error("signin user error")
 
     }

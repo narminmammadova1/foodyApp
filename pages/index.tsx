@@ -33,11 +33,9 @@ const { springStyles, springStyles2, fadeInStyles } = useAnimatedStyles();
    const {push}=router
 
 const {offerData,isLoading}=useGlobalContext() || {}
-console.log("homedeki offerData",offerData);
 
 const offerName=offerData?.map((offer)=>offer.name)
 const offerImage=offerData?.map((offer)=>offer.img_url)
-console.log("homedeki offerName",offerName);
 
 const offerDescription=offerData?.map((offer)=>offer.description)
 

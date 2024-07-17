@@ -28,11 +28,7 @@ const EmptyBasket:React.FC<BasketCardProps> = ({size,headtitle}) => {
 
   const divSize=size=== "small" ? "basket_small" :"basket_large"
 
-//   const p_size=size==="small"?"p16_small":"p22_large"
-//   const p14_size=size==="small"?"p14_small":"p18_large"
 
-//   const img_size=size==="small"? "img_small" :"img_large"
-// const whitebtn_size=size==="small" ? "whitebtn_small" :"whitebtn_large"
 
 const pad_size=size==="small"? "padding4":"padding8"
 const btn_size=size==="small" ?"btn_small":"btn_large"

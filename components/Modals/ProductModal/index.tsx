@@ -464,7 +464,6 @@ const ProductModal: React.FC<ProductModalProps> = ({ onClose, isOpen, isEdit }) 
         };
         // editProductMutation(editedValues);
         await  editProductMutation(editedValues)
- console.log("editedproduct",editedValues);
 
       } else {
         const newValues = {

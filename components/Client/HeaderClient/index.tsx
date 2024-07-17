@@ -34,7 +34,6 @@ const queryClient=useQueryClient()
   const [searchError, setSearchError] = useState("")
   const [searchResult, setSearchResult] = useState<any[]>([]);
 
-  console.log("userdata home",userData);
 
 useEffect(() => {
   const userToken = localStorage.getItem("user_accesToken")
@@ -72,10 +71,7 @@ useEffect(() => {
       setIsOpenSearchDiv(true)
       setSearchResult([...resultRestaurant])
 
-      console.log("Search Result:", searchResult);
-      console.log("Search Result Length:", searchResult.length);
-      console.log("Filtered Restaurants", resultRestaurant);
-
+    
     } 
 
     else {
@@ -118,7 +114,6 @@ const selectRestaurant = async (rest: any) => {
 
     push(`${ROUTER.RESTAURANTS}/${rest.id}`);
   } catch (err) {
-    console.log("err", err);
   }
 };
 const basketArr:BasketPropsItem[]=basketData?.items || []

@@ -104,7 +104,6 @@ const {offerData,isEdit,setIsEdit,selectedId, setSelectedId,formComponent,setFor
         
 <Image onClick={()=>{
           open()
-          console.log("handle edit offer isleyir");
           
           setIsEdit(true)
           if(setSelectedId){setSelectedId(offer.id)}

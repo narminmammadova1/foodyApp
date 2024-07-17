@@ -32,7 +32,6 @@ let { selectedId,myOrder,setMyOrder,orderId
   const { mutate: deleteCategoryMutation
   } = useMutation(deleteCategory, {
       onSuccess: (data) => {
-          console.log("Deleted category:", data);
 
 toast.success("Deleted Category",{autoClose:2000})
          queryClient.invalidateQueries(QUERIES.Categories);
@@ -48,7 +47,6 @@ const {mutate:    deleteOfferMutation,
 }=useMutation(deleteOffer,{
   onSuccess:(data)=>{
 
-      console.log("Deleted Offer");
 
       toast.success("Deleted Offer",{autoClose:2000})
       queryClient.invalidateQueries(QUERIES.Offers);
@@ -62,7 +60,6 @@ const {mutate:    deleteOfferMutation,
 const {mutate:deleteProductMutation}=useMutation(
   deleteProduct,{
       onSuccess:(data)=>{
-          console.log("delete product mutation");
           toast.success("Product Deleted")
           queryClient.invalidateQueries(QUERIES.Products)
           
@@ -77,7 +74,6 @@ const {mutate:deleteProductMutation}=useMutation(
 const {mutate:deleteRestaurantMutation}=useMutation(deleteRestaurant,
   {onSuccess:(data)=>{
 
-    console.log("restaurant mutation isleyir");
     toast.success("Deleted restaurant",{autoClose:2000})
     queryClient.invalidateQueries(QUERIES.Restaurants);
   },
@@ -113,7 +109,6 @@ const {mutate:deleteUserOrderMutation}=useMutation({
 const { mutate: deleteOrderMutation } = useMutation(deleteOrder, {
   onSuccess: () => {
     toast.success("Order deleted", { autoClose: 1000 });
-    console.log("Order deleted successfully");
     queryClient.invalidateQueries(QUERIES.Order);
   },
   onError: (error) => {

@@ -24,7 +24,6 @@ const {addBasketmutation,isLoading}=useGlobalContext() || {}
 
 
 const basketArr:BasketPropsItem[]=basketData?.items || []
-console.log("basketArrrrr",basketArr);
 
   const divSize=size=== "small" ? "basket_small" :"basket_large"
 

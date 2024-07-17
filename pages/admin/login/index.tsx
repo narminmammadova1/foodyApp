@@ -63,59 +63,16 @@ const { isOpenLang, openLang } = useDropdownn()
   const {push}=useRouter()
 
 
-// const { mutate: signInAdminMutation } = useMutation({
-//   mutationFn: signAdmin,
-//   onSuccess: (data) => {
-//     setLoading(false)
-//     console.log("adminmutation data", data);
-   
-//     if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
-    
-
-      
-//       localStorage.setItem("admin_accesToken", data?.data.user.access_token);
-//       localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
-
-//       localStorage.setItem("admin_LoginDate", String(new Date().getTime()))
-//       localStorage.setItem("isAdmin", "true"); 
-
-//       setIsAdmin(true);
-//       // setIsUser(false)
-//       toast.success("Welcome Admin", { autoClose: 1000 });
-//       setTimeout(() => {
-//         push(ROUTER.ADMINPRODUCTS);
-//       }, 500);
-//     } else {
-//       toast.error("You are not Admin", { autoClose: 1500 });
-//     }
-//   },
-//   onError: (error) => {
-//     setLoading(false)
-//     toast.error("You are not Admin",{autoClose:1500})
-//     console.error("An error occurred:", error);
-//   }
-// });
-
-
-
-
-
-
 
 const { mutate: signInAdminMutation } = useMutation({
   mutationFn: signAdmin,
   onSuccess: (data) => {
     setLoading(false);
-    console.log("adminmutation data", data);
 
     if (data && data.data.user && data.data.user.email === "admin111@gmail.com") {
-      // sessionStorage.setItem("admin_accessToken", data?.data.user.access_token);
      localStorage.setItem("admin_accessToken", data?.data.user.access_token);
     localStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
-// localStorage.setItem("role","admin")
-      // sessionStorage.setItem("admin_refreshToken", data?.data.user.refresh_token);
-      // sessionStorage.setItem("admin_LoginDate", String(new Date().getTime()));
-      // sessionStorage.setItem("isAdmin", "true");
+    
      localStorage.setItem("isAdmin", "true");
 
 
@@ -146,7 +103,6 @@ const { mutate: signInAdminMutation } = useMutation({
     onSubmit: (values) => {
       setLoading(true)
       signInAdminMutation(values);
-      console.log("welcomeeeeeeeeeee",values);
 
       
 
@@ -155,12 +111,6 @@ const { mutate: signInAdminMutation } = useMutation({
 
 
   const isDisabled = !formik.values.email || formik.values.password!=="admin111" || !formik.values.password  || loading;
-
-//   if (isLoading ) {
-//     return <div className=' w-full h-screen fixed  justify-center items-center flex m-auto bg-black'>    <CircleLoader color="#36D7B7" loading={true} />
-//  </div>;
-//     }
-
   return (
     <>
       <Head>

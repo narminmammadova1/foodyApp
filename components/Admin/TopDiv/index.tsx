@@ -60,7 +60,6 @@ const handleSelectChange=(e:React.ChangeEvent<HTMLSelectElement>)=>{
 setIdForFilter && setIdForFilter(e.target.value)
 }
 
-console.log("topdivde restData",restaurantData);
 
 // useEffect(()=>{
 //   if(!selectedId){setDefaultText("")}

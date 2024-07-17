@@ -51,7 +51,6 @@ const {t}=useTranslation()
     addOrdermutation &&  addOrdermutation(addedOrder) ;
 
    queryClient.invalidateQueries(QUERIES.Order)
-      console.log("formik addedOrderDataaaaaaaa",addedOrder);
     }
   });
 

@@ -29,8 +29,7 @@ const SideBar:React.FC<SideBarProp>= ({isNavbar,closeSidebar}) => {
 
   const router=useRouter()
 const {push}=router
-console.log("langggg",router);
-console.log("isAdmin:", setIsAdmin); 
+
 
 const queryClient=useQueryClient()
 const restoreDefaulttext=()=>{
