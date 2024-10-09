@@ -21,6 +21,6 @@ Animations: React Spring is used to enrich user experience through engaging anim
 Login Credentials
 To access the admin panel, please use the following username and password:
 
-Username: admin
-Password: password123
+Username: admin111@gmail.com
+Password: admin111
 The Foody project aims to provide a fast and efficient food ordering experience for both users and administrators. If you have any questions or feedback, please feel free to reach out.
