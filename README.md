@@ -18,9 +18,5 @@ Technologies
 Frontend: The project is developed using React and Next.js, which are popular frameworks for modern web applications.
 CSS: Tailwind CSS is utilized for visual design, offering a flexible and customizable design system.
 Animations: React Spring is used to enrich user experience through engaging animations.
-Login Credentials
-To access the admin panel, please use the following username and password:
 
-Username: admin111@gmail.com
-Password: admin111
 The Foody project aims to provide a fast and efficient food ordering experience for both users and administrators. If you have any questions or feedback, please feel free to reach out.
